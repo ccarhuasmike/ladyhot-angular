@@ -1,0 +1,86 @@
+<!-- <nav class="navbar is-fixed-top">
+  <div class="navbar-brand">
+    <a class="navbar-item" routerLink="/">
+      <img src="./assets/logo.png" alt="Autobot: learn Angular playing with cars" height="28">
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start ">
+      <a class="navbar-item" routerLink="about"> About</a>
+    </div>
+    <div class="navbar-end">
+      <a class="navbar-item" rel="noopener" href="https://github.com/AcademiaBinaria/astrobot/releases/tag/v{{ tag }}/"
+        target="_blank">v: {{ version }}</a>
+    </div>
+  </div>
+</nav> -->
+
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="#">Fixed Logo navbar</a>
+  <button (click)="toggleCollapse()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fa fa-bars fa-lg"></span>
+    <!-- <span [hidden]="collapse=='open'" class="fa fa-bars fa-lg"></span>
+    <span [hidden]="collapse=='closed'" class="fa fa-times fa-lg"></span> -->
+  </button>
+
+  <!-- <div class="collapse navbar-collapse" [@collapse]="collapse" > -->
+  <div class="collapse navbar-collapse" [class.show]="show">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/">Inicio</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Publicidad</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="anuncio">Anunciate GRATIS</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Contactar</a>
+      </li>
+    </ul>
+    <!-- <form class="form-inline mt-2 mt-md-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
+  </div>
+
+
+</nav>
+<!-- 
+<nav class="navbar fixed-top navbar-custom">
+  <a href="/" class="navbar-brand">Custom</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCustom">
+    <i class="fa fa-bars fa-lg py-1 text-white"></i>
+  </button>
+  <div class="navbar-collapse collapse" id="navbarCustom">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Active</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+    <span class="ml-auto navbar-text">Text</span>
+  </div>
+</nav> -->

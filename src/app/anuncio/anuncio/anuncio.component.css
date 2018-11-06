@@ -1,0 +1,98 @@
+.container {
+  background: white;
+  padding: 10px 15px;
+}
+
+h4 {
+  /* font-family: Noto serif; */
+  font-family: Arial, Helvetica, sans-serif;
+  color: #00a1b2;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+label {
+  /* font-family: Noto serif; */
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+p {
+  /* font-family: Noto serif; */
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.categorias-anuncio label {
+  text-align: left;
+  white-space: nowrap;
+  margin: 0px;
+  padding: 0px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.categorias-anuncio .categoria {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid #E8E8E8;
+  color: #303030;
+  line-height: 15px;
+  font-size: 12px;
+  height: auto;
+  width: 21.7%;
+  padding: 0.5% 1%;
+  margin: 0.5%;
+  width: calc(32% - 1%);
+  padding: calc(9px) calc(8px) calc(8px) calc(8px);
+  margin: calc(4px);
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 3px;
+  /* position: relative;
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid #E8E8E8;
+  color: #303030;
+  line-height: 16px;
+  font-size: 17px;
+  height: 16px;
+  width: 21.7%;
+  padding: 0.5% 1%;
+  margin: 0.5%;
+  width: calc(25% - 26px);
+  padding: calc(9px) calc(8px) calc(8px) calc(8px);
+  margin: calc(4px);
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 3px; */
+}
+
+.categorias-anuncio label.checked,
+.categorias-anuncio span.checked {
+  color: white;
+  background-color: #0072C6;
+}
+
+
+.categorias-anuncio .tc_valores {
+  display: inline;
+}
+
+.categorias-anuncio input {
+  height: 0;
+  width: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  opacity: 0;
+}

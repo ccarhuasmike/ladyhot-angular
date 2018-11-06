@@ -1,0 +1,384 @@
+<div class="container-fluid">
+  <div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5"
+    [infiniteScrollThrottle]="500" (scrolled)="onScrollDown()" (scrolledUp)="onScrollUp()">
+    <ngx-masonry [options]="masonryOptions" [useImagesLoaded]="true">
+      <ngxMasonryItem *ngFor="let picture of masonryImages" class="masonry-item">
+        <img src="{{picture.foto}}">
+        <div class="icons-fichas">
+          <span class="icons-fichas-info">
+            <span class="fa fa-info"></span>
+          </span>
+          <span class="icons-fichas-player ">
+            <span class="fa fa-play"></span>
+          </span>
+        </div>
+        <a href="#" class="btn-small">{{picture.distrito}}</a>
+        <a href="#" class="btn-small"> {{picture.edad}}</a>
+        <a href="#" class="btn-small">{{picture.precio}}</a>
+        <a href="#" class="btn-small">{{picture.pais}}</a>
+        <p class="descripcion">
+          {{picture.descripcion}}
+        </p>
+      </ngxMasonryItem>
+    </ngx-masonry>
+  </div>
+</div>
+<!--  
+  <button *ngIf="limit < 100" (click)="showMoreImages()">Show More Images</button>
+  <h2 *ngIf="limit >= 100">No More Images</h2> -->
+
+<!-- <div class="masonry">
+    <div class="item" *ngFor="let item of clientes; let i = index">
+      <img src="{{item.foto}}">
+      <div class="icons-fichas">
+        <span class="icons-fichas-info">
+          <span class="fa fa-info"></span>
+        </span>
+        <span class="icons-fichas-player ">
+          <span class="fa fa-play"></span>
+        </span>
+      </div>
+      <a href="#" class="btn-small">{{item.distrito}}</a>
+      <a href="#" class="btn-small"> {{item.edad}}</a>
+      <a href="#" class="btn-small">{{item.precio}}</a>
+      <a href="#" class="btn-small">{{item.pais}}</a>
+      <p class="descripcion">
+        {{item.descripcion}}
+      </p>
+    </div>
+  </div>
+ -->
+
+
+
+
+
+<!-- <div class="container-principal">
+    <div class="fichas">
+      <a href="#"><img src="assets/naruto.jpg" /></a>
+      <div class="icons-fichas">
+        <span class="icons-fichas-info">
+          <span class="fa fa-info"></span>
+        </span>
+        <span class="icons-fichas-player ">
+          <span class="fa fa-play"></span>
+        </span>
+      </div>
+
+      <div class="footer-ficha">
+
+        <a href="#" class="btn-small">Lima Metro</a>
+        <a href="#" class="btn-small"> 1 edad</a>
+        <a href="#" class="btn-small">S/. 10 </a>
+        <a href="#" class="btn-small">Peru</a>
+
+        <p class="descripcion">
+          pepito pepito pepito
+          pepito pepito pepito
+          pepito pepito pepito
+          pepito pepito pepito
+          pepito pepito pepito
+          pepito pepito pepito
+          pepito .......
+        </p>
+      </div>
+    </div>
+    <div class="fichas">
+      <a href="#"><img src="assets/2.jpg" /></a>
+      <div class="icons-fichas">
+        <span class="icons-fichas-info">
+          <span class="fa fa-info"></span>
+        </span>
+        <span class="icons-fichas-player ">
+          <span class="fa fa-play"></span>
+        </span>
+      </div>
+
+      <a href="#" class="btn-small">Lima Metro</a>
+      <a href="#" class="btn-small"> 1 edad</a>
+      <a href="#" class="btn-small">S/. 10 </a>
+      <a href="#" class="btn-small">Peru</a>
+
+      <p class="descripcion">
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito .......
+      </p>
+    </div>
+
+    <div class="fichas">
+      <a href="#"><img src="assets/3.jpg" /></a>
+      <div class="icons-fichas">
+        <span class="icons-fichas-info">
+          <span class="fa fa-info"></span>
+        </span>
+        <span class="icons-fichas-player ">
+          <span class="fa fa-play"></span>
+        </span>
+      </div>
+
+      <a href="#" class="btn-small">Lima Metro</a>
+      <a href="#" class="btn-small"> 1 edad</a>
+      <a href="#" class="btn-small">S/. 10 </a>
+      <a href="#" class="btn-small">Peru</a>
+
+      <p class="descripcion">
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito .......
+      </p>
+    </div>
+
+    <div class="fichas">
+      <a href="#"><img src="assets/4.jpg" /></a>
+      <div class="icons-fichas">
+        <span class="icons-fichas-info">
+          <span class="fa fa-info"></span>
+        </span>
+        <span class="icons-fichas-player ">
+          <span class="fa fa-play"></span>
+        </span>
+      </div>
+
+      <a href="#" class="btn-small">Lima Metro</a>
+      <a href="#" class="btn-small"> 1 edad</a>
+      <a href="#" class="btn-small">S/. 10 </a>
+      <a href="#" class="btn-small">Peru</a>
+
+      <p class="descripcion">
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito .......
+      </p>
+    </div>
+
+    <div class="fichas">
+      <a href="#"><img src="assets/5.jpg" /></a>
+      <div class="icons-fichas">
+        <span class="icons-fichas-info">
+          <span class="fa fa-info"></span>
+        </span>
+        <span class="icons-fichas-player ">
+          <span class="fa fa-play"></span>
+        </span>
+      </div>
+
+      <a href="#" class="btn-small">Lima Metro</a>
+      <a href="#" class="btn-small"> 1 edad</a>
+      <a href="#" class="btn-small">S/. 10 </a>
+      <a href="#" class="btn-small">Peru</a>
+
+      <p class="descripcion">
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito .......
+      </p>
+    </div>
+
+
+    <div class="fichas">
+      <a href="#"><img src="assets/6.jpg" /></a>
+      <div class="icons-fichas">
+        <span class="icons-fichas-info">
+          <span class="fa fa-info"></span>
+        </span>
+        <span class="icons-fichas-player ">
+          <span class="fa fa-play"></span>
+        </span>
+      </div>
+
+      <a href="#" class="btn-small">Lima Metro</a>
+      <a href="#" class="btn-small"> 1 edad</a>
+      <a href="#" class="btn-small">S/. 10 </a>
+      <a href="#" class="btn-small">Peru</a>
+
+      <p class="descripcion">
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito .......
+      </p>
+    </div>
+
+
+    <div class="fichas">
+      <a href="#"><img src="assets/7.jpg" /></a>
+      <div class="icons-fichas">
+        <span class="icons-fichas-info">
+          <span class="fa fa-info"></span>
+        </span>
+        <span class="icons-fichas-player ">
+          <span class="fa fa-play"></span>
+        </span>
+      </div>
+
+      <a href="#" class="btn-small">Lima Metro</a>
+      <a href="#" class="btn-small"> 1 edad</a>
+      <a href="#" class="btn-small">S/. 10 </a>
+      <a href="#" class="btn-small">Peru</a>
+
+      <p class="descripcion">
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito .......
+      </p>
+    </div>
+
+    <div class="fichas">
+      <a href="#"><img src="assets/8.jpg" /></a>
+      <div class="icons-fichas">
+        <span class="icons-fichas-info">
+          <span class="fa fa-info"></span>
+        </span>
+        <span class="icons-fichas-player ">
+          <span class="fa fa-play"></span>
+        </span>
+      </div>
+
+      <a href="#" class="btn-small">Lima Metro</a>
+      <a href="#" class="btn-small"> 1 edad</a>
+      <a href="#" class="btn-small">S/. 10 </a>
+      <a href="#" class="btn-small">Peru</a>
+
+      <p class="descripcion">
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito .......
+      </p>
+    </div>
+
+    <div class="fichas">
+      <a href="#"><img src="assets/9.jpg" /></a>
+      <div class="icons-fichas">
+        <span class="icons-fichas-info">
+          <span class="fa fa-info"></span>
+        </span>
+        <span class="icons-fichas-player ">
+          <span class="fa fa-play"></span>
+        </span>
+      </div>
+
+      <a href="#" class="btn-small">Lima Metro</a>
+      <a href="#" class="btn-small"> 1 edad</a>
+      <a href="#" class="btn-small">S/. 10 </a>
+      <a href="#" class="btn-small">Peru</a>
+
+      <p class="descripcion">
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito .......
+      </p>
+    </div>
+
+    <div class="fichas">
+      <a href="#"><img src="assets/10.jpg" /></a>
+      <div class="icons-fichas">
+        <span class="icons-fichas-info">
+          <span class="fa fa-info"></span>
+        </span>
+        <span class="icons-fichas-player ">
+          <span class="fa fa-play"></span>
+        </span>
+      </div>
+
+      <a href="#" class="btn-small">Lima Metro</a>
+      <a href="#" class="btn-small"> 1 edad</a>
+      <a href="#" class="btn-small">S/. 10 </a>
+      <a href="#" class="btn-small">Peru</a>
+
+      <p class="descripcion">
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito .......
+      </p>
+    </div>
+
+    <div class="fichas">
+      <a href="#"><img src="assets/11.png" /></a>
+      <div class="icons-fichas">
+        <span class="icons-fichas-info">
+          <span class="fa fa-info"></span>
+        </span>
+        <span class="icons-fichas-player ">
+          <span class="fa fa-play"></span>
+        </span>
+      </div>
+      <div class="footer-ficha">
+        <a href="#" class="btn-small">Lima Metro</a>
+        <a href="#" class="btn-small"> 1 edad</a>
+        <a href="#" class="btn-small">S/. 10 </a>
+        <a href="#" class="btn-small">Peru</a>
+
+        <p class="descripcion">
+          pepito pepito pepito
+          pepito pepito pepito
+          pepito pepito pepito
+          pepito pepito pepito
+          pepito pepito pepito
+          pepito pepito pepito
+          pepito .......
+        </p>
+      </div>
+    </div>
+    <div class="fichas">
+      <a href="#"><img src="assets/12.jpg" /></a>
+      <div class="icons-fichas">
+        <span class="icons-fichas-info">
+          <span class="fa fa-info"></span>
+        </span>
+        <span class="icons-fichas-player ">
+          <span class="fa fa-play"></span>
+        </span>
+      </div>
+
+      <a href="#" class="btn-small">Lima Metro</a>
+      <a href="#" class="btn-small"> 1 edad</a>
+      <a href="#" class="btn-small">S/. 10 </a>
+      <a href="#" class="btn-small">Peru</a>
+
+      <p class="descripcion">
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito pepito pepito
+        pepito .......
+      </p>
+    </div>
+  </div> -->

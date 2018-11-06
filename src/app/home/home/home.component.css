@@ -1,0 +1,369 @@
+html {
+  overflow-y: hidden;
+}
+
+.container-fluid {
+  background: white;
+}
+
+.masonry-demo {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.masonry-item {
+  background: #fff;
+  padding: 1em;
+  margin: 0 0 1.5em;
+  margin-bottom: 20px;
+  background-size: cover;
+  width: 260px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-shadow: 2px 2px 4px 0 #ccc;
+}
+
+.masonry-item img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+
+.descripcion {
+  padding: 3px 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+/* 
+.masonry {
+  -webkit-column-count: 6;
+  -moz-column-count: 6;
+  column-count: 6;
+  -webkit-column-gap: 1em;
+  -moz-column-gap: 1em;
+  column-gap: 1em;
+  margin: 1.5em;
+  padding: 0;
+  -moz-column-gap: 1.5em;
+  -webkit-column-gap: 1.5em;
+  column-gap: 1.5em;
+  font-size: .85em;
+}
+
+.item {
+  display: inline-block;
+  background: #fff;
+  padding: 1em;
+  margin: 0 0 1.5em;
+  width: 100%;
+  -webkit-transition: 1s ease all;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-shadow: 2px 2px 4px 0 #ccc;
+  -webkit-transition: width 2s;  
+  transition: width 2s;
+} */
+
+.btn-small {
+  text-decoration: none;
+  color: #3375AF;
+  background-color: #DEF2FC;
+  border-color: #2e6da4;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  margin-left: 2px;
+}
+
+.icons-fichas {
+  position: relative;
+  float: right;
+  top: -82px;
+  right: 3px;
+  display: inline-grid;
+}
+
+.icons-fichas-info {
+  background: #f100ffb5;
+  padding: 0px 5px;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.icons-fichas-player {
+  background: #e21616b5;
+  padding: 0px 5px;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.icons-fichas span span {
+  color: white;
+}
+
+.item img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+}
+
+@media only screen and (min-width: 1201px) {
+  .masonry-item {
+    width: 180px;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+  .masonry-item {
+    width: 180px;
+  }
+}
+
+
+@media (min-width: 558px) and (max-width: 768px) {
+  .masonry-item {
+    width: 180px;
+  }
+}
+
+@media (min-width: 412px) and (max-width: 557px) {
+  .masonry-item {
+    width: 180px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 411px) {
+  .masonry-item {
+    width: 165px;
+  }
+}
+
+@media (min-width: 361px) and (max-width: 374px) {
+  .masonry-item {
+    width: 180px;
+  }
+}
+
+@media (min-width: 321px) and (max-width: 360px) {
+  .masonry-item {
+    width: 160px;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 320px) {
+  .masonry-item {
+    width: 140px;
+  }
+}
+
+
+
+/* 
+@media only screen and (max-width: 320px) {
+  .masonry-item {
+    width: 15%;
+  }
+}
+
+@media only screen and (min-width: 321px) and (max-width: 768px) {
+  .masonry-item {
+    width: 230px;
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+  .masonry-item {
+    width: 230px;
+  }
+}
+
+@media only screen and (min-width: 1201px) {
+  .masonry-item {
+    width: 15%;
+  }
+} */
+
+/* html {
+  overflow-y: hidden;
+
+}
+
+.container-principal {
+  background: white;
+  height: auto;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.fichas {
+  max-width: 16%;
+  height: auto;
+  padding: 7px 4px;
+  float: left;
+  margin-left: 9px;
+  border-style: solid;
+  border-color: #ddd;
+  border-width: 1px;
+  border-radius: 4px 4px 0 0;
+  margin-top: 8px;
+}
+
+.icons-fichas {
+  position: relative;
+  float: right;
+  top: -82px;
+  right: 3px;
+  display: inline-grid;
+}
+
+.icons-fichas-info {
+  background: #f100ffb5;
+  padding: 0px 5px;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.icons-fichas-player {
+  background: #e21616b5;
+  padding: 0px 5px;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.icons-fichas span span {
+  color: white;
+}
+
+
+.btn-small {
+  color: #fff;
+  background-color: #5799d2;
+  border-color: #2e6da4;
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  margin-left: 2px;
+}
+
+.descripcion {
+  padding: 3px 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.fichas img {
+  width: 100%;
+  height: 376px;
+}
+
+@media (min-width: 1101px) and (max-width: 1414px) {
+  .fichas {
+    max-width: 19% !important;
+  }
+
+  .fichas img {
+    height: 330px !important;
+    max-width: 330px !important;
+  }
+
+  .descripcion {
+    font-size: 12px !important;
+  }
+}
+
+@media (min-width: 980px) and (max-width: 1100px) {
+  .fichas {
+    max-width: 24% !important;
+  }
+
+  .fichas img {
+    height: 349px !important;
+    max-width: 349px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .fichas {
+    max-width: 23% !important;
+  }
+
+  .fichas img {
+    height: 293px !important;
+    max-width: 293px !important;
+  }
+}
+
+@media (min-width: 515px) and (max-width: 767px) {
+  .fichas {
+    max-width: 31% !important;
+  }
+
+  .fichas img {
+    height: 262px !important;
+    max-width: 262px !important;
+  }
+
+  .descripcion {
+    font-size: 12px !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 514px) {
+  .fichas {
+    max-width: 47% !important;
+  }
+}
+
+@media only screen and (max-width : 479px) {
+  .fichas {
+    max-width: 47% !important;
+  }
+
+  .fichas img {
+    height: 275px !important;
+    max-width: 275px !important;
+  }
+
+  .descripcion {
+    font-size: 12px !important;
+  }
+
+} */

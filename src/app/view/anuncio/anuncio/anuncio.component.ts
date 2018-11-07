@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnuncioService } from "../../../shared/services/anuncio/anuncio.service";
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 @Component({
     selector: 'app-footer',
     templateUrl: "./anuncio.component.html",
@@ -32,8 +33,26 @@ export class AnuncioComponent implements OnInit {
     PesoId: Number = 0;
 
 
-    constructor(private anuncioService: AnuncioService) { }
+    register: FormGroup;
+    isSubmitted: boolean = false;
+    result: any = null;
+
+
+    usernameCtrl: FormControl;
+
+    constructor(private anuncioService: AnuncioService,
+        private frmBuilder: FormBuilder) { }
     ngOnInit() {
+        this.usernameCtrl = new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]);
+        this.register = new FormGroup({
+            username: this.usernameCtrl,
+
+        });
+        // this.register = this.frmBuilder.group({
+        //     name: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(15)]]
+
+        // });
+
         this.ListDistrito = this.anuncioService.getListDistrito();
         this.ListLugarAtencion = this.anuncioService.getListLugarAtencion();
         this.ListTipoServicio = this.anuncioService.getListTipoServicio();
@@ -46,6 +65,7 @@ export class AnuncioComponent implements OnInit {
         this.ListEstatura = this.anuncioService.getListEstatura();
         this.ListPeso = this.anuncioService.getListPeso();
     }
+
     selectName() {
         debugger;
         alert(this.EdadId);
@@ -105,6 +125,22 @@ export class AnuncioComponent implements OnInit {
     }
 
 
+    save() {
+        this.isSubmitted = true;
+        if (!this.register.valid)
+            return;
+        // Code to save the data
+        // userService.Save(this.register.value);
+        this.result = this.register.value;
+        setTimeout(() => {
+            this.result = null;
+            this.reset();
+        }, 2000);
+    }
+    reset() {
+        this.isSubmitted = false;
+        this.register.reset();
 
+    }
 
 }

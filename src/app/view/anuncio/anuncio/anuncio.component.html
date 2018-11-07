@@ -8,69 +8,75 @@
       Contacto:
       <span class="toggle-icon"></span>
     </a>
-
-    <!-- <select id="Id" #Id="ngModel" [(ngModel)]="nameId" name="Id" (change)="selectName();">  
-        <option selected="" value=""></option>  
-     <option [ngValue]="k.Id" *ngFor="let k of nameList">  
-         {{k.Name}}  
-  </option>  
-</select>   -->
-
-    <!-- [style.display]="show ? 'block' : 'none'" -->
     <div class="accordion-content" [ngClass]="{'collapsed': showDatosContactos, 'uncollapsed': showDatosContactos}">
-      <div class="form-horizontal">
-        <div class="form-group row">
-          <label class="col-sm-3 control-label text-right " for="txt_nombre">Nombre</label>
-          <div class="col-sm-5">
-            <input class="form-control form-control-sm" type="text" id="txt_nombre" placeholder="Ingrese nombre">
-          </div>
-          <div class="col-sm-4">
-            <p class="form-control-static">el nombre que aparece en tu ficha</p>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-3 control-label text-right " for="txt_telefono_1">Teléfono o Celular</label>
-          <div class="col-sm-5">
-            <input class="form-control form-control-sm" rel="txtTooltip" title="**Your Title**" data-toggle="tooltip"
-              type="text" id="txt_telefono_1" placeholder="Ingrese Telefono 1">
-          </div>
-          <div class="col-sm-4">
-            <p class="form-control-static">tu teléfono de contacto</p>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-3 control-label text-right " for="txt_telefono_2">Teléfono o Celular</label>
-          <div class="col-sm-5">
-            <input class="form-control form-control-sm" type="text" id="txt_telefono_2" placeholder="Ingrese Telefono 2">
-          </div>
-          <div class="col-sm-4">
-            <p class="form-control-static">otro teléfono de contacto</p>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-3 control-label text-right " for="txt_email">Email</label>
-          <div class="col-sm-5">
-            <input class="form-control form-control-sm" type="text" id="txt_email" placeholder="Ejemplo: brillit.coqueta@gmail.com">
-          </div>
-          <div class="col-sm-4">
-            <p class="parrafo-alerta">
-              IMPORTANTE !
-              Tu dirección de email no será mostrada en el anuncio, pero debe ser válida para que poder contactarte.
-              @*¿tienes email dónde contactarte?*@
+      <form [formGroup]='register' (ngSubmit)='save()' novalidate>
+        <div class="form-horizontal">
+          <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="txt_nombre">Nombre</label>
+            <div class="col-sm-5">
+              <input class="form-control form-control-sm" type="text" [formControl]="usernameCtrl" placeholder="Ingrese nombre">
+              <div *ngIf="usernameCtrl.invalid && (usernameCtrl.dirty || isSubmitted)" class="text-danger">
+                <div *ngIf="usernameCtrl.errors.required">
+                  Se requiere el nombre.
+                </div>
+                <div *ngIf="usernameCtrl.errors.minlength">
 
-            </p>
+                  El nombre debe tener al menos 4 caracteres.
+                </div>
+                <div *ngIf="usernameCtrl.errors.maxlength">
+                  El nombre no debe exceder los 15 caracteres.
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <p class="form-control-static">el nombre que aparece en tu ficha</p>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="txt_telefono_1">Teléfono o Celular</label>
+            <div class="col-sm-5">
+              <input class="form-control form-control-sm" rel="txtTooltip" title="**Your Title**" data-toggle="tooltip"
+                type="text" id="txt_telefono_1" placeholder="Ingrese Telefono 1">
+            </div>
+            <div class="col-sm-4">
+              <p class="form-control-static">tu teléfono de contacto</p>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="txt_telefono_2">Teléfono o Celular</label>
+            <div class="col-sm-5">
+              <input class="form-control form-control-sm" type="text" id="txt_telefono_2" placeholder="Ingrese Telefono 2">
+            </div>
+            <div class="col-sm-4">
+              <p class="form-control-static">otro teléfono de contacto</p>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="txt_email">Email</label>
+            <div class="col-sm-5">
+              <input class="form-control form-control-sm" type="text" id="txt_email" placeholder="Ejemplo: brillit.coqueta@gmail.com">
+            </div>
+            <div class="col-sm-4">
+              <p class="parrafo-alerta">
+                IMPORTANTE !
+                Tu dirección de email no será mostrada en el anuncio, pero debe ser válida para que poder contactarte.
+                @*¿tienes email dónde contactarte?*@
+
+              </p>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="txt_web">Web</label>
+            <div class="col-sm-5">
+              <input class="form-control form-control-sm" type="text" id="txt_web" placeholder="Ejemplo: https://www.google.com">
+            </div>
+            <div class="col-sm-4">
+              <p class="form-control-static">la URL de tu web, si tienes</p>
+            </div>
           </div>
         </div>
-        <div class="form-group row">
-          <label class="col-sm-3 control-label text-right " for="txt_web">Web</label>
-          <div class="col-sm-5">
-            <input class="form-control form-control-sm" type="text" id="txt_web" placeholder="Ejemplo: https://www.google.com">
-          </div>
-          <div class="col-sm-4">
-            <p class="form-control-static">la URL de tu web, si tienes</p>
-          </div>
-        </div>
-      </div>
+        <button type='submit' class='btn btn-primary'>Save</button>
+      </form>
     </div>
   </div>
 
@@ -414,4 +420,5 @@
       </div>
     </div>
   </div>
+
 </div>

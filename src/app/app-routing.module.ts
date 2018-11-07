@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
-import { NotFoundComponent } from "./not-found/not-found.component";
+import { NotFoundComponent } from "../app/view/not-found/not-found.component";
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './home/home.module#HomeModule'
+    loadChildren: '../app/view/home/home.module#HomeModule'
   },
   {
     path: 'about',
-    loadChildren: './about/about.module#AboutModule'
+    loadChildren: '../app/view/about/about.module#AboutModule'
   },
   {
     path: 'anuncio',
-    loadChildren: './anuncio/anuncio.module#AnuncioModule'
+    loadChildren: '../app/view/anuncio/anuncio.module#AnuncioModule'
   },
   {
     path: 'car',

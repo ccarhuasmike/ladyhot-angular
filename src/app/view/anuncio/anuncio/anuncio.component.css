@@ -208,7 +208,7 @@ p {
   }
 }
 
-@media (min-width: 412px) and (max-width: 557px) {
+@media (min-width: 412px) and (max-width: 558px) {
   .text-right {
     text-align: left !important;
   }

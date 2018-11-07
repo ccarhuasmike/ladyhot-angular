@@ -15,10 +15,6 @@ const routes: Routes = [
     loadChildren: '../app/view/anuncio/anuncio.module#AnuncioModule'
   },
   {
-    path: 'car',
-    loadChildren: './car/car.module#CarModule'
-  },
-  {
     path: 'not-found',
     component: NotFoundComponent
   },

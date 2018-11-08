@@ -7,6 +7,7 @@ import { NavigatorComponent } from './navigator/navigator.component';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
     imports: [CommonModule, RouterModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule],
     declarations: [NavigatorComponent, HeaderComponent, MainComponent, FooterComponent],

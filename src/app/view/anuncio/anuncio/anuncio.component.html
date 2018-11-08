@@ -9,7 +9,7 @@
       <span class="toggle-icon"></span>
     </a>
     <div class="accordion-content" [ngClass]="{'collapsed': showDatosContactos, 'uncollapsed': showDatosContactos}">
-      <form [formGroup]='register' (ngSubmit)='save()' novalidate>
+      <form [formGroup]='fromContacto' (ngSubmit)='save()' novalidate>
         <div class="form-horizontal">
           <div class="form-group row">
             <label class="col-sm-3 control-label text-right " for="txt_nombre">Nombre</label>
@@ -26,6 +26,7 @@
                 <div *ngIf="usernameCtrl.errors.maxlength">
                   El nombre no debe exceder los 15 caracteres.
                 </div>
+
               </div>
             </div>
             <div class="col-sm-4">
@@ -33,10 +34,20 @@
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-3 control-label text-right " for="txt_telefono_1">Teléfono o Celular</label>
+            <label class="col-sm-3 control-label text-right " for="txt_telefono_1">Teléfono
+              o
+              Celular</label>
             <div class="col-sm-5">
               <input class="form-control form-control-sm" rel="txtTooltip" title="**Your Title**" data-toggle="tooltip"
-                type="text" id="txt_telefono_1" placeholder="Ingrese Telefono 1">
+                type="text" id="txt_telefono_1" [formControl]="Telefono1Ctrl" placeholder="Ingrese Telefono 1">
+              <div *ngIf="Telefono1Ctrl.invalid && (Telefono1Ctrl.dirty || isSubmitted)" class="text-danger">
+                <div *ngIf="Telefono1Ctrl.errors.required">
+                  Se necesita que se ingrese el numero del telefono.
+                </div>
+                <div *ngIf="Telefono1Ctrl.errors.pattern">
+                  Número de telefono ingresado no es valido
+                </div>
+              </div>
             </div>
             <div class="col-sm-4">
               <p class="form-control-static">tu teléfono de contacto</p>
@@ -45,7 +56,16 @@
           <div class="form-group row">
             <label class="col-sm-3 control-label text-right " for="txt_telefono_2">Teléfono o Celular</label>
             <div class="col-sm-5">
-              <input class="form-control form-control-sm" type="text" id="txt_telefono_2" placeholder="Ingrese Telefono 2">
+              <input class="form-control form-control-sm" [formControl]="Telefono2Ctrl" type="text" id="txt_telefono_2"
+                placeholder="Ingrese Telefono 2">
+              <div *ngIf="Telefono2Ctrl.invalid && (Telefono2Ctrl.dirty || isSubmitted)" class="text-danger">
+                <div *ngIf="Telefono2Ctrl.errors.required">
+                  Se necesita que se ingrese el numero del telefono.
+                </div>
+                <div *ngIf="Telefono2Ctrl.errors.pattern">
+                  Número de telefono ingresado no es valido
+                </div>
+              </div>
             </div>
             <div class="col-sm-4">
               <p class="form-control-static">otro teléfono de contacto</p>
@@ -54,7 +74,15 @@
           <div class="form-group row">
             <label class="col-sm-3 control-label text-right " for="txt_email">Email</label>
             <div class="col-sm-5">
-              <input class="form-control form-control-sm" type="text" id="txt_email" placeholder="Ejemplo: brillit.coqueta@gmail.com">
+              <input class="form-control form-control-sm" type="text" [formControl]="emailCtrl" placeholder="Ejemplo: brillit.coqueta@gmail.com">
+              <div *ngIf="emailCtrl.invalid && (emailCtrl.dirty || isSubmitted)" class="text-danger">
+                <div *ngIf="emailCtrl.errors.required">
+                  Se necesita que se ingrese el email.
+                </div>
+                <div *ngIf="emailCtrl.errors.pattern">
+                  Email ingresado no es valido
+                </div>
+              </div>
             </div>
             <div class="col-sm-4">
               <p class="parrafo-alerta">
@@ -68,7 +96,12 @@
           <div class="form-group row">
             <label class="col-sm-3 control-label text-right " for="txt_web">Web</label>
             <div class="col-sm-5">
-              <input class="form-control form-control-sm" type="text" id="txt_web" placeholder="Ejemplo: https://www.google.com">
+              <input class="form-control form-control-sm" type="text" [formControl]="WebCtrl" placeholder="Ejemplo: https://www.google.com">
+              <div *ngIf="WebCtrl.invalid && (WebCtrl.dirty || isSubmitted)" class="text-danger">
+                <div *ngIf="WebCtrl.errors.pattern">
+                  Url ingresada no es valido
+                </div>
+              </div>
             </div>
             <div class="col-sm-4">
               <p class="form-control-static">la URL de tu web, si tienes</p>
@@ -147,88 +180,100 @@
     <a (click)="toggleCollapseApariencia()" class="accordion-titulo" [ngClass]="{'open': showApariencia, '': showApariencia}">Apariencia<span
         class="toggle-icon"></span></a>
     <div class="accordion-content" [ngClass]="{'collapsed': showApariencia, 'uncollapsed': showApariencia}">
-      <div class="form-horizontal">
-        <div class="form-group row">
-          <label class="col-sm-3 control-label text-right " for="cbo_pelo">color de pelo</label>
-          <div class="col-sm-5">
-            <select class="form-control form-control-sm" [(ngModel)]="CabelloId" (change)="selectName();">
-              <option value="0">--Seleccione--</option>
-              <option *ngFor="let data of ListCabellos" value={{data.codigo}}>
-                {{data.descripcion}}
-              </option>
-            </select>
+      <form [formGroup]='fromApariencia' (ngSubmit)='saveApariencia()' novalidate>
+        <div class="form-horizontal">
+          <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="cbo_pelo">color de pelo</label>
+            <div class="col-sm-5">
+              <!-- <select class="form-control form-control-sm" [(ngModel)]="userInfo.codigo" (change)="selectName();">
+                <option value="0">--Seleccione--</option>
+                <option *ngFor="let data of ListCabellos" value={{data.codigo}}>
+                  {{data.descripcion}}
+                </option>
+              </select> -->
+            </div>
+            <div class="col-sm-4">
+              <p class="form-control-static">el color de tu pelo</p>
+            </div>
           </div>
-          <div class="col-sm-4">
-            <p class="form-control-static">el color de tu pelo</p>
+          <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="cbo_ojos">color de ojos</label>
+            <div class="col-sm-5">
+              <!-- <select class="form-control form-control-sm" [(ngModel)]="OjosId" (change)="selectName();">
+                <option value="0">--Seleccione--</option>
+                <option *ngFor="let data of ListOjos" value={{data.codigo}}>
+                  {{data.descripcion}}
+                </option>
+              </select> -->
+            </div>
+            <div class="col-sm-4">
+              <p class="form-control-static">el color de tus ojos</p>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-3 control-label text-right " for="cbo_ojos">color de ojos</label>
-          <div class="col-sm-5">
-            <select class="form-control form-control-sm" [(ngModel)]="OjosId" (change)="selectName();">
-              <option value="0">--Seleccione--</option>
-              <option *ngFor="let data of ListOjos" value={{data.codigo}}>
-                {{data.descripcion}}
-              </option>
-            </select>
+          <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="cbo_estatura">estatura</label>
+            <div class="col-sm-5">
+              <!-- <select class="form-control form-control-sm" [(ngModel)]="EstaturaId" (change)="selectName();">
+                <option value="0">--Seleccione--</option>
+                <option *ngFor="let data of ListEstatura" value={{data.codigo}}>
+                  {{data.descripcion}}
+                </option>
+              </select> -->
+            </div>
+            <div class="col-sm-4">
+              <p class="form-control-static">¿cual es tu altura en centímetros?</p>
+            </div>
           </div>
-          <div class="col-sm-4">
-            <p class="form-control-static">el color de tus ojos</p>
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-3 control-label text-right " for="cbo_estatura">estatura</label>
-          <div class="col-sm-5">
-            <select class="form-control form-control-sm" [(ngModel)]="EstaturaId" (change)="selectName();">
-              <option value="0">--Seleccione--</option>
-              <option *ngFor="let data of ListEstatura" value={{data.codigo}}>
-                {{data.descripcion}}
-              </option>
-            </select>
-          </div>
-          <div class="col-sm-4">
-            <p class="form-control-static">¿cual es tu altura en centímetros?</p>
-          </div>
-        </div>
 
-        <div class="form-group row">
-          <label class="col-sm-3 control-label text-right " for="cbo_peso">peso</label>
-          <div class="col-sm-5">
-            <select class="form-control form-control-sm" [(ngModel)]="PesoId" (change)="selectName();">
-              <option value="0">--Seleccione--</option>
-              <option *ngFor="let data of ListPeso" value={{data.codigo}}>
-                {{data.descripcion}}
-              </option>
-            </select>
+          <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="cbo_peso">peso</label>
+            <div class="col-sm-5">
+              <!-- <select class="form-control form-control-sm" [(ngModel)]="PesoId" (change)="selectName();">
+                <option value="0">--Seleccione--</option>
+                <option *ngFor="let data of ListPeso" value={{data.codigo}}>
+                  {{data.descripcion}}
+                </option>
+              </select> -->
+            </div>
+            <div class="col-sm-4">
+              <p class="form-control-static">¿cual es tu peso en Kg?</p>
+            </div>
           </div>
-          <div class="col-sm-4">
-            <p class="form-control-static">¿cual es tu peso en Kg?</p>
-          </div>
-        </div>
 
-        <div class="form-group row">
-          <label class="col-sm-3 control-label text-right " for="cbo_estudios">Medidas (Busto-Cintura-Caderas)</label>
-          <div class="col-sm-5" style="display: inline-flex;">
-            <input class="form-control form-control-sm" type="text" id="txt_medidas_busto" placeholder="busto">-
-            <input class="form-control form-control-sm" type="text" id="txt_medidas_cintura" placeholder="cintura">-
-            <input class="form-control form-control-sm" type="text" id="txt_medidas_cadera" placeholder="cadera">
+          <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="cbo_estudios">Medidas (Busto-Cintura-Caderas)</label>
+            <div class="col-sm-5" style="display: inline-flex;">
+              <input class="form-control form-control-sm" maxlength="3" OnlyNumber="true" [formControl]="bustoCtrl"
+                type="text" id="txt_medidas_busto" placeholder="busto">-
+              <input class="form-control form-control-sm" maxlength="3" type="text" OnlyNumber="true" id="txt_medidas_cintura"
+                placeholder="cintura">-
+              <input class="form-control form-control-sm" maxlength="3" type="text" OnlyNumber="true" id="txt_medidas_cadera"
+                placeholder="cadera">
+
+              <div *ngIf="bustoCtrl.invalid && (bustoCtrl.dirty || isSubmittedApariencia)" class="text-danger">
+                <div *ngIf="bustoCtrl.errors.required">
+                  Se requiere que se ingrese busto.
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <p class="form-control-static">¿Cuales son tus medidas?</p>
+            </div>
           </div>
-          <div class="col-sm-4">
-            <p class="form-control-static">¿Cuales son tus medidas?</p>
+          <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="txt_descripcion">Descripción</label>
+            <div class="col-sm-5">
+              <textarea class="form-control" maxlength="450" id="txt_descripcion" rows="6" placeholder=""></textarea>
+            </div>
+            <div class="col-sm-4">
+              <p class="form-control-static">Si quieres explicar algun otro dato relevante sobre tu apariencia física
+                aquí
+                puedes describirte mejor.</p>
+            </div>
           </div>
         </div>
-        <div class="form-group row">
-          <label class="col-sm-3 control-label text-right " for="txt_descripcion">Descripción</label>
-          <div class="col-sm-5">
-            <textarea class="form-control" id="txt_descripcion" rows="6" placeholder=""></textarea>
-          </div>
-          <div class="col-sm-4">
-            <p class="form-control-static">Si quieres explicar algun otro dato relevante sobre tu apariencia física
-              aquí
-              puedes describirte mejor.</p>
-          </div>
-        </div>
-      </div>
+        <button type='submit' class='btn btn-primary'>Save</button>
+      </form>
     </div>
   </div>
 

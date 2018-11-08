@@ -208,6 +208,11 @@ p {
   }
 }
 
+.text-danger {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 12px !important;
+}
+
 @media (min-width: 412px) and (max-width: 558px) {
   .text-right {
     text-align: left !important;

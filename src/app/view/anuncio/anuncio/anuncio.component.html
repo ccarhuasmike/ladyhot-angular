@@ -1,6 +1,54 @@
 <!-- <div id="container-main">
   <h1>Mejores Jugadores Liga BBVA</h1>
 </div> -->
+
+
+<ul class="nav nav-tabs" id="myTab">
+  <div class="liner"></div>
+
+  <!-- circular user icon -->
+  <li>
+    <a routerLink="/personal" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="tab"
+      title="personal">
+      link 1
+      <span class="round-tabs one">
+        <i class="glyphicon glyphicon-user"></i>
+      </span>
+    </a>
+  </li>
+
+  <!-- circular tasks icon -->
+  <li>
+    <a routerLink="/work" routerLinkActive="active" data-toggle="tab" title="work">
+      link 2
+      <span class="round-tabs two">
+        <i class="glyphicon glyphicon-tasks"></i>
+      </span>
+    </a>
+  </li>
+
+  <!-- circular home icon -->
+  <li>
+    <a routerLink="/address" routerLinkActive="active" data-toggle="tab" title="address">
+      link 3
+      <span class="round-tabs three">
+        <i class="glyphicon glyphicon-home"></i>
+      </span>
+    </a>
+  </li>
+
+  <!-- circular ok icon -->
+  <li>
+    <a routerLink="/result" routerLinkActive="active" data-toggle="tab" title="completed">
+      link 4
+      <span class="round-tabs four">
+        <i class="glyphicon glyphicon-ok"></i>
+      </span>
+    </a>
+  </li>
+
+</ul>
+<div class="clearfix"></div>
 <div class="container">
   <div class="accordion-container">
     <a (click)="toggleCollapseContactos()" class="accordion-titulo" [ngClass]="{'open': showDatosContactos, '': showDatosContactos}">Datos

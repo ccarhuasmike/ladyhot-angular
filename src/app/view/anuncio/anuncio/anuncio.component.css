@@ -180,6 +180,16 @@ p {
   color: #e00e0e;
 }
 
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42A948;
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442;
+
+}
+
 @-webkit-keyframes fadeInDown {
   from {
     opacity: 0;

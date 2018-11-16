@@ -3,51 +3,53 @@
 </div> -->
 
 
-<ul class="nav nav-tabs" id="myTab">
+<ul class="nav nav-pills nav-justified aiia-wizard-progress-buttons-placeholder" id="myTab">
   <div class="liner"></div>
-
-  <!-- circular user icon -->
   <li>
-    <a routerLink="/personal" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" data-toggle="tab"
-      title="personal">
-      link 1
+    <a [routerLink]="['./datos-contacto']" data-toggle="tab" title="personal">
+      Datos de Contacto
       <span class="round-tabs one">
         <i class="glyphicon glyphicon-user"></i>
       </span>
     </a>
   </li>
-
-  <!-- circular tasks icon -->
   <li>
-    <a routerLink="/work" routerLinkActive="active" data-toggle="tab" title="work">
-      link 2
+    <a [routerLink]="['./datos-generales']" data-toggle="tab" title="work">
+      Datos Generales
       <span class="round-tabs two">
         <i class="glyphicon glyphicon-tasks"></i>
       </span>
     </a>
   </li>
-
-  <!-- circular home icon -->
   <li>
-    <a routerLink="/address" routerLinkActive="active" data-toggle="tab" title="address">
-      link 3
+    <a [routerLink]="['./apariencia']" data-toggle="tab" title="address">
+      Apariencia
       <span class="round-tabs three">
         <i class="glyphicon glyphicon-home"></i>
       </span>
     </a>
   </li>
-
-  <!-- circular ok icon -->
   <li>
-    <a routerLink="/result" routerLinkActive="active" data-toggle="tab" title="completed">
-      link 4
+    <a [routerLink]="['./tarifa']" data-toggle="tab" title="completed">
+      Tarifa
       <span class="round-tabs four">
         <i class="glyphicon glyphicon-ok"></i>
       </span>
     </a>
   </li>
-
+  <li>
+    <a [routerLink]="['./servicios']" data-toggle="tab" title="completed">
+      Servicios
+      <span class="round-tabs four">
+        <i class="glyphicon glyphicon-ok"></i>
+      </span>
+    </a>
+  </li>
 </ul>
+<div class="tab-content">
+  <router-outlet></router-outlet>
+</div>
+
 <div class="clearfix"></div>
 <div class="container">
   <div class="accordion-container">
@@ -68,13 +70,11 @@
                   Se requiere el nombre.
                 </div>
                 <div *ngIf="usernameCtrl.errors.minlength">
-
                   El nombre debe tener al menos 4 caracteres.
                 </div>
                 <div *ngIf="usernameCtrl.errors.maxlength">
                   El nombre no debe exceder los 15 caracteres.
                 </div>
-
               </div>
             </div>
             <div class="col-sm-4">

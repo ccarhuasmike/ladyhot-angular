@@ -4,13 +4,26 @@ import { AnuncioRoutingModule } from './anuncio-routing.module';
 import { AnuncioComponent } from './anuncio/anuncio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OnlyNumber } from '../../directivas/onlynumber.directive';
+import { DatosContactoComponent } from "./anuncio/datoscontacto/datoscontactos.component";
+import { DatosGeneralesComponent } from "./anuncio/datosgenerales/datosgenerales.component";
+import { AparienciaComponent } from "./anuncio/apariencia/apariencia.component";
+import { TarifasComponent } from "./anuncio/tarifa/tarifas.component";
+import { ServiciosComponent } from "./anuncio/servicios/servicios.component";
 @NgModule({
     imports: [
         CommonModule,
         AnuncioRoutingModule,
         FormsModule, ReactiveFormsModule
     ],
-    declarations: [AnuncioComponent, OnlyNumber],
+    declarations: [
+        AnuncioComponent,
+        DatosContactoComponent,
+        DatosGeneralesComponent,
+        AparienciaComponent,
+        TarifasComponent,
+        ServiciosComponent,
+        OnlyNumber
+    ],
     exports: [
 
     ]

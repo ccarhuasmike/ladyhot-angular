@@ -160,6 +160,7 @@ export class AnuncioService {
     }
 
     getListDistrito() {
+        debugger;
         //return this.http.get('https://api.github.com/repositories').map(res => res.json());
         return [{
             codigo: 1,

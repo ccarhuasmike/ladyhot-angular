@@ -345,12 +345,19 @@ export class AnuncioComponent implements OnInit {
         this.isSubmittedTarifas = true;
         if (!this.fromServicios.valid)
             return;
-        // Code to save the data
-        const selectedOrderIds = this.fromServicios.value.ListFormaPago
-            .map((v, i) => v ? this.ListFormaPago[i].id : null)
+
+        const selectedDistrito = this.fromServicios.value.ListDistrito
+            .map((v, i) => v ? this.ListDistrito[i].codigo : null)
             .filter(v => v !== null);
 
-        console.log(selectedOrderIds);
+        const selectedLugarAtencion = this.fromServicios.value.ListLugarAtencion
+            .map((v, i) => v ? this.ListLugarAtencion[i].codigo : null)
+            .filter(v => v !== null);
+        const selectedTipoServicio = this.fromServicios.value.ListTipoServicio
+            .map((v, i) => v ? this.ListTipoServicio[i].codigo : null)
+            .filter(v => v !== null);
+
+        console.log(selectedDistrito);
         console.log(this.fromServicios);
         // userService.Save(this.register.value);
         this.result = this.fromServicios.value;

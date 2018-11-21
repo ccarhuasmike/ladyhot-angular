@@ -11,7 +11,6 @@ export class PanelControlComponent implements OnInit {
     constructor(private headerService: HeaderService) {
     }
     ngOnInit() {
-        //debugger;
         //this.headerService.setShowMenu(false);
     }
 }

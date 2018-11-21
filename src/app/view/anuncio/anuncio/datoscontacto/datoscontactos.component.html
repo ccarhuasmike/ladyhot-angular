@@ -1,1 +1,100 @@
-hola datos de contacto
+<form [formGroup]='fromContacto' (ngSubmit)='save()' novalidate>
+  <div class="form-horizontal">
+    <div class="form-group row">
+      <label class="col-sm-3 control-label text-right " for="txt_nombre">Nombre</label>
+      <div class="col-sm-5">
+        <input class="form-control form-control-sm" type="text" required [formControl]="usernameCtrl" placeholder="Ingrese nombre">
+        <div *ngIf="usernameCtrl.invalid && (usernameCtrl.dirty || isSubmitted)" class="text-danger">
+          <div *ngIf="usernameCtrl.errors.required">
+            Se requiere el nombre.
+          </div>
+          <div *ngIf="usernameCtrl.errors.minlength">
+            El nombre debe tener al menos 4 caracteres.
+          </div>
+          <div *ngIf="usernameCtrl.errors.maxlength">
+            El nombre no debe exceder los 15 caracteres.
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <p class="form-control-static">el nombre que aparece en tu ficha</p>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 control-label text-right " for="txt_telefono_1">Teléfono
+        o
+        Celular</label>
+      <div class="col-sm-5">
+        <input class="form-control form-control-sm" type="text" id="txt_telefono_1" [formControl]="Telefono1Ctrl"
+          required placeholder="Ingrese Telefono 1">
+        <div *ngIf="Telefono1Ctrl.invalid && (Telefono1Ctrl.dirty || isSubmitted)" class="text-danger">
+          <div *ngIf="Telefono1Ctrl.errors.required">
+            Se necesita que se ingrese el numero del telefono.
+          </div>
+          <div *ngIf="Telefono1Ctrl.errors.pattern">
+            Número de telefono ingresado no es valido
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <p class="form-control-static">tu teléfono de contacto</p>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 control-label text-right " for="txt_telefono_2">Teléfono o Celular</label>
+      <div class="col-sm-5">
+        <input class="form-control form-control-sm" [formControl]="Telefono2Ctrl" required type="text" placeholder="Ingrese Telefono 2">
+        <div *ngIf="Telefono2Ctrl.invalid && (Telefono2Ctrl.dirty || isSubmitted)" class="text-danger">
+          <div *ngIf="Telefono2Ctrl.errors.required">
+            Se necesita que se ingrese el numero del telefono.
+          </div>
+          <div *ngIf="Telefono2Ctrl.errors.pattern">
+            Número de telefono ingresado no es valido
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <p class="form-control-static">otro teléfono de contacto</p>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 control-label text-right " for="txt_email">Email</label>
+      <div class="col-sm-5">
+        <input class="form-control form-control-sm" type="text" [formControl]="emailCtrl" required placeholder="Ejemplo: brillit.coqueta@gmail.com">
+        <div *ngIf="emailCtrl.invalid && (emailCtrl.dirty || isSubmitted)" class="text-danger">
+          <div *ngIf="emailCtrl.errors.required">
+            Se necesita que se ingrese el email.
+          </div>
+          <div *ngIf="emailCtrl.errors.pattern">
+            Email ingresado no es valido
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <p class="parrafo-alerta">
+          IMPORTANTE !
+          Tu dirección de email no será mostrada en el anuncio, pero debe ser válida para que poder contactarte.
+          @*¿tienes email dónde contactarte?*@
+
+        </p>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 control-label text-right " for="txt_web">Web</label>
+      <div class="col-sm-5">
+        <input class="form-control form-control-sm" type="text" required [formControl]="WebCtrl" placeholder="Ejemplo: https://www.google.com">
+        <div *ngIf="WebCtrl.invalid && (WebCtrl.dirty || isSubmitted)" class="text-danger">
+          <div *ngIf="WebCtrl.errors.pattern">
+            Url ingresada no es valido
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <p class="form-control-static">la URL de tu web, si tienes</p>
+      </div>
+    </div>
+    <div class="f1-buttons">
+      <button type='submit' class='btn btn-primary'>Siguiente</button>
+    </div>
+  </div>
+</form>

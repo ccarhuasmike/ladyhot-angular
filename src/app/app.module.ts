@@ -7,11 +7,10 @@ import { NotFoundComponent } from '../app/view/not-found/not-found.component';
 import { PanelControlComponent } from '../app/view/panelcontrol/panelcontrol.component';
 import { CoreModule } from '../app/view/core/core.module';
 import { SharedModule } from './shared/shared.module';
-// import { OnlyNumber } from '../app/directivas/onlynumber.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
-    // OnlyNumber,
     NotFoundComponent,
     PanelControlComponent,
   ],
@@ -21,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
     HttpModule,
     CoreModule,
     SharedModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

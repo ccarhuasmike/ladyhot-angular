@@ -9,11 +9,15 @@ import { DatosGeneralesComponent } from "./anuncio/datosgenerales/datosgenerales
 import { AparienciaComponent } from "./anuncio/apariencia/apariencia.component";
 import { TarifasComponent } from "./anuncio/tarifa/tarifas.component";
 import { ServiciosComponent } from "./anuncio/servicios/servicios.component";
+import { NavBarTabComponent } from "./anuncio/navbar-tab/navbar-tab.component";
+
+
 @NgModule({
     imports: [
         CommonModule,
         AnuncioRoutingModule,
-        FormsModule, ReactiveFormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
         AnuncioComponent,
@@ -22,10 +26,10 @@ import { ServiciosComponent } from "./anuncio/servicios/servicios.component";
         AparienciaComponent,
         TarifasComponent,
         ServiciosComponent,
+        NavBarTabComponent,
         OnlyNumber
     ],
     exports: [
-
     ]
 })
 export class AnuncioModule { }

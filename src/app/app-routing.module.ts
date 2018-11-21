@@ -3,7 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { NotFoundComponent } from "../app/view/not-found/not-found.component";
 import { PanelControlComponent } from "../app/view/panelcontrol/panelcontrol.component";
 
-debugger;
+
 const routes: Routes = [
   {
     path: '',

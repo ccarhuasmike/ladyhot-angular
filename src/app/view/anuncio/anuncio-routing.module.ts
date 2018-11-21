@@ -12,8 +12,13 @@ const routes: Routes = [
         component: AnuncioComponent,
         children: [
             {
+                path: '',
+                pathMatch: 'full',
+                redirectTo: 'datos-contacto'
+            },
+            {
                 path: "datos-contacto",
-                component: DatosContactoComponent
+                component: DatosContactoComponent,
             },
             {
                 path: "datos-generales",

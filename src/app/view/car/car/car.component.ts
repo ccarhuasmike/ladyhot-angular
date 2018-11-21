@@ -36,7 +36,7 @@ export class CarComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    debugger;
+
     this.carId = this.route.snapshot.params['carId'];
   }
 }

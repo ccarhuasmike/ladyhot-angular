@@ -10,8 +10,7 @@ import { AparienciaComponent } from "./anuncio/apariencia/apariencia.component";
 import { TarifasComponent } from "./anuncio/tarifa/tarifas.component";
 import { ServiciosComponent } from "./anuncio/servicios/servicios.component";
 import { NavBarTabComponent } from "./anuncio/navbar-tab/navbar-tab.component";
-
-
+import { GaleriaComponent } from "./anuncio/galeria/galeria.component";
 @NgModule({
     imports: [
         CommonModule,
@@ -27,6 +26,7 @@ import { NavBarTabComponent } from "./anuncio/navbar-tab/navbar-tab.component";
         TarifasComponent,
         ServiciosComponent,
         NavBarTabComponent,
+        GaleriaComponent,
         OnlyNumber
     ],
     exports: [

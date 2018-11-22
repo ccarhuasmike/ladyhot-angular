@@ -33,7 +33,15 @@ export class FormData {
     txt_toda_noche: number = 0;
     txt_viajes: number = 0;
     txt_descripcion_tarifas: string = ''
-    ListFormaPago: []
+    ListFormaPago: ModelCarga[]
+
+    ListDistrito: ModelCarga[];
+    ListLugar: ModelCarga[];
+    ListServicios: ModelCarga[];
+    algosobredisponibilidad: string = '';
+    txt_descripcion_servicios: string = '';
+    flagatiende24horas: boolean = false;
+
     clear() {
         this.txt_nombre = '';
         this.txt_telefono1 = '';
@@ -62,7 +70,11 @@ export class FormData {
         this.txt_salida = 0;
         this.txt_toda_noche = 0;
         this.txt_viajes = 0;
-        this.txt_descripcion_tarifas = ''
+        this.txt_descripcion_tarifas = '';
+
+        this.algosobredisponibilidad = '';
+        this.txt_descripcion_servicios = '';
+        this.flagatiende24horas = false;
 
     }
 }
@@ -105,9 +117,18 @@ export class Tarifas {
     txt_toda_noche: number = 0;
     txt_viajes: number = 0;
     txt_descripcion_tarifas: string = '';
-    ListFormaPago: []
+    ListFormaPago: ModelCarga[] = new Array<ModelCarga>();;
 }
 
+
+export class Servicios {
+    ListDistrito: ModelCarga[] = new Array<ModelCarga>();
+    ListLugar: ModelCarga[] = new Array<ModelCarga>();
+    ListServicios: ModelCarga[] = new Array<ModelCarga>();
+    algosobredisponibilidad: string = '';
+    txt_descripcion_servicios: string = '';
+    flagatiende24horas: boolean = false;
+}
 
 export const activeStep = {
     increment: 19.33,
@@ -116,8 +137,13 @@ export const activeStep = {
     step3: 'apariencia',
     step4: 'tarifa',
     step5: 'servicios',
+    step6: 'Galeria'
 }
-
+export class ModelCarga {
+    codigo: number = 0;
+    descripcion: string = "";
+    flag: boolean = false;
+}
 // export class Personal {
 //     cabello: number = 0;
 //     lastName: string = '';

@@ -45,7 +45,8 @@
     <div class="form-group row">
       <label class="col-sm-3 control-label text-right " for="txt_presentacion">Presentación</label>
       <div class="col-sm-5">
-        <textarea class="form-control form-control-sm" id="txt_presentacion" rows="12" placeholder="Explica un poco más sobre ti, cómo eres, que te gusta, tus aficiones y habilidades...."></textarea>
+        <textarea class="form-control form-control-sm" [formControl]="txt_descripcion_generalesCtrl" required id="txt_presentacion"
+          rows="12" placeholder="Explica un poco más sobre ti, cómo eres, que te gusta, tus aficiones y habilidades...."></textarea>
       </div>
       <div class="col-sm-4">
         <p class="form-control-static">Explica un poco más sobre ti. Aquí puedes presentarte a los

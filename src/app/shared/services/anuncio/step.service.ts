@@ -3,14 +3,15 @@ import { activeStep } from '../../../view/models/modelanuncio';
 import { debug } from 'util';
 @Injectable()
 export class StepService {
-    porcentajeInicial = 19.33;
-    porcentajeIncremental = 19.33;
+    porcentajeInicial = 16.33;
+    porcentajeIncremental = 16.33;
     workflow = [
         { step: activeStep.step1, flag: true },
         { step: activeStep.step2, flag: false },
         { step: activeStep.step3, flag: false },
         { step: activeStep.step4, flag: false },
-        { step: activeStep.step5, flag: false }
+        { step: activeStep.step5, flag: false },
+        { step: activeStep.step6, flag: false }
     ];
     constructor() {
     }
@@ -44,6 +45,11 @@ export class StepService {
     }
     activaStep5(step: boolean) {
         this.workflow[4].flag = step
+        this.porcentajeIncremental = 0;
+        this.porcentajeIncremental += this.countPorcent() * this.porcentajeInicial;
+    }
+    activaStep6(step: boolean) {
+        this.workflow[5].flag = step
         this.porcentajeIncremental = 0;
         this.porcentajeIncremental += this.countPorcent() * this.porcentajeInicial;
     }

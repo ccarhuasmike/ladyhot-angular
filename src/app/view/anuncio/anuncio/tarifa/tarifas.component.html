@@ -73,14 +73,6 @@
         <input class="form-control form-control-sm" [formControl]="txt_viajesCtrl" required type="text" id="txt_viajesCtrl"
           OnlyNumber="true" value="0">
       </div>
-
-    </div>
-
-    <div class="form-group row">ssssssssssssssss
-      <label formArrayName="orders" *ngFor="let order of fromTarifa.controls.orders.controlss; let i = index">
-        <input type="checkbox" [formControlName]="i">
-        {{orders[i].name}}
-      </label>
     </div>
     <div class="form-group row">
       <label class="col-sm-3 control-label text-right" for="formapago">Forma de Pago</label>
@@ -103,7 +95,7 @@
     <div class="form-group row">
       <label class="col-sm-3 control-label text-right " for="txt_descripcion_tarifa">Descripción</label>
       <div class="col-sm-5">
-        <textarea class="form-control" id="txt_descripcion_tarifa" [formControl]="txt_descripcion_tarifasCtrl" required
+        <textarea class="form-control form-control-sm" id="txt_descripcion_tarifa" [formControl]="txt_descripcion_tarifasCtrl"
           rows="6" placeholder=""></textarea>
       </div>
       <div class="col-sm-4">

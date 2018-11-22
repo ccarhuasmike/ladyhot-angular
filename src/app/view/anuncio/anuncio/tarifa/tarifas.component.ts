@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Tarifas } from "../../../models/modelanuncio";
+import { Tarifas, ModelCarga } from "../../../models/modelanuncio";
+import { forEach } from '@angular/router/src/utils/collection';
 @Component({
     selector: 'app-not-found',
     templateUrl: './tarifas.component.html',
@@ -39,9 +40,8 @@ export class TarifasComponent implements OnInit {
     txt_toda_nocheCtrl: FormControl;
     txt_viajesCtrl: FormControl;
     txt_descripcion_tarifasCtrl: FormControl;
-
-
     controls: any;
+
     constructor(
         private anuncioService: AnuncioService,
         private router: Router,
@@ -60,7 +60,12 @@ export class TarifasComponent implements OnInit {
 
         this.controls = this.ListFormaPago.map(c => new FormControl(false));
         this.controls[0].setValue(true);
-        this.ListFormaPago[0].flag = true;
+
+        if (typeof this.tarifas.ListFormaPago === 'undefined' || this.tarifas.ListFormaPago === null) {
+            this.ListFormaPago[0].flag = true;
+        } else {
+            this.setCheboxes(this.ListFormaPago, this.tarifas.ListFormaPago, this.controls);
+        }
 
         this.txt_30_minCtrl = new FormControl('', [Validators.required]);
         this.txt_45_minCtrl = new FormControl('', [Validators.required]);
@@ -71,18 +76,13 @@ export class TarifasComponent implements OnInit {
         this.txt_salidaCtrl = new FormControl('', [Validators.required]);
         this.txt_toda_nocheCtrl = new FormControl('', [Validators.required]);
         this.txt_viajesCtrl = new FormControl('', [Validators.required]);
-        this.txt_descripcion_tarifasCtrl = new FormControl('', [Validators.required]);
-
-
-
-        const controlss = this.orders.map(c => new FormControl(false));
-        controlss[0].setValue(true); // Set the first checkbox to true (checked)
+        this.txt_descripcion_tarifasCtrl = new FormControl('', []);
 
 
 
         this.fromTarifa = this.frmBuilder.group({
             ListFormaPago: new FormArray(this.controls, this.minSelectedCheckboxes(1)),
-            orders: new FormArray(controlss),
+            // orders: new FormArray(controlss),
             txt_30_min: this.txt_30_minCtrl,
             txt_45_min: this.txt_45_minCtrl,
             txt_1_hora: this.txt_1_horaCtrl,
@@ -95,34 +95,30 @@ export class TarifasComponent implements OnInit {
             txt_descripcion_tarifas: this.txt_descripcion_tarifasCtrl
         });
 
-        // this.fromTarifa.patchValue({
-        //     txt_30_min: this.tarifas.txt_30_min,
-        //     txt_45_min: this.tarifas.txt_45_min,
-        //     txt_1_hora: this.tarifas.txt_1_hora,
-        //     txt_1_30_hora: this.tarifas.txt_1_30_hora,
-        //     txt_2_hora: this.tarifas.txt_2_hora,
-        //     txt_3_hora: this.tarifas.txt_3_hora,
-        //     txt_salida: this.tarifas.txt_salida,
-        //     txt_toda_noche: this.tarifas.txt_toda_noche,
-        //     txt_viajes: this.tarifas.txt_viajes,
-        //     txt_descripcion_tarifas: this.tarifas.txt_descripcion_tarifas
-        // });
-        //this.setFormArrayValue();
+        this.fromTarifa.patchValue({
+            txt_30_min: this.tarifas.txt_30_min,
+            txt_45_min: this.tarifas.txt_45_min,
+            txt_1_hora: this.tarifas.txt_1_hora,
+            txt_1_30_hora: this.tarifas.txt_1_30_hora,
+            txt_2_hora: this.tarifas.txt_2_hora,
+            txt_3_hora: this.tarifas.txt_3_hora,
+            txt_salida: this.tarifas.txt_salida,
+            txt_toda_noche: this.tarifas.txt_toda_noche,
+            txt_viajes: this.tarifas.txt_viajes,
+            txt_descripcion_tarifas: this.tarifas.txt_descripcion_tarifas
+        });
+
     }
-    public setFormArrayValue() {
-        debugger;
-        this.ListFormaPago[0].flag = true;
-        this.ListFormaPago[1].flag = true;
-        this.ListFormaPago[2].flag = true;
-        // this.controls = this.ListFormaPago.map(c => new FormControl(false));
-        // this.controls[0].setValue(true);
-        // this.ListFormaPago[0].flag = true;
-        // const controlArray = <FormArray>this.fromTarifa.get('ListFormaPago');
-        // controlArray.controls[0].setValue(true);
-        // controlArray.controls[1].setValue(true);
-        // controlArray.controls[2].setValue(true);
-        // controlArray.controls[0].get('email').setValue('yourEmailId@gmail.com');
-        // controlArray.controls[0].get('role').setValue(2);
+
+    setCheboxes(listCargados: any, listSeleccionado: ModelCarga[], controls: any) {
+        for (let index = 0; index < listSeleccionado.length; index++) {
+            for (let index1 = 0; index1 < listCargados.length; index1++) {
+                if (listSeleccionado[index].codigo == listCargados[index1].codigo) {
+                    listCargados[index1].flag = true;
+                    this.controls[index1].setValue(true);
+                }
+            }
+        }
     }
     minSelectedCheckboxes(min = 1) {
         const validator: ValidatorFn = (formArray: FormArray) => {
@@ -152,10 +148,11 @@ export class TarifasComponent implements OnInit {
             return;
 
         debugger;
-        const selectedOrderIds = this.fromTarifa.value.ListFormaPago
+        const selectedFormapago = this.fromTarifa.value.ListFormaPago
             .map((v, i) => v ? this.ListFormaPago[i].codigo : null)
             .filter(v => v !== null);
-        this.fromTarifa.value.ListFormaPago = selectedOrderIds;
+
+        this.fromTarifa.value.ListFormaPago = this.getCheboxerSeleccionado(selectedFormapago);
         //console.log(selectedOrderIds);
         this.anuncioService.setTarifa(this.fromTarifa.value)
         this.router.navigate(['/anuncio/servicios']);
@@ -174,6 +171,19 @@ export class TarifasComponent implements OnInit {
         //     this.result = null;
         //     this.resetTarifa();
         // }, 2000);
+    }
+
+    getCheboxerSeleccionado(ListSeleccionado: any): ModelCarga[] {
+        const ListModelCarga = new Array<ModelCarga>();
+        for (let index = 0; index < ListSeleccionado.length; index++) {
+            const codigo = ListSeleccionado[index];
+            ListModelCarga.push({
+                codigo: codigo,
+                descripcion: '',
+                flag: false
+            });
+        }
+        return ListModelCarga;
     }
     resetTarifa() {
         this.isSubmittedTarifas = false;

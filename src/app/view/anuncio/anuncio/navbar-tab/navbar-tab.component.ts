@@ -9,14 +9,10 @@ import { Router } from '@angular/router';
 export class NavBarTabComponent implements OnInit {
     constructor(private step: StepService
     ) {
-
-
         console.log(this.step);
     }
 
     ngOnInit() {
-
         console.log(this.step);
-
     }
 }

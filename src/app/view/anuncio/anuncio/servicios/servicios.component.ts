@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { ModelCarga, Servicios } from "../../../models/modelanuncio";
 @Component({
     selector: 'app-not-found',
     templateUrl: './servicios.component.html',
@@ -21,8 +21,12 @@ export class ServiciosComponent implements OnInit {
     controlsDist: any;
     controlsLugar: any;
     controlsTipServ: any;
+    flagatiende24horasCtrl: FormControl;
+    txtalgosobredispCtrl: FormControl;
+    txt_descripcion_serviciosCtrl: FormControl;
 
     fromServicios: FormGroup;
+    servicios: Servicios;
 
 
     constructor(
@@ -44,24 +48,62 @@ export class ServiciosComponent implements OnInit {
         this.ListTipoServicio = this.anuncioService.getListTipoServicio();
 
 
+        this.servicios = this.anuncioService.getServicios();
+
         this.controlsDist = this.ListDistrito.map(c => new FormControl(false));
-        this.controlsDist[0].setValue(true);
-        this.ListDistrito[0].flag = true;
-
         this.controlsLugar = this.ListLugarAtencion.map(c => new FormControl(false));
-        this.controlsLugar[0].setValue(true);
-        this.ListLugarAtencion[0].flag = true;
-
         this.controlsTipServ = this.ListTipoServicio.map(c => new FormControl(false));
-        this.controlsTipServ[0].setValue(true);
-        this.ListTipoServicio[0].flag = true;
+        this.flagatiende24horasCtrl = new FormControl('', []);
+        this.txtalgosobredispCtrl = new FormControl('', [Validators.maxLength(450)]);
+        this.txt_descripcion_serviciosCtrl = new FormControl('', [Validators.maxLength(450)]);
+        debugger;
+        //Validamos el seteo del distrito
+        if (typeof this.servicios.ListDistrito === 'undefined' || this.servicios.ListDistrito === null) {
+            this.controlsDist[0].setValue(true);
+            this.ListDistrito[0].flag = true;
+        } else {
+            this.setCheboxes(this.ListDistrito, this.servicios.ListDistrito, this.controlsDist);
+        }
+        //Validamos el seteo el lugar de atencion
+        if (typeof this.servicios.ListLugar === 'undefined' || this.servicios.ListLugar === null) {
+            this.controlsLugar[0].setValue(true);
+            this.ListLugarAtencion[0].flag = true;
+        } else {
+            this.setCheboxes(this.ListLugarAtencion, this.servicios.ListLugar, this.controlsLugar);
+        }
+        //Validamos el seteo el tipo del servicios
+        if (typeof this.servicios.ListServicios === 'undefined' || this.servicios.ListServicios === null) {
+            this.controlsTipServ[0].setValue(true);
+            this.ListTipoServicio[0].flag = true;
+        } else {
+            this.setCheboxes(this.ListTipoServicio, this.servicios.ListServicios, this.controlsTipServ);
+        }
 
         this.fromServicios = this.frmBuilder.group({
             ListDistrito: new FormArray(this.controlsDist, this.minSelectedCheckboxes(1)),
             ListLugarAtencion: new FormArray(this.controlsLugar, this.minSelectedCheckboxes(1)),
-            ListTipoServicio: new FormArray(this.controlsTipServ, this.minSelectedCheckboxes(1))
+            ListTipoServicio: new FormArray(this.controlsTipServ, this.minSelectedCheckboxes(1)),
+            flagatiende24hora: this.flagatiende24horasCtrl,
+            algosobredisponibilidad: this.txtalgosobredispCtrl,
+            txt_descripcion_servicios: this.txt_descripcion_serviciosCtrl
         });
 
+        this.fromServicios.patchValue({
+            algosobredisponibilidad: this.servicios.algosobredisponibilidad,
+            txt_descripcion_servicios: this.servicios.txt_descripcion_servicios,
+        });
+
+    }
+
+    setCheboxes(listCargados: any, listSeleccionado: ModelCarga[], controls: any) {
+        for (let index = 0; index < listSeleccionado.length; index++) {
+            for (let index1 = 0; index1 < listCargados.length; index1++) {
+                if (listSeleccionado[index].codigo == listCargados[index1].codigo) {
+                    listCargados[index1].flag = true;
+                    controls[index1].setValue(true);
+                }
+            }
+        }
     }
 
     minSelectedCheckboxes(min = 1) {
@@ -111,6 +153,7 @@ export class ServiciosComponent implements OnInit {
         if (!this.fromServicios.valid)
             return;
 
+        debugger;
         const selectedDistrito = this.fromServicios.value.ListDistrito
             .map((v, i) => v ? this.ListDistrito[i].codigo : null)
             .filter(v => v !== null);
@@ -122,14 +165,30 @@ export class ServiciosComponent implements OnInit {
             .map((v, i) => v ? this.ListTipoServicio[i].codigo : null)
             .filter(v => v !== null);
 
-        console.log(selectedDistrito);
-        console.log(this.fromServicios);
+
+        this.fromServicios.value.ListDistrito = this.getCheboxerSeleccionado(selectedDistrito);
+        this.fromServicios.value.ListLugar = this.getCheboxerSeleccionado(selectedLugarAtencion);
+        this.fromServicios.value.ListServicios = this.getCheboxerSeleccionado(selectedTipoServicio);
+        this.anuncioService.setServicios(this.fromServicios.value)
+        this.router.navigate(['/anuncio/galeria']);
         // userService.Save(this.register.value);
-        this.result = this.fromServicios.value;
-        setTimeout(() => {
-            this.result = null;
-            this.resetServicios();
-        }, 2000);
+        // this.result = this.fromServicios.value;
+        // setTimeout(() => {
+        //     this.result = null;
+        //     this.resetServicios();
+        // }, 2000);
+    }
+    getCheboxerSeleccionado(ListSeleccionado: any): ModelCarga[] {
+        const ListModelCarga = new Array<ModelCarga>();
+        for (let index = 0; index < ListSeleccionado.length; index++) {
+            const codigo = ListSeleccionado[index];
+            ListModelCarga.push({
+                codigo: codigo,
+                descripcion: '',
+                flag: false
+            });
+        }
+        return ListModelCarga;
     }
     resetServicios() {
         this.isSubmittedTarifas = false;

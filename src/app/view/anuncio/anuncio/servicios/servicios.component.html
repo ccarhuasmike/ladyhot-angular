@@ -37,7 +37,8 @@
       <label class="col-sm-3 control-label text-right " for="txt_descripcion_tarifa">Algo sobre tu
         disponibilidad</label>
       <div class="col-sm-5">
-        <textarea class="form-control" id="txt_descripcion_tarifa" rows="6" placeholder=""></textarea>
+        <textarea class="form-control form-control-sm" id="txt_descripcion_tarifa" [formControl]="txtalgosobredispCtrl"
+          rows="6" placeholder=""></textarea>
       </div>
       <div class="col-sm-4">
         <p class="form-control-static">¿Quieres hacer una aclaración sobre tus días y horarios?</p>
@@ -90,7 +91,8 @@
     <div class="form-group row">
       <label class="col-sm-3 control-label text-right " for="tx_descripcion_extra_servicio">Descripción</label>
       <div class="col-sm-5">
-        <textarea class="form-control" id="tx_descripcion_extra_servicio" rows="6" placeholder=""></textarea>
+        <textarea class="form-control form-control-sm" [formControl]="txt_descripcion_serviciosCtrl" id="tx_descripcion_extra_servicio"
+          rows="6" placeholder=""></textarea>
       </div>
       <div class="col-sm-4">
         <p class="form-control-static">¿Quieres hacer una aclaración o explicarte mejor?</p>

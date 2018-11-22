@@ -82,7 +82,7 @@
     <div class="form-group row">
       <label class="col-sm-3 control-label text-right " for="txt_web">Web</label>
       <div class="col-sm-5">
-        <input class="form-control form-control-sm" type="text" required [formControl]="WebCtrl" placeholder="Ejemplo: https://www.google.com">
+        <input class="form-control form-control-sm" type="text" [formControl]="WebCtrl" placeholder="Ejemplo: https://www.google.com">
         <div *ngIf="WebCtrl.invalid && (WebCtrl.dirty || isSubmitted)" class="text-danger">
           <div *ngIf="WebCtrl.errors.pattern">
             Url ingresada no es valido

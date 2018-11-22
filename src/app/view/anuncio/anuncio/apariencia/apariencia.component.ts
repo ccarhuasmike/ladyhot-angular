@@ -29,7 +29,7 @@ export class AparienciaComponent implements OnInit {
     ojosCtrl: FormControl;
     estaturaCtrl: FormControl;
     pesoCtrl: FormControl;
-
+    descripcionaparienciaCtrl: FormControl;
 
     constructor(
         private anuncioService: AnuncioService,
@@ -56,7 +56,7 @@ export class AparienciaComponent implements OnInit {
         this.ojosCtrl = new FormControl('', [Validators.required]);
         this.estaturaCtrl = new FormControl('', [Validators.required]);
         this.pesoCtrl = new FormControl('', [Validators.required]);
-
+        this.descripcionaparienciaCtrl = new FormControl('', [Validators.maxLength(450)]);
         this.fromApariencia = new FormGroup({
             busto: this.bustoCtrl,
             cintura: this.cinturaCtrl,
@@ -64,8 +64,8 @@ export class AparienciaComponent implements OnInit {
             cabello: this.cabellosCtrl,
             ojos: this.ojosCtrl,
             estatura: this.estaturaCtrl,
-            peso: this.pesoCtrl
-
+            peso: this.pesoCtrl,
+            descripcionapariencia: this.descripcionaparienciaCtrl
         });
 
         this.fromApariencia.patchValue({
@@ -75,7 +75,8 @@ export class AparienciaComponent implements OnInit {
             cabello: this.apariencia.cbo_cabello,
             ojos: this.apariencia.cbo_ojos,
             estatura: this.apariencia.cbo_estatura,
-            peso: this.apariencia.cbo_peso
+            peso: this.apariencia.cbo_peso,
+            descripcionapariencia: this.apariencia.txt_descripcion_apariencia
         });
 
     }

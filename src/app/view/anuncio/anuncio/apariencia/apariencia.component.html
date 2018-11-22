@@ -81,7 +81,8 @@
     <div class="form-group row">
       <label class="col-sm-3 control-label text-right" for="txt_descripcion">Descripción</label>
       <div class="col-sm-5">
-        <textarea class="form-control" maxlength="450" id="txt_descripcion" rows="6" placeholder=""></textarea>
+        <textarea class="form-control form-control-sm" [formControl]="descripcionaparienciaCtrl" maxlength="450" id="txt_descripcion"
+          rows="6" placeholder=""></textarea>
       </div>
       <div class="col-sm-4">
         <p class="form-control-static">Si quieres explicar algun otro dato relevante sobre tu apariencia física

@@ -40,7 +40,7 @@ export class DatosContactoComponent implements OnInit {
         //Controles Datos de Contacto
         this.usernameCtrl = new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]);
         this.emailCtrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_mailPattern)]);
-        this.WebCtrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_web)]);
+        this.WebCtrl = new FormControl('', [Validators.pattern(this.RegEx_web)]);
         this.Telefono1Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
         this.Telefono2Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
 
@@ -52,9 +52,6 @@ export class DatosContactoComponent implements OnInit {
             telefono1: this.Telefono1Ctrl,
             telefono2: this.Telefono2Ctrl
         });
-
-
-
         this.fromContacto.patchValue({
             username: this.datoscontacto.txt_nombre,
             email: this.datoscontacto.txt_email,
@@ -62,9 +59,6 @@ export class DatosContactoComponent implements OnInit {
             telefono1: this.datoscontacto.txt_telefono1,
             telefono2: this.datoscontacto.txt_telefono2
         });
-
-
-
     }
 
     save() {

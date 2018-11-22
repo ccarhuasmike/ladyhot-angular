@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { StepService } from "./step.service";
-import { FormData, DatosContacto, DatosGenerales, Apariencia, Tarifas } from '../../../view/models/modelanuncio';
+import { FormData, DatosContacto, DatosGenerales, Apariencia, Tarifas, Servicios } from '../../../view/models/modelanuncio';
 @Injectable() // The Injectable decorator is required for dependency injection to work
 export class AnuncioService {
     private formData: FormData = new FormData();
@@ -350,7 +350,6 @@ export class AnuncioService {
     }
 
     getDatosGenerales(): DatosGenerales {
-        // Return the Personal data
         var datosgenerales: DatosGenerales = {
             cbo_edad: this.formData.cbo_edad,
             cbo_pais_origen: this.formData.cbo_pais_origen,
@@ -361,15 +360,10 @@ export class AnuncioService {
     }
 
     setDatosGenerales(data: any) {
-
-        // edad: this.datosgenerales.cbo_edad,
-        // pais: this.datosgenerales.cbo_pais_origen,
-        // estudios: this.datosgenerales.cbo_estudio
-
         this.formData.cbo_edad = data.edad;
         this.formData.cbo_pais_origen = data.pais;
         this.formData.cbo_estudio = data.estudios;
-        this.formData.txt_descripcion_generales = '';
+        this.formData.txt_descripcion_generales = data.descripciongenerales;
     }
 
 
@@ -396,7 +390,7 @@ export class AnuncioService {
         this.formData.txt_cintura = data.cintura;
         this.formData.txt_cadera = data.cadera;
         this.formData.txt_busto = data.busto;
-        this.formData.txt_descripcion_apariencia = "";
+        this.formData.txt_descripcion_apariencia = data.descripcionapariencia;
     }
 
 
@@ -411,16 +405,13 @@ export class AnuncioService {
             txt_salida: this.formData.txt_salida,
             txt_toda_noche: this.formData.txt_toda_noche,
             txt_viajes: this.formData.txt_viajes,
-            txt_descripcion_tarifas: this.formData.txt_descripcion_apariencia,
+            txt_descripcion_tarifas: this.formData.txt_descripcion_tarifas,
             ListFormaPago: this.formData.ListFormaPago
-
         };
         return tarifas;
     }
 
     setTarifa(data: any) {
-        debugger;
-
         this.formData.txt_30_min = data.txt_30_min;
         this.formData.txt_45_min = data.txt_45_min;
         this.formData.txt_1_hora = data.txt_1_hora;
@@ -435,6 +426,28 @@ export class AnuncioService {
     }
 
 
+    getServicios(): Servicios {
+        var servicios: Servicios = {
+            ListDistrito: this.formData.ListDistrito,
+            ListLugar: this.formData.ListLugar,
+            ListServicios: this.formData.ListServicios,
+            algosobredisponibilidad: this.formData.algosobredisponibilidad,
+            txt_descripcion_servicios: this.formData.txt_descripcion_servicios,
+            flagatiende24horas: this.formData.flagatiende24horas
+        };
+        return servicios;
+    }
+
+    setServicios(data: any) {
+        this.formData.ListDistrito = data.ListDistrito;
+        this.formData.ListLugar = data.ListLugar;
+        this.formData.ListServicios = data.ListServicios;
+        this.formData.algosobredisponibilidad = data.algosobredisponibilidad;
+        this.formData.txt_descripcion_servicios = data.txt_descripcion_servicios;
+        this.formData.flagatiende24horas = data.flagatiende24hora;
+    }
+
+
     segundopaso(flag: boolean) {
         this.stepService.activaStep2(flag);
     }
@@ -446,6 +459,9 @@ export class AnuncioService {
     }
     quintopaso(flag: boolean) {
         this.stepService.activaStep5(flag);
+    }
+    sextopaso(flag: boolean) {
+        this.stepService.activaStep6(flag);
     }
 
 

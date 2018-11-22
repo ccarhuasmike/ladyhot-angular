@@ -19,6 +19,9 @@ export class DatosGeneralesComponent implements OnInit {
     edadCtrl: FormControl;
     paisCtrl: FormControl;
     estudiosCtrl: FormControl;
+    txt_descripcion_generalesCtrl: FormControl;
+
+
 
     ListEdad: any = [];
     ListPais: any = [];
@@ -44,16 +47,21 @@ export class DatosGeneralesComponent implements OnInit {
         this.edadCtrl = new FormControl('', [Validators.required]);
         this.paisCtrl = new FormControl('', [Validators.required]);
         this.estudiosCtrl = new FormControl('', [Validators.required]);
+        this.txt_descripcion_generalesCtrl = new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(500)]);
+
+
         this.fromDatosGenerales = new FormGroup({
             edad: this.edadCtrl,
             pais: this.paisCtrl,
-            estudios: this.estudiosCtrl
+            estudios: this.estudiosCtrl,
+            descripciongenerales: this.txt_descripcion_generalesCtrl
         });
 
         this.fromDatosGenerales.patchValue({
             edad: this.datosgenerales.cbo_edad,
             pais: this.datosgenerales.cbo_pais_origen,
-            estudios: this.datosgenerales.cbo_estudio
+            estudios: this.datosgenerales.cbo_estudio,
+            descripciongenerales: this.datosgenerales.txt_descripcion_generales
         });
 
     }

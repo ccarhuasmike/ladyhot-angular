@@ -7,7 +7,7 @@ import { AparienciaComponent } from "./anuncio/apariencia/apariencia.component";
 import { TarifasComponent } from "./anuncio/tarifa/tarifas.component";
 import { ServiciosComponent } from "./anuncio/servicios/servicios.component";
 import { GaleriaComponent } from "./anuncio/galeria/galeria.component";
-import { MisAnunciosComponent } from "./misanuncios/misanuncios.component";
+
 const routes: Routes = [
     {
         path: '',
@@ -41,10 +41,6 @@ const routes: Routes = [
             {
                 path: "galeria",
                 component: GaleriaComponent
-            },
-            {
-                path: 'misanuncios',
-                component: MisAnunciosComponent
             }
 
         ]

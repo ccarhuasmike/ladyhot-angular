@@ -1,0 +1,102 @@
+<form [formGroup]='fromApariencia' (ngSubmit)='saveApariencia()' novalidate>
+  <div class="form-horizontal">
+    <div class="form-group row">
+      <label class="col-sm-3 control-label text-right " for="cbo_pelo">color de pelo</label>
+      <div class="col-sm-5">
+        <select class="form-control form-control-sm" [formControl]="cabellosCtrl" required (change)="selectName();">
+          <option value="">--Seleccione--</option>
+          <option *ngFor="let data of ListCabellos" value={{data.codigo}}>
+            {{data.descripcion}}
+          </option>
+        </select>
+      </div>
+      <div class="col-sm-4">
+        <p class="form-control-static">el color de tu pelo</p>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 control-label text-right " for="cbo_ojos">color de ojos</label>
+      <div class="col-sm-5">
+        <select class="form-control form-control-sm" required [formControl]="ojosCtrl" (change)="selectName();">
+          <option value="">--Seleccione--</option>
+          <option *ngFor="let data of ListOjos" value={{data.codigo}}>
+            {{data.descripcion}}
+          </option>
+        </select>
+      </div>
+      <div class="col-sm-4">
+        <p class="form-control-static">el color de tus ojos</p>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 control-label text-right " for="cbo_estatura">estatura</label>
+      <div class="col-sm-5">
+        <select class="form-control form-control-sm" required [formControl]="estaturaCtrl" (change)="selectName();">
+          <option value="">--Seleccione--</option>
+          <option *ngFor="let data of ListEstatura" value={{data.codigo}}>
+            {{data.descripcion}}
+          </option>
+        </select>
+      </div>
+      <div class="col-sm-4">
+        <p class="form-control-static">¿cual es tu altura en centímetros?</p>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 control-label text-right " for="cbo_peso">peso</label>
+      <div class="col-sm-5">
+        <select class="form-control form-control-sm" [formControl]="pesoCtrl" required (change)="selectName();">
+          <option value="">--Seleccione--</option>
+          <option *ngFor="let data of ListPeso" value={{data.codigo}}>
+            {{data.descripcion}}
+          </option>
+        </select>
+      </div>
+      <div class="col-sm-4">
+        <p class="form-control-static">¿cual es tu peso en Kg?</p>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 control-label text-right " for="cbo_estudios">Medidas (Busto-Cintura-Caderas)</label>
+      <div class="col-sm-5" style="display: inline-flex;">
+        <input class="form-control form-control-sm" required maxlength="3" OnlyNumber="true" [formControl]="bustoCtrl"
+          type="text" id="txt_medidas_busto" placeholder="busto">-
+        <input class="form-control form-control-sm" required maxlength="3" type="text" OnlyNumber="true" [formControl]="cinturaCtrl"
+          placeholder="cintura">-
+        <input class="form-control form-control-sm" required maxlength="3" type="text" OnlyNumber="true" [formControl]="caderaCtrl"
+          placeholder="cadera">
+
+        <!-- <div *ngIf="bustoCtrl.invalid && (bustoCtrl.dirty || isSubmittedApariencia)" class="text-danger">
+          <div *ngIf="bustoCtrl.errors.required">
+            Se requiere que se ingrese busto.
+          </div>
+        </div> -->
+      </div>
+      <div class="col-sm-4">
+        <p class="form-control-static">¿Cuales son tus medidas?</p>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 control-label text-right" for="txt_descripcion">Descripción</label>
+      <div class="col-sm-5">
+        <textarea class="form-control form-control-sm" [formControl]="descripcionaparienciaCtrl" maxlength="450" id="txt_descripcion"
+          rows="6" placeholder=""></textarea>
+      </div>
+      <div class="col-sm-4">
+        <p class="form-control-static">Si quieres explicar algun otro dato relevante sobre tu apariencia física
+          aquí
+          puedes describirte mejor.</p>
+      </div>
+    </div>
+    <div class="form-group text-center">
+      <button class="btn btn-outline-rounded btn-default" (click)="btnAtras(fromApariencia)"> <span style="margin-right:10px;"
+          class="glyphicon glyphicon-arrow-left"></span> Atras</button>
+
+      <button class="btn btn-outline-rounded btn-info">
+        Siguiente <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
+    </div>
+  </div>
+
+</form>

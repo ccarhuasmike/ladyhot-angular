@@ -22,6 +22,10 @@ const routes: Routes = [
     component: PanelControlComponent,
   },
   {
+    path: 'DashboardAnuncion',
+    loadChildren: '../app/view/dashboardAnuncio/dashboardanucion.module#DashboadAnuncioModule'
+  },
+  {
     path: 'not-found',
     component: NotFoundComponent
   },

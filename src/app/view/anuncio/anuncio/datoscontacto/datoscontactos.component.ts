@@ -66,7 +66,7 @@ export class DatosContactoComponent implements OnInit {
         if (!this.fromContacto.valid)
             return;
         this.anuncioServioce.setDatosContacto(this.fromContacto.value)
-        this.router.navigate(['/anuncio/datos-generales']);
+        this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-generales']);
         //this.router.navigate(['datos-generales'])
 
         // this.router.navigate(['./datos-generales']);

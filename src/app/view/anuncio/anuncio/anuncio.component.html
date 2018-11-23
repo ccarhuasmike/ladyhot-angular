@@ -1,9 +1,31 @@
-<div class="container">
-  <form role="form" action="" method="post" class="f1">
-    <h3>Registre su Anuncio</h3>
-    <app-navbar-tab></app-navbar-tab>
-    <fieldset>
-      <router-outlet></router-outlet>
-    </fieldset>
-  </form>
+<div class="container-fluid">
+  <div class="form-horizontal">
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Active</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-10">
+        <form role="form" action="" method="post" class="f1">
+          <h3>Registre su Anuncio</h3>
+          <app-navbar-tab></app-navbar-tab>
+          <fieldset>
+            <router-outlet></router-outlet>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

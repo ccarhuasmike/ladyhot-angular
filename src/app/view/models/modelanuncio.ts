@@ -129,7 +129,19 @@ export class Servicios {
     txt_descripcion_servicios: string = '';
     flagatiende24horas: boolean = false;
 }
-
+// export class Galeria {
+//     Imgen1: Fileinput;
+//     Imgen2: Fileinput;
+//     Imgen3: Fileinput;
+//     Imgen4: Fileinput;
+//     Imgen5: Fileinput;
+//     Imgen6: Fileinput;
+// }
+// export class Fileinput {
+//     filename: string = '';
+//     filetype: string = '';
+//     value: string = '';
+// }
 export const activeStep = {
     increment: 19.33,
     step1: 'datoscontacto',
@@ -144,6 +156,7 @@ export class ModelCarga {
     descripcion: string = "";
     flag: boolean = false;
 }
+
 // export class Personal {
 //     cabello: number = 0;
 //     lastName: string = '';

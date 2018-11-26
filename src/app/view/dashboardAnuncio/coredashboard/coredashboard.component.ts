@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 // import { HeaderService } from "../../../shared/services/header/header.services";
 
 @Component({
-    selector: 'app-coreanuncio',
-    templateUrl: "./core.component.html",
-    styles: []
+    selector: 'app-coredashboard',
+    templateUrl: "./coredashboard.component.html",
+    styleUrls: ['./coredashboard.component.css']
 })
-export class CoreAnuncioComponent implements OnInit {
+export class CoreDashboardComponent implements OnInit {
     constructor(
     ) { }
 

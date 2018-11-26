@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MisAnuncioRoutingModule } from './misanuncio-routing.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MisAnunciosComponent } from "./misanuncios.component";
+import { MisAnunciosComponent } from "./coremisanuncios/misanuncios.component";
 import { EditarAnuncioComponent } from './editanuncio/editanuncio.component';
 import { GaleriaAnuncioComponent } from './galerianuncio/galerianuncio.component';
 import { DarBajaComponent } from './darbaja/darbaja.component';

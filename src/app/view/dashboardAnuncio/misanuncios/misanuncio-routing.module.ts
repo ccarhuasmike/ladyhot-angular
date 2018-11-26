@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EditarAnuncioComponent } from './editanuncio/editanuncio.component';
 import { GaleriaAnuncioComponent } from './galerianuncio/galerianuncio.component';
-import { MisAnunciosComponent } from "./misanuncios.component";
+import { MisAnunciosComponent } from "./coremisanuncios/misanuncios.component";
 import { DarBajaComponent } from './darbaja/darbaja.component';
 const routes: Routes = [
     {

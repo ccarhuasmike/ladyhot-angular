@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CoreAnuncioComponent } from './core/core.component';
-import { MisAnunciosComponent } from './misanuncios/misanuncios.component';
+import { CoreDashboardComponent } from './coredashboard/coredashboard.component';
+import { MisAnunciosComponent } from './misanuncios/coremisanuncios/misanuncios.component';
 import { ContactarComponent } from './contactar/contactar.component';
 import { HomeModule } from '../home/home.module';
 // import { DatosContactoComponent } from "./anuncio/datoscontacto/datoscontactos.component";
@@ -14,7 +14,7 @@ import { HomeModule } from '../home/home.module';
 const routes: Routes = [
     {
         path: '',
-        component: CoreAnuncioComponent,
+        component: CoreDashboardComponent,
         children: [
             {
                 path: 'misanuncios',

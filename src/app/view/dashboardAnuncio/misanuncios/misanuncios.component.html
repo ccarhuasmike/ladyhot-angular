@@ -1,1 +1,38 @@
-<h1>mis anuncion</h1>
+<h3>Mis Anuncios</h3>
+<div class="form-horizontal" id="id_container_mis_anuncios">
+  <div class="form-group row">
+    <div class="col-sm-3">
+      <div class="">
+        <img src="https://i.pinimg.com/736x/e8/7f/f1/e87ff18fb1ea227b1eab4aa48c99d26d--naruto-sasuke-sakura-naruto-uzumaki.jpg"
+          alt="Forest">
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="form-group form-group-sm">
+        <p class="parrafo-left" for="tx_descripcion_extra_servicio">Nikita</p>
+        <p class="parrafo-left" for="tx_descripcion_extra_servicio">Referencia: 6978</p>
+        <p class="parrafo-left" for="tx_descripcion_extra_servicio">Este anuncio esta: <strong>Pendiente de Pago</strong>
+        </p>
+        <p class="parrafo-left" for="tx_descripcion_extra_servicio">El anuncio ha sido visitado en los últimos días: 0
+          veces</p>
+        <p class="parrafo-left" for="tx_descripcion_extra_servicio">Te han mandado a través del formulario de correo: 0
+          peticiones de contacto</p>
+      </div>
+      <div class="form-group form-group-sm">
+        <a [routerLink]="['/DashboardAnuncion/misanuncios/darbaja']" class="btn btn-primary btn-xs  btn-block">Modificar
+          Anuncio</a>
+        <a [routerLink]="['/DashboardAnuncion/misanuncios/darbaja']" class="btn-primary btn-xs btn-block">Fotos del
+          anuncio</a>
+        <a [routerLink]="['/DashboardAnuncion/misanuncios/darbaja']" class="btn-primary btn-xs btn-block">Videos del
+          anuncio</a>
+        <a [routerLink]="['/DashboardAnuncion/misanuncios/darbaja']" class="btn-primary btn-xs btn-block">Estadisticas
+          completas</a>
+        <a [routerLink]="['/DashboardAnuncion/misanuncios/darbaja']" class="btn-primary btn-xs btn-block">Dar de baja
+          el anuncio</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="divider"></div>
+  <router-outlet></router-outlet>
+</div>

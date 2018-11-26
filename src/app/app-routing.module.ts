@@ -14,10 +14,6 @@ const routes: Routes = [
     loadChildren: '../app/view/about/about.module#AboutModule'
   },
   {
-    path: 'anuncio',
-    loadChildren: '../app/view/anuncio/anuncio.module#AnuncioModule'
-  },
-  {
     path: 'panelcontrol',
     component: PanelControlComponent,
   },

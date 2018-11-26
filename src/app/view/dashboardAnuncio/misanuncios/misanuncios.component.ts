@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-about',
+  selector: 'app-misanuncios',
   templateUrl: './misanuncios.component.html',
   styleUrls: ['./misanuncios.component.css']
 })

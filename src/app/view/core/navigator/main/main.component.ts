@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-main',
   template: `
-  <main class="section" style="margin-top: 64px;">
+  <main class="section" style="margin-top: 78px;">
     <div class="container-fluid">
       <router-outlet></router-outlet>
     </div>

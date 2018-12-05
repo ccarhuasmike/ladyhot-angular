@@ -80,7 +80,7 @@
         <div class="categorias-anuncio">
           <div class="tc_valores">
             <label formArrayName="ListFormaPago" class="categoria " [ngClass]="{'checked': ListFormaPago[i].flag, '': ListFormaPago[i].flag}"
-              *ngFor="let order of fromTarifa.controls.ListFormaPago.controls; let i = index">
+              *ngFor="let order of fromTarifa.controls.ListFormaPago['controls']; let i = index">
               <input type="checkbox" class="chk_categoria" (change)="onChangeFormaPago(ListFormaPago[i].codigo, $event.target.checked)"
                 [id]="'check_formapago_'+ListFormaPago[i].codigo" [formControlName]="i">
               {{ListFormaPago[i].descripcion}}

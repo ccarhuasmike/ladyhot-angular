@@ -5,7 +5,7 @@ import { debug } from 'util';
 // import { Galeria, Fileinput } from "../../../models/modelanuncio";
 @Component({
     selector: 'app-galeria',
-    templateUrl: '/galeria.component.html',
+    templateUrl: './galeria.component.html',
     styleUrls: ['./galeria.component.css']
 
 })

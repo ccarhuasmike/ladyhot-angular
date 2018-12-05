@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { NotFoundComponent } from "../app/view/not-found/not-found.component";
-import { PanelControlComponent } from "../app/view/panelcontrol/panelcontrol.component";
+
 
 
 const routes: Routes = [
@@ -12,10 +12,6 @@ const routes: Routes = [
   {
     path: 'about',
     loadChildren: '../app/view/about/about.module#AboutModule'
-  },
-  {
-    path: 'panelcontrol',
-    component: PanelControlComponent,
   },
   {
     path: 'DashboardAnuncion',

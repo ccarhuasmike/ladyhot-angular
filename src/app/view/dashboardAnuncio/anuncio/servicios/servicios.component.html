@@ -5,7 +5,7 @@
       <div class="col-sm-5">
         <div class="categorias-anuncio">
           <div class="tc_valores">
-            <label formArrayName="ListDistrito" *ngFor="let order of fromServicios.controls.ListDistrito.controls; let i = index"
+            <label formArrayName="ListDistrito" *ngFor="let order of fromServicios.controls.ListDistrito['controls']; let i = index"
               [ngClass]="{'checked': ListDistrito[i].flag, '': ListDistrito[i].flag}" class="categoria ">
               <input type="checkbox" class="chk_categoria" (change)="onChangeDistrito(ListDistrito[i].codigo, $event.target.checked)"
                 [id]="'check_distrito_'+ListDistrito[i].codigo" [formControlName]="i" />
@@ -51,9 +51,9 @@
       <div class="col-sm-5">
         <div class="categorias-anuncio">
           <div class="tc_valores">
-            <label *ngFor="let order of fromServicios.controls.ListLugarAtencion.controls; let i = index" formArrayName="ListLugarAtencion"
-              [ngClass]="{'checked': ListLugarAtencion[i].flag, '': ListLugarAtencion[i].flag}" class="categoria "
-              [for]="'check_lugarAtencion_'+ListLugarAtencion[i].codigo">
+            <label *ngFor="let order of fromServicios.controls.ListLugarAtencion['controls']; let i = index"
+              formArrayName="ListLugarAtencion" [ngClass]="{'checked': ListLugarAtencion[i].flag, '': ListLugarAtencion[i].flag}"
+              class="categoria " [for]="'check_lugarAtencion_'+ListLugarAtencion[i].codigo">
               <input type="checkbox" class="chk_categoria" [id]="'check_lugarAtencion_'+ListLugarAtencion[i].codigo"
                 (change)="onChangeLugarAtencion(ListLugarAtencion[i].codigo, $event.target.checked)" [formControlName]="i" />
               {{ListLugarAtencion[i].descripcion}}
@@ -73,8 +73,9 @@
       <div class="col-sm-5" id="check_servicio_ofrece">
         <div class="categorias-anuncio">
           <div class="tc_valores">
-            <label *ngFor="let order of fromServicios.controls.ListTipoServicio.controls; let i = index" formArrayName="ListTipoServicio"
-              [ngClass]="{'checked': ListTipoServicio[i].flag, '': ListTipoServicio[i].flag}" class="categoria " [for]="'check_tiposervicios_'+ListTipoServicio[i].codigo">
+            <label *ngFor="let order of fromServicios.controls.ListTipoServicio['controls']; let i = index"
+              formArrayName="ListTipoServicio" [ngClass]="{'checked': ListTipoServicio[i].flag, '': ListTipoServicio[i].flag}"
+              class="categoria " [for]="'check_tiposervicios_'+ListTipoServicio[i].codigo">
               <input type="checkbox" class="chk_categoria" [id]="'check_tiposervicios_'+ListTipoServicio[i].codigo"
                 (change)="onChangeTipoServicio(ListTipoServicio[i].codigo, $event.target.checked)" [formControlName]="i" />
               {{ListTipoServicio[i].descripcion}}</label>

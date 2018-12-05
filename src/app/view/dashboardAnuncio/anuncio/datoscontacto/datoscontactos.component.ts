@@ -6,7 +6,7 @@ import { DatosContacto } from "../../../models/modelanuncio";
 
 @Component({
     selector: 'app-datoscontactos',
-    templateUrl: '/datoscontactos.component.html',
+    templateUrl: './datoscontactos.component.html',
     styleUrls: ['./datoscontactos.component.css']
 })
 export class DatosContactoComponent implements OnInit {

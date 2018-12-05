@@ -1,7 +1,7 @@
 <form [formGroup]='fromContacto' (ngSubmit)='save()' novalidate>
   <div class="form-horizontal">
     <div class="form-group row">
-      <label class="col-sm-3 control-label text-right " for="txt_nombre">Nombre</label>
+      <label class="col-sm-3 control-label text-sm-left text-md-right" for="txt_nombre">Nombre</label>
       <div class="col-sm-5">
         <input class="form-control form-control-sm" type="text" required [formControl]="usernameCtrl" placeholder="Ingrese nombre">
         <div *ngIf="usernameCtrl.invalid && (usernameCtrl.dirty || isSubmitted)" class="text-danger">
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-3 control-label text-right " for="txt_telefono_1">Teléfono
+      <label class="col-sm-3 control-label text-sm-left text-md-right " for="txt_telefono_1">Teléfono
         o
         Celular</label>
       <div class="col-sm-5">
@@ -41,7 +41,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-3 control-label text-right " for="txt_telefono_2">Teléfono o Celular</label>
+      <label class="col-sm-3 control-label text-sm-left text-md-right " for="txt_telefono_2">Teléfono o Celular</label>
       <div class="col-sm-5">
         <input class="form-control form-control-sm" [formControl]="Telefono2Ctrl" required type="text" placeholder="Ingrese Telefono 2">
         <div *ngIf="Telefono2Ctrl.invalid && (Telefono2Ctrl.dirty || isSubmitted)" class="text-danger">
@@ -58,7 +58,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-3 control-label text-right " for="txt_email">Email</label>
+      <label class="col-sm-3 control-label text-sm-left text-md-right " for="txt_email">Email</label>
       <div class="col-sm-5">
         <input class="form-control form-control-sm" type="text" [formControl]="emailCtrl" required placeholder="Ejemplo: brillit.coqueta@gmail.com">
         <div *ngIf="emailCtrl.invalid && (emailCtrl.dirty || isSubmitted)" class="text-danger">
@@ -71,7 +71,7 @@
         </div>
       </div>
       <div class="col-sm-4">
-        <p class="parrafo-alerta">
+        <p class="parrafo-alerta-rojo">
           IMPORTANTE !
           Tu dirección de email no será mostrada en el anuncio, pero debe ser válida para que poder contactarte.
           @*¿tienes email dónde contactarte?*@
@@ -80,7 +80,7 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-3 control-label text-right " for="txt_web">Web</label>
+      <label class="col-sm-3 control-label text-sm-left text-md-right " for="txt_web">Web</label>
       <div class="col-sm-5">
         <input class="form-control form-control-sm" type="text" [formControl]="WebCtrl" placeholder="Ejemplo: https://www.google.com">
         <div *ngIf="WebCtrl.invalid && (WebCtrl.dirty || isSubmitted)" class="text-danger">

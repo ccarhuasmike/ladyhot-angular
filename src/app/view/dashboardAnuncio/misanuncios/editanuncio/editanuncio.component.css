@@ -31,3 +31,22 @@ legend {
   background-color: #ffffff;
   text-align: left;
 }
+
+@media (min-width: 312px) and (max-width: 418px) {
+  legend {
+    font-size: 13px;
+    width: 75%;
+    padding: 2px 5px 5px 10px;
+
+  }
+
+  .text-xs-left {
+    text-align: left !important;
+  }
+}
+
+@media (min-width: 419px) and (max-width: 575px) {
+  .text-sm-left {
+    text-align: left !important;
+  }
+}

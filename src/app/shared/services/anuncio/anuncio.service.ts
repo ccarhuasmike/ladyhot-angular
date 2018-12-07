@@ -349,6 +349,55 @@ export class AnuncioService {
         this.formData.txt_web = data.web;
     }
 
+    getFormData(): FormData {
+        var formData: FormData = {
+            //Datos Contacto
+            txt_nombre: 'Segundo Mike ',
+            txt_telefono1: '997233662',
+            txt_telefono2: '997233662',
+            txt_email: 'ccarhuas@gmail.com',
+            txt_web: 'www.hotmail.com',
+            txt_descripcion_contacto: '',
+
+            //Datos Generales
+            cbo_edad: '1',
+            cbo_pais_origen: '1',
+            cbo_estudio: '1',
+            txt_descripcion_generales: 'Explica un poco más sobre ti. Aquí puedes presentarte a los futuros clientes, descríbete un poco mejor, explica cómo eres, que te gusta, tus aficiones y habilidades. ¿Porqué deben llamarte? Cualquier otra cosa que creas es importante, esta es tu oportunidad!',
+
+            //Apariencia
+            cbo_cabello: '1',
+            cbo_ojos: '1',
+            cbo_estatura: '1',
+            cbo_peso: '1',
+            txt_busto: '12',
+            txt_cintura: '12',
+            txt_cadera: '12',
+            txt_descripcion_apariencia: 'bueno bueno bueno bueno',
+
+            //Tarifa 
+            txt_30_min: 0,
+            txt_45_min: 0,
+            txt_1_hora: 0,
+            txt_1_30_hora: 0,
+            txt_2_hora: 0,
+            txt_3_hora: 0,
+            txt_salida: 0,
+            txt_toda_noche: 0,
+            txt_viajes: 0,
+            txt_descripcion_tarifas: 'bueno bueno bueno bueno',
+            ListFormaPago: [],
+
+            ListDistrito: [],
+            ListLugar: [],
+            ListServicios: [],
+            algosobredisponibilidad: 'bueno bueno bueno ',
+            txt_descripcion_servicios: 'bueno bueno bueno',
+            flagatiende24horas: true,
+        }
+        return formData;
+    }
+
     getDatosGenerales(): DatosGenerales {
         var datosgenerales: DatosGenerales = {
             cbo_edad: this.formData.cbo_edad,

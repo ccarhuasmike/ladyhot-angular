@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
-import { DatosContacto, DatosGenerales, Apariencia, Tarifas, Servicios, ModelCarga } from "../../../models/modelanuncio";
+import { FormData, DatosContacto, DatosGenerales, Apariencia, Tarifas, Servicios, ModelCarga } from "../../../models/modelanuncio";
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 @Component({
     selector: 'app-editanuncio',
@@ -8,6 +8,7 @@ import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.serv
     styleUrls: ['./editanuncio.component.css']
 })
 export class EditarAnuncioComponent implements OnInit {
+    FormData: FormData;
     fromGenerales: FormGroup;
     isSubmitted: boolean = false;
 
@@ -76,6 +77,7 @@ export class EditarAnuncioComponent implements OnInit {
     constructor(private anuncioService: AnuncioService, ) { }
 
     ngOnInit() {
+        this.FormData = this.anuncioService.getFormData();
         this.ListEdad = this.anuncioService.getListEdad();
         this.ListPais = this.anuncioService.getListPais();
         this.ListEstudios = this.anuncioService.getListEstudios();
@@ -110,15 +112,14 @@ export class EditarAnuncioComponent implements OnInit {
 
 
         this.ListFormaPago = this.anuncioService.getListFormaPago();
-
         this.controls = this.ListFormaPago.map(c => new FormControl(false));
         this.controls[0].setValue(true);
 
-        // if (typeof this.tarifas.ListFormaPago === 'undefined' || this.tarifas.ListFormaPago === null) {
-        //     this.ListFormaPago[0].flag = true;
-        // } else {
-        //     this.setCheboxes(this.ListFormaPago, this.tarifas.ListFormaPago, this.controls);
-        // }
+        if (typeof this.FormData.ListFormaPago === 'undefined' || this.FormData.ListFormaPago === null || this.FormData.ListFormaPago.length === 0) {
+            this.ListFormaPago[0].flag = true;
+        } else {
+            this.setCheboxes(this.ListFormaPago, this.FormData.ListFormaPago, this.controls);
+        }
 
         this.txt_30_minCtrl = new FormControl('', [Validators.required]);
         this.txt_45_minCtrl = new FormControl('', [Validators.required]);
@@ -131,10 +132,34 @@ export class EditarAnuncioComponent implements OnInit {
         this.txt_viajesCtrl = new FormControl('', [Validators.required]);
         this.txt_descripcion_tarifasCtrl = new FormControl('', []);
 
-
         this.controlsDist = this.ListDistrito.map(c => new FormControl(false));
+        this.controlsDist[0].setValue(true);
         this.controlsLugar = this.ListLugarAtencion.map(c => new FormControl(false));
+        this.controlsLugar[0].setValue(true);
         this.controlsTipServ = this.ListTipoServicio.map(c => new FormControl(false));
+        this.controlsTipServ[0].setValue(true);
+
+        if (typeof this.FormData.ListDistrito === 'undefined' || this.FormData.ListDistrito === null || this.FormData.ListDistrito.length === 0) {
+
+            this.ListDistrito[0].flag = true;
+        } else {
+            this.setCheboxes(this.ListDistrito, this.FormData.ListDistrito, this.controlsDist);
+        }
+        //Validamos el seteo el lugar de atencion
+        debugger;
+        if (typeof this.FormData.ListLugar === 'undefined' || this.FormData.ListLugar === null || this.FormData.ListLugar.length === 0) {
+
+            this.ListLugarAtencion[0].flag = true;
+        } else {
+            this.setCheboxes(this.ListLugarAtencion, this.FormData.ListLugar, this.controlsLugar);
+        }
+        //Validamos el seteo el tipo del servicios
+        if (typeof this.FormData.ListServicios === 'undefined' || this.FormData.ListServicios === null || this.FormData.ListServicios.length === 0) {
+
+            this.ListTipoServicio[0].flag = true;
+        } else {
+            this.setCheboxes(this.ListTipoServicio, this.FormData.ListServicios, this.controlsTipServ);
+        }
         this.flagatiende24horasCtrl = new FormControl('', []);
         this.txtalgosobredispCtrl = new FormControl('', [Validators.maxLength(450)]);
         this.txt_descripcion_serviciosCtrl = new FormControl('', [Validators.maxLength(450)]);
@@ -161,7 +186,6 @@ export class EditarAnuncioComponent implements OnInit {
             descripcionapariencia: this.descripcionaparienciaCtrl,
 
             ListFormaPago: new FormArray(this.controls, this.minSelectedCheckboxes(1)),
-            // orders: new FormArray(controlss),
             txt_30_min: this.txt_30_minCtrl,
             txt_45_min: this.txt_45_minCtrl,
             txt_1_hora: this.txt_1_horaCtrl,
@@ -180,13 +204,39 @@ export class EditarAnuncioComponent implements OnInit {
             algosobredisponibilidad: this.txtalgosobredispCtrl,
             txt_descripcion_servicios: this.txt_descripcion_serviciosCtrl
         });
-        // this.fromContacto.patchValue({
-        //     username: this.datoscontacto.txt_nombre,
-        //     email: this.datoscontacto.txt_email,
-        //     web: this.datoscontacto.txt_web,
-        //     telefono1: this.datoscontacto.txt_telefono1,
-        //     telefono2: this.datoscontacto.txt_telefono2
-        // });
+
+
+        this.fromGenerales.patchValue({
+            username: this.FormData.txt_nombre,
+            email: this.FormData.txt_email,
+            web: this.FormData.txt_web,
+            telefono1: this.FormData.txt_telefono1,
+            telefono2: this.FormData.txt_telefono2,
+            edad: this.FormData.cbo_edad,
+            pais: this.FormData.cbo_pais_origen,
+            estudios: this.FormData.cbo_estudio,
+            descripciongenerales: this.FormData.txt_descripcion_generales,
+            busto: this.FormData.txt_busto,
+            cintura: this.FormData.txt_cintura,
+            cadera: this.FormData.txt_cadera,
+            cabello: this.FormData.cbo_cabello,
+            ojos: this.FormData.cbo_ojos,
+            estatura: this.FormData.cbo_estatura,
+            peso: this.FormData.cbo_peso,
+            descripcionapariencia: this.FormData.txt_descripcion_apariencia,
+            txt_30_min: this.FormData.txt_30_min,
+            txt_45_min: this.FormData.txt_45_min,
+            txt_1_hora: this.FormData.txt_1_hora,
+            txt_1_30_hora: this.FormData.txt_1_30_hora,
+            txt_2_hora: this.FormData.txt_2_hora,
+            txt_3_hora: this.FormData.txt_3_hora,
+            txt_salida: this.FormData.txt_salida,
+            txt_toda_noche: this.FormData.txt_toda_noche,
+            txt_viajes: this.FormData.txt_viajes,
+            txt_descripcion_tarifas: this.FormData.txt_descripcion_tarifas,
+            algosobredisponibilidad: this.FormData.algosobredisponibilidad,
+            txt_descripcion_servicios: this.FormData.txt_descripcion_servicios,
+        });
 
     }
     selectName() {

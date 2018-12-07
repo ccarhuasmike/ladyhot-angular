@@ -17,6 +17,7 @@ const routes: Routes = [
             {
                 path: "darbaja",
                 component: DarBajaComponent,
+
             },
             {
                 path: "misanucios",

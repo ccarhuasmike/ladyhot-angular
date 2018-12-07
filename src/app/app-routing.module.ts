@@ -7,6 +7,11 @@ import { NotFoundComponent } from "../app/view/not-found/not-found.component";
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
     loadChildren: '../app/view/home/home.module#HomeModule'
   },
   {

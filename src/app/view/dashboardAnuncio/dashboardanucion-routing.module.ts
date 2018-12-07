@@ -30,7 +30,9 @@ const routes: Routes = [
             },
             {
                 path: 'salir',
-
+                loadChildren: '../../welcome'
+                // redirectTo: 'DashboardAnuncion'
+                //loadChildren: '../../../app/view/dashboardAnuncio/anuncio/anuncio.module#AnuncioModule'
             }
         ]
     }

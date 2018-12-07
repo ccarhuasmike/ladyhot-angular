@@ -147,7 +147,7 @@ export class TarifasComponent implements OnInit {
         if (!this.fromTarifa.valid)
             return;
 
-        debugger;
+
         const selectedFormapago = this.fromTarifa.value.ListFormaPago
             .map((v, i) => v ? this.ListFormaPago[i].codigo : null)
             .filter(v => v !== null);

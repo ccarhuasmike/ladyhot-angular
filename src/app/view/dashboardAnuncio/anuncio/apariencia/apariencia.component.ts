@@ -85,7 +85,7 @@ export class AparienciaComponent implements OnInit {
 
     }
     saveApariencia() {
-        debugger;
+
         this.isSubmittedApariencia = true;
         if (!this.fromApariencia.valid)
             return;

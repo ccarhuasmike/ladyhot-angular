@@ -57,7 +57,7 @@ export class ServiciosComponent implements OnInit {
         this.flagatiende24horasCtrl = new FormControl('', []);
         this.txtalgosobredispCtrl = new FormControl('', [Validators.maxLength(450)]);
         this.txt_descripcion_serviciosCtrl = new FormControl('', [Validators.maxLength(450)]);
-        debugger;
+
         //Validamos el seteo del distrito
         if (typeof this.servicios.ListDistrito === 'undefined' || this.servicios.ListDistrito === null) {
             this.controlsDist[0].setValue(true);
@@ -154,7 +154,7 @@ export class ServiciosComponent implements OnInit {
         if (!this.fromServicios.valid)
             return;
 
-        debugger;
+
         const selectedDistrito = this.fromServicios.value.ListDistrito
             .map((v, i) => v ? this.ListDistrito[i].codigo : null)
             .filter(v => v !== null);

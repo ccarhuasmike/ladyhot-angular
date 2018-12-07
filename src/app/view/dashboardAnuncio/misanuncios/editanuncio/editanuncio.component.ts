@@ -146,7 +146,7 @@ export class EditarAnuncioComponent implements OnInit {
             this.setCheboxes(this.ListDistrito, this.FormData.ListDistrito, this.controlsDist);
         }
         //Validamos el seteo el lugar de atencion
-        debugger;
+
         if (typeof this.FormData.ListLugar === 'undefined' || this.FormData.ListLugar === null || this.FormData.ListLugar.length === 0) {
 
             this.ListLugarAtencion[0].flag = true;

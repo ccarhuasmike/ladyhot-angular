@@ -59,7 +59,7 @@ export class GaleriaComponent implements OnInit {
         //     }
 
 
-        //     debugger;
+
         //     reader.onload = ((e) => {
         //         this.imageSrc = e.target['result'];
         //     });

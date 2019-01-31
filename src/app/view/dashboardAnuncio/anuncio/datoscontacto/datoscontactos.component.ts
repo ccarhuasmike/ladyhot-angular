@@ -3,7 +3,8 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn
 import { Router } from '@angular/router';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 import { DatosContacto } from "../../../models/modelanuncio";
-
+import { ParameterService } from "../../../../shared/services/anuncio/parameter.service";
+import { PaginatedResult } from '../../../../Models/Tbl_parameter_detModels';
 @Component({
     selector: 'app-datoscontactos',
     templateUrl: './datoscontactos.component.html',
@@ -26,13 +27,25 @@ export class DatosContactoComponent implements OnInit {
     RegEx_web = "^(http[s]?:\\/\\/){0,1}(www\\.){0,1}[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,5}[\\.]{0,1}$";
     RegEx_Telefono = "^[679]{1}[0-9]{8}$";
 
+    listParameter: any;
+
+
     constructor(private router: Router,
-        private anuncioService: AnuncioService
+        private anuncioService: AnuncioService,
+        private parameter: ParameterService
     ) { }
 
     ngOnInit() {
+        this.parameter.getParameter().subscribe(
+            (res: PaginatedResult<any[]>) => {
+                this.listParameter = res.result;
+                // localStorage.setItem('currentUser', JSON.stringify({ token: token, name: name }));
+                localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
+            },
+            error => {
+            }
+        );
         this.datoscontacto = this.anuncioService.getDatosContacto();
-
         this.anuncioService.segundopaso(false);
         this.anuncioService.tercerpaso(false);
         this.anuncioService.cuartopaso(false);

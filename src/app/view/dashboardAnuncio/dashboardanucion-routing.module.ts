@@ -28,12 +28,12 @@ const routes: Routes = [
                 path: 'contactar',
                 component: ContactarComponent
             },
-            {
-                path: 'salir',
-                loadChildren: '../../welcome'
-                // redirectTo: 'DashboardAnuncion'
-                //loadChildren: '../../../app/view/dashboardAnuncio/anuncio/anuncio.module#AnuncioModule'
-            }
+            // {
+            //     path: 'salir',
+            //     loadChildren: '../../welcome'
+            //     // redirectTo: 'DashboardAnuncion'
+            //     //loadChildren: '../../../app/view/dashboardAnuncio/anuncio/anuncio.module#AnuncioModule'
+            // }
         ]
     }
 

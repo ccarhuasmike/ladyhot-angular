@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Cliente } from "../../models/ficha";
 import { NgxMasonryOptions } from 'ngx-masonry';
+import { HomeService } from "../../../shared/services/anuncio/home.services";
+import { MessageService } from "../../../throwError/message.service";
 @Component({
   selector: 'app-home',
   templateUrl: "./home.component.html",
@@ -14,13 +16,18 @@ export class HomeComponent implements OnInit {
     gutter: 5
   };
 
+  list: any;
+
   public title = 'autobot';
   clientes: Cliente[] = [];
   clientesbean: Cliente;
   masonryImages;
   limit = 16;
 
-  constructor() { }
+  constructor(
+    private homeService: HomeService,
+    public messageService: MessageService
+  ) { }
   onScrollDown() {
     this.limit += 15;
     this.masonryImages = this.clientes.slice(0, this.limit);
@@ -31,6 +38,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.list = this.homeService.getAnuncio();
+    console.log(this.messageService);
     this.clientesbean = {
       descripcion: 'Back in 2011, when Pinterest was just launched, I myself tried creating its lookalike with plain CSS. I started off by using float and vertical-align properties on my inline-block elements (it sounds silly now). It didn’t help.',
       distrito: 'Los Olivos',

@@ -50,13 +50,15 @@ export class TarifasComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
         this.tarifas = this.anuncioService.getTarifas();
         this.anuncioService.segundopaso(true);
         this.anuncioService.tercerpaso(true);
         this.anuncioService.cuartopaso(true);
         this.anuncioService.quintopaso(false);
         this.anuncioService.sextopaso(false);
-        this.ListFormaPago = this.anuncioService.getListFormaPago();
+        this.ListFormaPago = listaParamter.formapago;
+        //this.anuncioService.getListFormaPago();
 
         this.controls = this.ListFormaPago.map(c => new FormControl(false));
         this.controls[0].setValue(true);
@@ -131,9 +133,9 @@ export class TarifasComponent implements OnInit {
         return validator;
     }
 
-    onChangeFormaPago(codigo: number, isChecked: boolean) {
+    onChangeFormaPago(val_valor: number, isChecked: boolean) {
 
-        let index = this.ListFormaPago.findIndex(x => x.codigo === codigo);
+        let index = this.ListFormaPago.findIndex(x => x.val_valor === val_valor);
         if (isChecked) {
             this.ListFormaPago[index].flag = isChecked;
         } else {
@@ -146,8 +148,6 @@ export class TarifasComponent implements OnInit {
         this.isSubmittedTarifas = true;
         if (!this.fromTarifa.valid)
             return;
-
-
         const selectedFormapago = this.fromTarifa.value.ListFormaPago
             .map((v, i) => v ? this.ListFormaPago[i].codigo : null)
             .filter(v => v !== null);

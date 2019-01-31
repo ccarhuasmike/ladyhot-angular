@@ -37,16 +37,18 @@ export class AparienciaComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
         this.apariencia = this.anuncioService.getApariencia();
         this.anuncioService.segundopaso(true);
         this.anuncioService.tercerpaso(true);
         this.anuncioService.cuartopaso(false);
         this.anuncioService.quintopaso(false);
         this.anuncioService.sextopaso(false);
-        this.ListCabellos = this.anuncioService.getListCabellos();
-        this.ListOjos = this.anuncioService.getListOjos();
-        this.ListEstatura = this.anuncioService.getListEstatura();
-        this.ListPeso = this.anuncioService.getListPeso();
+        debugger;
+        this.ListCabellos = listaParamter.color_cabello;//this.anuncioService.getListCabellos();
+        this.ListOjos = listaParamter.color_ojos;//this.anuncioService.getListOjos();
+        this.ListEstatura = listaParamter.estatura; //this.anuncioService.getListEstatura();
+        this.ListPeso = listaParamter.peso;// this.anuncioService.getListPeso();
         //Controles Apariencia
         this.bustoCtrl = new FormControl('', [Validators.required]);
         this.cinturaCtrl = new FormControl('', [Validators.required]);

@@ -6,10 +6,10 @@
         <div class="categorias-anuncio">
           <div class="tc_valores">
             <label formArrayName="ListDistrito" *ngFor="let order of fromServicios.controls.ListDistrito['controls']; let i = index"
-              [ngClass]="{'checked': ListDistrito[i].flag, '': ListDistrito[i].flag}" class="categoria ">
-              <input type="checkbox" class="chk_categoria" (change)="onChangeDistrito(ListDistrito[i].codigo, $event.target.checked)"
-                [id]="'check_distrito_'+ListDistrito[i].codigo" [formControlName]="i" />
-              {{ListDistrito[i].descripcion}}
+              [ngClass]="{'checked': ListDistrito[i].flag, '': ListDistrito[i].flag}" class="categoria " [for]="'check_distrito_'+ListDistrito[i].val_valor">
+              <input type="checkbox" class="chk_categoria" (change)="onChangeDistrito(ListDistrito[i].val_valor, $event.target.checked)"
+                [id]="'check_distrito_'+ListDistrito[i].val_valor" [formControlName]="i" />
+              {{ListDistrito[i].tx_descripcion}}
             </label>
           </div>
           <div *ngIf="fromServicios.controls.ListDistrito.invalid" class="text-danger">
@@ -53,10 +53,11 @@
           <div class="tc_valores">
             <label *ngFor="let order of fromServicios.controls.ListLugarAtencion['controls']; let i = index"
               formArrayName="ListLugarAtencion" [ngClass]="{'checked': ListLugarAtencion[i].flag, '': ListLugarAtencion[i].flag}"
-              class="categoria " [for]="'check_lugarAtencion_'+ListLugarAtencion[i].codigo">
-              <input type="checkbox" class="chk_categoria" [id]="'check_lugarAtencion_'+ListLugarAtencion[i].codigo"
-                (change)="onChangeLugarAtencion(ListLugarAtencion[i].codigo, $event.target.checked)" [formControlName]="i" />
-              {{ListLugarAtencion[i].descripcion}}
+              class="categoria " [for]="'check_lugarAtencion_'+ListLugarAtencion[i].val_valor">
+              <input type="checkbox" class="chk_categoria" [id]="'check_lugarAtencion_'+ListLugarAtencion[i].val_valor"
+                (change)="onChangeLugarAtencion(ListLugarAtencion[i].val_valor, $event.target.checked)"
+                [formControlName]="i" />
+              {{ListLugarAtencion[i].tx_descripcion}}
             </label>
           </div>
           <div *ngIf="fromServicios.controls.ListLugarAtencion.invalid" class="text-danger">
@@ -75,10 +76,10 @@
           <div class="tc_valores">
             <label *ngFor="let order of fromServicios.controls.ListTipoServicio['controls']; let i = index"
               formArrayName="ListTipoServicio" [ngClass]="{'checked': ListTipoServicio[i].flag, '': ListTipoServicio[i].flag}"
-              class="categoria " [for]="'check_tiposervicios_'+ListTipoServicio[i].codigo">
-              <input type="checkbox" class="chk_categoria" [id]="'check_tiposervicios_'+ListTipoServicio[i].codigo"
-                (change)="onChangeTipoServicio(ListTipoServicio[i].codigo, $event.target.checked)" [formControlName]="i" />
-              {{ListTipoServicio[i].descripcion}}</label>
+              class="categoria " [for]="'check_tiposervicios_'+ListTipoServicio[i].val_valor">
+              <input type="checkbox" class="chk_categoria" [id]="'check_tiposervicios_'+ListTipoServicio[i].val_valor"
+                (change)="onChangeTipoServicio(ListTipoServicio[i].val_valor, $event.target.checked)" [formControlName]="i" />
+              {{ListTipoServicio[i].tx_descripcion}}</label>
           </div>
           <div *ngIf="fromServicios.controls.ListTipoServicio.invalid" class="text-danger">
             Por favor seleccione por lo menos un tipo de servicio

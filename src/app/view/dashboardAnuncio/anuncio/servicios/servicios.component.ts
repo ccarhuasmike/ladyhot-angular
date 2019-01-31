@@ -37,18 +37,17 @@ export class ServiciosComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-
+        debugger;
+        let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
         this.anuncioService.segundopaso(true);
         this.anuncioService.tercerpaso(true);
         this.anuncioService.cuartopaso(true);
         this.anuncioService.quintopaso(true);
         this.anuncioService.sextopaso(false);
 
-        this.ListDistrito = this.anuncioService.getListDistrito();
-        this.ListLugarAtencion = this.anuncioService.getListLugarAtencion();
-        this.ListTipoServicio = this.anuncioService.getListTipoServicio();
-
-
+        this.ListDistrito = listaParamter.distritro;//this.anuncioService.getListDistrito();
+        this.ListLugarAtencion = listaParamter.lugaratencion;// this.anuncioService.getListLugarAtencion();
+        this.ListTipoServicio = listaParamter.servicio_ofrece;//this.anuncioService.getListTipoServicio();//listaParamter.servicio_ofrece;
         this.servicios = this.anuncioService.getServicios();
 
         this.controlsDist = this.ListDistrito.map(c => new FormControl(false));
@@ -118,9 +117,9 @@ export class ServiciosComponent implements OnInit {
         return validator;
     }
 
-    onChangeDistrito(codigo: number, isChecked: boolean) {
+    onChangeDistrito(val_valor: number, isChecked: boolean) {
 
-        let index = this.ListDistrito.findIndex(x => x.codigo === codigo);
+        let index = this.ListDistrito.findIndex(x => x.val_valor === val_valor);
         if (isChecked) {
             this.ListDistrito[index].flag = isChecked;
         } else {
@@ -128,9 +127,9 @@ export class ServiciosComponent implements OnInit {
         }
     }
 
-    onChangeLugarAtencion(codigo: number, isChecked: boolean) {
+    onChangeLugarAtencion(val_valor: number, isChecked: boolean) {
 
-        let index = this.ListLugarAtencion.findIndex(x => x.codigo === codigo);
+        let index = this.ListLugarAtencion.findIndex(x => x.val_valor === val_valor);
         if (isChecked) {
             this.ListLugarAtencion[index].flag = isChecked;
         } else {
@@ -138,9 +137,9 @@ export class ServiciosComponent implements OnInit {
         }
     }
 
-    onChangeTipoServicio(codigo: number, isChecked: boolean) {
+    onChangeTipoServicio(val_valor: number, isChecked: boolean) {
 
-        let index = this.ListTipoServicio.findIndex(x => x.codigo === codigo);
+        let index = this.ListTipoServicio.findIndex(x => x.val_valor === val_valor);
         if (isChecked) {
             this.ListTipoServicio[index].flag = isChecked;
         } else {
@@ -154,7 +153,6 @@ export class ServiciosComponent implements OnInit {
         if (!this.fromServicios.valid)
             return;
 
-
         const selectedDistrito = this.fromServicios.value.ListDistrito
             .map((v, i) => v ? this.ListDistrito[i].codigo : null)
             .filter(v => v !== null);
@@ -165,7 +163,6 @@ export class ServiciosComponent implements OnInit {
         const selectedTipoServicio = this.fromServicios.value.ListTipoServicio
             .map((v, i) => v ? this.ListTipoServicio[i].codigo : null)
             .filter(v => v !== null);
-
 
         this.fromServicios.value.ListDistrito = this.getCheboxerSeleccionado(selectedDistrito);
         this.fromServicios.value.ListLugar = this.getCheboxerSeleccionado(selectedLugarAtencion);

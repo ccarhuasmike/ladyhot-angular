@@ -5,8 +5,8 @@
       <div class="col-sm-5">
         <select class="form-control form-control-sm" [formControl]="edadCtrl" required (change)="selectName();">
           <option value="">--Seleccione--</option>
-          <option *ngFor="let data of ListEdad" value={{data.codigo}}>
-            {{data.descripcion}}
+          <option *ngFor="let data of ListEdad" value={{data.val_valor}}>
+            {{data.tx_descripcion}}
           </option>
         </select>
       </div>
@@ -19,8 +19,8 @@
       <div class="col-sm-5">
         <select class="form-control form-control-sm" [formControl]="paisCtrl" required (change)="selectName();">
           <option value="">--Seleccione--</option>
-          <option *ngFor="let data of ListPais" value={{data.codigo}}>
-            {{data.descripcion}}
+          <option *ngFor="let data of ListPais" value={{data.val_valor}}>
+            {{data.tx_descripcion}}
           </option>
         </select>
       </div>
@@ -33,8 +33,8 @@
       <div class="col-sm-5">
         <select class="form-control form-control-sm" [formControl]="estudiosCtrl" required (change)="selectName();">
           <option value="">--Seleccione--</option>
-          <option *ngFor="let data of ListEstudios" value={{data.codigo}}>
-            {{data.descripcion}}
+          <option *ngFor="let data of ListEstudios" value={{data.val_valor}}>
+            {{data.tx_descripcion}}
           </option>
         </select>
       </div>

@@ -3,6 +3,9 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn
 import { Router } from '@angular/router';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 import { DatosGenerales } from "../../../models/modelanuncio";
+import { ParameterService } from "../../../../shared/services/anuncio/parameter.service";
+
+
 @Component({
     selector: 'app-datosgenerales',
     templateUrl: './datosgenerales.component.html',
@@ -22,27 +25,29 @@ export class DatosGeneralesComponent implements OnInit {
     txt_descripcion_generalesCtrl: FormControl;
 
 
-
     ListEdad: any = [];
     ListPais: any = [];
     ListEstudios: any = [];
 
     constructor(
         private anuncioService: AnuncioService,
-        private router: Router
+        private router: Router,
+        private parameter: ParameterService
 
     ) { }
 
     ngOnInit() {
+        debugger;
+        let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
         this.datosgenerales = this.anuncioService.getDatosGenerales();
         this.anuncioService.segundopaso(true);
         this.anuncioService.tercerpaso(false);
         this.anuncioService.cuartopaso(false);
         this.anuncioService.quintopaso(false);
         this.anuncioService.sextopaso(false);
-        this.ListEdad = this.anuncioService.getListEdad();
-        this.ListPais = this.anuncioService.getListPais();
-        this.ListEstudios = this.anuncioService.getListEstudios();
+        this.ListEdad = listaParamter.edad;// this.anuncioService.getListEdad();
+        this.ListPais = listaParamter.pais; //this.anuncioService.getListPais();
+        this.ListEstudios = listaParamter.estudios; //this.anuncioService.getListEstudios();
         //Controles Datos Generales
         this.edadCtrl = new FormControl('', [Validators.required]);
         this.paisCtrl = new FormControl('', [Validators.required]);

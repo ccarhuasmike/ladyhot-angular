@@ -79,11 +79,11 @@
       <div class="col-sm-5">
         <div class="categorias-anuncio">
           <div class="tc_valores">
-            <label formArrayName="ListFormaPago" class="categoria " [ngClass]="{'checked': ListFormaPago[i].flag, '': ListFormaPago[i].flag}"
+            <label formArrayName="ListFormaPago" class="categoria" [ngClass]="{'checked': ListFormaPago[i].flag, '': ListFormaPago[i].flag}"
               *ngFor="let order of fromTarifa.controls.ListFormaPago['controls']; let i = index">
-              <input type="checkbox" class="chk_categoria" (change)="onChangeFormaPago(ListFormaPago[i].codigo, $event.target.checked)"
-                [id]="'check_formapago_'+ListFormaPago[i].codigo" [formControlName]="i">
-              {{ListFormaPago[i].descripcion}}
+              <input type="checkbox" class="chk_categoria" (change)="onChangeFormaPago(ListFormaPago[i].val_valor, $event.target.checked)"
+                [id]="'check_formapago_'+ListFormaPago[i].val_valor" [formControlName]="i">
+              {{ListFormaPago[i].tx_descripcion}}
             </label>
           </div>
           <div *ngIf="fromTarifa.controls.ListFormaPago.invalid" class="text-danger">
@@ -93,9 +93,9 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-3 control-label text-right " for="txt_descripcion_tarifa">Descripción</label>
+      <label class="col-sm-3 control-label text-right " for="txt_tx_descripcion_tarifa">Descripción</label>
       <div class="col-sm-5">
-        <textarea class="form-control form-control-sm" id="txt_descripcion_tarifa" [formControl]="txt_descripcion_tarifasCtrl"
+        <textarea class="form-control form-control-sm" id="txt_tx_descripcion_tarifa" [formControl]="txt_tx_descripcion_tarifasCtrl"
           rows="6" placeholder=""></textarea>
       </div>
       <div class="col-sm-4">

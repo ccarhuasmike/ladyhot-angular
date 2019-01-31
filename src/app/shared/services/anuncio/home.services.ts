@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+// import { Observable, throwError } from 'rxjs';
+// import { catchError } from 'rxjs/operators';
+// import { HttpErrorResponse } from '@angular/common/http';
+// import { map } from 'rxjs/operators';
 // import { Tbl_anuncio } from '../../../Models/Tbl_anuncioModels';
 import { ConfigService } from "../Utilitarios/config.service";
 import { HttpErrorHandler, HandleError, } from '../../../throwError/http-error-handler.service';

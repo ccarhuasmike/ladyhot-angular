@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn
 import { Router } from '@angular/router';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 import { DatosContacto } from "../../../models/modelanuncio";
+import { Tbl_anuncio } from '../../../../Models/Tbl_anuncioModels';
 import { ParameterService } from "../../../../shared/services/anuncio/parameter.service";
 import { PaginatedResult } from '../../../../Models/Tbl_parameter_detModels';
 @Component({
@@ -39,10 +40,7 @@ export class DatosContactoComponent implements OnInit {
         this.parameter.getParameter().subscribe(
             (res: PaginatedResult<any[]>) => {
                 this.listParameter = res.result;
-                // localStorage.setItem('currentUser', JSON.stringify({ token: token, name: name }));
                 localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
-            },
-            error => {
             }
         );
         this.datoscontacto = this.anuncioService.getDatosContacto();
@@ -79,6 +77,30 @@ export class DatosContactoComponent implements OnInit {
         this.isSubmitted = true;
         if (!this.fromContacto.valid)
             return;
+
+        let entidad: any;
+        entidad.txt_nombre_ficha = this.fromContacto.value.txt_nombre;
+        entidad.txt_telefono_1 = this.fromContacto.value.txt_telefono_1;
+        entidad.txt_telefono_2 = this.fromContacto.value.txt_telefono_2;
+        entidad.txt_email = this.fromContacto.value.txt_email;
+        entidad.txt_web = this.fromContacto.value.txt_web;
+        this.anuncioService.SavePrimerPaso(entidad).subscribe(
+            (res: PaginatedResult<any[]>) => {
+                //this.listParameter = res.result;
+                console.log(res.result);
+                // localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
+            }
+        );
+
+        // var datoscontacto: Tbl_anuncio = {
+        //     cod_anuncio_encryptado
+        //     // txt_nombre: this.formData.txt_nombre,
+        //     // txt_telefono1: this.formData.txt_telefono1,
+        //     // txt_telefono2: this.formData.txt_telefono2,
+        //     // txt_web: this.formData.txt_web,
+        //     // txt_email: this.formData.txt_email,
+        //     // txt_descripcion_contacto: this.formData.txt_descripcion_contacto
+        // };
         this.anuncioService.setDatosContacto(this.fromContacto.value)
         this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-generales']);
         //this.router.navigate(['datos-generales'])

@@ -1,15 +1,115 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { StepService } from "./step.service";
+import { Tbl_anuncio } from '../../../Models/Tbl_anuncioModels';
+import { map } from 'rxjs/operators';
 import { FormData, DatosContacto, DatosGenerales, Apariencia, Tarifas, Servicios } from '../../../view/models/modelanuncio';
+import { ConfigService } from "../Utilitarios/config.service";
 @Injectable() // The Injectable decorator is required for dependency injection to work
 export class AnuncioService {
     private formData: FormData = new FormData();
-    constructor(private http: Http, private stepService: StepService) {
+    _baseUrl: string = '';
+    constructor(
+        private http: Http,
+        private stepService: StepService,
+        private configService: ConfigService,
+    ) {
+        this._baseUrl = configService.getWebApiURL();
     }
     // fetchAll() {
     //     return this.http.get('https://api.github.com/repositories').map(res => res.json());
     // }
+
+    // login(username: string, password: string): Observable<boolean> {
+    //     return this.http.post('https://localhost/login', JSON.stringify({ username, password }), {
+    //         headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
+    //     }).map((response: Response) => {
+    //         // login successful if there's a jwt token in the response
+    //         const token = response.json() && response.json().token;
+    //         if (token) {
+    //             // set token property
+    //             this.token = token;
+
+    //             // store username and jwt token in local storage to keep user logged in between page refreshes
+    //             localStorage.setItem('currentUser', JSON.stringify({ username, token }));
+
+    //             // return true to indicate successful login
+    //             return true;
+    //         } else {
+    //             // return false to indicate failed login
+    //             return false;
+    //         }
+    //     });
+    // }
+
+    SavePrimerPaso(anuncio: Tbl_anuncio): any {
+        debugger;
+        var peginatedResult: any;
+        var headers = new Headers({
+            "Content-Type": "application/json"
+        });
+        let options = new RequestOptions({ headers: headers });
+        var a = JSON.stringify(anuncio);
+        console.log(a);
+        return this.http.post(this._baseUrl + 'anuncio/Primeropaso', JSON.stringify(anuncio), options).pipe(
+            map(res => {
+                peginatedResult.result = JSON.parse(res.json().DataJson);
+                return peginatedResult;
+            })
+        );
+
+        // this.http.post(this._baseUrl + 'parameter/sel_parameter', JSON.stringify(anuncio), options).subscribe(
+        //     data => {
+        //         console.log(data.json());
+        //     },
+        //     error => {
+        //         console.log(error);
+        //     }
+
+        // );;
+
+        // return peginatedResult;
+        // return this.http.get(this._baseUrl + 'parameter/sel_parameter').pipe(
+        //     map(res => {
+        //         peginatedResult.result = JSON.parse(res.json().DataJson);
+        //         return peginatedResult;
+        //     })
+        // );
+
+
+        // let httpOptions = {
+        //     headers: new Headers({
+        //         'Content-Type': 'application/json'
+        //     })
+        // };
+        // var peginatedResult: PaginatedResult<IComprobante[]> = new PaginatedResult<IComprobante[]>();        
+        let myHeaders = new Headers();
+        // myHeaders.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        // myHeaders.append("Content-Type", 'application/json');
+        //myHeaders.append("Access-Control-Allow-Origin", 'http://localhost:4200');        
+        // let options = new RequestOptions({ headers: myHeaders });
+        // var data = [];
+        // data[0] = pagina.CurrentPage;
+        // data[1] = pagina.ItemsPerPage;
+        // data[2] = reporte.Serie;
+        // data[3] = reporte.Numerodoc;
+        // data[4] = reporte.Fecha_Ini;
+        // data[5] = reporte.Fecha_Fin;
+        //return this.http.post(this._baseUrl + 'listarReporte',JSON.stringify({  reportes: reporte,      paginacion: pagina }),options)
+        // return this.http.post(this._baseUrl + 'ConsultarCabecera', data, options)
+        //     .map(res => {
+        //         //this.list = res.json();
+        //         //peginatedResult.result = JSON.parse(res.json().Resultado[0]);
+        //         peginatedResult.result = res.json().Resultado[0];
+        //         var paginationHeader: Pagination = res.json().Resultado[1];
+        //         peginatedResult.pagination = paginationHeader;
+        //         return peginatedResult;
+        //     })
+        //     .catch(this.handleError);
+    }
+
+
+
     getListTipoServicio() {
         //return this.http.get('https://api.github.com/repositories').map(res => res.json());
         return [{

@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 import { DatosGenerales } from "../../../models/modelanuncio";
 import { ParameterService } from "../../../../shared/services/anuncio/parameter.service";
-
-
+import { PaginatedResult } from '../../../../Models/Tbl_parameter_detModels';
 @Component({
     selector: 'app-datosgenerales',
     templateUrl: './datosgenerales.component.html',
@@ -56,18 +55,18 @@ export class DatosGeneralesComponent implements OnInit {
 
 
         this.fromDatosGenerales = new FormGroup({
-            edad: this.edadCtrl,
-            pais: this.paisCtrl,
-            estudios: this.estudiosCtrl,
-            descripciongenerales: this.txt_descripcion_generalesCtrl
+            int_edad: this.edadCtrl,
+            int_pais_origen: this.paisCtrl,
+            int_estudios: this.estudiosCtrl,
+            txt_presentacion: this.txt_descripcion_generalesCtrl
         });
 
-        this.fromDatosGenerales.patchValue({
-            edad: this.datosgenerales.cbo_edad,
-            pais: this.datosgenerales.cbo_pais_origen,
-            estudios: this.datosgenerales.cbo_estudio,
-            descripciongenerales: this.datosgenerales.txt_descripcion_generales
-        });
+        // this.fromDatosGenerales.patchValue({
+        //     edad: this.datosgenerales.cbo_edad,
+        //     pais: this.datosgenerales.cbo_pais_origen,
+        //     estudios: this.datosgenerales.cbo_estudio,
+        //     descripciongenerales: this.datosgenerales.txt_descripcion_generales
+        // });
 
     }
 
@@ -84,8 +83,22 @@ export class DatosGeneralesComponent implements OnInit {
         if (!this.fromDatosGenerales.valid)
             return;
 
-        this.anuncioService.setDatosGenerales(this.fromDatosGenerales.value)
-        this.router.navigate(['DashboardAnuncion/nuevoanuncio/apariencia']);
+        let entidad: any = {};
+        entidad.id_usuario = 11;
+        entidad.int_edad = parseInt(this.fromDatosGenerales.value.int_edad);
+        entidad.int_pais_origen = parseInt(this.fromDatosGenerales.value.int_pais_origen);
+        entidad.int_estudios = parseInt(this.fromDatosGenerales.value.int_estudios);
+        entidad.txt_presentacion = this.fromDatosGenerales.value.txt_presentacion;
+
+        this.anuncioService.SaveSegundoPaso(entidad).subscribe(
+            (res: PaginatedResult<any[]>) => {
+                console.log(res.result);
+                // localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
+                this.router.navigate(['DashboardAnuncion/nuevoanuncio/apariencia']);
+            }
+        );
+        // this.anuncioService.setDatosGenerales(this.fromDatosGenerales.value)
+
         console.log(this.fromDatosGenerales);
         // userService.Save(this.register.value);
         this.result = this.fromDatosGenerales.value;

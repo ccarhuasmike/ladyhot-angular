@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { StepService } from "./step.service";
 import { Tbl_anuncio } from '../../../Models/Tbl_anuncioModels';
+import { ClientResponse, ClientResponseResult } from '../../../Models/ClientResponseModels';
 import { map } from 'rxjs/operators';
 import { FormData, DatosContacto, DatosGenerales, Apariencia, Tarifas, Servicios } from '../../../view/models/modelanuncio';
 import { ConfigService } from "../Utilitarios/config.service";
+import { Observable } from 'rxjs';
 @Injectable() // The Injectable decorator is required for dependency injection to work
 export class AnuncioService {
     private formData: FormData = new FormData();
@@ -42,9 +44,12 @@ export class AnuncioService {
     //     });
     // }
 
-    SavePrimerPaso(anuncio: Tbl_anuncio): any {
-        debugger;
-        var peginatedResult: any;
+    SavePrimerPaso(anuncio: Tbl_anuncio): Observable<ClientResponseResult<ClientResponse>> {
+        //Observable<PaginatedResult<any[]>>
+        //var peginatedResult: any = {};
+        //var peginatedResult: ClientResponse = new Observable<ClientResponse>();
+
+        var peginatedResult: ClientResponseResult<ClientResponse> = new ClientResponseResult<ClientResponse>();
         var headers = new Headers({
             "Content-Type": "application/json"
         });
@@ -53,7 +58,8 @@ export class AnuncioService {
         console.log(a);
         return this.http.post(this._baseUrl + 'anuncio/Primeropaso', JSON.stringify(anuncio), options).pipe(
             map(res => {
-                peginatedResult.result = JSON.parse(res.json().DataJson);
+                //peginatedResult.result = JSON.parse(res.json().DataJson);
+                peginatedResult = res.json();
                 return peginatedResult;
             })
         );
@@ -109,7 +115,48 @@ export class AnuncioService {
     }
 
 
+    SaveSegundoPaso(anuncio: Tbl_anuncio): any {
+        var peginatedResult: any;
+        var headers = new Headers({
+            "Content-Type": "application/json"
+        });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(this._baseUrl + 'anuncio/Segundopaso', JSON.stringify(anuncio), options).pipe(
+            map(res => {
+                peginatedResult.result = JSON.parse(res.json().DataJson);
+                return peginatedResult;
+            })
+        );
+    }
 
+    SaveTerceroPaso(anuncio: Tbl_anuncio): any {
+        var peginatedResult: any;
+        var headers = new Headers({
+            "Content-Type": "application/json"
+        });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(this._baseUrl + 'anuncio/Tercerpaso', JSON.stringify(anuncio), options).pipe(
+            map(res => {
+                peginatedResult.result = JSON.parse(res.json().DataJson);
+                return peginatedResult;
+            })
+        );
+    }
+
+
+    SaveCuartoPaso(anuncio: Tbl_anuncio): any {
+        var peginatedResult: any;
+        var headers = new Headers({
+            "Content-Type": "application/json"
+        });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(this._baseUrl + 'anuncio/Cuartopaso', JSON.stringify(anuncio), options).pipe(
+            map(res => {
+                peginatedResult.result = JSON.parse(res.json().DataJson);
+                return peginatedResult;
+            })
+        );
+    }
     getListTipoServicio() {
         //return this.http.get('https://api.github.com/repositories').map(res => res.json());
         return [{

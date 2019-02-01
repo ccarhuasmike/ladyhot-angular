@@ -3,15 +3,16 @@
     <div class="form-group row">
       <label class="col-sm-3 control-label text-sm-left text-md-right" for="txt_nombre">Nombre</label>
       <div class="col-sm-5">
-        <input class="form-control form-control-sm" type="text" required [formControl]="usernameCtrl" placeholder="Ingrese nombre">
-        <div *ngIf="usernameCtrl.invalid && (usernameCtrl.dirty || isSubmitted)" class="text-danger">
-          <div *ngIf="usernameCtrl.errors.required">
+        <input class="form-control form-control-sm" type="text" required [formControl]="txt_nombre_fichaCtrl"
+          placeholder="Ingrese nombre">
+        <div *ngIf="txt_nombre_fichaCtrl.invalid && (txt_nombre_fichaCtrl.dirty || isSubmitted)" class="text-danger">
+          <div *ngIf="txt_nombre_fichaCtrl.errors.required">
             Se requiere el nombre.
           </div>
-          <div *ngIf="usernameCtrl.errors.minlength">
+          <div *ngIf="txt_nombre_fichaCtrl.errors.minlength">
             El nombre debe tener al menos 4 caracteres.
           </div>
-          <div *ngIf="usernameCtrl.errors.maxlength">
+          <div *ngIf="txt_nombre_fichaCtrl.errors.maxlength">
             El nombre no debe exceder los 15 caracteres.
           </div>
         </div>
@@ -25,13 +26,13 @@
         o
         Celular</label>
       <div class="col-sm-5">
-        <input class="form-control form-control-sm" type="text" id="txt_telefono_1" [formControl]="Telefono1Ctrl"
+        <input class="form-control form-control-sm" type="text" id="txt_telefono_1" [formControl]="txt_telefono_1Ctrl"
           required placeholder="Ingrese Telefono 1">
-        <div *ngIf="Telefono1Ctrl.invalid && (Telefono1Ctrl.dirty || isSubmitted)" class="text-danger">
-          <div *ngIf="Telefono1Ctrl.errors.required">
+        <div *ngIf="txt_telefono_1Ctrl.invalid && (txt_telefono_1Ctrl.dirty || isSubmitted)" class="text-danger">
+          <div *ngIf="txt_telefono_1Ctrl.errors.required">
             Se necesita que se ingrese el numero del telefono.
           </div>
-          <div *ngIf="Telefono1Ctrl.errors.pattern">
+          <div *ngIf="txt_telefono_1Ctrl.errors.pattern">
             Número de telefono ingresado no es valido
           </div>
         </div>
@@ -43,12 +44,12 @@
     <div class="form-group row">
       <label class="col-sm-3 control-label text-sm-left text-md-right " for="txt_telefono_2">Teléfono o Celular</label>
       <div class="col-sm-5">
-        <input class="form-control form-control-sm" [formControl]="Telefono2Ctrl" required type="text" placeholder="Ingrese Telefono 2">
-        <div *ngIf="Telefono2Ctrl.invalid && (Telefono2Ctrl.dirty || isSubmitted)" class="text-danger">
-          <div *ngIf="Telefono2Ctrl.errors.required">
+        <input class="form-control form-control-sm" [formControl]="txt_telefono_2Ctrl" required type="text" placeholder="Ingrese Telefono 2">
+        <div *ngIf="txt_telefono_2Ctrl.invalid && (txt_telefono_2Ctrl.dirty || isSubmitted)" class="text-danger">
+          <div *ngIf="txt_telefono_2Ctrl.errors.required">
             Se necesita que se ingrese el numero del telefono.
           </div>
-          <div *ngIf="Telefono2Ctrl.errors.pattern">
+          <div *ngIf="txt_telefono_2Ctrl.errors.pattern">
             Número de telefono ingresado no es valido
           </div>
         </div>
@@ -58,39 +59,39 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-3 control-label text-sm-left text-md-right " for="txt_email">Email</label>
+      <label class="col-sm-3 control-label text-sm-left text-md-right " for="txt_txt_email">txt_email</label>
       <div class="col-sm-5">
-        <input class="form-control form-control-sm" type="text" [formControl]="emailCtrl" required placeholder="Ejemplo: brillit.coqueta@gmail.com">
-        <div *ngIf="emailCtrl.invalid && (emailCtrl.dirty || isSubmitted)" class="text-danger">
-          <div *ngIf="emailCtrl.errors.required">
-            Se necesita que se ingrese el email.
+        <input class="form-control form-control-sm" type="text" [formControl]="txt_emailCtrl" required placeholder="Ejemplo: brillit.coqueta@gmail.com">
+        <div *ngIf="txt_emailCtrl.invalid && (txt_emailCtrl.dirty || isSubmitted)" class="text-danger">
+          <div *ngIf="txt_emailCtrl.errors.required">
+            Se necesita que se ingrese el txt_email.
           </div>
-          <div *ngIf="emailCtrl.errors.pattern">
-            Email ingresado no es valido
+          <div *ngIf="txt_emailCtrl.errors.pattern">
+            txt_email ingresado no es valido
           </div>
         </div>
       </div>
       <div class="col-sm-4">
         <p class="parrafo-alerta-rojo">
           IMPORTANTE !
-          Tu dirección de email no será mostrada en el anuncio, pero debe ser válida para que poder contactarte.
-          @*¿tienes email dónde contactarte?*@
+          Tu dirección de txt_email no será mostrada en el anuncio, pero debe ser válida para que poder contactarte.
+          @*¿tienes txt_email dónde contactarte?*@
 
         </p>
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-3 control-label text-sm-left text-md-right " for="txt_web">Web</label>
+      <label class="col-sm-3 control-label text-sm-left text-md-right " for="txt_web">txt_web</label>
       <div class="col-sm-5">
-        <input class="form-control form-control-sm" type="text" [formControl]="WebCtrl" placeholder="Ejemplo: https://www.google.com">
-        <div *ngIf="WebCtrl.invalid && (WebCtrl.dirty || isSubmitted)" class="text-danger">
-          <div *ngIf="WebCtrl.errors.pattern">
+        <input class="form-control form-control-sm" type="text" [formControl]="txt_webCtrl" placeholder="Ejemplo: https://www.google.com">
+        <div *ngIf="txt_webCtrl.invalid && (txt_webCtrl.dirty || isSubmitted)" class="text-danger">
+          <div *ngIf="txt_webCtrl.errors.pattern">
             Url ingresada no es valido
           </div>
         </div>
       </div>
       <div class="col-sm-4">
-        <p class="form-control-static">la URL de tu web, si tienes</p>
+        <p class="form-control-static">la URL de tu txt_web, si tienes</p>
       </div>
     </div>
     <div class="f1-buttons">

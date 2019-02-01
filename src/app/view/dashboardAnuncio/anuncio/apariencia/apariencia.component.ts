@@ -44,7 +44,7 @@ export class AparienciaComponent implements OnInit {
         this.anuncioService.cuartopaso(false);
         this.anuncioService.quintopaso(false);
         this.anuncioService.sextopaso(false);
-        debugger;
+
         this.ListCabellos = listaParamter.color_cabello;//this.anuncioService.getListCabellos();
         this.ListOjos = listaParamter.color_ojos;//this.anuncioService.getListOjos();
         this.ListEstatura = listaParamter.estatura; //this.anuncioService.getListEstatura();

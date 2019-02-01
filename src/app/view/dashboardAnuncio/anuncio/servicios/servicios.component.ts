@@ -37,7 +37,7 @@ export class ServiciosComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        debugger;
+
         let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
         this.anuncioService.segundopaso(true);
         this.anuncioService.tercerpaso(true);

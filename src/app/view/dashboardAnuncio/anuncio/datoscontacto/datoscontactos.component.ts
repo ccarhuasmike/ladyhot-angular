@@ -78,12 +78,13 @@ export class DatosContactoComponent implements OnInit {
         if (!this.fromContacto.valid)
             return;
 
-        let entidad: any;
-        entidad.txt_nombre_ficha = this.fromContacto.value.txt_nombre;
-        entidad.txt_telefono_1 = this.fromContacto.value.txt_telefono_1;
-        entidad.txt_telefono_2 = this.fromContacto.value.txt_telefono_2;
-        entidad.txt_email = this.fromContacto.value.txt_email;
-        entidad.txt_web = this.fromContacto.value.txt_web;
+        debugger;
+        let entidad: any = {};
+        entidad.txt_nombre_ficha = this.fromContacto.value.username;
+        entidad.txt_telefono_1 = this.fromContacto.value.telefono1;
+        entidad.txt_telefono_2 = this.fromContacto.value.telefono2;
+        entidad.txt_email = this.fromContacto.value.email;
+        entidad.txt_web = "";
         this.anuncioService.SavePrimerPaso(entidad).subscribe(
             (res: PaginatedResult<any[]>) => {
                 //this.listParameter = res.result;

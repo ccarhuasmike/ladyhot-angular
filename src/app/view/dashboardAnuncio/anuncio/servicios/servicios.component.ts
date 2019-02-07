@@ -183,15 +183,6 @@ export class ServiciosComponent implements OnInit {
                 }
             }
         );
-
-        // this.fromServicios.value.ListDistrito = this.getCheboxerSeleccionado(selectedDistrito);
-        // this.fromServicios.value.ListLugar = this.getCheboxerSeleccionado(selectedLugarAtencion);
-        // this.fromServicios.value.ListServicios = this.getCheboxerSeleccionado(selectedTipoServicio);
-        // this.anuncioService.setServicios(this.fromServicios.value)
-        // this.router.navigate(['DashboardAnuncion/nuevoanuncio/galeria']);
-
-
-
         // userService.Save(this.register.value);
         // this.result = this.fromServicios.value;
         // setTimeout(() => {

@@ -3,6 +3,7 @@ import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.serv
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModelCarga, Servicios } from "../../../models/modelanuncio";
+import { ClientResponse, ClientResponseResult } from '../../../../Models/ClientResponseModels';
 @Component({
     selector: 'app-servicios',
     templateUrl: './servicios.component.html',
@@ -26,8 +27,8 @@ export class ServiciosComponent implements OnInit {
     txt_descripcion_serviciosCtrl: FormControl;
 
     fromServicios: FormGroup;
-    servicios: Servicios;
-
+    //servicios: Servicios;
+    DataJsonAnuncio: any;
 
     constructor(
         private anuncioService: AnuncioService,
@@ -37,7 +38,7 @@ export class ServiciosComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-
+        this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
         this.anuncioService.segundopaso(true);
         this.anuncioService.tercerpaso(true);
@@ -48,7 +49,6 @@ export class ServiciosComponent implements OnInit {
         this.ListDistrito = listaParamter.distritro;//this.anuncioService.getListDistrito();
         this.ListLugarAtencion = listaParamter.lugaratencion;// this.anuncioService.getListLugarAtencion();
         this.ListTipoServicio = listaParamter.servicio_ofrece;//this.anuncioService.getListTipoServicio();//listaParamter.servicio_ofrece;
-        this.servicios = this.anuncioService.getServicios();
 
         this.controlsDist = this.ListDistrito.map(c => new FormControl(false));
         this.controlsLugar = this.ListLugarAtencion.map(c => new FormControl(false));
@@ -58,27 +58,27 @@ export class ServiciosComponent implements OnInit {
         this.txt_descripcion_serviciosCtrl = new FormControl('', [Validators.maxLength(450)]);
 
         //Validamos el seteo del distrito
-        if (typeof this.servicios.ListDistrito === 'undefined' || this.servicios.ListDistrito === null) {
+        debugger;
+        if (this.DataJsonAnuncio.txt_lugar_servicio_distrito != null) {
+            this.setCheboxes(this.ListDistrito, this.DataJsonAnuncio.txt_lugar_servicio_distrito, this.controlsDist);
+        } else {
             this.controlsDist[0].setValue(true);
             this.ListDistrito[0].flag = true;
-        } else {
-            this.setCheboxes(this.ListDistrito, this.servicios.ListDistrito, this.controlsDist);
         }
         //Validamos el seteo el lugar de atencion
-        if (typeof this.servicios.ListLugar === 'undefined' || this.servicios.ListLugar === null) {
+        if (this.DataJsonAnuncio.tx_lugar_atencion != null) {
+            this.setCheboxes(this.ListLugarAtencion, this.DataJsonAnuncio.tx_lugar_atencion, this.controlsLugar);
+        } else {
             this.controlsLugar[0].setValue(true);
             this.ListLugarAtencion[0].flag = true;
-        } else {
-            this.setCheboxes(this.ListLugarAtencion, this.servicios.ListLugar, this.controlsLugar);
         }
         //Validamos el seteo el tipo del servicios
-        if (typeof this.servicios.ListServicios === 'undefined' || this.servicios.ListServicios === null) {
+        if (this.DataJsonAnuncio.tx_servicios_ofrece != null) {
+            this.setCheboxes(this.ListTipoServicio, this.DataJsonAnuncio.tx_servicios_ofrece, this.controlsTipServ);
+        } else {
             this.controlsTipServ[0].setValue(true);
             this.ListTipoServicio[0].flag = true;
-        } else {
-            this.setCheboxes(this.ListTipoServicio, this.servicios.ListServicios, this.controlsTipServ);
         }
-
         this.fromServicios = this.frmBuilder.group({
             ListDistrito: new FormArray(this.controlsDist, this.minSelectedCheckboxes(1)),
             ListLugarAtencion: new FormArray(this.controlsLugar, this.minSelectedCheckboxes(1)),
@@ -88,17 +88,19 @@ export class ServiciosComponent implements OnInit {
             txt_descripcion_servicios: this.txt_descripcion_serviciosCtrl
         });
 
-        this.fromServicios.patchValue({
-            algosobredisponibilidad: this.servicios.algosobredisponibilidad,
-            txt_descripcion_servicios: this.servicios.txt_descripcion_servicios,
-        });
-
+        if (this.DataJsonAnuncio !== null) {
+            this.fromServicios.patchValue({
+                algosobredisponibilidad: this.DataJsonAnuncio.tx_descripcion_extra_horario,
+                txt_descripcion_servicios: this.DataJsonAnuncio.tx_descripcion_extra_servicio,
+            });
+        }
     }
 
-    setCheboxes(listCargados: any, listSeleccionado: ModelCarga[], controls: any) {
-        for (let index = 0; index < listSeleccionado.length; index++) {
+    setCheboxes(listCargados: any, listSeleccionado: string, controls: any) {
+        let arraSeleccionado: any[] = listSeleccionado.split(",");
+        for (let index = 0; index < arraSeleccionado.length; index++) {
             for (let index1 = 0; index1 < listCargados.length; index1++) {
-                if (listSeleccionado[index].codigo == listCargados[index1].codigo) {
+                if (arraSeleccionado[index] == listCargados[index1].val_valor) {
                     listCargados[index1].flag = true;
                     controls[index1].setValue(true);
                 }
@@ -154,21 +156,42 @@ export class ServiciosComponent implements OnInit {
             return;
 
         const selectedDistrito = this.fromServicios.value.ListDistrito
-            .map((v, i) => v ? this.ListDistrito[i].codigo : null)
+            .map((v, i) => v ? this.ListDistrito[i].val_valor : null)
             .filter(v => v !== null);
 
         const selectedLugarAtencion = this.fromServicios.value.ListLugarAtencion
-            .map((v, i) => v ? this.ListLugarAtencion[i].codigo : null)
+            .map((v, i) => v ? this.ListLugarAtencion[i].val_valor : null)
             .filter(v => v !== null);
         const selectedTipoServicio = this.fromServicios.value.ListTipoServicio
-            .map((v, i) => v ? this.ListTipoServicio[i].codigo : null)
+            .map((v, i) => v ? this.ListTipoServicio[i].val_valor : null)
             .filter(v => v !== null);
 
-        this.fromServicios.value.ListDistrito = this.getCheboxerSeleccionado(selectedDistrito);
-        this.fromServicios.value.ListLugar = this.getCheboxerSeleccionado(selectedLugarAtencion);
-        this.fromServicios.value.ListServicios = this.getCheboxerSeleccionado(selectedTipoServicio);
-        this.anuncioService.setServicios(this.fromServicios.value)
-        this.router.navigate(['DashboardAnuncion/nuevoanuncio/galeria']);
+        this.DataJsonAnuncio.txt_lugar_servicio_distrito = this.getCheboxerSeleccionado(selectedDistrito);
+        //this.DataJsonAnuncio.fl_atencion_24horas = this.getCheboxerSeleccionado(selectedFormapago);
+        this.DataJsonAnuncio.tx_descripcion_extra_horario = this.fromServicios.value.algosobredisponibilidad;
+        this.DataJsonAnuncio.tx_lugar_atencion = this.getCheboxerSeleccionado(selectedLugarAtencion);
+        this.DataJsonAnuncio.tx_servicios_ofrece = this.getCheboxerSeleccionado(selectedTipoServicio);
+        this.DataJsonAnuncio.tx_descripcion_extra_servicio = this.fromServicios.value.txt_descripcion_servicios;
+
+        this.anuncioService.SaveQuintoPaso(this.DataJsonAnuncio).subscribe(
+            (res: ClientResponseResult<ClientResponse>) => {
+                debugger;
+                if (res.result.Status == "OK") {
+                    let DataJsonAnuncio: any = res.result.Data;
+                    localStorage.setItem('DataAnuncio', DataJsonAnuncio);
+                    this.router.navigate(['DashboardAnuncion/nuevoanuncio/galeria']);
+                }
+            }
+        );
+
+        // this.fromServicios.value.ListDistrito = this.getCheboxerSeleccionado(selectedDistrito);
+        // this.fromServicios.value.ListLugar = this.getCheboxerSeleccionado(selectedLugarAtencion);
+        // this.fromServicios.value.ListServicios = this.getCheboxerSeleccionado(selectedTipoServicio);
+        // this.anuncioService.setServicios(this.fromServicios.value)
+        // this.router.navigate(['DashboardAnuncion/nuevoanuncio/galeria']);
+
+
+
         // userService.Save(this.register.value);
         // this.result = this.fromServicios.value;
         // setTimeout(() => {
@@ -176,18 +199,16 @@ export class ServiciosComponent implements OnInit {
         //     this.resetServicios();
         // }, 2000);
     }
-    getCheboxerSeleccionado(ListSeleccionado: any): ModelCarga[] {
-        const ListModelCarga = new Array<ModelCarga>();
+    getCheboxerSeleccionado(ListSeleccionado: any): string {
+        debugger;
+        let selecionado: string = "";
         for (let index = 0; index < ListSeleccionado.length; index++) {
-            const codigo = ListSeleccionado[index];
-            ListModelCarga.push({
-                codigo: codigo,
-                descripcion: '',
-                flag: false
-            });
+            selecionado += ListSeleccionado[index] + ",";
         }
-        return ListModelCarga;
+        selecionado = selecionado.substring(0, selecionado.length - 1);
+        return selecionado;
     }
+
     resetServicios() {
         this.isSubmittedTarifas = false;
         this.fromServicios.reset();

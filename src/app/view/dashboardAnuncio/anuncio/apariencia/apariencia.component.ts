@@ -73,9 +73,9 @@ export class AparienciaComponent implements OnInit {
         });
         if (this.DataJsonAnuncio !== null) {
             this.fromApariencia.patchValue({
-                busto: this.DataJsonAnuncio.txt_medidas_busto_cintura_cadera.split("-")[0],
-                cintura: this.DataJsonAnuncio.txt_medidas_busto_cintura_cadera.split("-")[1],
-                cadera: this.DataJsonAnuncio.txt_medidas_busto_cintura_cadera.split("-")[2],
+                busto: this.DataJsonAnuncio.txt_medidas_busto_cintura_cadera == null ? "" : this.DataJsonAnuncio.txt_medidas_busto_cintura_cadera.split("-")[0],
+                cintura: this.DataJsonAnuncio.txt_medidas_busto_cintura_cadera == null ? "" : this.DataJsonAnuncio.txt_medidas_busto_cintura_cadera.split("-")[1],
+                cadera: this.DataJsonAnuncio.txt_medidas_busto_cintura_cadera == null ? "" : this.DataJsonAnuncio.txt_medidas_busto_cintura_cadera.split("-")[2],
                 int_color_cabello: this.DataJsonAnuncio.int_color_cabello == 0 ? "" : this.DataJsonAnuncio.int_color_cabello,
                 int_color_ojos: this.DataJsonAnuncio.int_color_ojos == 0 ? "" : this.DataJsonAnuncio.int_color_ojos,
                 int_estatura: this.DataJsonAnuncio.int_estatura == 0 ? "" : this.DataJsonAnuncio.int_estatura,

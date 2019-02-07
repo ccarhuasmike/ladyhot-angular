@@ -72,6 +72,15 @@ export class AnuncioService {
             })
         );
     }
+    SaveQuintoPaso(anuncio: Tbl_anuncio): any {
+        var peginatedResult: ClientResponseResult<ClientResponse> = new ClientResponseResult<ClientResponse>();
+        return this.http.post(this._baseUrl + 'anuncio/Quintopaso', JSON.stringify(anuncio), options).pipe(
+            map(res => {
+                peginatedResult.result = res.json();
+                return peginatedResult;
+            })
+        );
+    }
     getListTipoServicio() {
         //return this.http.get('https://api.github.com/repositories').map(res => res.json());
         return [{

@@ -3,7 +3,7 @@ import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.serv
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Tarifas, ModelCarga } from "../../../models/modelanuncio";
-import { forEach } from '@angular/router/src/utils/collection';
+import { ClientResponse, ClientResponseResult } from '../../../../Models/ClientResponseModels';
 @Component({
     selector: 'app-tarifas',
     templateUrl: './tarifas.component.html',
@@ -13,22 +13,11 @@ export class TarifasComponent implements OnInit {
 
     tarifas: Tarifas;
     result: any = null;
-
     isSubmittedTarifas: boolean = false;
-
     fromTarifa: FormGroup;
     //Controles Tarifa
-    formapagoCtrl: FormArray;
-
     ListFormaPago: any = [];
 
-
-    orders = [
-        { id: 100, name: 'order 1' },
-        { id: 200, name: 'order 2' },
-        { id: 300, name: 'order 3' },
-        { id: 400, name: 'order 4' }
-    ];
 
     txt_30_minCtrl: FormControl;
     txt_45_minCtrl: FormControl;
@@ -40,8 +29,8 @@ export class TarifasComponent implements OnInit {
     txt_toda_nocheCtrl: FormControl;
     txt_viajesCtrl: FormControl;
     txt_descripcion_tarifasCtrl: FormControl;
-    controls: any;
-
+    controlsFormaPago: any;
+    DataJsonAnuncio: any;
     constructor(
         private anuncioService: AnuncioService,
         private router: Router,
@@ -50,6 +39,7 @@ export class TarifasComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
         this.tarifas = this.anuncioService.getTarifas();
         this.anuncioService.segundopaso(true);
@@ -58,17 +48,16 @@ export class TarifasComponent implements OnInit {
         this.anuncioService.quintopaso(false);
         this.anuncioService.sextopaso(false);
         this.ListFormaPago = listaParamter.formapago;
-        //this.anuncioService.getListFormaPago();
 
-        this.controls = this.ListFormaPago.map(c => new FormControl(false));
-        this.controls[0].setValue(true);
-
-        if (typeof this.tarifas.ListFormaPago === 'undefined' || this.tarifas.ListFormaPago === null) {
-            this.ListFormaPago[0].flag = true;
+        this.controlsFormaPago = this.ListFormaPago.map(c => new FormControl(false));
+        this.controlsFormaPago[0].setValue(true);
+        //Validamos el seteo del distrito
+        if (this.DataJsonAnuncio.txt_forma_pago != "") {
+            this.setCheboxes(this.ListFormaPago, this.DataJsonAnuncio.txt_forma_pago, this.controlsFormaPago);
         } else {
-            this.setCheboxes(this.ListFormaPago, this.tarifas.ListFormaPago, this.controls);
+            this.controlsFormaPago[0].setValue(true);
+            this.ListFormaPago[0].flag = true;
         }
-
         this.txt_30_minCtrl = new FormControl('', [Validators.required]);
         this.txt_45_minCtrl = new FormControl('', [Validators.required]);
         this.txt_1_horaCtrl = new FormControl('', [Validators.required]);
@@ -80,44 +69,42 @@ export class TarifasComponent implements OnInit {
         this.txt_viajesCtrl = new FormControl('', [Validators.required]);
         this.txt_descripcion_tarifasCtrl = new FormControl('', []);
 
-
-
         this.fromTarifa = this.frmBuilder.group({
-            ListFormaPago: new FormArray(this.controls, this.minSelectedCheckboxes(1)),
-            // orders: new FormArray(controlss),
-            txt_30_min: this.txt_30_minCtrl,
-            txt_45_min: this.txt_45_minCtrl,
-            txt_1_hora: this.txt_1_horaCtrl,
-            txt_1_30_hora: this.txt_1_30_horaCtrl,
-            txt_2_hora: this.txt_2_horaCtrl,
-            txt_3_hora: this.txt_3_horaCtrl,
-            txt_salida: this.txt_salidaCtrl,
-            txt_toda_noche: this.txt_toda_nocheCtrl,
-            txt_viajes: this.txt_viajesCtrl,
-            txt_descripcion_tarifas: this.txt_descripcion_tarifasCtrl
+            ListFormaPago: new FormArray(this.controlsFormaPago, this.minSelectedCheckboxes(1)),
+            dbl_costo_x_tiempo_30min: this.txt_30_minCtrl,
+            dbl_costo_x_tiempo_45min: this.txt_45_minCtrl,
+            dbl_costo_x_tiempo_1hora: this.txt_1_horaCtrl,
+            dbl_costo_x_tiempo_1hora_media: this.txt_1_30_horaCtrl,
+            dbl_costo_x_tiempo_2hora: this.txt_2_horaCtrl,
+            dbl_costo_x_tiempo_3hora: this.txt_3_horaCtrl,
+            dbl_costo_x_tiempo_salidas: this.txt_salidaCtrl,
+            dbl_costo_x_tiempo_toda_noche: this.txt_toda_nocheCtrl,
+            dbl_costo_x_viaje: this.txt_viajesCtrl,
+            txt_descripcion_extra_tarifa: this.txt_descripcion_tarifasCtrl
         });
-
-        this.fromTarifa.patchValue({
-            txt_30_min: this.tarifas.txt_30_min,
-            txt_45_min: this.tarifas.txt_45_min,
-            txt_1_hora: this.tarifas.txt_1_hora,
-            txt_1_30_hora: this.tarifas.txt_1_30_hora,
-            txt_2_hora: this.tarifas.txt_2_hora,
-            txt_3_hora: this.tarifas.txt_3_hora,
-            txt_salida: this.tarifas.txt_salida,
-            txt_toda_noche: this.tarifas.txt_toda_noche,
-            txt_viajes: this.tarifas.txt_viajes,
-            txt_descripcion_tarifas: this.tarifas.txt_descripcion_tarifas
-        });
-
+        if (this.DataJsonAnuncio !== null) {
+            this.fromTarifa.patchValue({
+                dbl_costo_x_tiempo_30min: this.DataJsonAnuncio.dbl_costo_x_tiempo_30min,
+                dbl_costo_x_tiempo_45min: this.DataJsonAnuncio.dbl_costo_x_tiempo_45min,
+                dbl_costo_x_tiempo_1hora: this.DataJsonAnuncio.dbl_costo_x_tiempo_1hora,
+                dbl_costo_x_tiempo_1hora_media: this.DataJsonAnuncio.dbl_costo_x_tiempo_1hora_media,
+                dbl_costo_x_tiempo_2hora: this.DataJsonAnuncio.dbl_costo_x_tiempo_2hora,
+                dbl_costo_x_tiempo_3hora: this.DataJsonAnuncio.dbl_costo_x_tiempo_3hora,
+                dbl_costo_x_tiempo_salidas: this.DataJsonAnuncio.dbl_costo_x_tiempo_salidas,
+                dbl_costo_x_tiempo_toda_noche: this.DataJsonAnuncio.dbl_costo_x_tiempo_toda_noche,
+                dbl_costo_x_viaje: this.DataJsonAnuncio.dbl_costo_x_viaje,
+                txt_descripcion_extra_tarifa: this.DataJsonAnuncio.txt_descripcion_extra_tarifa
+            });
+        }
     }
 
-    setCheboxes(listCargados: any, listSeleccionado: ModelCarga[], controls: any) {
-        for (let index = 0; index < listSeleccionado.length; index++) {
+    setCheboxes(listCargados: any, listSeleccionado: string, controls: any) {
+        let arraSeleccionado: any[] = listSeleccionado.split(",");
+        for (let index = 0; index < arraSeleccionado.length; index++) {
             for (let index1 = 0; index1 < listCargados.length; index1++) {
-                if (listSeleccionado[index].codigo == listCargados[index1].codigo) {
+                if (arraSeleccionado[index] == listCargados[index1].val_valor) {
                     listCargados[index1].flag = true;
-                    this.controls[index1].setValue(true);
+                    controls[index1].setValue(true);
                 }
             }
         }
@@ -149,20 +136,31 @@ export class TarifasComponent implements OnInit {
         if (!this.fromTarifa.valid)
             return;
         const selectedFormapago = this.fromTarifa.value.ListFormaPago
-            .map((v, i) => v ? this.ListFormaPago[i].codigo : null)
+            .map((v, i) => v ? this.ListFormaPago[i].val_valor : null)
             .filter(v => v !== null);
 
-        this.fromTarifa.value.ListFormaPago = this.getCheboxerSeleccionado(selectedFormapago);
-        //console.log(selectedOrderIds);
-        this.anuncioService.setTarifa(this.fromTarifa.value)
-        this.router.navigate(['DashboardAnuncion/nuevoanuncio/servicios']);
-        // Code to save the data
-        // const selectedOrderIds = this.fromTarifa.value.ListFormaPago
-        //     .map((v, i) => v ? this.ListFormaPago[i].id : null)
-        //     .filter(v => v !== null);
+        this.DataJsonAnuncio.dbl_costo_x_tiempo_30min = parseFloat(this.fromTarifa.value.dbl_costo_x_tiempo_30min);
+        this.DataJsonAnuncio.dbl_costo_x_tiempo_45min = parseFloat(this.fromTarifa.value.dbl_costo_x_tiempo_45min);
+        this.DataJsonAnuncio.dbl_costo_x_tiempo_1hora = parseFloat(this.fromTarifa.value.dbl_costo_x_tiempo_1hora);
+        this.DataJsonAnuncio.dbl_costo_x_tiempo_1hora_media = parseFloat(this.fromTarifa.value.dbl_costo_x_tiempo_1hora_media);
+        this.DataJsonAnuncio.dbl_costo_x_tiempo_2hora = parseFloat(this.fromTarifa.value.dbl_costo_x_tiempo_2hora);
+        this.DataJsonAnuncio.dbl_costo_x_tiempo_3hora = parseFloat(this.fromTarifa.value.dbl_costo_x_tiempo_3hora);
+        this.DataJsonAnuncio.dbl_costo_x_tiempo_salidas = parseFloat(this.fromTarifa.value.dbl_costo_x_tiempo_salidas);
+        this.DataJsonAnuncio.dbl_costo_x_tiempo_toda_noche = parseFloat(this.fromTarifa.value.dbl_costo_x_tiempo_toda_noche);
+        this.DataJsonAnuncio.dbl_costo_x_viaje = parseFloat(this.fromTarifa.value.dbl_costo_x_viaje);
+        this.DataJsonAnuncio.txt_forma_pago = this.getCheboxerSeleccionado(selectedFormapago);
+        this.DataJsonAnuncio.txt_descripcion_extra_tarifa = this.fromTarifa.value.txt_descripcion_extra_tarifa;
 
-        // console.log(selectedOrderIds);
-
+        this.anuncioService.SaveCuartoPaso(this.DataJsonAnuncio).subscribe(
+            (res: ClientResponseResult<ClientResponse>) => {
+                debugger;
+                if (res.result.Status == "OK") {
+                    let DataJsonAnuncio: any = res.result.Data;
+                    localStorage.setItem('DataAnuncio', DataJsonAnuncio);
+                    this.router.navigate(['DashboardAnuncion/nuevoanuncio/servicios']);
+                }
+            }
+        );
 
         // console.log(this.fromTarifa);
         // // userService.Save(this.register.value);
@@ -173,17 +171,14 @@ export class TarifasComponent implements OnInit {
         // }, 2000);
     }
 
-    getCheboxerSeleccionado(ListSeleccionado: any): ModelCarga[] {
-        const ListModelCarga = new Array<ModelCarga>();
+    getCheboxerSeleccionado(ListSeleccionado: any): string {
+        debugger;
+        let selecionado: string = "";
         for (let index = 0; index < ListSeleccionado.length; index++) {
-            const codigo = ListSeleccionado[index];
-            ListModelCarga.push({
-                codigo: codigo,
-                descripcion: '',
-                flag: false
-            });
+            selecionado += ListSeleccionado[index] + ",";
         }
-        return ListModelCarga;
+        selecionado = selecionado.substring(0, selecionado.length - 1);
+        return selecionado;
     }
     resetTarifa() {
         this.isSubmittedTarifas = false;

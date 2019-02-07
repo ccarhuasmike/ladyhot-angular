@@ -3,6 +3,7 @@ import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.serv
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Apariencia } from "../../../models/modelanuncio";
+import { ClientResponse, ClientResponseResult } from '../../../../Models/ClientResponseModels';
 @Component({
     selector: 'app-apariencia',
     templateUrl: './apariencia.component.html',
@@ -25,18 +26,19 @@ export class AparienciaComponent implements OnInit {
     bustoCtrl: FormControl;
     cinturaCtrl: FormControl;
     caderaCtrl: FormControl;
-    cabellosCtrl: FormControl;
-    ojosCtrl: FormControl;
-    estaturaCtrl: FormControl;
-    pesoCtrl: FormControl;
-    descripcionaparienciaCtrl: FormControl;
-
+    int_color_cabelloCtrl: FormControl;
+    int_color_ojosCtrl: FormControl;
+    int_estaturaCtrl: FormControl;
+    int_pesoCtrl: FormControl;
+    txt_descripcion_extra_aparienciaCtrl: FormControl;
+    DataJsonAnuncio: any;
     constructor(
         private anuncioService: AnuncioService,
         private router: Router,
     ) { }
 
     ngOnInit() {
+        this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
         this.apariencia = this.anuncioService.getApariencia();
         this.anuncioService.segundopaso(true);
@@ -54,33 +56,33 @@ export class AparienciaComponent implements OnInit {
         this.cinturaCtrl = new FormControl('', [Validators.required]);
         this.caderaCtrl = new FormControl('', [Validators.required]);
 
-        this.cabellosCtrl = new FormControl('', [Validators.required]);
-        this.ojosCtrl = new FormControl('', [Validators.required]);
-        this.estaturaCtrl = new FormControl('', [Validators.required]);
-        this.pesoCtrl = new FormControl('', [Validators.required]);
-        this.descripcionaparienciaCtrl = new FormControl('', [Validators.maxLength(450)]);
+        this.int_color_cabelloCtrl = new FormControl('', [Validators.required]);
+        this.int_color_ojosCtrl = new FormControl('', [Validators.required]);
+        this.int_estaturaCtrl = new FormControl('', [Validators.required]);
+        this.int_pesoCtrl = new FormControl('', [Validators.required]);
+        this.txt_descripcion_extra_aparienciaCtrl = new FormControl('', [Validators.maxLength(450)]);
         this.fromApariencia = new FormGroup({
             busto: this.bustoCtrl,
             cintura: this.cinturaCtrl,
             cadera: this.caderaCtrl,
-            cabello: this.cabellosCtrl,
-            ojos: this.ojosCtrl,
-            estatura: this.estaturaCtrl,
-            peso: this.pesoCtrl,
-            descripcionapariencia: this.descripcionaparienciaCtrl
+            int_color_cabello: this.int_color_cabelloCtrl,
+            int_color_ojos: this.int_color_ojosCtrl,
+            int_estatura: this.int_estaturaCtrl,
+            int_peso: this.int_pesoCtrl,
+            txt_descripcion_extra_apariencia: this.txt_descripcion_extra_aparienciaCtrl
         });
-
-        this.fromApariencia.patchValue({
-            busto: this.apariencia.txt_busto,
-            cintura: this.apariencia.txt_cintura,
-            cadera: this.apariencia.txt_cadera,
-            cabello: this.apariencia.cbo_cabello,
-            ojos: this.apariencia.cbo_ojos,
-            estatura: this.apariencia.cbo_estatura,
-            peso: this.apariencia.cbo_peso,
-            descripcionapariencia: this.apariencia.txt_descripcion_apariencia
-        });
-
+        if (this.DataJsonAnuncio !== null) {
+            this.fromApariencia.patchValue({
+                busto: this.DataJsonAnuncio.txt_medidas_busto_cintura_cadera.split("-")[0],
+                cintura: this.DataJsonAnuncio.txt_medidas_busto_cintura_cadera.split("-")[1],
+                cadera: this.DataJsonAnuncio.txt_medidas_busto_cintura_cadera.split("-")[2],
+                int_color_cabello: this.DataJsonAnuncio.int_color_cabello == 0 ? "" : this.DataJsonAnuncio.int_color_cabello,
+                int_color_ojos: this.DataJsonAnuncio.int_color_ojos == 0 ? "" : this.DataJsonAnuncio.int_color_ojos,
+                int_estatura: this.DataJsonAnuncio.int_estatura == 0 ? "" : this.DataJsonAnuncio.int_estatura,
+                int_peso: this.DataJsonAnuncio.int_peso == 0 ? "" : this.DataJsonAnuncio.int_peso,
+                txt_descripcion_extra_apariencia: this.DataJsonAnuncio.txt_descripcion_extra_apariencia
+            });
+        }
     }
 
     selectName() {
@@ -91,8 +93,33 @@ export class AparienciaComponent implements OnInit {
         this.isSubmittedApariencia = true;
         if (!this.fromApariencia.valid)
             return;
-        this.anuncioService.setApariencia(this.fromApariencia.value)
-        this.router.navigate(['DashboardAnuncion/nuevoanuncio/tarifa']);
+        debugger;
+        this.DataJsonAnuncio.int_color_cabello = parseInt(this.fromApariencia.value.int_color_cabello);
+        this.DataJsonAnuncio.int_color_ojos = parseInt(this.fromApariencia.value.int_color_ojos);
+        this.DataJsonAnuncio.int_estatura = parseInt(this.fromApariencia.value.int_estatura);
+        this.DataJsonAnuncio.int_peso = parseInt(this.fromApariencia.value.int_peso);
+        this.DataJsonAnuncio.txt_medidas_busto_cintura_cadera = this.fromApariencia.value.busto + "-" + this.fromApariencia.value.cintura + "-" + this.fromApariencia.value.cadera;
+        this.DataJsonAnuncio.txt_descripcion_extra_apariencia = this.fromApariencia.value.txt_descripcion_extra_apariencia;
+        this.anuncioService.SaveTerceroPaso(this.DataJsonAnuncio).subscribe(
+            (res: ClientResponseResult<ClientResponse>) => {
+                if (res.result.Status == "OK") {
+                    let DataJsonAnuncio: any = res.result.Data;
+                    localStorage.setItem('DataAnuncio', DataJsonAnuncio);
+                    this.router.navigate(['DashboardAnuncion/nuevoanuncio/tarifa']);
+                }
+            }
+        );
+        // busto: this.bustoCtrl,
+        // cintura: this.cinturaCtrl,
+        // cadera: this.caderaCtrl,
+        // cabello: this.int_color_cabelloCtrl,
+        // ojos: this.int_color_ojosCtrl,
+        // estatura: this.int_estaturaCtrl,
+        // peso: this.int_pesoCtrl,
+        // descripcionapariencia: this.txt_descripcion_extra_aparienciaCtrl
+
+        // this.anuncioService.setApariencia(this.fromApariencia.value)
+        // this.router.navigate(['DashboardAnuncion/nuevoanuncio/tarifa']);
 
         // userService.Save(this.register.value);
         // this.result = this.fromApariencia.value;

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 import { DatosGenerales } from "../../../models/modelanuncio";
 import { ParameterService } from "../../../../shared/services/anuncio/parameter.service";
-import { PaginatedResult } from '../../../../Models/Tbl_parameter_detModels';
+import { ClientResponse, ClientResponseResult } from '../../../../Models/ClientResponseModels';
 @Component({
     selector: 'app-datosgenerales',
     templateUrl: './datosgenerales.component.html',
@@ -27,7 +27,7 @@ export class DatosGeneralesComponent implements OnInit {
     ListEdad: any = [];
     ListPais: any = [];
     ListEstudios: any = [];
-
+    DataJsonAnuncio: any;
     constructor(
         private anuncioService: AnuncioService,
         private router: Router,
@@ -37,6 +37,7 @@ export class DatosGeneralesComponent implements OnInit {
 
     ngOnInit() {
         debugger;
+        this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
         this.datosgenerales = this.anuncioService.getDatosGenerales();
         this.anuncioService.segundopaso(true);
@@ -60,52 +61,38 @@ export class DatosGeneralesComponent implements OnInit {
             int_estudios: this.estudiosCtrl,
             txt_presentacion: this.txt_descripcion_generalesCtrl
         });
-
-        // this.fromDatosGenerales.patchValue({
-        //     edad: this.datosgenerales.cbo_edad,
-        //     pais: this.datosgenerales.cbo_pais_origen,
-        //     estudios: this.datosgenerales.cbo_estudio,
-        //     descripciongenerales: this.datosgenerales.txt_descripcion_generales
-        // });
-
+        if (this.DataJsonAnuncio !== null) {
+            this.fromDatosGenerales.patchValue({
+                int_edad: this.DataJsonAnuncio.int_edad == 0 ? "" : this.DataJsonAnuncio.int_edad,
+                int_pais_origen: this.DataJsonAnuncio.int_pais_origen == 0 ? "" : this.DataJsonAnuncio.int_pais_origen,
+                int_estudios: this.DataJsonAnuncio.int_estudios == 0 ? "" : this.DataJsonAnuncio.int_estudios,
+                txt_presentacion: this.DataJsonAnuncio.txt_presentacion
+            });
+        }
     }
-
     selectName() {
 
     }
     goToPrevious(form: any) {
         this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-contacto']);
     }
-
-
     saveDatosGenerales() {
         this.isSubmittedDatosGenerales = true;
         if (!this.fromDatosGenerales.valid)
             return;
-
-        let entidad: any = {};
-        entidad.id_usuario = 11;
-        entidad.int_edad = parseInt(this.fromDatosGenerales.value.int_edad);
-        entidad.int_pais_origen = parseInt(this.fromDatosGenerales.value.int_pais_origen);
-        entidad.int_estudios = parseInt(this.fromDatosGenerales.value.int_estudios);
-        entidad.txt_presentacion = this.fromDatosGenerales.value.txt_presentacion;
-
-        this.anuncioService.SaveSegundoPaso(entidad).subscribe(
-            (res: PaginatedResult<any[]>) => {
-                console.log(res.result);
-                // localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
-                this.router.navigate(['DashboardAnuncion/nuevoanuncio/apariencia']);
+        this.DataJsonAnuncio.int_edad = parseInt(this.fromDatosGenerales.value.int_edad);
+        this.DataJsonAnuncio.int_pais_origen = parseInt(this.fromDatosGenerales.value.int_pais_origen);
+        this.DataJsonAnuncio.int_estudios = parseInt(this.fromDatosGenerales.value.int_estudios);
+        this.DataJsonAnuncio.txt_presentacion = this.fromDatosGenerales.value.txt_presentacion;
+        this.anuncioService.SaveSegundoPaso(this.DataJsonAnuncio).subscribe(
+            (res: ClientResponseResult<ClientResponse>) => {
+                if (res.result.Status == "OK") {
+                    let DataJsonAnuncio: any = res.result.Data;
+                    localStorage.setItem('DataAnuncio', DataJsonAnuncio);
+                    this.router.navigate(['DashboardAnuncion/nuevoanuncio/apariencia']);
+                }
             }
         );
-        // this.anuncioService.setDatosGenerales(this.fromDatosGenerales.value)
-
-        console.log(this.fromDatosGenerales);
-        // userService.Save(this.register.value);
-        this.result = this.fromDatosGenerales.value;
-        setTimeout(() => {
-            this.result = null;
-            this.resetDatosGenerales();
-        }, 2000);
     }
     resetDatosGenerales() {
         this.isSubmittedDatosGenerales = false;

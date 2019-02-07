@@ -3,7 +3,8 @@
     <div class="form-group row">
       <div class="col-xs-12 col-sm-4">
         <div class="list-group">
-          <a [routerLink]="['./nuevoanuncio']" [routerLinkActive]="['active']" class="list-group-item actve"><i class="fa fa-key"></i>
+          <a [routerLink]="['./nuevoanuncio']" (click)="nuevoanuncionclick()" [routerLinkActive]="['active']" class="list-group-item actve"><i
+              class="fa fa-key"></i>
             <span>Publica nuevo anuncio</span></a>
           <a [routerLink]="['./misanuncios']" [routerLinkActive]="['active']" class="list-group-item"><i class="fa fa-credit-card"></i>
             <span>Mis Anuncios</span></a>

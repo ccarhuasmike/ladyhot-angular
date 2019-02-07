@@ -3,7 +3,7 @@
     <div class="form-group row">
       <label class="col-sm-3 control-label text-right " for="cbo_pelo">color de pelo</label>
       <div class="col-sm-5">
-        <select class="form-control form-control-sm" [formControl]="cabellosCtrl" required (change)="selectName();">
+        <select class="form-control form-control-sm" [formControl]="int_color_cabelloCtrl" required (change)="selectName();">
           <option value="">--Seleccione--</option>
           <option *ngFor="let data of ListCabellos" value={{data.val_valor}}>
             {{data.tx_descripcion}}
@@ -17,7 +17,7 @@
     <div class="form-group row">
       <label class="col-sm-3 control-label text-right " for="cbo_ojos">color de ojos</label>
       <div class="col-sm-5">
-        <select class="form-control form-control-sm" required [formControl]="ojosCtrl" (change)="selectName();">
+        <select class="form-control form-control-sm" required [formControl]="int_color_ojosCtrl" (change)="selectName();">
           <option value="">--Seleccione--</option>
           <option *ngFor="let data of ListOjos" value={{data.val_valor}}>
             {{data.tx_descripcion}}
@@ -31,7 +31,7 @@
     <div class="form-group row">
       <label class="col-sm-3 control-label text-right " for="cbo_estatura">estatura</label>
       <div class="col-sm-5">
-        <select class="form-control form-control-sm" required [formControl]="estaturaCtrl" (change)="selectName();">
+        <select class="form-control form-control-sm" required [formControl]="int_estaturaCtrl" (change)="selectName();">
           <option value="">--Seleccione--</option>
           <option *ngFor="let data of ListEstatura" value={{data.val_valor}}>
             {{data.tx_descripcion}}
@@ -46,7 +46,7 @@
     <div class="form-group row">
       <label class="col-sm-3 control-label text-right " for="cbo_peso">peso</label>
       <div class="col-sm-5">
-        <select class="form-control form-control-sm" [formControl]="pesoCtrl" required (change)="selectName();">
+        <select class="form-control form-control-sm" [formControl]="int_pesoCtrl" required (change)="selectName();">
           <option value="">--Seleccione--</option>
           <option *ngFor="let data of ListPeso" value={{data.val_valor}}>
             {{data.tx_descripcion}}
@@ -81,8 +81,8 @@
     <div class="form-group row">
       <label class="col-sm-3 control-label text-right" for="txt_descripcion">Descripción</label>
       <div class="col-sm-5">
-        <textarea class="form-control form-control-sm" [formControl]="descripcionaparienciaCtrl" maxlength="450" id="txt_descripcion"
-          rows="6" placeholder=""></textarea>
+        <textarea class="form-control form-control-sm" [formControl]="txt_descripcion_extra_aparienciaCtrl" maxlength="450"
+          id="txt_descripcion" rows="6" placeholder=""></textarea>
       </div>
       <div class="col-sm-4">
         <p class="form-control-static">Si quieres explicar algun otro dato relevante sobre tu apariencia física

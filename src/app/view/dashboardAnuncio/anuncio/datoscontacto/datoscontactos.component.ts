@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 import { DatosContacto } from "../../../models/modelanuncio";
-import { Tbl_anuncio } from '../../../../Models/Tbl_anuncioModels';
 import { ParameterService } from "../../../../shared/services/anuncio/parameter.service";
 import { ClientResponse, ClientResponseResult } from '../../../../Models/ClientResponseModels';
 import { PaginatedResult } from '../../../../Models/Tbl_parameter_detModels';
@@ -31,13 +30,14 @@ export class DatosContactoComponent implements OnInit {
     RegEx_Telefono = "^[679]{1}[0-9]{8}$";
 
     listParameter: any;
-
+    DataJsonAnuncio: any;
     constructor(private router: Router,
         private anuncioService: AnuncioService,
         private parameter: ParameterService
     ) { }
 
     ngOnInit() {
+        this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         this.parameter.getParameter().subscribe(
             (res: PaginatedResult<any[]>) => {
                 this.listParameter = res.result;
@@ -64,52 +64,63 @@ export class DatosContactoComponent implements OnInit {
             txt_telefono_1: this.txt_telefono_1Ctrl,
             txt_telefono_2: this.txt_telefono_2Ctrl
         });
-        this.fromContacto.patchValue({
-            txt_nombre_ficha: this.datoscontacto.txt_nombre,
-            //txt_email: this.datoscontacto.txt_txt_email,
-            //txt_web: this.datoscontacto.txt_txt_web,
-            //txt_telefono_1: this.datoscontacto.txt_txt_telefono_1,
-            //txt_telefono_2: this.datoscontacto.txt_txt_telefono_2
-        });
+        if (this.DataJsonAnuncio !== null) {
+            this.fromContacto.patchValue({
+                txt_nombre_ficha: this.DataJsonAnuncio.txt_nombre_ficha,
+                txt_email: this.DataJsonAnuncio.txt_email,
+                txt_web: this.DataJsonAnuncio.txt_web,
+                txt_telefono_1: this.DataJsonAnuncio.txt_telefono_1,
+                txt_telefono_2: this.DataJsonAnuncio.txt_telefono_2
+            });
+        }
     }
 
     save() {
         this.isSubmitted = true;
         if (!this.fromContacto.valid)
             return;
+        debugger;
+        if (this.DataJsonAnuncio == null) {
+            //Registrar Datos
+            let entidad: any = {};
+            entidad.id_usuario = 11;
+            entidad.txt_nombre_ficha = this.fromContacto.value.txt_nombre_ficha;
+            entidad.txt_telefono_1 = this.fromContacto.value.txt_telefono_1;
+            entidad.txt_telefono_2 = this.fromContacto.value.txt_telefono_2;
+            entidad.txt_email = this.fromContacto.value.txt_email;
+            entidad.txt_web = this.fromContacto.value.txt_web;
 
-        let entidad: any = {};
-        entidad.id_usuario = 11;
-        entidad.txt_nombre_ficha = this.fromContacto.value.txt_nombre_ficha;
-        entidad.txt_telefono_1 = this.fromContacto.value.txt_telefono_1;
-        entidad.txt_telefono_2 = this.fromContacto.value.txt_telefono_2;
-        entidad.txt_txt_email = this.fromContacto.value.txt_email;
-        entidad.txt_web = this.fromContacto.value.txt_web;
-        this.anuncioService.SavePrimerPaso(entidad).subscribe(
-            (res: ClientResponseResult<ClientResponse>) => {
-                //this.listParameter = res.result;                
-                if (res.result.Status == "OK") {
-                    this.anuncioService.setDatosContacto(this.fromContacto.value)
-                    this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-generales']);
+            this.anuncioService.SavePrimerPaso(entidad).subscribe(
+                (res: ClientResponseResult<ClientResponse>) => {
+                    if (res.result.Status == "OK") {
+                        let DataJsonAnuncio: any = res.result.Data;
+                        localStorage.setItem('DataAnuncio', DataJsonAnuncio);
+                        //this.anuncioService.setDatosContacto(this.fromContacto.value)
+                        this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-generales']);
+                    }
                 }
-                // localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
-            }
-        );
-        //this.router.navigate(['datos-generales'])
-
-        // this.router.navigate(['./datos-generales']);
-        // Code to save the data
-        // userService.Save(this.register.value);
-        // this.result = this.fromContacto.value;
-        // setTimeout(() => {
-        //     this.result = null;
-        //     this.reset();
-        // }, 2000);
+            );
+        } else {
+            //Actualizar Datos Registrado
+            this.DataJsonAnuncio.txt_nombre_ficha = this.fromContacto.value.txt_nombre_ficha;
+            this.DataJsonAnuncio.txt_telefono_1 = this.fromContacto.value.txt_telefono_1;
+            this.DataJsonAnuncio.txt_telefono_2 = this.fromContacto.value.txt_telefono_2;
+            this.DataJsonAnuncio.txt_email = this.fromContacto.value.txt_email;
+            this.DataJsonAnuncio.txt_web = this.fromContacto.value.txt_web;
+            this.anuncioService.UpdateSavePrimerPaso(this.DataJsonAnuncio).subscribe(
+                (res: ClientResponseResult<ClientResponse>) => {
+                    if (res.result.Status == "OK") {
+                        let DataJsonAnuncio: any = res.result.Data;
+                        localStorage.setItem('DataAnuncio', DataJsonAnuncio);
+                        //this.anuncioService.setDatosContacto(this.fromContacto.value)
+                        this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-generales']);
+                    }
+                }
+            );
+        }
     }
     reset() {
         this.isSubmitted = false;
         this.fromContacto.reset();
-
     }
-
 }

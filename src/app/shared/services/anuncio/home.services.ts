@@ -24,15 +24,18 @@ export class HomeService {
     }
     getAnuncio(): void {
 
-        this.http.get(this._baseUrl + 'anuncio/ListarAnuncios').subscribe(
-            json => {
-                console.log(json)
-            },
-            error => {
-                console.log(error);
-                //console.log('oops', this.handleError('searchHeroes', error))
-            }
-        );
+        // this.http.get(this._baseUrl + 'anuncio/ListarAnuncios').subscribe(
+        //     json => {
+        //         console.log(json)
+        //     },
+        //     error => {
+        //         console.log(error);
+        //         //console.log('oops', this.handleError('searchHeroes', error))
+        //     }
+        // );
+
+
+
         // let httpOptions = {
         //     headers: new Headers({
         //         'Content-Type': 'application/json'

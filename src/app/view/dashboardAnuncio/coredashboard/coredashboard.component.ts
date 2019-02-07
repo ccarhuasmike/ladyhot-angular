@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
+import { debug } from 'util';
 // import { BehaviorSubject } from 'rxjs';
 // import { HeaderService } from "../../../shared/services/header/header.services";
 
@@ -12,9 +14,9 @@ export class CoreDashboardComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-
-        // <app-header ></app-header>    
-        // <app-main></app-main>
-        // <app-footer></app-footer>
+    }
+    nuevoanuncionclick() {
+        debugger;
+        localStorage.removeItem('DataAnuncio');
     }
 }

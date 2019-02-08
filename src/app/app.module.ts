@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 // import { HttpClientModule } from '@angular/common/http';
 // import { HttpClientXsrfModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +18,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     HttpModule,
+    HttpClientModule,
     // HttpClientModule,
     // HttpClientXsrfModule.withOptions({
     //   cookieName: 'My-Xsrf-Cookie',

@@ -6,8 +6,7 @@ import { DatosContacto } from "../../../models/modelanuncio";
 import { ParameterService } from "../../../../shared/services/anuncio/parameter.service";
 import { ClientResponse, ClientResponseResult } from '../../../../Models/ClientResponseModels';
 import { PaginatedResult } from '../../../../Models/Tbl_parameter_detModels';
-import { debug } from 'util';
-
+import { MessageService } from "../../../../throwError/message.service";
 
 @Component({
     selector: 'app-datoscontactos',
@@ -29,20 +28,24 @@ export class DatosContactoComponent implements OnInit {
     RegEx_mailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
     RegEx_txt_web = "^(http[s]?:\\/\\/){0,1}(www\\.){0,1}[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,5}[\\.]{0,1}$";
     RegEx_Telefono = "^[679]{1}[0-9]{8}$";
-
+    _messageService: any;
     listParameter: any;
     DataJsonAnuncio: any;
     constructor(private router: Router,
         private anuncioService: AnuncioService,
-        private parameter: ParameterService
+        private parameter: ParameterService,
+        public messageService: MessageService
     ) { }
 
     ngOnInit() {
         this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         this.parameter.getParameter().subscribe(
             (res: PaginatedResult<any[]>) => {
+                debugger;
                 this.listParameter = res.result;
                 localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
+                this._messageService = this.messageService;
+                console.log(this._messageService);
             }
         );
         this.datoscontacto = this.anuncioService.getDatosContacto();
@@ -93,11 +96,12 @@ export class DatosContactoComponent implements OnInit {
             entidad.txt_web = this.fromContacto.value.txt_web;
             debugger;
             this.anuncioService.SavePrimerPaso(entidad).subscribe(
-                (res: ClientResponseResult<ClientResponse>) => {
-
-                    if (res.result.Status == "OK") {
+                //(res: ClientResponseResult<ClientResponse>) => {
+                (res) => {
+                    console.log(res);
+                    if (res.Status == "OK") {
                         console.log("ejecute Ok");
-                        let DataJsonAnuncio: any = res.result.Data;
+                        let DataJsonAnuncio: any = res.Data;
                         localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                         //this.anuncioService.setDatosContacto(this.fromContacto.value)
                         this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-generales']);

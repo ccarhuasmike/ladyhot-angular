@@ -27,8 +27,7 @@ export class HttpErrorHandler {
      */
     handleError<T>(serviceName = '', operation = 'operation', result = {} as T) {
         return (error: HttpErrorResponse): Observable<T> => {
-            // TODO: send the error to remote logging infrastructure
-            console.error(error); // log to console instead
+            // TODO: send the error to remote logging infrastructure            
 
             const message = (error.error instanceof ErrorEvent) ?
                 error.error.message :

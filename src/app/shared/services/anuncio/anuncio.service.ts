@@ -6,38 +6,67 @@ import { ClientResponse, ClientResponseResult } from '../../../Models/ClientResp
 import { map } from 'rxjs/operators';
 import { FormData, DatosContacto, DatosGenerales, Apariencia, Tarifas, Servicios } from '../../../view/models/modelanuncio';
 import { ConfigService } from "../Utilitarios/config.service";
-import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { HttpErrorHandler, HandleError } from '../../../throwError/http-error-handler.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
 const options = new RequestOptions({
     headers: new Headers({
         "Content-Type": "application/json"
+
     })
 });
+
+const httpOptions = {
+    headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        "Accept": 'application/json'
+    })
+};
+
 
 @Injectable() // The Injectable decorator is required for dependency injection to work
 export class AnuncioService {
     private formData: FormData = new FormData();
     _baseUrl: string = '';
+    private handleError: HandleError;
+
     constructor(
         private http: Http,
+        private httpClient: HttpClient,
         private stepService: StepService,
         private configService: ConfigService,
+        httpErrorHandler: HttpErrorHandler
     ) {
         this._baseUrl = configService.getWebApiURL();
+        this.handleError = httpErrorHandler.createHandleError('HeroesService');
     }
 
-    SavePrimerPaso(anuncio: Tbl_anuncio): Observable<ClientResponseResult<ClientResponse>> {
-        debugger;
-        console.log("entre al primer paso");
+    SavePrimerPaso(anuncio: Tbl_anuncio): Observable<ClientResponse> {
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Primeropaso', anuncio, httpOptions)
+            .pipe(
+                map(user => {
+                    console.log(user);
+                    JSON.stringify(user);
+                    return user;
+                }),
+                catchError(this.handleError('addHero'))
+            );
+    }
+    ///https://stackblitz.com/angular/ooqemvjyqkb?file=src%2Fapp%2Fheroes%2Fheroes.service.ts
+    SavePrimerPaso1(anuncio: Tbl_anuncio): Observable<ClientResponseResult<ClientResponse>> {
         var peginatedResult: ClientResponseResult<ClientResponse> = new ClientResponseResult<ClientResponse>();
         return this.http.post(this._baseUrl + 'anuncio/Primeropaso', JSON.stringify(anuncio), options).pipe(
             map(res => {
                 console.log("ejecute al primer paso");
                 peginatedResult.result = res.json();
                 return peginatedResult;
-            })
+            }), catchError(this.handleError('SavePrimerPaso'))
         );
     }
+
     UpdateSavePrimerPaso(anuncio: Tbl_anuncio): Observable<ClientResponseResult<ClientResponse>> {
         var peginatedResult: ClientResponseResult<ClientResponse> = new ClientResponseResult<ClientResponse>();
         return this.http.post(this._baseUrl + 'anuncio/ActualizarPrimerpaso', JSON.stringify(anuncio), options).pipe(

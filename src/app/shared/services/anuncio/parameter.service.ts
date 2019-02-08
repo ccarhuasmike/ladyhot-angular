@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { Tbl_anuncio } from '../../../Models/Tbl_anuncioModels';
 import { PaginatedResult, Tbl_parameter_det } from '../../../Models/Tbl_parameter_detModels';
 import { ConfigService } from "../Utilitarios/config.service";
-import { HttpErrorHandler, HandleError, } from '../../../throwError/http-error-handler.service';
+import { HttpErrorHandler, HandleError } from '../../../throwError/http-error-handler.service';
 //https://stackblitz.com/angular/ooqemvjyqkb?file=src%2Fapp%2Fauth.service.ts
 @Injectable()
 export class ParameterService {
@@ -29,34 +29,8 @@ export class ParameterService {
             map(res => {
                 peginatedResult.result = JSON.parse(res.json().DataJson);
                 return peginatedResult;
-            })
+            }), catchError(this.handleError('getParameter'))
         );
-
-        // this.http.get(this._baseUrl + 'parameter/sel_parameter').subscribe(
-        //     json => {
-        //         debugger;
-        //         this.list;
-        //         return peginatedResult;
-        //         console.log(json)
-        //     },
-        //     error => {
-        //         console.log('oops', this.handleError('searchHeroes', error))
-        //     }
-        // );
-        // let httpOptions = {
-        //     headers: new Headers({
-        //         'Content-Type': 'application/json'
-        //     })
-        // };
-        // return this.http.get(this._baseUrl + 'anuncio/ListarAnuncios')
-        // map(data => {
-        //     console.log(data);
-        // }),
-        //     catchError(err => {
-        //         console.error(err.message);
-        //         console.log("Error is handled");
-        //         return throwError("Error thrown from catchError");
-        //     });
     }
 
 

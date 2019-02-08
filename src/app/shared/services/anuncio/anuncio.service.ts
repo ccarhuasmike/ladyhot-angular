@@ -27,9 +27,12 @@ export class AnuncioService {
     }
 
     SavePrimerPaso(anuncio: Tbl_anuncio): Observable<ClientResponseResult<ClientResponse>> {
+        debugger;
+        console.log("entre al primer paso");
         var peginatedResult: ClientResponseResult<ClientResponse> = new ClientResponseResult<ClientResponse>();
         return this.http.post(this._baseUrl + 'anuncio/Primeropaso', JSON.stringify(anuncio), options).pipe(
             map(res => {
+                console.log("ejecute al primer paso");
                 peginatedResult.result = res.json();
                 return peginatedResult;
             })

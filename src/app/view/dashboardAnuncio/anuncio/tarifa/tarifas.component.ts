@@ -52,7 +52,7 @@ export class TarifasComponent implements OnInit {
         this.controlsFormaPago = this.ListFormaPago.map(c => new FormControl(false));
         this.controlsFormaPago[0].setValue(true);
         //Validamos el seteo del distrito
-        if (this.DataJsonAnuncio.txt_forma_pago != "") {
+        if (this.DataJsonAnuncio.txt_forma_pago != null) {
             this.setCheboxes(this.ListFormaPago, this.DataJsonAnuncio.txt_forma_pago, this.controlsFormaPago);
         } else {
             this.controlsFormaPago[0].setValue(true);

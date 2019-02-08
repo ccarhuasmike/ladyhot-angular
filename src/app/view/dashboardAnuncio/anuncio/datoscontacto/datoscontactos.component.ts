@@ -6,6 +6,7 @@ import { DatosContacto } from "../../../models/modelanuncio";
 import { ParameterService } from "../../../../shared/services/anuncio/parameter.service";
 import { ClientResponse, ClientResponseResult } from '../../../../Models/ClientResponseModels';
 import { PaginatedResult } from '../../../../Models/Tbl_parameter_detModels';
+import { debug } from 'util';
 
 
 @Component({
@@ -76,6 +77,7 @@ export class DatosContactoComponent implements OnInit {
     }
 
     save() {
+        debugger;
         this.isSubmitted = true;
         if (!this.fromContacto.valid)
             return;
@@ -89,14 +91,18 @@ export class DatosContactoComponent implements OnInit {
             entidad.txt_telefono_2 = this.fromContacto.value.txt_telefono_2;
             entidad.txt_email = this.fromContacto.value.txt_email;
             entidad.txt_web = this.fromContacto.value.txt_web;
-
+            debugger;
             this.anuncioService.SavePrimerPaso(entidad).subscribe(
                 (res: ClientResponseResult<ClientResponse>) => {
+
                     if (res.result.Status == "OK") {
+                        console.log("ejecute Ok");
                         let DataJsonAnuncio: any = res.result.Data;
                         localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                         //this.anuncioService.setDatosContacto(this.fromContacto.value)
                         this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-generales']);
+                    } else {
+                        console.log("ejecute Error");
                     }
                 }
             );

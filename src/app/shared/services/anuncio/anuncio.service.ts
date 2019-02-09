@@ -81,6 +81,19 @@ export class AnuncioService {
             })
         );
     }
+
+  
+    Saveactualizartodo(anuncio: Tbl_anuncio): Observable<ClientResponseResult<ClientResponse>> {
+    
+        var peginatedResult: ClientResponseResult<ClientResponse> = new ClientResponseResult<ClientResponse>();
+        return this.http.post(this._baseUrl + 'anuncio/actualizartodo', JSON.stringify(anuncio), options).pipe(
+            map(res => {
+                peginatedResult.result = res.json();
+                return peginatedResult;
+            })
+        );
+    }
+
     getListTipoServicio() {
         //return this.http.get('https://api.github.com/repositories').map(res => res.json());
         return [{
@@ -420,7 +433,7 @@ export class AnuncioService {
         this.formData.txt_web = data.web;
     }
 
-    getFormData(): FormData {
+    getFormData(datosAnuncio): FormData {
         var formData: FormData = {
             //Datos Contacto
             txt_nombre: 'Segundo Mike ',
@@ -584,6 +597,31 @@ export class AnuncioService {
         this.stepService.activaStep6(flag);
     }
 
+    getListarMisAnuncios(): Observable<ClientResponseResult<any[]>> {
+        var paginatedResult: ClientResponseResult<any[]> = new ClientResponseResult<any[]>();
+        return this.http.get(this._baseUrl + 'misanuncios/ListarMisAnuncios').pipe(
+            map(res=>{
+                paginatedResult.result = JSON.parse(res.json().DataJson);
+                return paginatedResult;
+            })
+        );
+    }
 
+    getAnuncioPorId(id:String): Observable<ClientResponseResult<any[]>> {
+        var paginatedResult: ClientResponseResult<any[]> = new ClientResponseResult<any[]>();
+        return this.http.post(this._baseUrl + 'anuncio/GetAnucionXId/'+id, options).pipe(
+            map(res => {
+                paginatedResult.result = res.json().Data;
+                return paginatedResult;
+            })
+        );
+       /* var paginatedResult: ClientResponseResult<ClientResponse> = new ClientResponseResult<ClientResponse>();
+        return this.http.post(this._baseUrl+ 'anuncio/GetAnucionXId',JSON.stringify(id), options).pipe(
+            map(res=>{
+                paginatedResult.result = JSON.parse(res.json().Data);
+                return paginatedResult;
+            })            
+        );*/
+    }
 
 }

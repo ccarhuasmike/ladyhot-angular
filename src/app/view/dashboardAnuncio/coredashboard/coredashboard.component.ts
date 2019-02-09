@@ -16,7 +16,6 @@ export class CoreDashboardComponent implements OnInit {
     ngOnInit() {
     }
     nuevoanuncionclick() {
-        debugger;
         localStorage.removeItem('DataAnuncio');
     }
 }

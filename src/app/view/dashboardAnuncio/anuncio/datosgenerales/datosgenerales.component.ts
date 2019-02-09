@@ -36,7 +36,7 @@ export class DatosGeneralesComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        debugger;
+        
         this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
         this.datosgenerales = this.anuncioService.getDatosGenerales();

@@ -52,7 +52,8 @@ export class TarifasComponent implements OnInit {
         this.controlsFormaPago = this.ListFormaPago.map(c => new FormControl(false));
         this.controlsFormaPago[0].setValue(true);
         //Validamos el seteo del distrito
-        if (this.DataJsonAnuncio.txt_forma_pago != "") {
+        
+        if (this.DataJsonAnuncio.txt_forma_pago != null) {
             this.setCheboxes(this.ListFormaPago, this.DataJsonAnuncio.txt_forma_pago, this.controlsFormaPago);
         } else {
             this.controlsFormaPago[0].setValue(true);
@@ -153,7 +154,7 @@ export class TarifasComponent implements OnInit {
 
         this.anuncioService.SaveCuartoPaso(this.DataJsonAnuncio).subscribe(
             (res: ClientResponseResult<ClientResponse>) => {
-                debugger;
+                
                 if (res.result.Status == "OK") {
                     let DataJsonAnuncio: any = res.result.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
@@ -172,7 +173,7 @@ export class TarifasComponent implements OnInit {
     }
 
     getCheboxerSeleccionado(ListSeleccionado: any): string {
-        debugger;
+        
         let selecionado: string = "";
         for (let index = 0; index < ListSeleccionado.length; index++) {
             selecionado += ListSeleccionado[index] + ",";

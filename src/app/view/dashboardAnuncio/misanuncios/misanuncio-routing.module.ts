@@ -24,7 +24,7 @@ const routes: Routes = [
                 component: MisAnunciosComponent,
             },
             {
-                path: "editar",
+                path: "editar/:id",
                 component: EditarAnuncioComponent,
             },
             {

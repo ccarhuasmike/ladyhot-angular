@@ -93,7 +93,7 @@ export class AparienciaComponent implements OnInit {
         this.isSubmittedApariencia = true;
         if (!this.fromApariencia.valid)
             return;
-        debugger;
+        
         this.DataJsonAnuncio.int_color_cabello = parseInt(this.fromApariencia.value.int_color_cabello);
         this.DataJsonAnuncio.int_color_ojos = parseInt(this.fromApariencia.value.int_color_ojos);
         this.DataJsonAnuncio.int_estatura = parseInt(this.fromApariencia.value.int_estatura);

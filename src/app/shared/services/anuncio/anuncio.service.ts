@@ -114,16 +114,29 @@ export class AnuncioService {
         );
     }
 
-  
-    Saveactualizartodo(anuncio: Tbl_anuncio): Observable<ClientResponseResult<ClientResponse>> {
-    
-        var peginatedResult: ClientResponseResult<ClientResponse> = new ClientResponseResult<ClientResponse>();
-        return this.http.post(this._baseUrl + 'anuncio/actualizartodo', JSON.stringify(anuncio), options).pipe(
-            map(res => {
-                peginatedResult.result = res.json();
-                return peginatedResult;
-            })
-        );
+    // SavePrimerPaso(anuncio: Tbl_anuncio): Observable<ClientResponse> {
+    //     return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Primeropaso', anuncio, httpOptions)
+    //         .pipe(
+    //             map(user => {
+    //                 console.log(user);
+    //                 JSON.stringify(user);
+    //                 return user;
+    //             }),
+    //             catchError(this.handleError('addHero'))
+    //         );
+    // }
+
+    Saveactualizartodo(anuncio: Tbl_anuncio): Observable<ClientResponse> {
+
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/ActualizarTodo', anuncio, httpOptions)
+            .pipe(
+                map(user => {
+                    console.log(user);
+                    JSON.stringify(user);
+                    return user;
+                }),
+                catchError(this.handleError('addHero'))
+            );
     }
 
     getListTipoServicio() {
@@ -466,7 +479,7 @@ export class AnuncioService {
     }
 
     getFormData(datosAnuncio): FormData {
-        var formData: FormData = {
+        /*var formData: FormData = {
             //Datos Contacto
             txt_nombre: 'Segundo Mike ',
             txt_telefono1: '997233662',
@@ -510,25 +523,102 @@ export class AnuncioService {
             algosobredisponibilidad: 'bueno bueno bueno ',
             txt_descripcion_servicios: 'bueno bueno bueno',
             flagatiende24horas: true,
-        }
-        return formData;
+        }*/
+        return null;
     }
 
     getDatosGenerales(): DatosGenerales {
         var datosgenerales: DatosGenerales = {
+            /*cbo_edad: this.formData.txt_nombre,
+            cbo_pais_origen: this.formData.txt_telefono1,
+            cbo_estudio: this.formData.txt_telefono2,
+            txt_descripcion_generales: this.formData.txt_descripcion_generales,*/
+            //Datos de Contacto
+            txt_nombre: this.formData.txt_nombre,
+            txt_telefono1: this.formData.txt_telefono1,
+            txt_telefono2: this.formData.txt_telefono2,
+            txt_email: this.formData.txt_email,
+            txt_web: this.formData.txt_web,
+            txt_descripcion_contacto: '',
+            //Datos Generales
             cbo_edad: this.formData.cbo_edad,
             cbo_pais_origen: this.formData.cbo_pais_origen,
             cbo_estudio: this.formData.cbo_estudio,
             txt_descripcion_generales: this.formData.txt_descripcion_generales,
+            //Datos Apariencia
+            cbo_cabello: this.formData.cbo_cabello,
+            cbo_ojos: this.formData.cbo_ojos,
+            cbo_estatura: this.formData.cbo_estatura,
+            cbo_peso: this.formData.cbo_peso,
+            //this.formData.txt_medidas_busto_cintura_cadera = data.busto+'-'+data.cintura+'-'+data.cadera;
+            txt_busto: this.formData.txt_busto,
+            txt_cintura: this.formData.txt_cintura,
+            txt_cadera: this.formData.txt_cadera,
+            txt_descripcion_apariencia: this.formData.txt_descripcion_apariencia,
+            //Datos Tarifas
+            txt_30_min: this.formData.txt_30_min,
+            txt_45_min: this.formData.txt_45_min,
+            txt_1_hora: this.formData.txt_1_hora,
+            txt_1_30_hora: this.formData.txt_1_30_hora,
+            txt_2_hora: this.formData.txt_2_hora,
+            txt_3_hora: this.formData.txt_3_hora,
+            txt_salida: this.formData.txt_salida,
+            txt_toda_noche: this.formData.txt_toda_noche,
+            txt_viajes: this.formData.txt_viajes,
+            ListFormaPago: this.formData.ListFormaPago,
+            txt_descripcion_tarifas: this.formData.txt_descripcion_tarifas,
+            //Datos Servicios
+            ListDistrito: this.formData.ListDistrito,
+            flagatiende24horas: this.formData.flagatiende24horas,
+            algosobredisponibilidad: this.formData.algosobredisponibilidad,
+            ListLugar: this.formData.ListLugar,
+            ListServicios: this.formData.ListServicios,
+            txt_descripcion_servicios: this.formData.txt_descripcion_servicios
         };
         return datosgenerales;
     }
 
     setDatosGenerales(data: any) {
+        //Datos de Contacto
+        this.formData.txt_nombre = data.txt_nombre_ficha;
+        this.formData.txt_telefono1 = data.telefono1;
+        this.formData.txt_telefono2 = data.telefono2;
+        this.formData.txt_email = data.email;
+        this.formData.txt_web = data.web;
+        //Datos Generales
         this.formData.cbo_edad = data.edad;
         this.formData.cbo_pais_origen = data.pais;
         this.formData.cbo_estudio = data.estudios;
         this.formData.txt_descripcion_generales = data.descripciongenerales;
+        //Datos Apariencia
+        this.formData.cbo_cabello = data.cabello;
+        this.formData.cbo_ojos = data.ojos;
+        this.formData.cbo_estatura = data.estatura;
+        this.formData.cbo_peso = data.peso;
+        //this.formData.txt_medidas_busto_cintura_cadera = data.busto+'-'+data.cintura+'-'+data.cadera;
+        this.formData.txt_busto = data.busto;
+        this.formData.txt_cintura = data.cintura;
+        this.formData.txt_cadera = data.cadera;
+        this.formData.txt_descripcion_apariencia = data.descripcionapariencia;
+        //Datos Tarifas
+        this.formData.txt_30_min = data.txt_30_min;
+        this.formData.txt_45_min = data.txt_45_min;
+        this.formData.txt_1_hora = data.txt_1_hora;
+        this.formData.txt_1_30_hora = data.txt_1_30_hora;
+        this.formData.txt_2_hora = data.txt_2_hora;
+        this.formData.txt_3_hora = data.txt_3_hora;
+        this.formData.txt_salida = data.txt_salida;
+        this.formData.txt_toda_noche = data.txt_toda_noche;
+        this.formData.txt_viajes = data.txt_viajes;
+        this.formData.ListFormaPago = data.txt_nombre_ficha;
+        this.formData.txt_descripcion_tarifas = data.txt_descripcion_tarifas;
+        //Datos Servicios
+        this.formData.ListDistrito = data.ListDistrito.map(lugServDistri => lugServDistri);
+        this.formData.flagatiende24horas = data.pais;
+        this.formData.algosobredisponibilidad = data.algosobredisponibilidad;
+        this.formData.ListLugar = data.ListLugarAtencion.map(lugarAtencion => lugarAtencion);
+        this.formData.ListServicios = data.ListTipoServicio.map(tipoServicio => tipoServicio);
+        this.formData.txt_descripcion_servicios = data.txt_descripcion_servicios;
     }
 
 
@@ -632,28 +722,28 @@ export class AnuncioService {
     getListarMisAnuncios(): Observable<ClientResponseResult<any[]>> {
         var paginatedResult: ClientResponseResult<any[]> = new ClientResponseResult<any[]>();
         return this.http.get(this._baseUrl + 'misanuncios/ListarMisAnuncios').pipe(
-            map(res=>{
+            map(res => {
                 paginatedResult.result = JSON.parse(res.json().DataJson);
                 return paginatedResult;
             })
         );
     }
 
-    getAnuncioPorId(id:String): Observable<ClientResponseResult<any[]>> {
+    getAnuncioPorId(id: String): Observable<ClientResponseResult<any[]>> {
         var paginatedResult: ClientResponseResult<any[]> = new ClientResponseResult<any[]>();
-        return this.http.post(this._baseUrl + 'anuncio/GetAnucionXId/'+id, options).pipe(
+        return this.http.post(this._baseUrl + 'anuncio/GetAnucionXId/' + id, options).pipe(
             map(res => {
                 paginatedResult.result = res.json().Data;
                 return paginatedResult;
             })
         );
-       /* var paginatedResult: ClientResponseResult<ClientResponse> = new ClientResponseResult<ClientResponse>();
-        return this.http.post(this._baseUrl+ 'anuncio/GetAnucionXId',JSON.stringify(id), options).pipe(
-            map(res=>{
-                paginatedResult.result = JSON.parse(res.json().Data);
-                return paginatedResult;
-            })            
-        );*/
+        /* var paginatedResult: ClientResponseResult<ClientResponse> = new ClientResponseResult<ClientResponse>();
+         return this.http.post(this._baseUrl+ 'anuncio/GetAnucionXId',JSON.stringify(id), options).pipe(
+             map(res=>{
+                 paginatedResult.result = JSON.parse(res.json().Data);
+                 return paginatedResult;
+             })            
+         );*/
     }
 
 }

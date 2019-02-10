@@ -58,7 +58,7 @@ export class ServiciosComponent implements OnInit {
         this.txt_descripcion_serviciosCtrl = new FormControl('', [Validators.maxLength(450)]);
 
         //Validamos el seteo del distrito
-        
+
         if (this.DataJsonAnuncio.txt_lugar_servicio_distrito != null) {
             this.setCheboxes(this.ListDistrito, this.DataJsonAnuncio.txt_lugar_servicio_distrito, this.controlsDist);
         } else {
@@ -175,7 +175,7 @@ export class ServiciosComponent implements OnInit {
 
         this.anuncioService.SaveQuintoPaso(this.DataJsonAnuncio).subscribe(
             (res: ClientResponseResult<ClientResponse>) => {
-                
+
                 if (res.result.Status == "OK") {
                     let DataJsonAnuncio: any = res.result.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
@@ -191,7 +191,7 @@ export class ServiciosComponent implements OnInit {
         // }, 2000);
     }
     getCheboxerSeleccionado(ListSeleccionado: any): string {
-        
+
         let selecionado: string = "";
         for (let index = 0; index < ListSeleccionado.length; index++) {
             selecionado += ListSeleccionado[index] + ",";

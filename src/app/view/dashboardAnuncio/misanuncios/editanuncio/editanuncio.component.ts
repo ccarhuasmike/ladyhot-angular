@@ -1,14 +1,14 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
-import { FormData, DatosContacto, DatosGenerales, Apariencia, Tarifas, Servicios, ModelCarga } from "../../../models/modelanuncio";
+import { FormData } from "../../../models/modelanuncio";
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
-import { Tbl_anuncio } from 'src/app/Models/Tbl_anuncioModels';
 import { ClientResponseResult } from 'src/app/Models/ClientResponseModels';
-
+import { Router } from '@angular/router';
 import { ConfigService } from 'src/app/shared/services/Utilitarios/config.service';
 import { ActivatedRoute } from '@angular/router';
 import { ParameterService } from "../../../../shared/services/anuncio/parameter.service";
 import { PaginatedResult } from '../../../../Models/Tbl_parameter_detModels';
+import { Observable } from 'rxjs';
 @Component({
     selector: 'app-editanuncio',
     templateUrl: './editanuncio.component.html',
@@ -19,19 +19,17 @@ export class EditarAnuncioComponent implements OnInit {
     fromGenerales: FormGroup;
     isSubmitted: boolean = false;
     _baseUrl: string = '';
-
     //Controles Datos de Contacto
     txt_nombre_fichaCtrl: FormControl;
-    emailCtrl: FormControl;
-    WebCtrl: FormControl;
-    Telefono1Ctrl: FormControl;
-    Telefono2Ctrl: FormControl;
+    txt_emailCtrl: FormControl;
+    txt_webCtrl: FormControl;
+    txt_telefono_1Ctrl: FormControl;
+    txt_telefono_2Ctrl: FormControl;
     //Datos Generales
     edadCtrl: FormControl;
     paisCtrl: FormControl;
     estudiosCtrl: FormControl;
     txt_descripcion_generalesCtrl: FormControl;
-
     //Controles Apariencia
     bustoCtrl: FormControl;
     cinturaCtrl: FormControl;
@@ -52,7 +50,7 @@ export class EditarAnuncioComponent implements OnInit {
     txt_toda_nocheCtrl: FormControl;
     txt_viajesCtrl: FormControl;
     txt_descripcion_tarifasCtrl: FormControl;
-    controls: any;
+    controlsFormaPago: any;
     //Controles Tarifa
     formapagoCtrl: FormArray;
     ListFormaPago: any = [];
@@ -66,7 +64,7 @@ export class EditarAnuncioComponent implements OnInit {
 
     //Registro de Expresiones
     RegEx_mailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-    RegEx_web = "^(http[s]?:\\/\\/){0,1}(www\\.){0,1}[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,5}[\\.]{0,1}$";
+    RegEx_txt_web = "^(http[s]?:\\/\\/){0,1}(www\\.){0,1}[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,5}[\\.]{0,1}$";
     RegEx_Telefono = "^[679]{1}[0-9]{8}$";
 
     ListEdad: any = [];
@@ -76,7 +74,6 @@ export class EditarAnuncioComponent implements OnInit {
     ListOjos: any = [];
     ListEstatura: any = [];
     ListPeso: any = [];
-
     ListDistrito: any = [];
     ListLugarAtencion: any = [];
     ListTipoServicio: any = [];
@@ -88,85 +85,117 @@ export class EditarAnuncioComponent implements OnInit {
     constructor(
         private anuncioService: AnuncioService,
         private route: ActivatedRoute,
+        private router: Router,
         private parameter: ParameterService,
         private configService: ConfigService) {
         this._baseUrl = configService.getWebApiURL();
     }
 
     ngOnInit() {
-        //debugger;
-        this.cargarControles();
-
         this.anuncioService.getAnuncioPorId(this.route.params["value"]["id"]).subscribe(
             (res: ClientResponseResult<any>) => {
                 this.datosAnuncio = res.result;
                 this.parameter.getParameter().subscribe(
                     (res: PaginatedResult<any[]>) => {
-                        debugger;
                         this.listParameter = res.result; // aqui se obtiene los paramter de la base de datos                
                         this.ListEdad = this.listParameter.edad;//this.anuncioService.getListEdad();
                         this.ListPais = this.listParameter.pais;//this.anuncioService.getListPais();
                         this.ListEstudios = this.listParameter.estudios;//this.anuncioService.getListEstudios();
+                        this.ListCabellos = this.listParameter.color_cabello;
+                        this.ListOjos = this.listParameter.color_ojos;
+                        this.ListEstatura = this.listParameter.estatura;
+                        this.ListPeso = this.listParameter.peso;
+                        this.ListDistrito = this.listParameter.distritro;
+                        this.ListLugarAtencion = this.listParameter.lugaratencion;
+                        this.ListTipoServicio = this.listParameter.servicio_ofrece;
+                        this.ListFormaPago = this.listParameter.formapago
+                        this.cargarControles();
+                        //Validamos el seteo de la forma de pago
+                        if (this.datosAnuncio.DetailleAnuncion.txt_forma_pago != null) {
+                            this.setCheboxes(this.ListFormaPago, this.datosAnuncio.DetailleAnuncion.txt_forma_pago, this.controlsFormaPago);
+                        } else {
+                            this.controlsFormaPago[0].setValue(true);
+                            this.ListFormaPago[0].flag = true;
+                        }
 
+                        //Validamos el seteo del distrito, lugar atencion, servicios
+                        if (this.datosAnuncio.DetailleAnuncion.txt_lugar_servicio_distrito != null) {
+                            this.setCheboxes(this.ListDistrito, this.datosAnuncio.DetailleAnuncion.txt_lugar_servicio_distrito, this.controlsDist);
+                        } else {
+                            this.controlsDist[0].setValue(true);
+                            this.ListDistrito[0].flag = true;
+                        }
+                        //Validamos el seteo el lugar de atencion
+                        if (this.datosAnuncio.DetailleAnuncion.tx_lugar_atencion != null) {
+                            this.setCheboxes(this.ListLugarAtencion, this.datosAnuncio.DetailleAnuncion.tx_lugar_atencion, this.controlsLugar);
+                        } else {
+                            this.controlsLugar[0].setValue(true);
+                            this.ListLugarAtencion[0].flag = true;
+                        }
+                        //Validamos el seteo el tipo del servicios
+                        if (this.datosAnuncio.DetailleAnuncion.tx_servicios_ofrece != null) {
+                            this.setCheboxes(this.ListTipoServicio, this.datosAnuncio.DetailleAnuncion.tx_servicios_ofrece, this.controlsTipServ);
+                        } else {
+                            this.controlsTipServ[0].setValue(true);
+                            this.ListTipoServicio[0].flag = true;
+                        }
                         this.fromGenerales.patchValue({
-                            //     username: this.FormData.txt_nombre,
-                            //     email: this.FormData.txt_email,
-                            //     web: this.FormData.txt_web,
-                            //     telefono1: this.FormData.txt_telefono1,
-                            //     telefono2: this.FormData.txt_telefono2,
-                            //     edad: this.FormData.cbo_edad,
-                            //     pais: this.FormData.cbo_pais_origen,
-                            //     estudios: this.FormData.cbo_estudio,
-                            //     descripciongenerales: this.FormData.txt_descripcion_generales,
-                            //     busto: this.FormData.txt_busto,
-                            //     cintura: this.FormData.txt_cintura,
-                            //     cadera: this.FormData.txt_cadera,
-                            //     cabello: this.FormData.cbo_cabello,
-                            //     ojos: this.FormData.cbo_ojos,
-                            //     estatura: this.FormData.cbo_estatura,
-                            //     peso: this.FormData.cbo_peso,
-                            //     descripcionapariencia: this.FormData.txt_descripcion_apariencia,
-                            //     txt_30_min: this.FormData.txt_30_min,
-                            //     txt_45_min: this.FormData.txt_45_min,
-                            //     txt_1_hora: this.FormData.txt_1_hora,
-                            //     txt_1_30_hora: this.FormData.txt_1_30_hora,
-                            //     txt_2_hora: this.FormData.txt_2_hora,
-                            //     txt_3_hora: this.FormData.txt_3_hora,
-                            //     txt_salida: this.FormData.txt_salida,
-                            //     txt_toda_noche: this.FormData.txt_toda_noche,
-                            //     txt_viajes: this.FormData.txt_viajes,
-                            //     txt_descripcion_tarifas: this.FormData.txt_descripcion_tarifas,
-                            //     algosobredisponibilidad: this.FormData.algosobredisponibilidad,
-                            //     txt_descripcion_servicios: this.FormData.txt_descripcion_servicios,
+                            //Datos de Contacto
+                            txt_nombre_ficha: this.datosAnuncio.DetailleAnuncion.txt_nombre_ficha,
+                            txt_telefono_1: this.datosAnuncio.DetailleAnuncion.txt_telefono_1,
+                            txt_telefono_2: this.datosAnuncio.DetailleAnuncion.txt_telefono_2,
+                            txt_email: this.datosAnuncio.DetailleAnuncion.txt_email,
+                            txt_web: this.datosAnuncio.DetailleAnuncion.txt_web,
+                            //Datos Generales
+                            int_edad: this.datosAnuncio.DetailleAnuncion.int_edad == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_edad,
+                            int_pais_origen: this.datosAnuncio.DetailleAnuncion.int_pais_origen == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_pais_origen,
+                            int_estudios: this.datosAnuncio.DetailleAnuncion.int_estudios == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_estudios,
+                            txt_presentacion: this.datosAnuncio.DetailleAnuncion.txt_presentacion,
+                            //Datos Apariencia
+                            int_color_cabello: this.datosAnuncio.DetailleAnuncion.int_color_cabello == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_color_cabello,
+                            int_color_ojos: this.datosAnuncio.DetailleAnuncion.int_color_ojos == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_color_ojos,
+                            int_estatura: this.datosAnuncio.DetailleAnuncion.int_estatura == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_estatura,
+                            int_peso: this.datosAnuncio.DetailleAnuncion.int_peso == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_peso,
+                            busto: this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera == null ? "" : this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera.split("-")[0],
+                            cintura: this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera == null ? "" : this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera.split("-")[1],
+                            cadera: this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera == null ? "" : this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera.split("-")[2],
+                            txt_descripcion_extra_apariencia: this.datosAnuncio.DetailleAnuncion.txt_descripcion_extra_apariencia,
+                            //Datos Tarifas
+                            dbl_costo_x_tiempo_30min: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_30min,
+                            dbl_costo_x_tiempo_45min: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_45min,
+                            dbl_costo_x_tiempo_1hora: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_1hora,
+                            dbl_costo_x_tiempo_1hora_media: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_1hora_media,
+                            dbl_costo_x_tiempo_2hora: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_2hora,
+                            dbl_costo_x_tiempo_3hora: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_3hora,
+                            dbl_costo_x_tiempo_salidas: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_salidas,
+                            dbl_costo_x_tiempo_toda_noche: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_toda_noche,
+                            dbl_costo_x_viaje: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_viaje,
+                            txt_descripcion_extra_tarifa: this.datosAnuncio.DetailleAnuncion.txt_descripcion_extra_tarifa,
+                            //Datos Servicios
+                            tx_descripcion_extra_horario: this.datosAnuncio.DetailleAnuncion.tx_descripcion_extra_horario,
+                            tx_descripcion_extra_servicio: this.datosAnuncio.DetailleAnuncion.tx_descripcion_extra_servicio,
                         });
-                        // this.ListCabellos = this.anuncioService.getListCabellos();
-                        // this.ListOjos = this.anuncioService.getListOjos();
-                        // this.ListEstatura = this.anuncioService.getListEstatura();
-                        // this.ListPeso = this.anuncioService.getListPeso();
-                        // this.ListDistrito = this.anuncioService.getListDistrito();
-                        // this.ListLugarAtencion = this.anuncioService.getListLugarAtencion();
-                        // this.ListTipoServicio = this.anuncioService.getListTipoServicio();
-
                     }
                 );
             });
+
     }
     selectName() {
 
     }
 
-    onChangeDistrito(codigo: number, isChecked: boolean) {
+    onChangeDistrito(val_valor: number, isChecked: boolean) {
 
-        let index = this.ListDistrito.findIndex(x => x.codigo === codigo);
+        let index = this.ListDistrito.findIndex(x => x.val_valor === val_valor);
         if (isChecked) {
             this.ListDistrito[index].flag = isChecked;
         } else {
             this.ListDistrito[index].flag = isChecked;
         }
     }
-    onChangeFormaPago(codigo: number, isChecked: boolean) {
+    onChangeFormaPago(val_valor: number, isChecked: boolean) {
 
-        let index = this.ListFormaPago.findIndex(x => x.codigo === codigo);
+        let index = this.ListFormaPago.findIndex(x => x.val_valor === val_valor);
         if (isChecked) {
             this.ListFormaPago[index].flag = isChecked;
         } else {
@@ -174,9 +203,9 @@ export class EditarAnuncioComponent implements OnInit {
         }
     }
 
-    onChangeLugarAtencion(codigo: number, isChecked: boolean) {
+    onChangeLugarAtencion(val_valor: number, isChecked: boolean) {
 
-        let index = this.ListLugarAtencion.findIndex(x => x.codigo === codigo);
+        let index = this.ListLugarAtencion.findIndex(x => x.val_valor === val_valor);
         if (isChecked) {
             this.ListLugarAtencion[index].flag = isChecked;
         } else {
@@ -184,9 +213,9 @@ export class EditarAnuncioComponent implements OnInit {
         }
     }
 
-    onChangeTipoServicio(codigo: number, isChecked: boolean) {
+    onChangeTipoServicio(val_valor: number, isChecked: boolean) {
 
-        let index = this.ListTipoServicio.findIndex(x => x.codigo === codigo);
+        let index = this.ListTipoServicio.findIndex(x => x.val_valor === val_valor);
         if (isChecked) {
             this.ListTipoServicio[index].flag = isChecked;
         } else {
@@ -194,12 +223,13 @@ export class EditarAnuncioComponent implements OnInit {
         }
     }
 
-    setCheboxes(listCargados: any, listSeleccionado: ModelCarga[], controls: any) {
-        for (let index = 0; index < listSeleccionado.length; index++) {
+    setCheboxes(listCargados: any, listSeleccionado: string, controls: any) {
+        let arraSeleccionado: any[] = listSeleccionado.split(",");
+        for (let index = 0; index < arraSeleccionado.length; index++) {
             for (let index1 = 0; index1 < listCargados.length; index1++) {
-                if (listSeleccionado[index].codigo == listCargados[index1].codigo) {
+                if (arraSeleccionado[index] == listCargados[index1].val_valor) {
                     listCargados[index1].flag = true;
-                    this.controls[index1].setValue(true);
+                    controls[index1].setValue(true);
                 }
             }
         }
@@ -215,30 +245,93 @@ export class EditarAnuncioComponent implements OnInit {
         return validator;
     }
     save() {
-        // this.isSubmitted = true;
-        // if (!this.fromContacto.valid)
-        //     return;
-        // this.anuncioService.setDatosContacto(this.fromContacto.value)
-        // this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-generales']);
-        //this.router.navigate(['datos-generales'])
+        this.isSubmitted = true;
+        if (!this.fromGenerales.valid)
+            return;
 
-        // this.router.navigate(['./datos-generales']);
-        // Code to save the data
-        // userService.Save(this.register.value);
-        // this.result = this.fromContacto.value;
-        // setTimeout(() => {
-        //     this.result = null;
-        //     this.reset();
-        // }, 2000);
+        const selectedFormapago = this.fromGenerales.value.ListFormaPago
+            .map((v, i) => v ? this.ListFormaPago[i].val_valor : null)
+            .filter(v => v !== null);
+
+        const selectedDistrito = this.fromGenerales.value.ListDistrito
+            .map((v, i) => v ? this.ListDistrito[i].val_valor : null)
+            .filter(v => v !== null);
+
+        const selectedLugarAtencion = this.fromGenerales.value.ListLugarAtencion
+            .map((v, i) => v ? this.ListLugarAtencion[i].val_valor : null)
+            .filter(v => v !== null);
+        const selectedTipoServicio = this.fromGenerales.value.ListTipoServicio
+            .map((v, i) => v ? this.ListTipoServicio[i].val_valor : null)
+            .filter(v => v !== null);
+
+        let entidad: any = {};
+        entidad.id = parseInt(this.route.params["value"]["id"]);
+        entidad.txt_nombre_ficha = this.fromGenerales.value.txt_nombre_ficha;
+        entidad.txt_telefono_1 = this.fromGenerales.value.txt_telefono_1;
+        entidad.txt_telefono_2 = this.fromGenerales.value.txt_telefono_2;
+        entidad.txt_email = this.fromGenerales.value.txt_email;
+        entidad.txt_web = this.fromGenerales.value.txt_web;
+        entidad.int_edad = parseInt(this.fromGenerales.value.int_edad);
+        entidad.int_pais_origen = parseInt(this.fromGenerales.value.int_pais_origen);
+        entidad.int_estudios = parseInt(this.fromGenerales.value.int_estudios);
+        entidad.txt_presentacion = this.fromGenerales.value.txt_presentacion;
+        entidad.int_color_cabello = parseInt(this.fromGenerales.value.int_color_cabello);
+        entidad.int_color_ojos = parseInt(this.fromGenerales.value.int_color_ojos);
+        entidad.int_estatura = parseInt(this.fromGenerales.value.int_estatura);
+        entidad.int_peso = parseInt(this.fromGenerales.value.int_peso);
+        entidad.txt_medidas_busto_cintura_cadera = this.fromGenerales.value.busto + "-" + this.fromGenerales.value.cintura + "-" + this.fromGenerales.value.cadera;
+        entidad.txt_descripcion_extra_apariencia = this.fromGenerales.value.txt_descripcion_extra_apariencia;
+        entidad.dbl_costo_x_tiempo_30min = parseFloat(this.fromGenerales.value.dbl_costo_x_tiempo_30min);
+        entidad.dbl_costo_x_tiempo_45min = parseFloat(this.fromGenerales.value.dbl_costo_x_tiempo_45min);
+        entidad.dbl_costo_x_tiempo_1hora = parseFloat(this.fromGenerales.value.dbl_costo_x_tiempo_1hora);
+        entidad.dbl_costo_x_tiempo_1hora_media = parseFloat(this.fromGenerales.value.dbl_costo_x_tiempo_1hora_media);
+        entidad.dbl_costo_x_tiempo_2hora = parseFloat(this.fromGenerales.value.dbl_costo_x_tiempo_2hora);
+        entidad.dbl_costo_x_tiempo_3hora = parseFloat(this.fromGenerales.value.dbl_costo_x_tiempo_3hora);
+        entidad.dbl_costo_x_tiempo_salidas = parseFloat(this.fromGenerales.value.dbl_costo_x_tiempo_salidas);
+        entidad.dbl_costo_x_tiempo_toda_noche = parseFloat(this.fromGenerales.value.dbl_costo_x_tiempo_toda_noche);
+        entidad.dbl_costo_x_viaje = parseFloat(this.fromGenerales.value.txt_viajes);
+        entidad.txt_forma_pago = this.getCheboxerSeleccionado(selectedFormapago);
+        entidad.txt_descripcion_extra_tarifa = this.fromGenerales.value.txt_descripcion_extra_tarifa;
+        entidad.txt_lugar_servicio_distrito = this.getCheboxerSeleccionado(selectedDistrito);
+        //entidad.fl_atencion_24horas = this.getCheboxerSeleccionado(selectedFormapago);
+        entidad.tx_descripcion_extra_horario = this.fromGenerales.value.algosobredisponibilidad;
+        entidad.tx_lugar_atencion = this.getCheboxerSeleccionado(selectedLugarAtencion);
+        entidad.tx_servicios_ofrece = this.getCheboxerSeleccionado(selectedTipoServicio);
+        entidad.tx_descripcion_extra_servicio = this.fromGenerales.value.tx_descripcion_extra_servicio;
+        this.anuncioService.Saveactualizartodo(entidad).subscribe(
+            //(res: ClientResponseResult<ClientResponse>) => {
+            (res) => {
+                console.log(res);
+                if (res.Status == "OK") {
+                    console.log("ejecute Ok");
+                    let DataJsonAnuncio: any = res.Data;
+                    localStorage.setItem('DataAnuncio', DataJsonAnuncio);
+                    //this.anuncioService.setDatosContacto(this.fromContacto.value)
+                    this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-generales']);
+                } else {
+                    console.log("ejecute Error");
+                }
+            }
+        );
+    }
+
+    getCheboxerSeleccionado(ListSeleccionado: any): string {
+
+        let selecionado: string = "";
+        for (let index = 0; index < ListSeleccionado.length; index++) {
+            selecionado += ListSeleccionado[index] + ",";
+        }
+        selecionado = selecionado.substring(0, selecionado.length - 1);
+        return selecionado;
     }
 
     cargarControles() {
         //Controles Datos de Contacto
         this.txt_nombre_fichaCtrl = new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]);
-        this.Telefono1Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
-        this.Telefono2Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
-        this.emailCtrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_mailPattern)]);
-        this.WebCtrl = new FormControl('', [Validators.pattern(this.RegEx_web)]);
+        this.txt_telefono_1Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
+        this.txt_telefono_2Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
+        this.txt_emailCtrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_mailPattern)]);
+        this.txt_webCtrl = new FormControl('', [Validators.pattern(this.RegEx_txt_web)]);
 
         //Controles Datos Generales
         this.edadCtrl = new FormControl('', [Validators.required]);
@@ -267,88 +360,50 @@ export class EditarAnuncioComponent implements OnInit {
         this.txt_toda_nocheCtrl = new FormControl('', [Validators.required]);
         this.txt_viajesCtrl = new FormControl('', [Validators.required]);
         this.txt_descripcion_tarifasCtrl = new FormControl('', []);
-        //this.ListFormaPago = this.anuncioService.getListFormaPago();
-        this.controls = this.ListFormaPago.map(c => new FormControl(false));
-        //this.controls[0].setValue(true);
 
-        // // if (typeof this.FormData.ListFormaPago === 'undefined' || this.FormData.ListFormaPago === null || this.FormData.ListFormaPago.length === 0) {
-        // //     this.ListFormaPago[0].flag = true;
-        // // } else {
-        // //     this.setCheboxes(this.ListFormaPago, this.FormData.ListFormaPago, this.controls);
-        // // }
-
+        this.controlsFormaPago = this.ListFormaPago.map(c => new FormControl(false));
         this.controlsDist = this.ListDistrito.map(c => new FormControl(false));
-        // // this.controlsDist[0].setValue(true);
         this.controlsLugar = this.ListLugarAtencion.map(c => new FormControl(false));
-        // // this.controlsLugar[0].setValue(true);
         this.controlsTipServ = this.ListTipoServicio.map(c => new FormControl(false));
-        // // this.controlsTipServ[0].setValue(true);
-
-        // // if (typeof this.FormData.ListDistrito === 'undefined' || this.FormData.ListDistrito === null || this.FormData.ListDistrito.length === 0) {
-
-        // //     this.ListDistrito[0].flag = true;
-        // // } else {
-        // //     this.setCheboxes(this.ListDistrito, this.FormData.ListDistrito, this.controlsDist);
-        // // }
-        // // //Validamos el seteo el lugar de atencion
-
-        // // if (typeof this.FormData.ListLugar === 'undefined' || this.FormData.ListLugar === null || this.FormData.ListLugar.length === 0) {
-
-        // //     this.ListLugarAtencion[0].flag = true;
-        // // } else {
-        // //     this.setCheboxes(this.ListLugarAtencion, this.FormData.ListLugar, this.controlsLugar);
-        // // }
-        // // //Validamos el seteo el tipo del servicios
-        // // if (typeof this.FormData.ListServicios === 'undefined' || this.FormData.ListServicios === null || this.FormData.ListServicios.length === 0) {
-
-        // //     this.ListTipoServicio[0].flag = true;
-        // // } else {
-        // //     this.setCheboxes(this.ListTipoServicio, this.FormData.ListServicios, this.controlsTipServ);
-        // // }
-        // this.flagatiende24horasCtrl = new FormControl('', []);
         this.txtalgosobredispCtrl = new FormControl('', [Validators.maxLength(450)]);
         this.txt_descripcion_serviciosCtrl = new FormControl('', [Validators.maxLength(450)]);
 
         this.fromGenerales = new FormGroup({
             txt_nombre_ficha: this.txt_nombre_fichaCtrl,
-            telefono1: this.Telefono1Ctrl,
-            telefono2: this.Telefono2Ctrl,
-            email: this.emailCtrl,
-            web: this.WebCtrl,
-            edad: this.edadCtrl,
-            pais: this.paisCtrl,
-            estudios: this.estudiosCtrl,
-            descripciongenerales: this.txt_descripcion_generalesCtrl,
-            cabello: this.cabellosCtrl,
-            ojos: this.ojosCtrl,
-            estatura: this.estaturaCtrl,
-            peso: this.pesoCtrl,
+            txt_telefono_1: this.txt_telefono_1Ctrl,
+            txt_telefono_2: this.txt_telefono_2Ctrl,
+            txt_email: this.txt_emailCtrl,
+            txt_web: this.txt_webCtrl,
+            int_edad: this.edadCtrl,
+            int_pais_origen: this.paisCtrl,
+            int_estudios: this.estudiosCtrl,
+            txt_presentacion: this.txt_descripcion_generalesCtrl,
+            int_color_cabello: this.cabellosCtrl,
+            int_color_ojos: this.ojosCtrl,
+            int_estatura: this.estaturaCtrl,
+            int_peso: this.pesoCtrl,
             busto: this.bustoCtrl,
             cintura: this.cinturaCtrl,
             cadera: this.caderaCtrl,
-            descripcionapariencia: this.descripcionaparienciaCtrl,
-
-            txt_30_min: this.txt_30_minCtrl,
-            txt_45_min: this.txt_45_minCtrl,
-            txt_1_hora: this.txt_1_horaCtrl,
-            txt_1_30_hora: this.txt_1_30_horaCtrl,
-            txt_2_hora: this.txt_2_horaCtrl,
-            txt_3_hora: this.txt_3_horaCtrl,
-            txt_salida: this.txt_salidaCtrl,
-            txt_toda_noche: this.txt_toda_nocheCtrl,
-            txt_viajes: this.txt_viajesCtrl,
-            txt_descripcion_tarifas: this.txt_descripcion_tarifasCtrl,
-            ListFormaPago: new FormArray(this.controls, this.minSelectedCheckboxes(1)),
+            txt_descripcion_extra_apariencia: this.descripcionaparienciaCtrl,
+            dbl_costo_x_tiempo_30min: this.txt_30_minCtrl,
+            dbl_costo_x_tiempo_45min: this.txt_45_minCtrl,
+            dbl_costo_x_tiempo_1hora: this.txt_1_horaCtrl,
+            dbl_costo_x_tiempo_1hora_media: this.txt_1_30_horaCtrl,
+            dbl_costo_x_tiempo_2hora: this.txt_2_horaCtrl,
+            dbl_costo_x_tiempo_3hora: this.txt_3_horaCtrl,
+            dbl_costo_x_tiempo_salidas: this.txt_salidaCtrl,
+            dbl_costo_x_tiempo_toda_noche: this.txt_toda_nocheCtrl,
+            dbl_costo_x_viaje: this.txt_viajesCtrl,
+            txt_descripcion_extra_tarifa: this.txt_descripcion_tarifasCtrl,
+            //txt_forma_pago: new FormArray(this.controlsFormaPago, this.minSelectedCheckboxes(1)),
+            ListFormaPago: new FormArray(this.controlsFormaPago, this.minSelectedCheckboxes(1)),
             ListDistrito: new FormArray(this.controlsDist, this.minSelectedCheckboxes(1)),
             ListLugarAtencion: new FormArray(this.controlsLugar, this.minSelectedCheckboxes(1)),
             ListTipoServicio: new FormArray(this.controlsTipServ, this.minSelectedCheckboxes(1)),
-            algosobredisponibilidad: this.txtalgosobredispCtrl,
-            txt_descripcion_servicios: this.txt_descripcion_serviciosCtrl
-            // flagatiende24hora: this.flagatiende24horasCtrl,
+            tx_descripcion_extra_horario: this.txtalgosobredispCtrl,
+            tx_descripcion_extra_servicio: this.txt_descripcion_serviciosCtrl
+            // tx_fl_atencion_24horas: this.flagatiende24horasCtrl,
         });
-    }
-
-    loadEditarAnuncio() {
-
     }
 }

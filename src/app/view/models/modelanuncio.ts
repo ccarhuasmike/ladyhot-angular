@@ -20,6 +20,7 @@ export class FormData {
     txt_cintura: string = '';
     txt_cadera: string = '';
     txt_descripcion_apariencia: string = '';
+    txt_medidas_busto_cintura_cadera: string = '';
     //Tarifa 
     txt_30_min: number = 0;
     txt_45_min: number = 0;
@@ -86,11 +87,47 @@ export class DatosContacto {
     txt_descripcion_contacto: string = '';
 }
 
-export class DatosGenerales {
+export class DatosGenerales implements DatosContacto, Apariencia, Tarifas, Servicios {
+    //Datos de Contacto
+    txt_nombre: string = '';
+    txt_telefono1: string = '';
+    txt_telefono2: string = '';
+    txt_email: string = '';
+    txt_web: string = '';
+    txt_descripcion_contacto: string = '';
+    //Datos Generales
     cbo_edad: string = '';
     cbo_pais_origen: string = '';
     cbo_estudio: string = '';
     txt_descripcion_generales: string = '';
+    //Datos Apariencia
+    cbo_cabello: string = '';
+    cbo_ojos: string = '';
+    cbo_estatura: string = '';
+    cbo_peso: string = '';
+    txt_busto: string = '';
+    txt_cintura: string = '';
+    txt_cadera: string = '';
+    txt_descripcion_apariencia: string = '';
+    //Datos Tarifas
+    txt_30_min: number = 0;
+    txt_45_min: number = 0;
+    txt_1_hora: number = 0;
+    txt_1_30_hora: number = 0;
+    txt_2_hora: number = 0;
+    txt_3_hora: number = 0;
+    txt_salida: number = 0;
+    txt_toda_noche: number = 0;
+    txt_viajes: number = 0;
+    ListFormaPago: ModelCarga[] = new Array<ModelCarga>();
+    txt_descripcion_tarifas: string = '';
+    //Datos Servicios
+    ListDistrito: ModelCarga[] = new Array<ModelCarga>();
+    flagatiende24horas: boolean = false;
+    algosobredisponibilidad: string = '';
+    ListLugar: ModelCarga[] = new Array<ModelCarga>();
+    ListServicios: ModelCarga[] = new Array<ModelCarga>();
+    txt_descripcion_servicios: string = '';
 }
 
 export class Apariencia {
@@ -115,7 +152,7 @@ export class Tarifas {
     txt_toda_noche: number = 0;
     txt_viajes: number = 0;
     txt_descripcion_tarifas: string = '';
-    ListFormaPago: ModelCarga[] = new Array<ModelCarga>();;
+    ListFormaPago: ModelCarga[] = new Array<ModelCarga>();
 }
 
 

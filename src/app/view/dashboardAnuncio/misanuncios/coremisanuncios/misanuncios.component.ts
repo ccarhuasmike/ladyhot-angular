@@ -19,12 +19,11 @@ export class MisAnunciosComponent implements OnInit {
   constructor(
     private router: Router,
     private anuncioService: AnuncioService,
-    private configService: ConfigService) { 
-      this._baseUrl = configService.getWebApiURL();
-    }
+    private configService: ConfigService) {
+    this._baseUrl = configService.getWebApiURL();
+  }
 
   ngOnInit() {
-    
     this.anuncioService.getListarMisAnuncios().subscribe(
       (res: ClientResponseResult<any>) => {
         this.listaMisAnuncios = res.result;
@@ -32,10 +31,12 @@ export class MisAnunciosComponent implements OnInit {
     );
   }
 
-  editarMiAnuncio(anuncio:Tbl_anuncio){
-    
+  editarMiAnuncio(anuncio: Tbl_anuncio) {
     this.anuncioSelected = anuncio;
     this.router.navigate(["/DashboardAnuncion/misanuncios/editar", this.anuncioSelected.id]);
   }
-
+  darBajaMiAnuncio(anuncio: Tbl_anuncio) {
+    this.anuncioSelected = anuncio;
+    this.router.navigate(["/DashboardAnuncion/misanuncios/darbaja", this.anuncioSelected.cod_anuncio_encryptado]);
+  }
 }

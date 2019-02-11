@@ -737,13 +737,15 @@ export class AnuncioService {
                 return paginatedResult;
             })
         );
-        /* var paginatedResult: ClientResponseResult<ClientResponse> = new ClientResponseResult<ClientResponse>();
-         return this.http.post(this._baseUrl+ 'anuncio/GetAnucionXId',JSON.stringify(id), options).pipe(
-             map(res=>{
-                 paginatedResult.result = JSON.parse(res.json().Data);
-                 return paginatedResult;
-             })            
-         );*/
     }
 
+    darBajaMiAnuncio(id: String): Observable<ClientResponse> {
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/DarBajarAnuncio/' + id, options)
+            .pipe(
+                map(res => {
+                    return res;
+                }),
+                catchError(this.handleError('addHero'))
+            );
+    }
 }

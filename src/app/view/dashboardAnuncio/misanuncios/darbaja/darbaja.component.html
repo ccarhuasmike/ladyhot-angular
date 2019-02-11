@@ -1,7 +1,8 @@
 <div class="container-demo">
   <div class="container-anuncio">
     <div class="container-left">
-      <img class="img-thumbnail" src="https://i.pinimg.com/736x/e8/7f/f1/e87ff18fb1ea227b1eab4aa48c99d26d--naruto-sasuke-sakura-naruto-uzumaki.jpg"
+      <img class="img-thumbnail"
+        src="https://i.pinimg.com/736x/e8/7f/f1/e87ff18fb1ea227b1eab4aa48c99d26d--naruto-sasuke-sakura-naruto-uzumaki.jpg"
         alt="Forest">
     </div>
     <div class="container-right">
@@ -15,8 +16,8 @@
       <br>
 
       <div class="pull-left">
-        <button type="button" class="btn btn-secondary  btn-sm">Cancelar</button>
-        <button type="button" class="btn btn-primary btn-sm">Borrar</button>
+        <button type="button" class="btn btn-secondary  btn-sm" (click)="regresarMisAnuncios()">Cancelar</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="eliminarMiAnuncio()">Borrar</button>
       </div>
     </div>
   </div>

@@ -299,7 +299,6 @@ export class EditarAnuncioComponent implements OnInit {
         entidad.tx_servicios_ofrece = this.getCheboxerSeleccionado(selectedTipoServicio);
         entidad.tx_descripcion_extra_servicio = this.fromGenerales.value.tx_descripcion_extra_servicio;
         this.anuncioService.Saveactualizartodo(entidad).subscribe(
-            //(res: ClientResponseResult<ClientResponse>) => {
             (res) => {
                 console.log(res);
                 if (res.Status == "OK") {

@@ -11,16 +11,16 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'misanucios',
+                redirectTo: 'misanuncios',
                 pathMatch: 'full'
             },
             {
-                path: "darbaja",
+                path: "darbaja/:id",
                 component: DarBajaComponent,
 
             },
             {
-                path: "misanucios",
+                path: "misanuncios",
                 component: MisAnunciosComponent,
             },
             {

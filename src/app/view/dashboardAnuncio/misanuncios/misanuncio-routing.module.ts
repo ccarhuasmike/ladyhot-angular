@@ -15,7 +15,7 @@ const routes: Routes = [
                 pathMatch: 'full'
             },
             {
-                path: "darbaja",
+                path: "darbaja/:id",
                 component: DarBajaComponent,
 
             },

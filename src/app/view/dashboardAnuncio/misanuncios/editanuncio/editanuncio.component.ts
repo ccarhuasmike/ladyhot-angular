@@ -178,7 +178,6 @@ export class EditarAnuncioComponent implements OnInit {
                     }
                 );
             });
-
     }
     selectName() {
 
@@ -299,14 +298,12 @@ export class EditarAnuncioComponent implements OnInit {
         entidad.tx_servicios_ofrece = this.getCheboxerSeleccionado(selectedTipoServicio);
         entidad.tx_descripcion_extra_servicio = this.fromGenerales.value.tx_descripcion_extra_servicio;
         this.anuncioService.Saveactualizartodo(entidad).subscribe(
-            //(res: ClientResponseResult<ClientResponse>) => {
             (res) => {
                 console.log(res);
                 if (res.Status == "OK") {
                     console.log("ejecute Ok");
                     let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
-                    //this.anuncioService.setDatosContacto(this.fromContacto.value)
                     this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-generales']);
                 } else {
                     console.log("ejecute Error");

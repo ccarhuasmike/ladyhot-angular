@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
 export class DarBajaComponent implements OnInit {
 
     _baseUrl: string = '';
+    nombre: string = '';
 
     constructor(
         private anuncioService: AnuncioService,
@@ -24,7 +25,7 @@ export class DarBajaComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        this.nombre = this.route.snapshot.paramMap.get("nombre");
     }
 
     cancelarMiAnuncio() {
@@ -32,7 +33,7 @@ export class DarBajaComponent implements OnInit {
     }
 
     eliminarMiAnuncio() {
-        this.anuncioService.darBajaMiAnuncio(this.route.params["value"]["id"]).subscribe(
+        this.anuncioService.darBajaMiAnuncio(this.route.snapshot.paramMap.get("id")).subscribe(
             (res) => {
                 console.log(res);
                 if (res.Status == "OK") {

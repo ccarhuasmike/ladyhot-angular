@@ -41,7 +41,6 @@ export class DatosContactoComponent implements OnInit {
         this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         this.parameter.getParameter().subscribe(
             (res: PaginatedResult<any[]>) => {
-                debugger;
                 this.listParameter = res.result;
                 localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
                 this._messageService = this.messageService;

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { AnuncioService } from 'src/app/shared/services/service.module';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConfigService } from 'src/app/shared/services/Utilitarios/config.service';
 import { Location } from '@angular/common';
+
 @Component({
     selector: 'app-darBaja',
     templateUrl: './darbaja.component.html',
@@ -8,18 +11,36 @@ import { Location } from '@angular/common';
 })
 export class DarBajaComponent implements OnInit {
 
+    _baseUrl: string = '';
+
     constructor(
+        private anuncioService: AnuncioService,
+        private route: ActivatedRoute,
+        private configService: ConfigService,
         private router: Router,
         private _location: Location
-    ) { }
+    ) {
+        this._baseUrl = configService.getWebApiURL();
+    }
 
     ngOnInit() {
+
     }
-    cancelar() {
+
+    cancelarMiAnuncio() {
         this._location.back();
-        //this.router.navigate(["/DashboardAnuncion/misanuncios/"]);
     }
-    borra_anuncio() {
-        alert('sss');
+
+    eliminarMiAnuncio() {
+        this.anuncioService.darBajaMiAnuncio(this.route.params["value"]["id"]).subscribe(
+            (res) => {
+                console.log(res);
+                if (res.Status == "OK") {
+                    this.router.navigate(['DashboardAnuncion/misanuncios']);
+                } else {
+                    console.log("ejecute Error");
+                }
+            }
+        );
     }
 }

@@ -11,7 +11,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'misanucios',
+                redirectTo: 'misanuncios',
                 pathMatch: 'full'
             },
             {
@@ -20,7 +20,7 @@ const routes: Routes = [
 
             },
             {
-                path: "misanucios",
+                path: "misanuncios",
                 component: MisAnunciosComponent,
             },
             {

@@ -37,6 +37,6 @@ export class MisAnunciosComponent implements OnInit {
   }
   darBajaMiAnuncio(anuncio: Tbl_anuncio) {
     this.anuncioSelected = anuncio;
-    this.router.navigate(["/DashboardAnuncion/misanuncios/darbaja", this.anuncioSelected.id]);
+    this.router.navigate(["/DashboardAnuncion/misanuncios/darbaja", this.anuncioSelected.cod_anuncio_encryptado]);
   }
 }

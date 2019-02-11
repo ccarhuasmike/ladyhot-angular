@@ -738,13 +738,9 @@ export class AnuncioService {
             })
         );
     }
-
-    darBajaMiAnuncio(id: String): Observable<ClientResponse> {
-        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/DarBajarAnuncio/' + id, options)
+    darBajaMiAnuncio(anuncio: Tbl_anuncio): Observable<ClientResponse> {
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/DarBajarAnuncio/', anuncio, httpOptions)
             .pipe(
-                map(res => {
-                    return res;
-                }),
                 catchError(this.handleError('addHero'))
             );
     }

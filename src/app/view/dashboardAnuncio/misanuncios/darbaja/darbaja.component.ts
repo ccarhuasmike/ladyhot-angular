@@ -32,9 +32,11 @@ export class DarBajaComponent implements OnInit {
     }
 
     eliminarMiAnuncio() {
-        this.anuncioService.darBajaMiAnuncio(this.route.params["value"]["id"]).subscribe(
+        let entidad: any = {};
+        entidad.cod_anuncio_encryptado = this.route.params["value"]["id"];
+        this.anuncioService.darBajaMiAnuncio(entidad).subscribe(
             (res) => {
-                console.log(res);
+                debugger;
                 if (res.Status == "OK") {
                     this.router.navigate(['DashboardAnuncion/misanuncios']);
                 } else {

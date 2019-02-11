@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
 export class DarBajaComponent implements OnInit {
 
     _baseUrl: string = '';
+    nombre: string = '';
 
     constructor(
         private anuncioService: AnuncioService,
@@ -24,7 +25,7 @@ export class DarBajaComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        this.nombre = this.route.snapshot.paramMap.get("nombre");
     }
 
     cancelarMiAnuncio() {

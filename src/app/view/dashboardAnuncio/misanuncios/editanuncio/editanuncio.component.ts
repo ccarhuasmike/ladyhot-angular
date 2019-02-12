@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
+import { FormGroup, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { FormData } from "../../../models/modelanuncio";
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 import { ClientResponseResult } from 'src/app/Models/ClientResponseModels';
@@ -8,14 +8,13 @@ import { ConfigService } from 'src/app/shared/services/Utilitarios/config.servic
 import { ActivatedRoute } from '@angular/router';
 import { ParameterService } from "../../../../shared/services/anuncio/parameter.service";
 import { PaginatedResult } from '../../../../Models/Tbl_parameter_detModels';
-import { Observable } from 'rxjs';
+
 @Component({
     selector: 'app-editanuncio',
     templateUrl: './editanuncio.component.html',
     styleUrls: ['./editanuncio.component.css']
 })
 export class EditarAnuncioComponent implements OnInit {
-    FormData: FormData;
     fromGenerales: FormGroup;
     isSubmitted: boolean = false;
     _baseUrl: string = '';

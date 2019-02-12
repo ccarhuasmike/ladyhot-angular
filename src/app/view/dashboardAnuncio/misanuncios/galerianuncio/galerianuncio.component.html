@@ -8,45 +8,45 @@
           <div class="panel-body">
             <div class="form-horizontal">
               <div class="form-group row">
-                <div class="col-sm-2">
+                <div class="col-sm-2" *ngFor="let item of ListGaleria; let i = index">
                   <div class="Uploadbtn">
-                    <div id="divfileinput" *ngIf="!base64Image">
+                    <div id="divfileinput">
                       <span class="fa fa-camera fa-4x"></span>
-                      <input type="file" class="input-upload" accept="image/*" (change)="displayPhoto($event)" />
+                      <input type="file" class="input-upload" accept="image/*" (change)="displayPhoto($event,item.id)" />
                     </div>
-                    <img *ngIf="base64Image" class="img-thumbnail" [src]="domSanitizer.bypassSecurityTrustUrl(base64Image)" />
+                    <img *ngIf="item.tx_ruta_file" class="img-thumbnail" [src]="domSanitizer.bypassSecurityTrustUrl(item.tx_ruta_file)" />
                   </div>
                 </div>
-                <div class="col-xs-4 col-md-2">
+                <!-- <div class="col-xs-4 col-md-2">
                   <div class="Uploadbtn">
                     <span class="fa fa-camera fa-4x"></span>
-                    <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->
+                    <input type="file" class="input-upload" accept="image/*" /> 
                   </div>
                 </div>
                 <div class="col-sm-2">
                   <div class="Uploadbtn">
                     <span class="fa fa-camera fa-4x"></span>
-                    <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->
+                    <input type="file" class="input-upload" accept="image/*" /> 
                   </div>
                 </div>
                 <div class="col-sm-2">
                   <div class="Uploadbtn">
                     <span class="fa fa-camera fa-4x"></span>
-                    <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->
+                    <input type="file" class="input-upload" accept="image/*" /> 
                   </div>
                 </div>
                 <div class="col-sm-2">
                   <div class="Uploadbtn">
                     <span class="fa fa-camera fa-4x"></span>
-                    <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->
+                    <input type="file" class="input-upload" accept="image/*" /> 
                   </div>
                 </div>
                 <div class="col-sm-2">
                   <div class="Uploadbtn">
                     <span class="fa fa-camera fa-4x"></span>
-                    <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->
+                    <input type="file" class="input-upload" accept="image/*" /> 
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
             <button class="btn btn-outline-rounded btn-default" (click)="btnAtras()"> <span style="margin-right:10px;"

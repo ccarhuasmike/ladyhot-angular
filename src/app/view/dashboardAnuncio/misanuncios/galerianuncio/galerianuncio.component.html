@@ -10,13 +10,14 @@
               <div class="form-group row">
                 <div class="col-sm-2">
                   <div class="Uploadbtn">
-                    <div id="divfileinput">
+                    <div id="divfileinput" *ngIf="!base64Image">
                       <span class="fa fa-camera fa-4x"></span>
                       <input type="file" class="input-upload" accept="image/*" (change)="displayPhoto($event)" />
                     </div>
+                    <img *ngIf="base64Image" class="img-thumbnail" [src]="domSanitizer.bypassSecurityTrustUrl(base64Image)" />
                   </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-xs-4 col-md-2">
                   <div class="Uploadbtn">
                     <span class="fa fa-camera fa-4x"></span>
                     <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->

@@ -28,7 +28,7 @@ const routes: Routes = [
                 component: EditarAnuncioComponent,
             },
             {
-                path: "galeria",
+                path: "galeria/:id",
                 component: GaleriaAnuncioComponent,
             }
         ]

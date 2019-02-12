@@ -26,7 +26,9 @@ export class MisAnunciosComponent implements OnInit {
   ngOnInit() {
     this.anuncioService.getListarMisAnuncios().subscribe(
       (res: ClientResponseResult<any>) => {
+
         this.listaMisAnuncios = res.result;
+
       }
     );
   }
@@ -34,6 +36,11 @@ export class MisAnunciosComponent implements OnInit {
   editarMiAnuncio(anuncio: Tbl_anuncio) {
     this.anuncioSelected = anuncio;
     this.router.navigate(["/DashboardAnuncion/misanuncios/editar", this.anuncioSelected.id]);
+  }
+  galeriaMiAnuncio(anuncio: Tbl_anuncio) {
+    debugger;
+    this.anuncioSelected = anuncio;
+    this.router.navigate(["/DashboardAnuncion/misanuncios/galeria", this.anuncioSelected.id]);
   }
   darBajaMiAnuncio(anuncio: Tbl_anuncio) {
     this.anuncioSelected = anuncio;

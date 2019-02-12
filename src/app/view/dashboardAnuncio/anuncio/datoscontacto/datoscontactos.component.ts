@@ -79,11 +79,11 @@ export class DatosContactoComponent implements OnInit {
     }
 
     save() {
-        debugger;
+
         this.isSubmitted = true;
         if (!this.fromContacto.valid)
             return;
-        debugger;
+
         if (this.DataJsonAnuncio == null) {
             //Registrar Datos
             let entidad: any = {};
@@ -93,7 +93,6 @@ export class DatosContactoComponent implements OnInit {
             entidad.txt_telefono_2 = this.fromContacto.value.txt_telefono_2;
             entidad.txt_email = this.fromContacto.value.txt_email;
             entidad.txt_web = this.fromContacto.value.txt_web;
-            debugger;
             this.anuncioService.SavePrimerPaso(entidad).subscribe(
                 //(res: ClientResponseResult<ClientResponse>) => {
                 (res) => {

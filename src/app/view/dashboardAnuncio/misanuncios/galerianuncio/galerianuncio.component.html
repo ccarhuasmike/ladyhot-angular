@@ -1,1 +1,62 @@
-galeria
+<div class="container-demo">
+  <form>
+    <h1>Galeria de Fotos</h1>
+    <div class="form-horizontal">
+      <fieldset>
+        <legend></legend>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="form-horizontal">
+              <div class="form-group row">
+                <div class="col-sm-2">
+                  <div class="Uploadbtn">
+                    <div id="divfileinput">
+                      <span class="fa fa-camera fa-4x"></span>
+                      <input type="file" class="input-upload" accept="image/*" (change)="displayPhoto($event)" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="Uploadbtn">
+                    <span class="fa fa-camera fa-4x"></span>
+                    <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="Uploadbtn">
+                    <span class="fa fa-camera fa-4x"></span>
+                    <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="Uploadbtn">
+                    <span class="fa fa-camera fa-4x"></span>
+                    <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="Uploadbtn">
+                    <span class="fa fa-camera fa-4x"></span>
+                    <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="Uploadbtn">
+                    <span class="fa fa-camera fa-4x"></span>
+                    <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-outline-rounded btn-default" (click)="btnAtras()"> <span style="margin-right:10px;"
+                class="glyphicon glyphicon-arrow-left"></span>
+              Atras</button>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </form>
+</div>
+<!-- <div class="container-demo">
+      
+      </div> -->

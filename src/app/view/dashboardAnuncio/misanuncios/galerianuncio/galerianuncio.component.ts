@@ -30,43 +30,21 @@ export class GaleriaAnuncioComponent implements OnInit {
             };
             this.ListGaleria.push(tbl_galeria_anuncio);
         }
-        console.log(this.ListGaleria);
-        //https://medium.com/@amcdnl/file-uploads-with-angular-reactive-forms-960fd0b34cb5
+        debugger;
     }
-
-    onFileChange(event, id: number) {
-        let reader = new FileReader();
-        if (event.target.files && event.target.files.length) {
-            const [file] = event.target.files;
-            reader.onload = () => {
-                // this.formGroup.patchValue({
-                //     file: reader.result
-                // });
-
-                // // need to run CD since file load runs outside of zone
-                // this.cd.markForCheck();
-            };
-            reader.readAsDataURL(file);
-        }
-    }
-
-
-
     displayPhoto(fileInput, id: number) {
         if (fileInput.target.files && fileInput.target.files[0]) {
-            debugger;
-            let object = this.ListGaleria.filter(x => {
-                x.id = id
-            });
-            console.log(object);
-
-
-
             const reader = new FileReader();
             if (fileInput.target.files && fileInput.target.files.length > 0) {
                 let file = fileInput.target.files[0];
                 reader.onloadend = (e) => {
-                    this.base64Image = reader.result as string;
+                    this.ListGaleria.map((todo, i) => {
+                        debugger;
+                        if (todo.id == id) {
+                            this.ListGaleria[i].tx_ruta_file = reader.result as string;
+                            this.ListGaleria[i].tx_ruta_file_cort = "nuevarutacorta";
+                        }
+                    });
                 }
                 reader.readAsDataURL(file);
             }

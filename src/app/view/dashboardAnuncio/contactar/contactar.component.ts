@@ -22,7 +22,7 @@ export class ContactarComponent implements OnInit {
   RegEx_mailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
   constructor(
-    private contactarService: ContactarService,
+    private contactarService: ContactarService
   ) { }
 
   ngOnInit() {

@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: '../app/view/dashboardAnuncio/dashboardanucion.module#DashboadAnuncioModule'
   },
   {
+    path: 'login',
+    loadChildren: '../app/view/login/login.module#LoginAnuncioModule'
+  },
+  {
     path: 'not-found',
     component: NotFoundComponent
   },

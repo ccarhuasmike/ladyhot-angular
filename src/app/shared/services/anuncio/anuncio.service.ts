@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import { StepService } from "./step.service";
 import { Tbl_anuncio } from '../../../Models/Tbl_anuncioModels';
 import { ClientResponse, ClientResponseResult } from '../../../Models/ClientResponseModels';
+import { Tbl_galeria_anuncio } from "../../../Models/Tbl_galeria_anuncioModels";
 import { map } from 'rxjs/operators';
 import { FormData, DatosContacto, DatosGenerales, Apariencia, Tarifas, Servicios } from '../../../view/models/modelanuncio';
 import { ConfigService } from "../Utilitarios/config.service";
@@ -113,6 +114,31 @@ export class AnuncioService {
             })
         );
     }
+
+    // SaveGaleria(galeria: Tbl_galeria_anuncio): Observable<ClientResponseResult<ClientResponse>> {
+    //     return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Primeropaso', anuncio, httpOptions)
+    //         .pipe(
+    //             map(user => {
+    //                 console.log(user);
+    //                 JSON.stringify(user);
+    //                 return user;
+    //             }),
+    //             catchError(this.handleError('addHero'))
+    //         );
+    // }
+
+    SaveGaleria(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/InsertGaleria', galeria, httpOptions)
+            .pipe(
+                map(user => {
+                    console.log(user);
+                    JSON.stringify(user);
+                    return user;
+                }),
+                catchError(this.handleError('addHero'))
+            );
+    }
+
 
     // SavePrimerPaso(anuncio: Tbl_anuncio): Observable<ClientResponse> {
     //     return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Primeropaso', anuncio, httpOptions)

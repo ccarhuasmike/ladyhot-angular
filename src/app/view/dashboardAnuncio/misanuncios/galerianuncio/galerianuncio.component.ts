@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Tbl_galeria_anuncio } from "../../../../Models/Tbl_galeria_anuncioModels";
 import { Observable } from 'rxjs';
+import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
+import { ClientResponse, ClientResponseResult } from '../../../../Models/ClientResponseModels';
 @Component({
     selector: 'app-editanuncio',
     templateUrl: './galerianuncio.component.html',
@@ -9,12 +11,15 @@ import { Observable } from 'rxjs';
 })
 export class GaleriaAnuncioComponent implements OnInit {
     private base64Image: string;
+
     public ListGaleria: Tbl_galeria_anuncio[] = [];
     constructor(
-        private domSanitizer: DomSanitizer
+        private domSanitizer: DomSanitizer,
+        private anuncioService: AnuncioService,
     ) { }
 
     ngOnInit() {
+        this.base64Image = ""
         for (let index = 0; index <= 5; index++) {
             const tbl_galeria_anuncio: Tbl_galeria_anuncio = {
                 id: index,
@@ -30,7 +35,6 @@ export class GaleriaAnuncioComponent implements OnInit {
             };
             this.ListGaleria.push(tbl_galeria_anuncio);
         }
-        debugger;
     }
     displayPhoto(fileInput, id: number) {
         if (fileInput.target.files && fileInput.target.files[0]) {
@@ -38,11 +42,29 @@ export class GaleriaAnuncioComponent implements OnInit {
             if (fileInput.target.files && fileInput.target.files.length > 0) {
                 let file = fileInput.target.files[0];
                 reader.onloadend = (e) => {
+                    //Actualizamos el objeto del listng
                     this.ListGaleria.map((todo, i) => {
-                        debugger;
                         if (todo.id == id) {
-                            this.ListGaleria[i].tx_ruta_file = reader.result as string;
-                            this.ListGaleria[i].tx_ruta_file_cort = "nuevarutacorta";
+                            var result = reader.result as string;
+                            console.log(result);
+                            //this.ListGaleria[i].tx_ruta_file = reader.result as string;
+                            let objeto: any = {};
+                            //let b64Data = b64Data.replace(/data\:image\/(jpeg|jpg|png)\;base64\,/gi, '');
+                            objeto.tx_ruta_file = reader.result;
+                            objeto.id_anuncio = 2193;
+                            objeto.tx_ruta_file = objeto.tx_ruta_file.replace(/data\:image\/(jpeg|jpg|png)\;base64\,/gi, '');
+                            objeto.tx_extension_archivo = file.name.split(".")[1];
+                            objeto.tx_filename = file.name.split(".")[0];
+                            this.anuncioService.SaveGaleria(objeto).subscribe(
+                                (res) => {
+                                    if (res.Status == "OK") {
+                                        let result = JSON.parse(res.DataJson);
+                                        //this.ListGaleria[i].tx_ruta_file = "data:image/png;base64, " + result.tx_ruta_file;
+                                        this.ListGaleria[i].tx_ruta_file = result.tx_ruta_file;
+                                    }
+                                }
+                            );
+
                         }
                     });
                 }

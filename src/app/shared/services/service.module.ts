@@ -9,6 +9,7 @@ import { ParameterService } from './anuncio/parameter.service';
 import { HttpErrorHandler } from '../../throwError/http-error-handler.service';
 import { MessageService } from '../../throwError/message.service';
 import { ContactarService } from './anuncio/contactar.service';
+import { UsuarioService } from './usuario/usuario.service';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ContactarService } from './anuncio/contactar.service';
         HttpErrorHandler,
         MessageService,
         ParameterService,
-        ContactarService
+        ContactarService,
+        UsuarioService
     ]
 })
 export class ServicesModule { }

@@ -36,10 +36,9 @@ export class DatosGeneralesComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        
+
         this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
-        this.datosgenerales = this.anuncioService.getDatosGenerales();
         this.anuncioService.segundopaso(true);
         this.anuncioService.tercerpaso(false);
         this.anuncioService.cuartopaso(false);
@@ -85,9 +84,9 @@ export class DatosGeneralesComponent implements OnInit {
         this.DataJsonAnuncio.int_estudios = parseInt(this.fromDatosGenerales.value.int_estudios);
         this.DataJsonAnuncio.txt_presentacion = this.fromDatosGenerales.value.txt_presentacion;
         this.anuncioService.SaveSegundoPaso(this.DataJsonAnuncio).subscribe(
-            (res: ClientResponseResult<ClientResponse>) => {
-                if (res.result.Status == "OK") {
-                    let DataJsonAnuncio: any = res.result.Data;
+            (res) => {
+                if (res.Status == "OK") {
+                    let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                     this.router.navigate(['DashboardAnuncion/nuevoanuncio/apariencia']);
                 }

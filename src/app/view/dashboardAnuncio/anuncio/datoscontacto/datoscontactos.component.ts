@@ -47,7 +47,6 @@ export class DatosContactoComponent implements OnInit {
                 console.log(this._messageService);
             }
         );
-        this.datoscontacto = this.anuncioService.getDatosContacto();
         this.anuncioService.segundopaso(false);
         this.anuncioService.tercerpaso(false);
         this.anuncioService.cuartopaso(false);
@@ -116,9 +115,9 @@ export class DatosContactoComponent implements OnInit {
             this.DataJsonAnuncio.txt_email = this.fromContacto.value.txt_email;
             this.DataJsonAnuncio.txt_web = this.fromContacto.value.txt_web;
             this.anuncioService.UpdateSavePrimerPaso(this.DataJsonAnuncio).subscribe(
-                (res: ClientResponseResult<ClientResponse>) => {
-                    if (res.result.Status == "OK") {
-                        let DataJsonAnuncio: any = res.result.Data;
+                (res) => {
+                    if (res.Status == "OK") {
+                        let DataJsonAnuncio: any = res.Data;
                         localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                         //this.anuncioService.setDatosContacto(this.fromContacto.value)
                         this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-generales']);

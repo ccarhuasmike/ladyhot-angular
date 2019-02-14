@@ -174,10 +174,9 @@ export class ServiciosComponent implements OnInit {
         this.DataJsonAnuncio.tx_descripcion_extra_servicio = this.fromServicios.value.txt_descripcion_servicios;
 
         this.anuncioService.SaveQuintoPaso(this.DataJsonAnuncio).subscribe(
-            (res: ClientResponseResult<ClientResponse>) => {
-
-                if (res.result.Status == "OK") {
-                    let DataJsonAnuncio: any = res.result.Data;
+            (res) => {
+                if (res.Status == "OK") {
+                    let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                     this.router.navigate(['DashboardAnuncion/nuevoanuncio/galeria']);
                 }

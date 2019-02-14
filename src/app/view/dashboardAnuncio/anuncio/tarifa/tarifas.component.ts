@@ -41,7 +41,6 @@ export class TarifasComponent implements OnInit {
     ngOnInit() {
         this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
-        this.tarifas = this.anuncioService.getTarifas();
         this.anuncioService.segundopaso(true);
         this.anuncioService.tercerpaso(true);
         this.anuncioService.cuartopaso(true);
@@ -153,10 +152,9 @@ export class TarifasComponent implements OnInit {
         this.DataJsonAnuncio.txt_descripcion_extra_tarifa = this.fromTarifa.value.txt_descripcion_extra_tarifa;
 
         this.anuncioService.SaveCuartoPaso(this.DataJsonAnuncio).subscribe(
-            (res: ClientResponseResult<ClientResponse>) => {
-
-                if (res.result.Status == "OK") {
-                    let DataJsonAnuncio: any = res.result.Data;
+            (res) => {
+                if (res.Status == "OK") {
+                    let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                     this.router.navigate(['DashboardAnuncion/nuevoanuncio/servicios']);
                 }

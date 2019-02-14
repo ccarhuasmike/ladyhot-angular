@@ -40,7 +40,6 @@ export class AparienciaComponent implements OnInit {
     ngOnInit() {
         this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
-        this.apariencia = this.anuncioService.getApariencia();
         this.anuncioService.segundopaso(true);
         this.anuncioService.tercerpaso(true);
         this.anuncioService.cuartopaso(false);
@@ -93,7 +92,7 @@ export class AparienciaComponent implements OnInit {
         this.isSubmittedApariencia = true;
         if (!this.fromApariencia.valid)
             return;
-        
+
         this.DataJsonAnuncio.int_color_cabello = parseInt(this.fromApariencia.value.int_color_cabello);
         this.DataJsonAnuncio.int_color_ojos = parseInt(this.fromApariencia.value.int_color_ojos);
         this.DataJsonAnuncio.int_estatura = parseInt(this.fromApariencia.value.int_estatura);
@@ -101,9 +100,9 @@ export class AparienciaComponent implements OnInit {
         this.DataJsonAnuncio.txt_medidas_busto_cintura_cadera = this.fromApariencia.value.busto + "-" + this.fromApariencia.value.cintura + "-" + this.fromApariencia.value.cadera;
         this.DataJsonAnuncio.txt_descripcion_extra_apariencia = this.fromApariencia.value.txt_descripcion_extra_apariencia;
         this.anuncioService.SaveTerceroPaso(this.DataJsonAnuncio).subscribe(
-            (res: ClientResponseResult<ClientResponse>) => {
-                if (res.result.Status == "OK") {
-                    let DataJsonAnuncio: any = res.result.Data;
+            (res) => {
+                if (res.Status == "OK") {
+                    let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                     this.router.navigate(['DashboardAnuncion/nuevoanuncio/tarifa']);
                 }

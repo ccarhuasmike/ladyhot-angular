@@ -1,3 +1,5 @@
+import { Bean_paginate } from "./Bean_paginate";
+
 export interface Tbl_anuncio {
     id: number;
     txt_nombre_ficha: string;
@@ -54,5 +56,8 @@ export interface Tbl_anuncio {
     cod_anuncio_encryptado: string;
     id_usuario: number;
     txt_imagen_prensetancion: string;
+
+    //parametros adicionales
+    beanPaginate: Bean_paginate;
 }
 

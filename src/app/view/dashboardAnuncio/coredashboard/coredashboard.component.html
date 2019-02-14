@@ -3,15 +3,20 @@
     <div class="form-group row">
       <div class="col-xs-12 col-sm-4">
         <div class="list-group">
-          <a [routerLink]="['./nuevoanuncio']" (click)="nuevoanuncionclick()" [routerLinkActive]="['active']" class="list-group-item actve"><i
+          <a [routerLink]="['./mantenimiento-anuncio']" class="list-group-item" [routerLinkActive]="['active']"><i
               class="fa fa-key"></i>
+            <span>Mantenimiento anuncio</span></a>
+          <a [routerLink]="['./nuevoanuncio']" (click)="nuevoanuncionclick()" [routerLinkActive]="['active']"
+            class="list-group-item actve"><i class="fa fa-key"></i>
             <span>Publica nuevo anuncio</span></a>
-          <a [routerLink]="['./misanuncios']" [routerLinkActive]="['active']" class="list-group-item"><i class="fa fa-credit-card"></i>
+          <a [routerLink]="['./misanuncios']" [routerLinkActive]="['active']" class="list-group-item"><i
+              class="fa fa-credit-card"></i>
             <span>Mis Anuncios</span></a>
           <!-- <a [routerLink]="['home']" [routerLinkActive]="['active']" class="list-group-item"><i class="fa fa-question-circle"></i>
                   <span>Contratar Publicidad</span></a>
                    -->
-          <a [routerLink]="['./contactar']" [routerLinkActive]="['active']" class="list-group-item"><i class="fa fa-arrow-circle-o-left"></i>
+          <a [routerLink]="['./contactar']" [routerLinkActive]="['active']" class="list-group-item"><i
+              class="fa fa-arrow-circle-o-left"></i>
             <span>Contactar</span></a>
           <a [routerLink]="['/salir']" class="list-group-item"><i class="fa fa-book"></i>
             <span>Salir</span></a>

@@ -28,6 +28,10 @@ const routes: Routes = [
                 path: 'contactar',
                 component: ContactarComponent
             },
+            {
+                path: 'mantenimiento-anuncio',
+                loadChildren: '../../../app/view/dashboardAnuncio/mantenimiento-anuncio/mantenimiento-anuncio.module#MantenimientoAnuncioModule'
+            },
             // {
             //     path: 'salir',
             //     loadChildren: '../../welcome'

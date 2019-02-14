@@ -47,13 +47,13 @@ export class AnuncioService {
 
     SavePrimerPaso(anuncio: Tbl_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Primeropaso', anuncio, httpOptions).pipe(
-            catchError(this.handleError('addHero'))
+            catchError(this.handleError('SavePrimerPaso'))
         );
     }
     ///https://stackblitz.com/angular/ooqemvjyqkb?file=src%2Fapp%2Fheroes%2Fheroes.service.ts
     SavePrimerPaso1(anuncio: Tbl_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Primeropaso', JSON.stringify(anuncio), httpOptions).pipe(
-            catchError(this.handleError('SavePrimerPaso'))
+            catchError(this.handleError('SavePrimerPaso1'))
         );
     }
 

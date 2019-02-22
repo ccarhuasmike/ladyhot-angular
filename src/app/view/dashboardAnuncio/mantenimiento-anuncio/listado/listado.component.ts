@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { MantenimientoAnuncioService } from 'src/app/shared/services/mantenimiento-anuncio/mantenimiento-anuncio.service';
 import { ClientResponseResult } from 'src/app/Models/ClientResponseModels';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ModalActualizaAnuncio } from '../modal-actualizar-anuncio/modal-actualizar-anuncio.component';
+import { AnuncioService } from 'src/app/shared/services/service.module';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-listado',
@@ -8,6 +12,8 @@ import { ClientResponseResult } from 'src/app/Models/ClientResponseModels';
     styleUrls: ['./listado.component.css']
 })
 export class ListadoComponent implements OnInit {
+    modalRef: BsModalRef;
+
     listaAnuncios: any;
     pageSize = 10;     // Limit number for pagination display number.  
     totalCount = 0;  // Total number of items in all pages. initialize as a zero  
@@ -19,6 +25,7 @@ export class ListadoComponent implements OnInit {
     public totalItems: number = 0;
     public currentPage: number = 1;
     paginacion: any = {};
+    codigo: string = "";
     // web para guiarse con la paginacion
     //https://valor-software.com/ngx-bootstrap/#/pagination
     ngOnInit(): void {
@@ -31,8 +38,10 @@ export class ListadoComponent implements OnInit {
     };
 
     constructor(
-        private mantenimientoAnuncioService: MantenimientoAnuncioService
-
+        private mantenimientoAnuncioService: MantenimientoAnuncioService,
+        private modalService: BsModalService,
+        private anuncioService: AnuncioService,
+        private router: Router
     ) {
         this.paginacion.ItemsPerPage = this.itemsPerPage;
         this.paginacion.TotalItems = this.totalItems;
@@ -73,5 +82,43 @@ export class ListadoComponent implements OnInit {
                 this.totalCount = res.result.totalCount;
             }
         );
+    }
+
+    modalEditar(id: string) {
+        this.modalRef = this.modalService.show(ModalActualizaAnuncio, {
+            initialState: {
+                title: 'Actualizar Anuncio',
+                data: {
+                    id: id
+                }
+            }
+        });
+    }
+
+    darBaja(modalConfirmacion: TemplateRef<any>, codigo) {
+        this.modalRef = this.modalService.show(modalConfirmacion, { class: 'modal-sm' });
+        this.codigo = codigo;
+    }
+
+    confirmarDarBaja() {
+        let entidad: any = {};
+        entidad.cod_anuncio_encryptado = this.codigo;
+        if (this.codigo != null) {
+            this.anuncioService.darBajaMiAnuncio(entidad).subscribe(
+                (res) => {
+                    debugger;
+                    if (res.Status == "OK") {
+                        this.modalRef.hide()
+                        this.router.navigate(['DashboardAnuncion/mantenimiento-anuncio']);
+                    } else {
+                        console.log("ejecute Error");
+                    }
+                }
+            );
+        }
+    }
+
+    cancelarDarBaja() {
+        this.modalRef.hide();
     }
 }

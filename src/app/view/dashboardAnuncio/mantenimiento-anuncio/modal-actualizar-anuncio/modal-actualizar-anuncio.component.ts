@@ -65,7 +65,6 @@ export class ModalActualizaAnuncio implements OnInit {
         // this.txt_telefono_1Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
         // this.txt_telefono_2Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
         // this.txt_emailCtrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_mailPattern)]);
-        // //this.txt_webCtrl = new FormControl('', [Validators.pattern(this.RegEx_txt_web)]);
-
+        // this.txt_webCtrl = new FormControl('', [Validators.pattern(this.RegEx_txt_web)]);
     }
 }

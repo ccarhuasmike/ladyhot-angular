@@ -6,6 +6,7 @@
           <th>Id</th>
           <th>Name</th>
           <th>Email</th>
+          <th>Estado</th>
           <th colspan="2">Opciones</th>
         </tr>
       </thead>
@@ -20,12 +21,14 @@
     </ng-template>
     <ng-template #ocultarGrilla>
       <tbody *ngFor="let result of listado">
-        <tr>
+        <tr class="{{result.id_estado_reg?'table-danger':''}}">
           <td>{{result.id}}</td>
           <td>{{result.txt_nombre_ficha}}</td>
           <td>{{result.txt_email}}</td>
-          <td><button class="btn btn-primary">Editar</button></td>
-          <td><button class="btn btn-success">Dar Baja</button></td>
+          <td>{{ result.id_estado_reg?'Inactivo':'Activo'}}</td>
+          <td><button class="btn btn-primary" disabled="{{result.id_estado_reg?'disabled':''}}" (click)="modalEditar(result.id)">Editar</button></td>
+          <td><button class="btn btn-success" disabled="{{result.id_estado_reg?'disabled':''}}" (click)="darBaja(modalConfirmacion,result.cod_anuncio_encryptado)">Dar
+              Baja</button></td>
         </tr>
       </tbody>
       <pagination [boundaryLinks]="true" [maxSize]="2" [itemsPerPage]="itemsPerPage" [totalItems]="totalItems"
@@ -35,3 +38,11 @@
 
   </div>
 </div>
+
+<ng-template #modalConfirmacion>
+  <div class="modal-body text-center">
+    <p>Estas seguro dar de baja?</p>
+    <button type="button" class="btn btn-default btn-sm" (click)="confirmarDarBaja()">Borrar</button>
+    <button type="button" class="btn btn-primary btn-sm" (click)="cancelarDarBaja()">Cancelar</button>
+  </div>
+</ng-template>

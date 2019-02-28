@@ -91,16 +91,31 @@ export class AnuncioService {
             catchError(this.handleError('SaveCuartoPaso'))
         );
     }
+
+    /*Galeria*/
     SaveGaleria(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/InsertGaleria', galeria, httpOptions)
             .pipe(
-                catchError(this.handleError('addHero'))
+                catchError(this.handleError('SaveGaleria'))
             );
     }
+    GetGaleriaXIdAnuncio(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/GetGeleriaXIdAnuncio', galeria, httpOptions)
+            .pipe(
+                catchError(this.handleError('GetGaleriaXIdAnuncio'))
+            );
+    }
+    EliminarGaleriaXId(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/EliminarFoto', galeria, httpOptions)
+            .pipe(
+                catchError(this.handleError('EliminarGaleriaXId'))
+            );
+    }
+
     Saveactualizartodo(anuncio: Tbl_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/ActualizarTodo', anuncio, httpOptions)
             .pipe(
-                catchError(this.handleError('addHero'))
+                catchError(this.handleError('Saveactualizartodo'))
             );
     }
     getListarMisAnuncios(): Observable<ClientResponseResult<any[]>> {
@@ -125,7 +140,7 @@ export class AnuncioService {
     darBajaMiAnuncio(anuncio: Tbl_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/DarBajarAnuncio/', anuncio, httpOptions)
             .pipe(
-                catchError(this.handleError('addHero'))
+                catchError(this.handleError('darBajaMiAnuncio'))
             );
     }
 
@@ -144,6 +159,4 @@ export class AnuncioService {
     sextopaso(flag: boolean) {
         this.stepService.activaStep6(flag);
     }
-
-
 }

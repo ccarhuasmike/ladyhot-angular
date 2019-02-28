@@ -106,7 +106,6 @@ export class ListadoComponent implements OnInit {
         if (this.codigo != null) {
             this.anuncioService.darBajaMiAnuncio(entidad).subscribe(
                 (res) => {
-                    debugger;
                     if (res.Status == "OK") {
                         this.modalRef.hide()
                         this.router.navigate(['DashboardAnuncion/mantenimiento-anuncio']);

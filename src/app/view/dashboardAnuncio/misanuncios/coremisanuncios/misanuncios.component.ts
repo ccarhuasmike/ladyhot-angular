@@ -38,7 +38,6 @@ export class MisAnunciosComponent implements OnInit {
     this.router.navigate(["/DashboardAnuncion/misanuncios/editar", this.anuncioSelected.id]);
   }
   galeriaMiAnuncio(anuncio: Tbl_anuncio) {
-    debugger;
     this.anuncioSelected = anuncio;
     this.router.navigate(["/DashboardAnuncion/misanuncios/galeria", this.anuncioSelected.id]);
   }

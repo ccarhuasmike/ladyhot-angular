@@ -9,18 +9,31 @@
             <div class="form-horizontal">
               <div class="form-group row">
                 <div class="col-sm-2" *ngFor="let item of ListGaleria; let i = index">
-                  <div class="Uploadbtn" *ngIf="!item.tx_ruta_file">
+                  <div class="Uploadbtn" *ngIf="!item.Base64ContentFicha">
                     <div id="divfileinput">
                       <span class="fa fa-camera fa-4x"></span>
                       <input type="file" class="input-upload" accept="image/*" (change)="displayPhoto($event,item.id)" />
+
                     </div>
                   </div>
-                  <img *ngIf="item.tx_ruta_file" class="img-thumbnail" [src]="domSanitizer.bypassSecurityTrustUrl(item.tx_ruta_file)" />
+                  <div class="displayFoto" *ngIf="item.Base64ContentFicha">
+                    <img class="img-thumbnail" [src]="domSanitizer.bypassSecurityTrustUrl(item.Base64ContentFicha)" />
+                    <button class="btn btn-primary btn-sm btn-block" (click)="ClickEliminar(item.id)">Eliminar</button>
+                    <button class="btn btn-primary btn-sm btn-block">Ver Imagen</button>
+                  </div>
+
+                  <progressbar [animate]="true" [value]="dynamic" type="primary" [max]="100"><b>{{dynamic}}%</b></progressbar>
+                  <!-- <progressbar class="progress" [value]="stacked" [max]="100"></progressbar> -->
+
+                  <!-- <div class="progress" id="prog-bar" name="prog-bar">
+                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
+                      aria-valuemax="100">25%</div>
+                  </div> -->
+
                 </div>
               </div>
             </div>
-            <button class="btn btn-outline-rounded btn-default" (click)="btnAtras()"> <span style="margin-right:10px;"
-                class="glyphicon glyphicon-arrow-left"></span>
+            <button class="btn btn-outline-rounded btn-default"> <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span>
               Atras</button>
           </div>
         </div>

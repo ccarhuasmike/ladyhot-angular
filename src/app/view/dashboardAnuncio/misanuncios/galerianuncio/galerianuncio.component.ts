@@ -1,40 +1,79 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Tbl_galeria_anuncio } from "../../../../Models/Tbl_galeria_anuncioModels";
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
-import { ClientResponse, ClientResponseResult } from '../../../../Models/ClientResponseModels';
+import { debug } from 'util';
 @Component({
     selector: 'app-editanuncio',
     templateUrl: './galerianuncio.component.html',
     styleUrls: ['./galerianuncio.component.css']
 })
 export class GaleriaAnuncioComponent implements OnInit {
-    private base64Image: string;
-
     public ListGaleria: Tbl_galeria_anuncio[] = [];
+    dynamic: number = 0;
     constructor(
         private domSanitizer: DomSanitizer,
         private anuncioService: AnuncioService,
-    ) { }
+        private router: Router,
+        private route: ActivatedRoute
+    ) {
 
+
+    }
     ngOnInit() {
-        this.base64Image = ""
+        debugger;
+        var element = document.getElementsByClassName('prog-bar');
+        let objeto: any = {};
+        objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
+        this.anuncioService.GetGaleriaXIdAnuncio(objeto).subscribe(
+            (res) => {
+                this.dynamic++;
+                if (res.Status == "OK") {
+                    this.listarGaleria(res.DataJson);
+                }
+            },
+            (error) => this.dynamic++
+        );
+    }
+
+    listarGaleria(data) {
+
         for (let index = 0; index <= 5; index++) {
-            const tbl_galeria_anuncio: Tbl_galeria_anuncio = {
-                id: index,
-                tx_filename: "",
-                tx_ruta_file: "",
-                tx_ruta_file_cort: "",
-                size_file: 0,
-                id_tipo_archivo: 0,
-                dt_fe_crea: new Date(),
-                id_anuncio: 0,
-                txt_ruta_virtuales: "",
-                txt_ruta_virtuales_cortada: ""
-            };
-            this.ListGaleria.push(tbl_galeria_anuncio);
+            var resultObject = JSON.parse(data)[index];
+            if (resultObject != null) {
+                this.ListGaleria.push(resultObject);
+            } else {
+                const tbl_galeria_anuncio: Tbl_galeria_anuncio = {
+                    id: index,
+                    tx_filename: "",
+                    tx_ruta_file: "",
+                    tx_ruta_file_cort: "",
+                    size_file: 0,
+                    id_tipo_archivo: 0,
+                    dt_fe_crea: new Date(),
+                    id_anuncio: 0,
+                    txt_ruta_virtuales: "",
+                    txt_ruta_virtuales_cortada: "",
+                    Base64ContentFicha: "",
+                    Base64ContentFichaCort: ""
+                };
+                this.ListGaleria.push(tbl_galeria_anuncio);
+            }
         }
+    }
+    ClickEliminar(id: number) {
+        debugger;
+        let objeto: any = {};
+        objeto.id = id;
+        objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
+        this.anuncioService.EliminarGaleriaXId(objeto).subscribe(
+            (res) => {
+                if (res.Status == "OK") {
+                    this.ListGaleria[this.ListGaleria.findIndex(x => x.id == id)].Base64ContentFicha = "";
+                }
+            }
+        );
     }
     displayPhoto(fileInput, id: number) {
         if (fileInput.target.files && fileInput.target.files[0]) {
@@ -42,16 +81,12 @@ export class GaleriaAnuncioComponent implements OnInit {
             if (fileInput.target.files && fileInput.target.files.length > 0) {
                 let file = fileInput.target.files[0];
                 reader.onloadend = (e) => {
-                    //Actualizamos el objeto del listng
+                    //Actualizamos el objeto del list
                     this.ListGaleria.map((todo, i) => {
                         if (todo.id == id) {
-                            var result = reader.result as string;
-                            console.log(result);
-                            //this.ListGaleria[i].tx_ruta_file = reader.result as string;
                             let objeto: any = {};
-                            //let b64Data = b64Data.replace(/data\:image\/(jpeg|jpg|png)\;base64\,/gi, '');
                             objeto.tx_ruta_file = reader.result;
-                            objeto.id_anuncio = 2193;
+                            objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
                             objeto.tx_ruta_file = objeto.tx_ruta_file.replace(/data\:image\/(jpeg|jpg|png)\;base64\,/gi, '');
                             objeto.tx_extension_archivo = file.name.split(".")[1];
                             objeto.tx_filename = file.name.split(".")[0];
@@ -59,12 +94,10 @@ export class GaleriaAnuncioComponent implements OnInit {
                                 (res) => {
                                     if (res.Status == "OK") {
                                         let result = JSON.parse(res.DataJson);
-                                        //this.ListGaleria[i].tx_ruta_file = "data:image/png;base64, " + result.tx_ruta_file;
-                                        this.ListGaleria[i].tx_ruta_file = result.tx_ruta_file;
+                                        this.ListGaleria[i].Base64ContentFicha = result.Base64ContentFicha;
                                     }
                                 }
                             );
-
                         }
                     });
                 }

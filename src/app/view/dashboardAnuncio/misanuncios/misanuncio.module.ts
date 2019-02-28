@@ -7,13 +7,14 @@ import { MisAnunciosComponent } from "./coremisanuncios/misanuncios.component";
 import { EditarAnuncioComponent } from './editanuncio/editanuncio.component';
 import { GaleriaAnuncioComponent } from './galerianuncio/galerianuncio.component';
 import { DarBajaComponent } from './darbaja/darbaja.component';
-
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 @NgModule({
     imports: [
         CommonModule,
         MisAnuncioRoutingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        ProgressbarModule.forRoot()
     ],
     declarations: [
         MisAnunciosComponent,

@@ -22,7 +22,14 @@
                     <button class="btn btn-primary btn-sm btn-block">Ver Imagen</button>
                   </div>
 
-                  <progressbar [animate]="true" [value]="dynamic" type="primary" [max]="100"><b>{{dynamic}}%</b></progressbar>
+                  <p *ngIf="loaderService.isLoading | async">
+                    Loading!
+                  </p>
+                  <p *ngIf="!(loaderService.isLoading | async)">
+                    Not Loading!
+                  </p>
+
+                  <progressbar [animate]="false" [value]="dynamic" type="primary" [max]="100"><b>{{loaderService.requestsRunning}}%</b></progressbar>
                   <!-- <progressbar class="progress" [value]="stacked" [max]="100"></progressbar> -->
 
                   <!-- <div class="progress" id="prog-bar" name="prog-bar">

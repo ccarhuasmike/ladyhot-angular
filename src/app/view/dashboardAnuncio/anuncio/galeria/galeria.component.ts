@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 import { debug } from 'util';
+
 // import { Galeria, Fileinput } from "../../../models/modelanuncio";
 @Component({
     selector: 'app-galeria',

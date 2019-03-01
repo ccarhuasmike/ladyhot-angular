@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Tbl_galeria_anuncio } from "../../../../Models/Tbl_galeria_anuncioModels";
 import { ActivatedRoute, Router } from '@angular/router';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
+import { LoaderService } from "../../../../shared/services/loader/loader.service";
 import { debug } from 'util';
 @Component({
     selector: 'app-editanuncio',
@@ -16,7 +17,8 @@ export class GaleriaAnuncioComponent implements OnInit {
         private domSanitizer: DomSanitizer,
         private anuncioService: AnuncioService,
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        public loaderService: LoaderService
     ) {
 
 
@@ -28,6 +30,7 @@ export class GaleriaAnuncioComponent implements OnInit {
         objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
         this.anuncioService.GetGaleriaXIdAnuncio(objeto).subscribe(
             (res) => {
+
                 this.dynamic++;
                 if (res.Status == "OK") {
                     this.listarGaleria(res.DataJson);
@@ -91,12 +94,16 @@ export class GaleriaAnuncioComponent implements OnInit {
                             objeto.tx_extension_archivo = file.name.split(".")[1];
                             objeto.tx_filename = file.name.split(".")[0];
                             this.anuncioService.SaveGaleria(objeto).subscribe(
+
                                 (res) => {
                                     if (res.Status == "OK") {
                                         let result = JSON.parse(res.DataJson);
                                         this.ListGaleria[i].Base64ContentFicha = result.Base64ContentFicha;
                                     }
-                                }
+                                },
+                                responseAfterSuccess => {
+
+                                },
                             );
                         }
                     });

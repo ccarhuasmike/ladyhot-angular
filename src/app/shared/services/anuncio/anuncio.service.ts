@@ -4,14 +4,15 @@ import { StepService } from "./step.service";
 import { Tbl_anuncio } from '../../../Models/Tbl_anuncioModels';
 import { ClientResponse, ClientResponseResult } from '../../../Models/ClientResponseModels';
 import { Tbl_galeria_anuncio } from "../../../Models/Tbl_galeria_anuncioModels";
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { FormData, DatosContacto, DatosGenerales, Apariencia, Tarifas, Servicios } from '../../../view/models/modelanuncio';
 import { ConfigService } from "../Utilitarios/config.service";
 import { catchError } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpErrorHandler, HandleError } from '../../../throwError/http-error-handler.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+
 
 const options = new RequestOptions({
     headers: new Headers({
@@ -28,11 +29,18 @@ const httpOptions = {
 };
 
 
+
+
 @Injectable() // The Injectable decorator is required for dependency injection to work
 export class AnuncioService {
     private formData: FormData = new FormData();
     _baseUrl: string = '';
     private handleError: HandleError;
+    public progress: number = 0;
+    public message: string = "";
+    public percentage: number = 0
+    public completed: number = 0
+
 
     constructor(
         private http: Http,
@@ -94,8 +102,47 @@ export class AnuncioService {
 
     /*Galeria*/
     SaveGaleria(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
+        // const httpOptions = {
+        //     headers: new HttpHeaders({
+        //         'Content-Type': 'application/json',
+        //         "Accept": 'application/json'
+        //     })
+        // };
+
+
+        // const uploadReq = new HttpRequest(
+        //     'POST',
+        //     this._baseUrl + 'galeria/InsertGaleria',
+        //     galeria,
+        //     { reportProgress: true }
+        // );
+        // var peginatedResult: Observable<ClientResponse> = new Observable<ClientResponse>();
+        // this.httpClient.request(uploadReq).subscribe((event) => {
+        //     if (event.type === HttpEventType.UploadProgress) {
+        //         this.progress = Math.round(100 * event.loaded / event.total);
+        //     }
+        //     else if (event.type === HttpEventType.Response) {
+        //         this.message = event.body.toString();
+        //     }
+        //     map(res => {
+
+        //     });
+        // });
+        // return peginatedResult;
+
+
+        // map(res => {
+        //     //         peginatedResult.result = res.json();
+        //     //         return peginatedResult;
+        //     //     })
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/InsertGaleria', galeria, httpOptions)
             .pipe(
+
+                // tap(res => {
+                //     debugger;
+                //     this.percentage = ++this.completed
+                // }),
+                //tap(res => this.percentage = (++completed / apiCalls.length)),
                 catchError(this.handleError('SaveGaleria'))
             );
     }

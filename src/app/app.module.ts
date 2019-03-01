@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from '../app/view/not-found/not-found.component';
 import { CoreModule } from '../app/view/core/core.module';
 import { SharedModule } from './shared/shared.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { SharedModule } from './shared/shared.module';
     //   headerName: 'My-Xsrf-Header',
     // }),
     CoreModule,
+
     SharedModule
   ],
   providers: [],

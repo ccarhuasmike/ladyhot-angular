@@ -7,11 +7,10 @@ import { NavigatorComponent } from './navigator/navigator.component';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { CoreModules } from '../../shared/services/loader';
 
-// import { PaginationModule } from 'ngx-pagination-bootstrap'
-// import { PaginationModule } from 'ngx-bootstrap/pagination'
 @NgModule({
-    imports: [CommonModule, RouterModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule],
+    imports: [CommonModule, RouterModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule, FormsModule],
     declarations: [NavigatorComponent, HeaderComponent, MainComponent, FooterComponent],
     exports: [NavigatorComponent]
 })

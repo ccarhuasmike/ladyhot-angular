@@ -11,4 +11,5 @@ export interface Tbl_galeria_anuncio {
     txt_ruta_virtuales_cortada: string;
     Base64ContentFicha: string;
     Base64ContentFichaCort: string;
+    progressbar: number
 }

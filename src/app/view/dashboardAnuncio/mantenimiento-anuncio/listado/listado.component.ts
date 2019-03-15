@@ -60,7 +60,8 @@ export class ListadoComponent implements OnInit {
                 } else {
                     this.flagexistRegistro = false;
                 }
-                let s: any = JSON.parse(res.paginacion);
+                //let s: any = JSON.parse(res.paginacion);
+                let s: any = res.paginacion;
                 this.totalItems = s.TotalItems;
             },
             error => {

@@ -22,14 +22,14 @@
                     <button class="btn btn-primary btn-sm btn-block">Ver Imagen</button>
                   </div>
 
-                  <p *ngIf="loaderService.isLoading | async">
+                  <!-- <p *ngIf="loaderService.isLoading | async">
                     Loading!
                   </p>
                   <p *ngIf="!(loaderService.isLoading | async)">
                     Not Loading!
-                  </p>
-
-                  <progressbar [animate]="false" [value]="dynamic" type="primary" [max]="100"><b>{{loaderService.requestsRunning}}%</b></progressbar>
+                  </p> -->
+                  <progressbar [animate]="true" [value]=anuncioService.progress type="primary" [max]="100"><b>{{anuncioService.progress}}
+                      / {{100}}</b></progressbar>
                   <!-- <progressbar class="progress" [value]="stacked" [max]="100"></progressbar> -->
 
                   <!-- <div class="progress" id="prog-bar" name="prog-bar">

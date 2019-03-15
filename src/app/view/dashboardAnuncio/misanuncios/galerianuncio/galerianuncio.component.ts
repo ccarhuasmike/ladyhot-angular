@@ -4,7 +4,6 @@ import { Tbl_galeria_anuncio } from "../../../../Models/Tbl_galeria_anuncioModel
 import { ActivatedRoute, Router } from '@angular/router';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 import { LoaderService } from "../../../../shared/services/loader/loader.service";
-import { debug } from 'util';
 @Component({
     selector: 'app-editanuncio',
     templateUrl: './galerianuncio.component.html',
@@ -12,36 +11,28 @@ import { debug } from 'util';
 })
 export class GaleriaAnuncioComponent implements OnInit {
     public ListGaleria: Tbl_galeria_anuncio[] = [];
-    dynamic: number = 0;
     constructor(
         private domSanitizer: DomSanitizer,
         private anuncioService: AnuncioService,
         private router: Router,
         private route: ActivatedRoute,
-        public loaderService: LoaderService
+        // public loaderService: LoaderService
     ) {
 
 
     }
     ngOnInit() {
-        debugger;
-        var element = document.getElementsByClassName('prog-bar');
         let objeto: any = {};
         objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
         this.anuncioService.GetGaleriaXIdAnuncio(objeto).subscribe(
             (res) => {
-
-                this.dynamic++;
                 if (res.Status == "OK") {
                     this.listarGaleria(res.DataJson);
                 }
-            },
-            (error) => this.dynamic++
+            }
         );
     }
-
     listarGaleria(data) {
-
         for (let index = 0; index <= 5; index++) {
             var resultObject = JSON.parse(data)[index];
             if (resultObject != null) {
@@ -59,7 +50,8 @@ export class GaleriaAnuncioComponent implements OnInit {
                     txt_ruta_virtuales: "",
                     txt_ruta_virtuales_cortada: "",
                     Base64ContentFicha: "",
-                    Base64ContentFichaCort: ""
+                    Base64ContentFichaCort: "",
+                    progressbar: 0
                 };
                 this.ListGaleria.push(tbl_galeria_anuncio);
             }
@@ -94,16 +86,15 @@ export class GaleriaAnuncioComponent implements OnInit {
                             objeto.tx_extension_archivo = file.name.split(".")[1];
                             objeto.tx_filename = file.name.split(".")[0];
                             this.anuncioService.SaveGaleria(objeto).subscribe(
-
                                 (res) => {
+                                    debugger;
                                     if (res.Status == "OK") {
+
                                         let result = JSON.parse(res.DataJson);
                                         this.ListGaleria[i].Base64ContentFicha = result.Base64ContentFicha;
+                                        this.ListGaleria[i].progressbar = result.progressbar;
                                     }
-                                },
-                                responseAfterSuccess => {
-
-                                },
+                                }
                             );
                         }
                     });

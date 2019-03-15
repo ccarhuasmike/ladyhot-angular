@@ -13,7 +13,7 @@ import { UsuarioService } from './usuario/usuario.service';
 import { MantenimientoAnuncioService } from './mantenimiento-anuncio/mantenimiento-anuncio.service';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { LoaderInterceptor } from '../../shared/services/loader/loader.interceptor';
+// import { LoaderInterceptor } from '../../shared/services/loader/loader.interceptor';
 import { LoaderService } from "../../shared/services/loader/loader.service";
 
 
@@ -35,11 +35,11 @@ import { LoaderService } from "../../shared/services/loader/loader.service";
         UsuarioService,
         MantenimientoAnuncioService,
         LoaderService,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: LoaderInterceptor,
-            multi: true
-        }
+        // {
+        //     provide: HTTP_INTERCEPTORS,
+        //     useClass: LoaderInterceptor,
+        //     multi: true
+        // }
     ]
 })
 export class ServicesModule { }

@@ -7,7 +7,8 @@ export interface ClientResponse {
     Status: string;
     StatusCode: number;
     ViewResult: string;
-    paginacion: string;
+    totalCount: string;
+    paginacion: object;
 }
 
 export class ClientResponseResult<T> {

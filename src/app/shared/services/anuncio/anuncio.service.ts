@@ -41,7 +41,6 @@ export class AnuncioService {
     public percentage: number = 0
     public completed: number = 0
 
-
     constructor(
         private http: Http,
         private httpClient: HttpClient,
@@ -101,51 +100,53 @@ export class AnuncioService {
     }
 
     /*Galeria*/
-    SaveGaleria(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
-        // const httpOptions = {
-        //     headers: new HttpHeaders({
-        //         'Content-Type': 'application/json',
-        //         "Accept": 'application/json'
-        //     })
-        // };
+    SaveGaleria(galeria: Tbl_galeria_anuncio): Observable<HttpEvent<ClientResponse>> {
+        // var clientResponse: Observable<ClientResponse> = new Observable<ClientResponse>();
+        const req = new HttpRequest('POST', this._baseUrl + 'galeria/InsertGaleria', galeria, {
+            reportProgress: true,
+        });
 
-
-        // const uploadReq = new HttpRequest(
-        //     'POST',
-        //     this._baseUrl + 'galeria/InsertGaleria',
-        //     galeria,
-        //     { reportProgress: true }
-        // );
-        // var peginatedResult: Observable<ClientResponse> = new Observable<ClientResponse>();
-        // this.httpClient.request(uploadReq).subscribe((event) => {
-        //     if (event.type === HttpEventType.UploadProgress) {
-        //         this.progress = Math.round(100 * event.loaded / event.total);
-        //     }
-        //     else if (event.type === HttpEventType.Response) {
-        //         this.message = event.body.toString();
-        //     }
-        //     map(res => {
-
+        // this.httpClient.request<ClientResponse>(req).subscribe(
+        //     (event) => {
+        //         if (event.type === HttpEventType.UploadProgress) {
+        //             this.progress = Math.round(100 * event.loaded / event.total);
+        //         }
+        //         else if (event.type === HttpEventType.Response) {
+        //             debugger;
+        //             event.body;
+        //         }
         //     });
-        // });
-        // return peginatedResult;
-
-
-        // map(res => {
-        //     //         peginatedResult.result = res.json();
-        //     //         return peginatedResult;
-        //     //     })
-        return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/InsertGaleria', galeria, httpOptions)
+        //return clientResponse;
+        return this.httpClient.request<ClientResponse>(req)
             .pipe(
-
-                // tap(res => {
-                //     debugger;
-                //     this.percentage = ++this.completed
-                // }),
-                //tap(res => this.percentage = (++completed / apiCalls.length)),
                 catchError(this.handleError('SaveGaleria'))
             );
     }
+
+    private getEventMessage(event: HttpEvent<any>, formData) {
+
+        switch (event.type) {
+
+            case HttpEventType.UploadProgress:
+                return this.fileUploadProgress(event);
+
+            case HttpEventType.Response:
+                return this.apiResponse(event);
+
+            default:
+                return `File "${formData.get('profile').name}" surprising upload event: ${event.type}.`;
+        }
+    }
+    private apiResponse(event) {
+        return event.body;
+    }
+
+
+    private fileUploadProgress(event) {
+        const percentDone = Math.round(100 * event.loaded / event.total);
+        return { status: 'progress', message: percentDone };
+    }
+
     GetGaleriaXIdAnuncio(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/GetGeleriaXIdAnuncio', galeria, httpOptions)
             .pipe(

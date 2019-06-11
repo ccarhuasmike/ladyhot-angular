@@ -17,7 +17,7 @@ const routes: Routes = [
     loadChildren: '../app/view/about/about.module#AboutModule'
   },
   {
-    path: 'DashboardAnuncion',
+    path: 'panelcontrol',
     loadChildren: '../app/view/panelcontrol/dashboardanucion.module#DashboadAnuncioModule'
   },
   {

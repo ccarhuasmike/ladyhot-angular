@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AnuncioComponent } from './anuncio.component';
+import { AnuncioComponent } from './index/index.component';
 import { DatosContactoComponent } from "./datoscontacto/datoscontactos.component";
 import { DatosGeneralesComponent } from "./datosgenerales/datosgenerales.component";
 import { AparienciaComponent } from "./apariencia/apariencia.component";

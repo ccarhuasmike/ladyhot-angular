@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AnuncioService } from "../../../shared/services/anuncio/anuncio.service";
-import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
+import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-anuncio',
-    templateUrl: "./anuncio.component.html",
-    styleUrls: ['./anuncio.component.css']
+    templateUrl: "./index.component.html",
+    styleUrls: ['./index.component.css']
 })
 export class AnuncioComponent implements OnInit {
 
@@ -20,8 +19,7 @@ export class AnuncioComponent implements OnInit {
 
     constructor(
         private anuncioService: AnuncioService,
-        private router: Router,
-        private frmBuilder: FormBuilder
+        private router: Router        
     ) { }
     ngOnInit() {
         //this.router.navigate(['/anuncio/servicios']);

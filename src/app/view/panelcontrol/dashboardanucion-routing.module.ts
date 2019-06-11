@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CoreDashboardComponent } from './coredashboard/coredashboard.component';
+import { indexComponent } from './index/indexcomponent';
 import { ContactarComponent } from './contactar/contactar.component';
 
 // import { DatosContactoComponent } from "./anuncio/datoscontacto/datoscontactos.component";
@@ -13,7 +13,7 @@ import { ContactarComponent } from './contactar/contactar.component';
 const routes: Routes = [
     {
         path: '',
-        component: CoreDashboardComponent,
+        component: indexComponent,
         children: [
             {
                 path: 'misanuncios',

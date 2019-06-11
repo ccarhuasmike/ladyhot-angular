@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AnuncioRoutingModule } from './anuncio-routing.module';
-import { AnuncioComponent } from '../anuncio/anuncio.component';
+import { AnuncioComponent } from './anuncio.component"
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OnlyNumber } from '../../../directivas/onlynumber.directive';
-import { DatosContactoComponent } from "../anuncio/datoscontacto/datoscontactos.component";
-import { DatosGeneralesComponent } from "../anuncio/datosgenerales/datosgenerales.component";
-import { AparienciaComponent } from "../anuncio/apariencia/apariencia.component";
-import { TarifasComponent } from "../anuncio/tarifa/tarifas.component";
-import { ServiciosComponent } from "../anuncio/servicios/servicios.component";
-import { NavBarTabComponent } from "../anuncio/navbar-tab/navbar-tab.component";
-import { GaleriaComponent } from "../anuncio/galeria/galeria.component";
+import { DatosContactoComponent } from "./datoscontacto/datoscontactos.component"
+import { DatosGeneralesComponent } from "./datosgenerales/datosgenerales.component"
+import { AparienciaComponent } from "./apariencia/apariencia.component"
+import { TarifasComponent } from "./tarifa/tarifas.component"
+import { ServiciosComponent } from "./servicios/servicios.component"
+import { NavBarTabComponent } from "./navbar-tab/navbar-tab.component"
+import { GaleriaComponent } from "./galeria/galeria.component"
 // import { MisAnunciosComponent } from "../misanuncios/misanuncios.component";
 @NgModule({
     imports: [
@@ -27,8 +27,7 @@ import { GaleriaComponent } from "../anuncio/galeria/galeria.component";
         TarifasComponent,
         ServiciosComponent,
         NavBarTabComponent,
-        GaleriaComponent,
-        // MisAnunciosComponent,
+        GaleriaComponent,        
         OnlyNumber
     ],
     exports: [

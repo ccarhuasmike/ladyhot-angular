@@ -2,12 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-main',
-  template: `
-  <main class="section" style="margin-top: 78px;">
+  template: ` 
     <div class="container-fluid">
       <router-outlet></router-outlet>
-    </div>
-  </main>
+    </div>  
   `,
   styles: []
 })

@@ -6,10 +6,10 @@ import { debug } from 'util';
 
 @Component({
     selector: 'app-coredashboard',
-    templateUrl: "./coredashboard.component.html",
-    styleUrls: ['./coredashboard.component.css']
+    templateUrl: "./index.component.html",
+    styleUrls: ['./index.component.css']
 })
-export class CoreDashboardComponent implements OnInit {
+export class indexComponent implements OnInit {
     constructor(
     ) { }
 

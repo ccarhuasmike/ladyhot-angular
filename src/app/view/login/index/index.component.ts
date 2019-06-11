@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-ingresar',
-    templateUrl: "./ingresar.component.html",
-    styleUrls: ['./ingresar.component.css']
+    templateUrl: "./index.component.html",
+    styleUrls: ['./index.component.css']
 })
 export class IngresarComponent implements OnInit {
     formIngresar: FormGroup;

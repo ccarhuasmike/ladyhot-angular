@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { IngresarComponent } from './ingresar/ingresar.component';
+import { IngresarComponent } from './index/index.component';
 
 const routes: Routes = [
     {

@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
-import { HomeComponent } from './home/home.component';
+import { IndexComponent } from './index/index.component';
+import { headerfilter } from './headerfilter/headerfilter.component';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 @NgModule({
@@ -11,6 +12,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
         NgxMasonryModule,
         InfiniteScrollModule
     ],
-    declarations: [HomeComponent]
+    declarations: [IndexComponent,headerfilter]
 })
 export class HomeModule { }

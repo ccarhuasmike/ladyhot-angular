@@ -20,22 +20,9 @@
                     <img class="img-thumbnail" [src]="domSanitizer.bypassSecurityTrustUrl(item.Base64ContentFicha)" />
                     <button class="btn btn-primary btn-sm btn-block" (click)="ClickEliminar(item.id)">Eliminar</button>
                     <button class="btn btn-primary btn-sm btn-block">Ver Imagen</button>
-                  </div>
-
-                  <!-- <p *ngIf="loaderService.isLoading | async">
-                    Loading!
-                  </p>
-                  <p *ngIf="!(loaderService.isLoading | async)">
-                    Not Loading!
-                  </p> -->
-                  <progressbar [animate]="true" [value]=anuncioService.progress type="primary" [max]="100"><b>{{anuncioService.progress}}
-                      / {{100}}</b></progressbar>
-                  <!-- <progressbar class="progress" [value]="stacked" [max]="100"></progressbar> -->
-
-                  <!-- <div class="progress" id="prog-bar" name="prog-bar">
-                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
-                      aria-valuemax="100">25%</div>
-                  </div> -->
+                  </div>                  
+                  <!-- <progressbar [animate]="true" [value]=anuncioService.progress type="primary" [max]="100"><b>{{anuncioService.progress}}
+                      / {{100}}</b></progressbar> -->                 
 
                 </div>
               </div>

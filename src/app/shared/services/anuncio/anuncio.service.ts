@@ -13,23 +13,17 @@ import { HttpErrorHandler, HandleError } from '../../../throwError/http-error-ha
 import { HttpClient, HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
-
 const options = new RequestOptions({
     headers: new Headers({
         "Content-Type": "application/json"
-
     })
 });
-
 const httpOptions = {
     headers: new HttpHeaders({
         'Content-Type': 'application/json',
         "Accept": 'application/json'
     })
 };
-
-
-
 
 @Injectable() // The Injectable decorator is required for dependency injection to work
 export class AnuncioService {
@@ -40,7 +34,7 @@ export class AnuncioService {
     public message: string = "";
     public percentage: number = 0
     public completed: number = 0
-
+    
     constructor(
         private http: Http,
         private httpClient: HttpClient,
@@ -100,11 +94,11 @@ export class AnuncioService {
     }
 
     /*Galeria*/
-    SaveGaleria(galeria: Tbl_galeria_anuncio): Observable<HttpEvent<ClientResponse>> {
+    SaveGaleria(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
         // var clientResponse: Observable<ClientResponse> = new Observable<ClientResponse>();
-        const req = new HttpRequest('POST', this._baseUrl + 'galeria/InsertGaleria', galeria, {
-            reportProgress: true,
-        });
+        // const req = new HttpRequest('POST', this._baseUrl + 'galeria/InsertGaleria', galeria, {
+        //     reportProgress: true,
+        // });
 
         // this.httpClient.request<ClientResponse>(req).subscribe(
         //     (event) => {
@@ -116,11 +110,12 @@ export class AnuncioService {
         //             event.body;
         //         }
         //     });
-        //return clientResponse;
-        return this.httpClient.request<ClientResponse>(req)
-            .pipe(
-                catchError(this.handleError('SaveGaleria'))
-            );
+        // return clientResponse;
+
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/InsertGaleria', galeria, httpOptions)
+        .pipe(
+            catchError(this.handleError('GetGaleriaXIdAnuncio'))
+        );     
     }
 
     private getEventMessage(event: HttpEvent<any>, formData) {
@@ -140,8 +135,6 @@ export class AnuncioService {
     private apiResponse(event) {
         return event.body;
     }
-
-
     private fileUploadProgress(event) {
         const percentDone = Math.round(100 * event.loaded / event.total);
         return { status: 'progress', message: percentDone };

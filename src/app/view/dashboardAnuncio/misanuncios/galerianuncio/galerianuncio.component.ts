@@ -89,7 +89,6 @@ export class GaleriaAnuncioComponent implements OnInit {
                                 (res) => {
                                     debugger;
                                     if (res.Status == "OK") {
-
                                         let result = JSON.parse(res.DataJson);
                                         this.ListGaleria[i].Base64ContentFicha = result.Base64ContentFicha;
                                         this.ListGaleria[i].progressbar = result.progressbar;

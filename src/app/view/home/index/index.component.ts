@@ -5,11 +5,11 @@ import { HomeService } from "../../../shared/services/anuncio/home.services";
 import { MessageService } from "../../../throwError/message.service";
 @Component({
   selector: 'app-home',
-  templateUrl: "./home.component.html",
-  styleUrls: ['./home.component.css'],
+  templateUrl: "./index.component.html",
+  styleUrls: ['./index.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit {
+export class IndexComponent implements OnInit {
 
   public masonryOptions: NgxMasonryOptions = {
     transitionDuration: '2.0s',

@@ -1,0 +1,25 @@
+
+<app-headerfilter></app-headerfilter>
+<div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5"
+  [infiniteScrollThrottle]="500" (scrolled)="onScrollDown()" (scrolledUp)="onScrollUp()">
+  <div class="masonry">
+    <div class="item" *ngFor="let item of masonryImages; let i = index">
+      <img src="{{item.foto}}">
+      <div class="icons-fichas">
+        <span class="icons-fichas-info">
+          <span class="fa fa-info"></span>
+        </span>
+        <span class="icons-fichas-player ">
+          <span class="fa fa-play"></span>
+        </span>
+      </div>
+      <a href="#" class="btn-small">{{item.distrito}}</a>
+      <a href="#" class="btn-small"> {{item.edad}}</a>
+      <a href="#" class="btn-small">{{item.precio}}</a>
+      <a href="#" class="btn-small">{{item.pais}}</a>
+      <p class="descripcion">
+        {{item.descripcion}}
+      </p>
+    </div>
+  </div>
+</div>

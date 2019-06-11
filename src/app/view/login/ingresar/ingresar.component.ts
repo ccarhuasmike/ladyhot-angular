@@ -48,7 +48,7 @@ export class IngresarComponent implements OnInit {
             (res) => {
                 console.log(res);
                 if (res.result.Status == "OK") {
-                    this.router.navigate(['DashboardAnuncion/misanuncios']);
+                    this.router.navigate(['panelcontrol/misanuncios']);
                     console.log(JSON.parse(res.result.DataJson));
                     alert("inicio session");
                 } else {

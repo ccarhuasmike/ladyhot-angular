@@ -101,7 +101,7 @@ export class DatosContactoComponent implements OnInit {
                         let DataJsonAnuncio: any = res.Data;
                         localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                         //this.anuncioService.setDatosContacto(this.fromContacto.value)
-                        this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-generales']);
+                        this.router.navigate(['panelcontrol/nuevoanuncio/datos-generales']);
                     } else {
                         console.log("ejecute Error");
                     }
@@ -120,7 +120,7 @@ export class DatosContactoComponent implements OnInit {
                         let DataJsonAnuncio: any = res.Data;
                         localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                         //this.anuncioService.setDatosContacto(this.fromContacto.value)
-                        this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-generales']);
+                        this.router.navigate(['panelcontrol/nuevoanuncio/datos-generales']);
                     }
                 }
             );

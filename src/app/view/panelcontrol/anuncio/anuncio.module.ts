@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AnuncioRoutingModule } from './anuncio-routing.module';
-import { AnuncioComponent } from './anuncio.component"
+import { AnuncioComponent } from './anuncio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OnlyNumber } from '../../../directivas/onlynumber.directive';
 import { DatosContactoComponent } from "./datoscontacto/datoscontactos.component"

@@ -156,7 +156,7 @@ export class TarifasComponent implements OnInit {
                 if (res.Status == "OK") {
                     let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
-                    this.router.navigate(['DashboardAnuncion/nuevoanuncio/servicios']);
+                    this.router.navigate(['panelcontrol/nuevoanuncio/servicios']);
                 }
             }
         );
@@ -185,6 +185,6 @@ export class TarifasComponent implements OnInit {
     }
 
     btnAtras(form: any) {
-        this.router.navigate(['DashboardAnuncion/nuevoanuncio/apariencia']);
+        this.router.navigate(['panelcontrol/nuevoanuncio/apariencia']);
     }
 }

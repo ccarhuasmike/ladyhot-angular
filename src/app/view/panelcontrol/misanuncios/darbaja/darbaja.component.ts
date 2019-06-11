@@ -43,7 +43,7 @@ export class DarBajaComponent implements OnInit {
         this.anuncioService.darBajaMiAnuncio(entidad).subscribe(
             (res) => {
                 if (res.Status == "OK") {
-                    this.router.navigate(['DashboardAnuncion/misanuncios']);
+                    this.router.navigate(['panelcontrol/misanuncios']);
                 } else {
                     console.log("ejecute Error");
                 }

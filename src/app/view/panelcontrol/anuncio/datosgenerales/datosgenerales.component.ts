@@ -73,7 +73,7 @@ export class DatosGeneralesComponent implements OnInit {
 
     }
     goToPrevious(form: any) {
-        this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-contacto']);
+        this.router.navigate(['panelcontrol/nuevoanuncio/datos-contacto']);
     }
     saveDatosGenerales() {
         this.isSubmittedDatosGenerales = true;
@@ -88,7 +88,7 @@ export class DatosGeneralesComponent implements OnInit {
                 if (res.Status == "OK") {
                     let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
-                    this.router.navigate(['DashboardAnuncion/nuevoanuncio/apariencia']);
+                    this.router.navigate(['panelcontrol/nuevoanuncio/apariencia']);
                 }
             }
         );
@@ -104,6 +104,6 @@ export class DatosGeneralesComponent implements OnInit {
     }
 
     btnAtras(form: any) {
-        this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-contacto']);
+        this.router.navigate(['panelcontrol/nuevoanuncio/datos-contacto']);
     }
 }

@@ -178,7 +178,7 @@ export class ServiciosComponent implements OnInit {
                 if (res.Status == "OK") {
                     let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
-                    this.router.navigate(['DashboardAnuncion/nuevoanuncio/galeria']);
+                    this.router.navigate(['panelcontrol/nuevoanuncio/galeria']);
                 }
             }
         );
@@ -205,7 +205,7 @@ export class ServiciosComponent implements OnInit {
     }
 
     btnAtras(form: any) {
-        this.router.navigate(['DashboardAnuncion/nuevoanuncio/tarifa']);
+        this.router.navigate(['panelcontrol/nuevoanuncio/tarifa']);
     }
 
 }

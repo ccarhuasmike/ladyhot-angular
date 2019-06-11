@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'DashboardAnuncion',
-    loadChildren: '../app/view/dashboardAnuncio/dashboardanucion.module#DashboadAnuncioModule'
+    loadChildren: '../app/view/panelcontrol/dashboardanucion.module#DashboadAnuncioModule'
   },
   {
     path: 'login',

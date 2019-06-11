@@ -109,7 +109,7 @@ export class ListadoComponent implements OnInit {
                 (res) => {
                     if (res.Status == "OK") {
                         this.modalRef.hide()
-                        this.router.navigate(['DashboardAnuncion/mantenimiento-anuncio']);
+                        this.router.navigate(['panelcontrol/mantenimiento-anuncio']);
                     } else {
                         console.log("ejecute Error");
                     }

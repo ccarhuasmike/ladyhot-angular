@@ -69,6 +69,6 @@ export class GaleriaComponent implements OnInit {
         // }
     }
     btnAtras() {
-        this.router.navigate(['DashboardAnuncion/nuevoanuncio/servicios']);
+        this.router.navigate(['panelcontrol/nuevoanuncio/servicios']);
     }
 }

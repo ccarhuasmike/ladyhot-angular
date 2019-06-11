@@ -303,7 +303,7 @@ export class EditarAnuncioComponent implements OnInit {
                     console.log("ejecute Ok");
                     let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
-                    this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-generales']);
+                    this.router.navigate(['panelcontrol/nuevoanuncio/datos-generales']);
                 } else {
                     console.log("ejecute Error");
                 }

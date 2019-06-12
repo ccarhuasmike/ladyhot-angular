@@ -303,7 +303,7 @@ export class EditarAnuncioComponent implements OnInit {
                     console.log("ejecute Ok");
                     let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
-                    this.router.navigate(['panelcontrol/nuevoanuncio/datos-generales']);
+                    this.router.navigate(['panelcontrol/misanuncios']);
                 } else {
                     console.log("ejecute Error");
                 }
@@ -312,7 +312,6 @@ export class EditarAnuncioComponent implements OnInit {
     }
 
     getCheboxerSeleccionado(ListSeleccionado: any): string {
-
         let selecionado: string = "";
         for (let index = 0; index < ListSeleccionado.length; index++) {
             selecionado += ListSeleccionado[index] + ",";

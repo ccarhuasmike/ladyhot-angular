@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Tbl_anuncio } from '../../../Models/Tbl_anuncioModels';
 import { PaginatedResult, Tbl_parameter_det } from '../../../Models/Tbl_parameter_detModels';
 import { ConfigService } from "../Utilitarios/config.service";
 import { HttpErrorHandler, HandleError } from '../../../throwError/http-error-handler.service';
@@ -37,21 +35,6 @@ export class ParameterService {
     getSerialized<T>(arg: any): T {
         return <T>JSON.parse(JSON.stringify(arg));
     }
-    // private handleError(error: any) {
-    //     var applicationError = error.headers.get('Application-Error');
-    //     var serverError = error.json();
-    //     var modelStateErrors: string = '';
-
-    //     if (!serverError.type) {
-    //         console.log(serverError);
-    //         for (var key in serverError) {
-    //             if (serverError[key])
-    //                 modelStateErrors += serverError[key] + '\n';
-    //         }
-    //     }
-    //     modelStateErrors = modelStateErrors = '' ? null : modelStateErrors;
-    //     return Observable.throw(applicationError || modelStateErrors || 'Server error');
-    // }
 
     getFormUrlEncoded(toConvert) {
         const formBody = [];

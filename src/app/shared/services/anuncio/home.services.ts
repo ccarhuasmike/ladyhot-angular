@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-// import { Observable, throwError } from 'rxjs';
-// import { catchError } from 'rxjs/operators';
-// import { HttpErrorResponse } from '@angular/common/http';
-// import { map } from 'rxjs/operators';
-// import { Tbl_anuncio } from '../../../Models/Tbl_anuncioModels';
 import { ConfigService } from "../Utilitarios/config.service";
 import { HttpErrorHandler, HandleError, } from '../../../throwError/http-error-handler.service';
 //https://stackblitz.com/angular/ooqemvjyqkb?file=src%2Fapp%2Fauth.service.ts
@@ -23,55 +18,10 @@ export class HomeService {
         this._baseUrl = configService.getWebApiURL();
     }
     getAnuncio(): void {
-
-        // this.http.get(this._baseUrl + 'anuncio/ListarAnuncios').subscribe(
-        //     json => {
-        //         console.log(json)
-        //     },
-        //     error => {
-        //         console.log(error);
-        //         //console.log('oops', this.handleError('searchHeroes', error))
-        //     }
-        // );
-
-
-
-        // let httpOptions = {
-        //     headers: new Headers({
-        //         'Content-Type': 'application/json'
-        //     })
-        // };
-        // return this.http.get(this._baseUrl + 'anuncio/ListarAnuncios')
-        // map(data => {
-        //     console.log(data);
-        // }),
-        //     catchError(err => {
-        //         console.error(err.message);
-        //         console.log("Error is handled");
-        //         return throwError("Error thrown from catchError");
-        //     });
     }
-
-
     getSerialized<T>(arg: any): T {
         return <T>JSON.parse(JSON.stringify(arg));
     }
-    // private handleError(error: any) {
-    //     var applicationError = error.headers.get('Application-Error');
-    //     var serverError = error.json();
-    //     var modelStateErrors: string = '';
-
-    //     if (!serverError.type) {
-    //         console.log(serverError);
-    //         for (var key in serverError) {
-    //             if (serverError[key])
-    //                 modelStateErrors += serverError[key] + '\n';
-    //         }
-    //     }
-    //     modelStateErrors = modelStateErrors = '' ? null : modelStateErrors;
-    //     return Observable.throw(applicationError || modelStateErrors || 'Server error');
-    // }
-
     getFormUrlEncoded(toConvert) {
         const formBody = [];
         for (const property in toConvert) {

@@ -5,7 +5,7 @@ import { Tbl_anuncio } from '../../../Models/Tbl_anuncioModels';
 import { ClientResponse, ClientResponseResult } from '../../../Models/ClientResponseModels';
 import { Tbl_galeria_anuncio } from "../../../Models/Tbl_galeria_anuncioModels";
 import { map, tap } from 'rxjs/operators';
-import { FormData, DatosContacto, DatosGenerales, Apariencia, Tarifas, Servicios } from '../../../view/models/modelanuncio';
+import { FormData } from '../../../view/models/modelanuncio';
 import { ConfigService } from "../Utilitarios/config.service";
 import { catchError } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
@@ -34,7 +34,7 @@ export class AnuncioService {
     public message: string = "";
     public percentage: number = 0
     public completed: number = 0
-    
+
     constructor(
         private http: Http,
         private httpClient: HttpClient,
@@ -67,14 +67,6 @@ export class AnuncioService {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Segundopaso', JSON.stringify(anuncio), httpOptions).pipe(
             catchError(this.handleError('SaveSegundoPaso'))
         );
-
-        // var peginatedResult: ClientResponseResult<ClientResponse> = new ClientResponseResult<ClientResponse>();
-        // return this.http.post(this._baseUrl + 'anuncio/Segundopaso', JSON.stringify(anuncio), options).pipe(
-        //     map(res => {
-        //         peginatedResult.result = res.json();
-        //         return peginatedResult;
-        //     })
-        // );
     }
 
     SaveTerceroPaso(anuncio: Tbl_anuncio): Observable<ClientResponse> {
@@ -95,51 +87,11 @@ export class AnuncioService {
 
     /*Galeria*/
     SaveGaleria(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
-        // var clientResponse: Observable<ClientResponse> = new Observable<ClientResponse>();
-        // const req = new HttpRequest('POST', this._baseUrl + 'galeria/InsertGaleria', galeria, {
-        //     reportProgress: true,
-        // });
-
-        // this.httpClient.request<ClientResponse>(req).subscribe(
-        //     (event) => {
-        //         if (event.type === HttpEventType.UploadProgress) {
-        //             this.progress = Math.round(100 * event.loaded / event.total);
-        //         }
-        //         else if (event.type === HttpEventType.Response) {
-        //             debugger;
-        //             event.body;
-        //         }
-        //     });
-        // return clientResponse;
-
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/InsertGaleria', galeria, httpOptions)
-        .pipe(
-            catchError(this.handleError('GetGaleriaXIdAnuncio'))
-        );     
+            .pipe(
+                catchError(this.handleError('GetGaleriaXIdAnuncio'))
+            );
     }
-
-    private getEventMessage(event: HttpEvent<any>, formData) {
-
-        switch (event.type) {
-
-            case HttpEventType.UploadProgress:
-                return this.fileUploadProgress(event);
-
-            case HttpEventType.Response:
-                return this.apiResponse(event);
-
-            default:
-                return `File "${formData.get('profile').name}" surprising upload event: ${event.type}.`;
-        }
-    }
-    private apiResponse(event) {
-        return event.body;
-    }
-    private fileUploadProgress(event) {
-        const percentDone = Math.round(100 * event.loaded / event.total);
-        return { status: 'progress', message: percentDone };
-    }
-
     GetGaleriaXIdAnuncio(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/GetGeleriaXIdAnuncio', galeria, httpOptions)
             .pipe(

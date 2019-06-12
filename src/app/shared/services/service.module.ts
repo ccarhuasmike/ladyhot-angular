@@ -34,12 +34,7 @@ import { LoaderService } from "../../shared/services/loader/loader.service";
         ContactarService,
         UsuarioService,
         MantenimientoAnuncioService,
-        LoaderService,
-        // {
-        //     provide: HTTP_INTERCEPTORS,
-        //     useClass: LoaderInterceptor,
-        //     multi: true
-        // }
+        LoaderService
     ]
 })
 export class ServicesModule { }

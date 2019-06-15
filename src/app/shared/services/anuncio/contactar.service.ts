@@ -29,6 +29,7 @@ export class ContactarService {
     }
 
     EnviarMail(beanMail: Bean_mail): Observable<ClientResponseResult<ClientResponse>> {
+        //hola mike
         var peginatedResult: ClientResponseResult<ClientResponse> = new ClientResponseResult<ClientResponse>();
         return this.http.post(this._baseUrl + 'contactar/EnvioEmail', JSON.stringify(beanMail), options).pipe(
             map(res => {

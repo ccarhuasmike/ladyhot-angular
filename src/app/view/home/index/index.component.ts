@@ -406,7 +406,7 @@ export class IndexComponent implements OnInit {
     this.clientes.push(this.clientesbean);
 
     this.masonryImages = this.clientes.slice(0, this.limit);
-
+    
     console.log(this.clientesbean);
   }
 

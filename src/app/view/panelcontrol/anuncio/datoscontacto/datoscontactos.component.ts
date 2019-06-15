@@ -95,9 +95,8 @@ export class DatosContactoComponent implements OnInit {
             this.anuncioService.SavePrimerPaso(entidad).subscribe(
                 //(res: ClientResponseResult<ClientResponse>) => {
                 (res) => {
-                    console.log(res);
                     if (res.Status == "OK") {
-                        console.log("ejecute Ok");
+                        debugger;
                         let DataJsonAnuncio: any = res.Data;
                         localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                         //this.anuncioService.setDatosContacto(this.fromContacto.value)

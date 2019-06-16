@@ -8,13 +8,14 @@ import { ConfigService } from 'src/app/shared/services/Utilitarios/config.servic
 import { ActivatedRoute } from '@angular/router';
 import { ParameterService } from "../../../../shared/services/anuncio/parameter.service";
 import { PaginatedResult } from '../../../../Models/Tbl_parameter_detModels';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-editanuncio',
-    templateUrl: './editanuncio.component.html',
-    styleUrls: ['./editanuncio.component.css']
+    templateUrl: './editar.component.html',
+    styleUrls: ['./editar.component.css']
 })
-export class EditarAnuncioComponent implements OnInit {
+export class EditarComponent implements OnInit {
     fromGenerales: FormGroup;
     isSubmitted: boolean = false;
     _baseUrl: string = '';
@@ -85,9 +86,11 @@ export class EditarAnuncioComponent implements OnInit {
         private anuncioService: AnuncioService,
         private route: ActivatedRoute,
         private router: Router,
+        private _location: Location,
         private parameter: ParameterService,
         private configService: ConfigService) {
         this._baseUrl = configService.getWebApiURL();
+
     }
 
     ngOnInit() {
@@ -318,6 +321,10 @@ export class EditarAnuncioComponent implements OnInit {
         }
         selecionado = selecionado.substring(0, selecionado.length - 1);
         return selecionado;
+    }
+
+    cancelar() {
+        this._location.back();
     }
 
     cargarControles() {

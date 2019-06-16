@@ -5,11 +5,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IndexComponent } from "./index/index.component";
-import { EditarAnuncioComponent } from './editanuncio/editanuncio.component';
-import { GaleriaAnuncioComponent } from './galerianuncio/galerianuncio.component';
+import { EditarComponent } from './editar/editar.component';
+import { GaleriaComponent } from './galeria/galeria.component';
 import { DarBajaComponent } from './darbaja/darbaja.component';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
-//import { LoaderService } from "../../../shared/services/loader/loader.service";
 @NgModule({
     imports: [
         CommonModule,
@@ -21,8 +20,8 @@ import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
     ],
     declarations: [
         IndexComponent,
-        EditarAnuncioComponent,
-        GaleriaAnuncioComponent,
+        EditarComponent,
+        GaleriaComponent,
         DarBajaComponent
     ],
     exports: [

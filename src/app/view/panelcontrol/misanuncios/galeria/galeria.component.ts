@@ -4,18 +4,20 @@ import { Tbl_galeria_anuncio } from "../../../../Models/Tbl_galeria_anuncioModel
 import { ActivatedRoute, Router } from '@angular/router';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 import { LoaderService } from "../../../../shared/services/loader/loader.service";
+import { Location } from '@angular/common';
 @Component({
     selector: 'app-editanuncio',
-    templateUrl: './galerianuncio.component.html',
-    styleUrls: ['./galerianuncio.component.css']
+    templateUrl: './galeria.component.html',
+    styleUrls: ['./galeria.component.css']
 })
-export class GaleriaAnuncioComponent implements OnInit {
+export class GaleriaComponent implements OnInit {
     public ListGaleria: Tbl_galeria_anuncio[] = [];
     constructor(
         private domSanitizer: DomSanitizer,
         private anuncioService: AnuncioService,
         private router: Router,
         private route: ActivatedRoute,
+        private _location: Location
         // public loaderService: LoaderService
     ) {
 
@@ -69,6 +71,9 @@ export class GaleriaAnuncioComponent implements OnInit {
                 }
             }
         );
+    }
+    cancelar() {
+        this._location.back();
     }
     displayPhoto(fileInput, id: number) {
         if (fileInput.target.files && fileInput.target.files[0]) {

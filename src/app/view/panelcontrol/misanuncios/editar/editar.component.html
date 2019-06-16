@@ -9,11 +9,13 @@
           <div class="panel-body">
             <div class="form-horizontal">
               <div class="form-group row">
-                <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right" for="txt_nombre">Nombre</label>
+                <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right"
+                  for="txt_nombre">Nombre</label>
                 <div class="col-sm-5">
                   <input class="form-control form-control-sm" type="text" required [formControl]="txt_nombre_fichaCtrl"
                     placeholder="Ingrese nombre">
-                  <div *ngIf="txt_nombre_fichaCtrl.invalid && (txt_nombre_fichaCtrl.dirty || isSubmitted)" class="text-danger text-xs-left text-sm-left">
+                  <div *ngIf="txt_nombre_fichaCtrl.invalid && (txt_nombre_fichaCtrl.dirty || isSubmitted)"
+                    class="text-danger text-xs-left text-sm-left">
                     <div *ngIf="txt_nombre_fichaCtrl.errors.required">
                       Se requiere el nombre.
                     </div>
@@ -31,13 +33,15 @@
               </div>
 
               <div class="form-group row">
-                <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="txt_telefono_1">Teléfono
+                <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right "
+                  for="txt_telefono_1">Teléfono
                   o
                   Celular</label>
                 <div class="col-sm-5">
-                  <input class="form-control form-control-sm" type="text" id="txt_telefono_1" [formControl]="txt_telefono_1Ctrl"
-                    required placeholder="Ingrese Telefono 1">
-                  <div *ngIf="txt_telefono_1Ctrl.invalid && (txt_telefono_1Ctrl.dirty || isSubmitted)" class="text-danger text-xs-left text-sm-left">
+                  <input class="form-control form-control-sm" type="text" id="txt_telefono_1"
+                    [formControl]="txt_telefono_1Ctrl" required placeholder="Ingrese Telefono 1">
+                  <div *ngIf="txt_telefono_1Ctrl.invalid && (txt_telefono_1Ctrl.dirty || isSubmitted)"
+                    class="text-danger text-xs-left text-sm-left">
                     <div *ngIf="txt_telefono_1Ctrl.errors.required">
                       Se necesita que se ingrese el numero del telefono.
                     </div>
@@ -52,13 +56,15 @@
               </div>
 
               <div class="form-group row">
-                <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="txt_telefono_2">Teléfono
+                <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right "
+                  for="txt_telefono_2">Teléfono
                   o
                   Celular</label>
                 <div class="col-sm-5">
                   <input class="form-control form-control-sm" [formControl]="txt_telefono_2Ctrl" required type="text"
                     placeholder="Ingrese Telefono 2">
-                  <div *ngIf="txt_telefono_2Ctrl.invalid && (txt_telefono_2Ctrl.dirty || isSubmitted)" class="text-danger text-xs-left text-sm-left">
+                  <div *ngIf="txt_telefono_2Ctrl.invalid && (txt_telefono_2Ctrl.dirty || isSubmitted)"
+                    class="text-danger text-xs-left text-sm-left">
                     <div *ngIf="txt_telefono_2Ctrl.errors.required">
                       Se necesita que se ingrese el numero del telefono.
                     </div>
@@ -73,11 +79,13 @@
               </div>
 
               <div class="form-group row">
-                <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="txt_email">Email</label>
+                <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right "
+                  for="txt_email">Email</label>
                 <div class="col-sm-5">
                   <input class="form-control form-control-sm" type="text" [formControl]="txt_emailCtrl" required
                     placeholder="Ejemplo: brillit.coqueta@gmail.com">
-                  <div *ngIf="txt_emailCtrl.invalid && (txt_emailCtrl.dirty || isSubmitted)" class="text-danger text-xs-left text-sm-left">
+                  <div *ngIf="txt_emailCtrl.invalid && (txt_emailCtrl.dirty || isSubmitted)"
+                    class="text-danger text-xs-left text-sm-left">
                     <div *ngIf="txt_emailCtrl.errors.required">
                       Se necesita que se ingrese el email.
                     </div>
@@ -100,8 +108,10 @@
               <div class="form-group row">
                 <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="txt_web">Web</label>
                 <div class="col-sm-5">
-                  <input class="form-control form-control-sm" type="text" [formControl]="txt_webCtrl" placeholder="Ejemplo: https://www.google.com">
-                  <div *ngIf="txt_webCtrl.invalid && (txt_webCtrl.dirty || isSubmitted)" class="text-danger text-xs-left text-sm-left">
+                  <input class="form-control form-control-sm" type="text" [formControl]="txt_webCtrl"
+                    placeholder="Ejemplo: https://www.google.com">
+                  <div *ngIf="txt_webCtrl.invalid && (txt_webCtrl.dirty || isSubmitted)"
+                    class="text-danger text-xs-left text-sm-left">
                     <div *ngIf="txt_webCtrl.errors.pattern">
                       Url ingresada no es valido
                     </div>
@@ -155,9 +165,11 @@
             </div>
 
             <div class="form-group row">
-              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="cbo_estudios">Estudios</label>
+              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right "
+                for="cbo_estudios">Estudios</label>
               <div class="col-sm-5">
-                <select class="form-control form-control-sm" [formControl]="estudiosCtrl" required (change)="selectName();">
+                <select class="form-control form-control-sm" [formControl]="estudiosCtrl" required
+                  (change)="selectName();">
                   <option value="">--Seleccione--</option>
                   <option *ngFor="let data of ListEstudios" value={{data.val_valor}}>
                     {{data.tx_descripcion}}
@@ -170,10 +182,12 @@
             </div>
 
             <div class="form-group row">
-              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="txt_presentacion">Presentación</label>
+              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right "
+                for="txt_presentacion">Presentación</label>
               <div class="col-sm-5">
                 <textarea class="form-control form-control-sm" [formControl]="txt_descripcion_generalesCtrl" required
-                  id="txt_presentacion" rows="12" placeholder="Explica un poco más sobre ti, cómo eres, que te gusta, tus aficiones y habilidades...."></textarea>
+                  id="txt_presentacion" rows="12"
+                  placeholder="Explica un poco más sobre ti, cómo eres, que te gusta, tus aficiones y habilidades...."></textarea>
               </div>
               <div class="col-sm-4">
                 <p class="text-xs-left text-sm-left">Explica un poco más sobre ti. Aquí puedes presentarte a los
@@ -198,7 +212,8 @@
               <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="cbo_pelo">color de
                 pelo</label>
               <div class="col-sm-5">
-                <select class="form-control form-control-sm" [formControl]="cabellosCtrl" required (change)="selectName();">
+                <select class="form-control form-control-sm" [formControl]="cabellosCtrl" required
+                  (change)="selectName();">
                   <option value="">--Seleccione--</option>
                   <option *ngFor="let data of ListCabellos" value={{data.val_valor}}>
                     {{data.tx_descripcion}}
@@ -227,9 +242,11 @@
             </div>
 
             <div class="form-group row">
-              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="cbo_estatura">estatura</label>
+              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right "
+                for="cbo_estatura">estatura</label>
               <div class="col-sm-5">
-                <select class="form-control form-control-sm" required [formControl]="estaturaCtrl" (change)="selectName();">
+                <select class="form-control form-control-sm" required [formControl]="estaturaCtrl"
+                  (change)="selectName();">
                   <option value="">--Seleccione--</option>
                   <option *ngFor="let data of ListEstatura" value={{data.val_valor}}>
                     {{data.tx_descripcion}}
@@ -260,8 +277,8 @@
               <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="cbo_estudios">Medidas
                 (Busto-Cintura-Caderas)</label>
               <div class="col-sm-5" style="display: inline-flex;">
-                <input class="form-control form-control-sm" required maxlength="3" OnlyNumber="true" [formControl]="bustoCtrl"
-                  type="text" id="txt_medidas_busto" placeholder="busto">-
+                <input class="form-control form-control-sm" required maxlength="3" OnlyNumber="true"
+                  [formControl]="bustoCtrl" type="text" id="txt_medidas_busto" placeholder="busto">-
                 <input class="form-control form-control-sm" required maxlength="3" type="text" OnlyNumber="true"
                   [formControl]="cinturaCtrl" placeholder="cintura">-
                 <input class="form-control form-control-sm" required maxlength="3" type="text" OnlyNumber="true"
@@ -279,7 +296,8 @@
             </div>
 
             <div class="form-group row">
-              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right" for="txt_descripcion">Descripción</label>
+              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right"
+                for="txt_descripcion">Descripción</label>
               <div class="col-sm-5">
                 <textarea class="form-control form-control-sm" [formControl]="descripcionaparienciaCtrl" maxlength="450"
                   id="txt_descripcion" rows="6" placeholder=""></textarea>
@@ -307,8 +325,8 @@
               <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="txt_30_minCtrl">30
                 Minutos</label>
               <div class="col-sm-5">
-                <input class="form-control form-control-sm" [formControl]="txt_30_minCtrl" required type="text" id="txt_30_minCtrl"
-                  OnlyNumber="true" placeholder="" value="0">
+                <input class="form-control form-control-sm" [formControl]="txt_30_minCtrl" required type="text"
+                  id="txt_30_minCtrl" OnlyNumber="true" placeholder="" value="0">
               </div>
             </div>
 
@@ -316,8 +334,8 @@
               <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="txt_45_minCtrl">45
                 Minutos</label>
               <div class="col-sm-5">
-                <input class="form-control form-control-sm" [formControl]="txt_45_minCtrl" required type="text" id="txt_45_minCtrl"
-                  OnlyNumber="true" value="0">
+                <input class="form-control form-control-sm" [formControl]="txt_45_minCtrl" required type="text"
+                  id="txt_45_minCtrl" OnlyNumber="true" value="0">
               </div>
             </div>
 
@@ -325,8 +343,8 @@
               <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="txt_1_horaCtrl">1
                 horaCtrl</label>
               <div class="col-sm-5">
-                <input class="form-control form-control-sm" [formControl]="txt_1_horaCtrl" required type="text" id="txt_1_horaCtrl"
-                  OnlyNumber="true" value="0">
+                <input class="form-control form-control-sm" [formControl]="txt_1_horaCtrl" required type="text"
+                  id="txt_1_horaCtrl" OnlyNumber="true" value="0">
               </div>
             </div>
 
@@ -335,8 +353,8 @@
                 horaCtrl y
                 media</label>
               <div class="col-sm-5">
-                <input class="form-control form-control-sm" [formControl]="txt_1_30_horaCtrl" required type="text" id="txt_1_30_horaCtrl"
-                  OnlyNumber="true" value="0">
+                <input class="form-control form-control-sm" [formControl]="txt_1_30_horaCtrl" required type="text"
+                  id="txt_1_30_horaCtrl" OnlyNumber="true" value="0">
               </div>
             </div>
 
@@ -344,8 +362,8 @@
               <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="txt_2_horaCtrl">2
                 horaCtrls</label>
               <div class="col-sm-5">
-                <input class="form-control form-control-sm" [formControl]="txt_2_horaCtrl" required type="text" id="txt_2_horaCtrl"
-                  OnlyNumber="true" value="0">
+                <input class="form-control form-control-sm" [formControl]="txt_2_horaCtrl" required type="text"
+                  id="txt_2_horaCtrl" OnlyNumber="true" value="0">
               </div>
 
             </div>
@@ -355,34 +373,37 @@
               <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="txt_3_horaCtrl">3
                 horaCtrls</label>
               <div class="col-sm-5">
-                <input class="form-control form-control-sm" [formControl]="txt_3_horaCtrl" required type="text" id="txt_3_horaCtrl"
-                  OnlyNumber="true" value="0">
+                <input class="form-control form-control-sm" [formControl]="txt_3_horaCtrl" required type="text"
+                  id="txt_3_horaCtrl" OnlyNumber="true" value="0">
               </div>
 
             </div>
 
             <div class="form-group row">
-              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="txt_salidaCtrl">Salidas</label>
+              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right "
+                for="txt_salidaCtrl">Salidas</label>
               <div class="col-sm-5">
-                <input class="form-control form-control-sm" [formControl]="txt_salidaCtrl" required type="text" id="txt_salidaCtrl"
-                  OnlyNumber="true" value="0">
+                <input class="form-control form-control-sm" [formControl]="txt_salidaCtrl" required type="text"
+                  id="txt_salidaCtrl" OnlyNumber="true" value="0">
               </div>
             </div>
 
             <div class="form-group row">
-              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right" for="txt_toda_nocheCtrl">Toda
+              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right"
+                for="txt_toda_nocheCtrl">Toda
                 la noche</label>
               <div class="col-sm-5">
-                <input class="form-control form-control-sm" [formControl]="txt_toda_nocheCtrl" required type="text" id="txt_toda_nocheCtrl"
-                  OnlyNumber="true" value="0">
+                <input class="form-control form-control-sm" [formControl]="txt_toda_nocheCtrl" required type="text"
+                  id="txt_toda_nocheCtrl" OnlyNumber="true" value="0">
               </div>
             </div>
 
             <div class="form-group row">
-              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="txt_viajesCtrl">Viajes</label>
+              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right "
+                for="txt_viajesCtrl">Viajes</label>
               <div class="col-sm-5">
-                <input class="form-control form-control-sm" [formControl]="txt_viajesCtrl" required type="text" id="txt_viajesCtrl"
-                  OnlyNumber="true" value="0">
+                <input class="form-control form-control-sm" [formControl]="txt_viajesCtrl" required type="text"
+                  id="txt_viajesCtrl" OnlyNumber="true" value="0">
               </div>
             </div>
 
@@ -392,14 +413,17 @@
               <div class="col-sm-5">
                 <div class="categorias-anuncio">
                   <div class="tc_valores">
-                    <label formArrayName="ListFormaPago" class="categoria" [ngClass]="{'checked': ListFormaPago[i].flag, '': ListFormaPago[i].flag}"
+                    <label formArrayName="ListFormaPago" class="categoria"
+                      [ngClass]="{'checked': ListFormaPago[i].flag, '': ListFormaPago[i].flag}"
                       *ngFor="let order of fromGenerales.controls.ListFormaPago['controls']; let i = index">
-                      <input type="checkbox" class="chk_categoria" (change)="onChangeFormaPago(ListFormaPago[i].val_valor, $event.target.checked)"
+                      <input type="checkbox" class="chk_categoria"
+                        (change)="onChangeFormaPago(ListFormaPago[i].val_valor, $event.target.checked)"
                         [id]="'check_formapago_'+ListFormaPago[i].val_valor" [formControlName]="i">
                       {{ListFormaPago[i].tx_descripcion}}
                     </label>
                   </div>
-                  <div *ngIf="fromGenerales.controls.ListFormaPago.invalid" class="text-danger text-xs-left text-sm-left">
+                  <div *ngIf="fromGenerales.controls.ListFormaPago.invalid"
+                    class="text-danger text-xs-left text-sm-left">
                     Por favor seleccione por lo menos una forma de pago
                   </div>
                 </div>
@@ -407,10 +431,11 @@
             </div>
 
             <div class="form-group row">
-              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="txt_descripcion_tarifa">Descripción</label>
+              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right "
+                for="txt_descripcion_tarifa">Descripción</label>
               <div class="col-sm-5">
-                <textarea class="form-control form-control-sm" id="txt_descripcion_tarifa" [formControl]="txt_descripcion_tarifasCtrl"
-                  rows="6" placeholder=""></textarea>
+                <textarea class="form-control form-control-sm" id="txt_descripcion_tarifa"
+                  [formControl]="txt_descripcion_tarifasCtrl" rows="6" placeholder=""></textarea>
               </div>
               <div class="col-sm-4">
                 <p class="text-xs-left text-sm-left">Si necesitas aclarar algun otro aspecto sobre tus tarifas
@@ -433,14 +458,17 @@
               <div class="col-sm-5">
                 <div class="categorias-anuncio">
                   <div class="tc_valores">
-                    <label formArrayName="ListDistrito" *ngFor="let order of fromGenerales.controls.ListDistrito['controls']; let i = index"
+                    <label formArrayName="ListDistrito"
+                      *ngFor="let order of fromGenerales.controls.ListDistrito['controls']; let i = index"
                       [ngClass]="{'checked': ListDistrito[i].flag, '': ListDistrito[i].flag}" class="categoria ">
-                      <input type="checkbox" class="chk_categoria" (change)="onChangeDistrito(ListDistrito[i].val_valor, $event.target.checked)"
+                      <input type="checkbox" class="chk_categoria"
+                        (change)="onChangeDistrito(ListDistrito[i].val_valor, $event.target.checked)"
                         [id]="'check_distrito_'+ListDistrito[i].val_valor" [formControlName]="i" />
                       {{ListDistrito[i].tx_descripcion}}
                     </label>
                   </div>
-                  <div *ngIf="fromGenerales.controls.ListDistrito.invalid" class="text-danger text-xs-left text-sm-left">
+                  <div *ngIf="fromGenerales.controls.ListDistrito.invalid"
+                    class="text-danger text-xs-left text-sm-left">
                     Por favor seleccione por lo menos un distrito
                   </div>
                 </div>
@@ -462,13 +490,14 @@
             </div>
 
             <div class="form-group row">
-              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="txt_descripcion_tarifa">Algo
+              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right "
+                for="txt_descripcion_tarifa">Algo
                 sobre
                 tu
                 disponibilidad</label>
               <div class="col-sm-5">
-                <textarea class="form-control form-control-sm" id="txt_descripcion_tarifa" [formControl]="txtalgosobredispCtrl"
-                  rows="6" placeholder=""></textarea>
+                <textarea class="form-control form-control-sm" id="txt_descripcion_tarifa"
+                  [formControl]="txtalgosobredispCtrl" rows="6" placeholder=""></textarea>
               </div>
               <div class="col-sm-4">
                 <p class="text-xs-left text-sm-left">¿Quieres hacer una aclaración sobre tus días y horarios?</p>
@@ -482,15 +511,18 @@
                 <div class="categorias-anuncio">
                   <div class="tc_valores">
                     <label *ngFor="let order of fromGenerales.controls.ListLugarAtencion['controls']; let i = index"
-                      formArrayName="ListLugarAtencion" [ngClass]="{'checked': ListLugarAtencion[i].flag, '': ListLugarAtencion[i].flag}"
+                      formArrayName="ListLugarAtencion"
+                      [ngClass]="{'checked': ListLugarAtencion[i].flag, '': ListLugarAtencion[i].flag}"
                       class="categoria " [for]="'check_lugarAtencion_'+ListLugarAtencion[i].val_valor">
-                      <input type="checkbox" class="chk_categoria" [id]="'check_lugarAtencion_'+ListLugarAtencion[i].val_valor"
+                      <input type="checkbox" class="chk_categoria"
+                        [id]="'check_lugarAtencion_'+ListLugarAtencion[i].val_valor"
                         (change)="onChangeLugarAtencion(ListLugarAtencion[i].val_valor, $event.target.checked)"
                         [formControlName]="i" />
                       {{ListLugarAtencion[i].tx_descripcion}}
                     </label>
                   </div>
-                  <div *ngIf="fromGenerales.controls.ListLugarAtencion.invalid" class="text-danger text-xs-left text-sm-left">
+                  <div *ngIf="fromGenerales.controls.ListLugarAtencion.invalid"
+                    class="text-danger text-xs-left text-sm-left">
                     Por favor seleccione por lo menos un lugar de Atención
                   </div>
                 </div>
@@ -505,14 +537,17 @@
                 <div class="categorias-anuncio">
                   <div class="tc_valores">
                     <label *ngFor="let order of fromGenerales.controls.ListTipoServicio['controls']; let i = index"
-                      formArrayName="ListTipoServicio" [ngClass]="{'checked': ListTipoServicio[i].flag, '': ListTipoServicio[i].flag}"
-                      class="categoria " [for]="'check_tiposervicios_'+ListTipoServicio[i].val_valor">
-                      <input type="checkbox" class="chk_categoria" [id]="'check_tiposervicios_'+ListTipoServicio[i].val_valor"
+                      formArrayName="ListTipoServicio"
+                      [ngClass]="{'checked': ListTipoServicio[i].flag, '': ListTipoServicio[i].flag}" class="categoria "
+                      [for]="'check_tiposervicios_'+ListTipoServicio[i].val_valor">
+                      <input type="checkbox" class="chk_categoria"
+                        [id]="'check_tiposervicios_'+ListTipoServicio[i].val_valor"
                         (change)="onChangeTipoServicio(ListTipoServicio[i].val_valor, $event.target.checked)"
                         [formControlName]="i" />
                       {{ListTipoServicio[i].tx_descripcion}}</label>
                   </div>
-                  <div *ngIf="fromGenerales.controls.ListTipoServicio.invalid" class="text-danger text-xs-left text-sm-left">
+                  <div *ngIf="fromGenerales.controls.ListTipoServicio.invalid"
+                    class="text-danger text-xs-left text-sm-left">
                     Por favor seleccione por lo menos un tipo de servicio
                   </div>
                 </div>
@@ -523,10 +558,11 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right " for="tx_descripcion_extra_servicio">Descripción</label>
+              <label class="col-sm-3 control-label text-xs-left text-sm-left text-md-right "
+                for="tx_descripcion_extra_servicio">Descripción</label>
               <div class="col-sm-5">
-                <textarea class="form-control form-control-sm" [formControl]="txt_descripcion_serviciosCtrl" id="tx_descripcion_extra_servicio"
-                  rows="6" placeholder=""></textarea>
+                <textarea class="form-control form-control-sm" [formControl]="txt_descripcion_serviciosCtrl"
+                  id="tx_descripcion_extra_servicio" rows="6" placeholder=""></textarea>
               </div>
               <div class="col-sm-4">
                 <p class="text-xs-left text-sm-left">¿Quieres hacer una aclaración o explicarte mejor?</p>
@@ -538,6 +574,7 @@
       <br>
 
       <div class="f1-buttons">
+        <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
         <button type='submit' class='btn btn-primary'>Guardar</button>
       </div>
     </div>

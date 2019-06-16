@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { EditarAnuncioComponent } from './editanuncio/editanuncio.component';
-import { GaleriaAnuncioComponent } from './galerianuncio/galerianuncio.component';
+import { EditarComponent } from './editar/editar.component';
+import { GaleriaComponent } from './galeria/galeria.component';
 import { IndexComponent } from "./index/index.component";
 import { DarBajaComponent } from './darbaja/darbaja.component';
 const routes: Routes = [
@@ -21,11 +20,11 @@ const routes: Routes = [
             },
             {
                 path: "editar/:id",
-                component: EditarAnuncioComponent,
+                component: EditarComponent,
             },
             {
                 path: "galeria/:id",
-                component: GaleriaAnuncioComponent,
+                component: GaleriaComponent,
             }
         ]
     }

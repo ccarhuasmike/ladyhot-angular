@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'panelcontrol',
-    loadChildren: '../app/view/panelcontrol/dashboardanucion.module#DashboadAnuncioModule'
+    loadChildren: '../app/view/panelcontrol/panelcontrol.module#PanelControlModule'
   },
   {
     path: 'login',

@@ -23,7 +23,7 @@ const routes: Routes = [
             {
                 path: 'mantenimiento-anuncio',
                 loadChildren: '../../../app/view/panelcontrol/mantenimiento-anuncio/mantenimiento-anuncio.module#MantenimientoAnuncioModule'
-            }            
+            }
         ]
     }
 ];
@@ -33,5 +33,5 @@ const routes: Routes = [
     exports: [RouterModule]
 
 })
-export class DashboadAnuncioRoutingModule { }
+export class PanelControlRoutingModule { }
 

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EditarAnuncioComponent } from './editanuncio/editanuncio.component';
 import { GaleriaAnuncioComponent } from './galerianuncio/galerianuncio.component';
-import { MisAnunciosComponent } from "./coremisanuncios/misanuncios.component";
+import { IndexComponent } from "./index/index.component";
 import { DarBajaComponent } from './darbaja/darbaja.component';
 const routes: Routes = [
     {
@@ -11,7 +11,7 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                component: MisAnunciosComponent,
+                component: IndexComponent,
                 pathMatch: 'full'
             },
             {

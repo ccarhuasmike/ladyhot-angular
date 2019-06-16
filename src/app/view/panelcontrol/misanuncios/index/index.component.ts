@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-misanuncios',
-  templateUrl: './misanuncios.component.html',
-  styleUrls: ['./misanuncios.component.css']
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.css']
 })
-export class MisAnunciosComponent implements OnInit {
+export class IndexComponent implements OnInit {
 
   _baseUrl: string = '';
   listaMisAnuncios: any;

@@ -4,7 +4,7 @@ import { MisAnuncioRoutingModule } from './misanuncio-routing.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MisAnunciosComponent } from "./coremisanuncios/misanuncios.component";
+import { IndexComponent } from "./index/index.component";
 import { EditarAnuncioComponent } from './editanuncio/editanuncio.component';
 import { GaleriaAnuncioComponent } from './galerianuncio/galerianuncio.component';
 import { DarBajaComponent } from './darbaja/darbaja.component';
@@ -20,7 +20,7 @@ import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 
     ],
     declarations: [
-        MisAnunciosComponent,
+        IndexComponent,
         EditarAnuncioComponent,
         GaleriaAnuncioComponent,
         DarBajaComponent

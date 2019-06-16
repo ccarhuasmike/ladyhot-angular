@@ -5,12 +5,12 @@
                 <img src="assets/rocket_contact.png" alt="rocket_contact" />
             </div>
             <form [formGroup]='formContactar' (ngSubmit)="contactar()" novalidate>
-                <h3>Contactar</h3>
+                <h3 class="text-uppercase">Contactar</h3>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Tu Nombre *" required
-                                [formControl]="txt_nombreCtrl" />
+                            <input type="text" class="form-control form-control-sm" placeholder="Ingrese nombre *"
+                                required [formControl]="txt_nombreCtrl" />
                             <div *ngIf="txt_nombreCtrl.invalid && (txt_nombreCtrl.dirty || isSubmitted)"
                                 class="text-danger text-xs-left text-sm-left">
                                 <div *ngIf="txt_nombreCtrl.errors.required">
@@ -19,8 +19,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Tu Email *" required
-                                [formControl]="txt_emailCtrl" />
+                            <input type="text" class="form-control form-control-sm" placeholder="Ingrese email *"
+                                required [formControl]="txt_emailCtrl" />
                             <div *ngIf="txt_emailCtrl.invalid && (txt_emailCtrl.dirty || isSubmitted)"
                                 class="text-danger text-xs-left text-sm-left">
                                 <div *ngIf="txt_emailCtrl.errors.required">
@@ -32,8 +32,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Tu Asunto *" required
-                                [formControl]="txt_asuntoCtrl" />
+                            <input type="text" class="form-control form-control-sm" placeholder="Ingrese asunto *"
+                                required [formControl]="txt_asuntoCtrl" />
                             <div *ngIf="txt_asuntoCtrl.invalid && (txt_asuntoCtrl.dirty || isSubmitted)"
                                 class="text-danger text-xs-left text-sm-left">
                                 <div *ngIf="txt_asuntoCtrl.errors.required">
@@ -42,8 +42,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Tu Teléfono *" required
-                                [formControl]="txt_telefonoCtrl" />
+                            <input type="text" class="form-control form-control-sm" placeholder="Ingrese teléfono *"
+                                required [formControl]="txt_telefonoCtrl" />
                             <div *ngIf="txt_telefonoCtrl.invalid && (txt_telefonoCtrl.dirty || isSubmitted)"
                                 class="text-danger text-xs-left text-sm-left">
                                 <div *ngIf="txt_telefonoCtrl.errors.required">
@@ -51,13 +51,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <input type="submit" name="btnSubmit" class="btnContactSubmit" value="Enviar Mensaje" />
-                        </div>
+
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <textarea class="form-control" placeholder="Tu Mensaje *"
+                            <textarea class="form-control form-control-sm" placeholder="Ingrese mensaje *"
                                 style="width: 100%; height: 150px;" required [formControl]="txt_mensajeCtrl"></textarea>
                             <div *ngIf="txt_mensajeCtrl.invalid && (txt_mensajeCtrl.dirty || isSubmitted)"
                                 class="text-danger text-xs-left text-sm-left">
@@ -65,6 +63,15 @@
                                     Se requiere el mensaje.
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <!-- <input type="submit" name="btnSubmit" class="btnContactSubmit primary" value="Enviar Mensaje" /> -->
+                            <button type='submit' class='btn btn-primary col'>Enviar Mensaje</button>
                         </div>
                     </div>
                 </div>

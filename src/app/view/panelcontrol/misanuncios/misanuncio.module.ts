@@ -16,7 +16,6 @@ import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
         FormsModule,
         ReactiveFormsModule,
         ProgressbarModule.forRoot(),
-
     ],
     declarations: [
         IndexComponent,

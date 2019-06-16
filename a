@@ -1,0 +1,476 @@
+[33mcommit 9b7d9f441cb0832e95fddc17fa98978f4609adf6[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: danteccarhuas <ccarhuas.dante@gmail.com>
+Date:   Sat Jun 15 21:32:26 2019 -0500
+
+    cambios para el envio de correo
+
+[33mcommit 81fccfd0b74f601bcacf37f0b83d494e0a132970[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: danteccarhuas <ccarhuas.dante@gmail.com>
+Date:   Sat Jun 15 15:22:44 2019 -0500
+
+    hola se cambio
+
+[33mcommit 311c20abf6f8f43c4f324f29d6b6cd9ab3bfd53e[m
+Author: mike <eduardo23@gmail.com>
+Date:   Tue Jun 11 23:39:18 2019 -0500
+
+    dfsdf
+
+[33mcommit ce2dca87f2201bc9228d6e8ac9b2983200ca9556[m
+Author: mike <eduardo23@gmail.com>
+Date:   Tue Jun 11 23:19:08 2019 -0500
+
+    sdsdsd
+
+[33mcommit 945cd1368b42e96e20dd44778f00ed84fa21a814[m
+Author: admintdp <admintdp@C-ALMSOL-0018.gp.inet>
+Date:   Tue Jun 11 18:50:30 2019 -0500
+
+    sdasdasd
+
+[33mcommit ed3d06973f2dff1dfea81ffba645dd896729fded[m
+Author: admintdp <admintdp@C-ALMSOL-0018.gp.inet>
+Date:   Tue Jun 11 18:46:53 2019 -0500
+
+    dvgdfgfd
+
+[33mcommit 7f76013fe90864134dd03b92d508af4cb4d0adf1[m
+Author: admintdp <admintdp@C-ALMSOL-0018.gp.inet>
+Date:   Tue Jun 11 18:42:36 2019 -0500
+
+    sdsdsd
+
+[33mcommit cc4875ede41611d33124cc0a041fe5cb3c2532d3[m
+Author: admintdp <admintdp@C-ALMSOL-0018.gp.inet>
+Date:   Tue Jun 11 18:34:07 2019 -0500
+
+    nuevos
+
+[33mcommit 8da9b3bb0b6f2dcfbccc2d98abfba678ea8ce7ee[m
+Author: admintdp <admintdp@C-ALMSOL-0018.gp.inet>
+Date:   Tue Jun 11 18:28:05 2019 -0500
+
+    sss
+
+[33mcommit 77cc447ce9a1a57e54e339ccf1f0a22fa23b99a9[m
+Merge: 60ab5f6 8fcb8d7
+Author: admintdp <admintdp@C-ALMSOL-0018.gp.inet>
+Date:   Tue Jun 11 18:09:19 2019 -0500
+
+    ss
+
+[33mcommit 60ab5f60c8b2f37862da37da1accf96eb6a9e2c8[m
+Author: admintdp <admintdp@C-ALMSOL-0018.gp.inet>
+Date:   Tue Jun 11 18:05:12 2019 -0500
+
+    nuevos cambios
+
+[33mcommit 8fcb8d7eada9bab07258ab8a8d1883f96e31687c[m
+Author: mike <eduardo23@gmail.com>
+Date:   Sun Jun 9 18:46:05 2019 -0500
+
+    datos
+
+[33mcommit 62ee2b977c827481199a7f4a9ffe212d6b546470[m
+Author: admintdp <admintdp@C-ALMSOL-0018.gp.inet>
+Date:   Fri Mar 15 18:17:47 2019 -0500
+
+    ss
+
+[33mcommit 99b490ac1a32f2221d9930e423425061b6cc01f7[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Fri Mar 1 18:19:54 2019 -0500
+
+    ss
+
+[33mcommit d326d28e16973c68117c7e902f48bd6ccf91d657[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Thu Feb 28 18:16:58 2019 -0500
+
+    s
+
+[33mcommit 4abab9824417b8bfbcb8e21e2b1ba315c511bfc4[m
+Merge: 10f3159 b441cb5
+Author: mike <eduardo23@gmail.com>
+Date:   Tue Feb 26 18:12:16 2019 -0500
+
+    merge de los cambios mantenimiento anuncion
+
+[33mcommit 10f3159e1f2c6ee17f720d5e2c95a1b7db7a5499[m
+Author: mike <eduardo23@gmail.com>
+Date:   Thu Feb 21 23:55:08 2019 -0500
+
+    cambios modal -dante ccarhuas
+
+[33mcommit b441cb51da10725b0f08a9f34888c17ee13ff811[m
+Author: mike <eduardo23@gmail.com>
+Date:   Thu Feb 21 23:51:00 2019 -0500
+
+    cambios modal -dante ccarhuas
+
+[33mcommit c0f2249ae95accaf7a1cb6b29809dc47d7325c8a[m
+Author: mike <eduardo23@gmail.com>
+Date:   Thu Feb 21 23:49:56 2019 -0500
+
+    cambios modal -dante ccarhuas
+
+[33mcommit 05f9af93ae8b52d27a568a8e0792d6d77ba547c0[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Thu Feb 14 14:30:38 2019 -0500
+
+    nueva paginacion
+
+[33mcommit c7aea3e4a46688224e244aa51ee1b9217847858f[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Thu Feb 14 11:21:50 2019 -0500
+
+    ss
+
+[33mcommit 6558d4e47954a0fa68af3b3ca8406899fcaed622[m
+Merge: 8e00ded 120cba8
+Author: Dante <daccaba@hotmail.com>
+Date:   Thu Feb 14 10:11:54 2019 -0500
+
+    Merge branch 'vChange0.5'
+    
+    git commit -m "merge cambios mantenimiento anuncio"
+
+[33mcommit 120cba8bdbc862f17f0d46de12a5ffa64d371da1[m
+Author: Dante <daccaba@hotmail.com>
+Date:   Thu Feb 14 10:10:55 2019 -0500
+
+    cambios en mantenimiento anuncio
+
+[33mcommit 8e00ded4dd61e76143abfc2820bec1e764445557[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Wed Feb 13 17:46:09 2019 -0500
+
+    sss
+
+[33mcommit 14e6d667443be832e6e72df7f99e2841705ff395[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Wed Feb 13 09:57:38 2019 -0500
+
+    ss
+
+[33mcommit 04f1194e1aa63d4ce932433bf2a33d6a28ea5246[m
+Merge: 402bc77 03d1444
+Author: Dante <daccaba@hotmail.com>
+Date:   Tue Feb 12 19:39:56 2019 -0500
+
+    merge cambios para el login
+
+[33mcommit 03d14447e6209471951e18cb3a2df9d54e4ad788[m
+Author: Dante <daccaba@hotmail.com>
+Date:   Tue Feb 12 19:33:06 2019 -0500
+
+    cambios para el login
+
+[33mcommit 402bc777cde3f8035f80253fe4f8e448607a7903[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Tue Feb 12 18:04:33 2019 -0500
+
+    sss
+
+[33mcommit f1bfb856bf26fce8c8db68019f0a16bd948d787a[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Tue Feb 12 16:28:40 2019 -0500
+
+    ss
+
+[33mcommit 9fa5bc4d2dda52bbcbac90741600f174ebd81dc6[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Tue Feb 12 10:08:13 2019 -0500
+
+    s
+
+[33mcommit 2abb9bfb7cc40419a839cdddeab561ffe619dc03[m
+Author: Dante <daccaba@hotmail.com>
+Date:   Tue Feb 12 01:09:43 2019 -0500
+
+    cambios se agrego formulario contactar
+
+[33mcommit 2f4251d5bd53785177c712975fa141654e25f695[m
+Author: Dante <daccaba@hotmail.com>
+Date:   Mon Feb 11 18:37:32 2019 -0500
+
+    cambios de darDebajAnuncio
+
+[33mcommit a85a764a34b3ef0399d8df5e8d79031d4faa8501[m
+Merge: bd1ddc7 0d05836
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Mon Feb 11 17:11:52 2019 -0500
+
+    ss
+
+[33mcommit bd1ddc7e46071652f3aa26a4affcb1088e49c76f[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Mon Feb 11 17:06:12 2019 -0500
+
+    sss
+
+[33mcommit d547248cf67af10c1b45c7d824e754ab9b6b70e7[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Mon Feb 11 16:58:20 2019 -0500
+
+    sss
+
+[33mcommit 0d058365ef313dd5d553754c4c3b77444d0d0d73[m
+Author: Dante <daccaba@hotmail.com>
+Date:   Mon Feb 11 16:45:34 2019 -0500
+
+    cambios en darBajaAnuncio
+
+[33mcommit 3f833abd0c69b4e3d5fac4f866e280fc57caaf9d[m
+Merge: 24ebdd0 dd3a0fc
+Author: Dante <daccaba@hotmail.com>
+Date:   Mon Feb 11 16:19:41 2019 -0500
+
+    se hizo merge de rama vChange0.2
+
+[33mcommit dd3a0fc9311b3ad94f0681c7dfd8a13eac4c92e2[m
+Author: Dante <daccaba@hotmail.com>
+Date:   Mon Feb 11 15:57:49 2019 -0500
+
+    cambios en vChange0.2 del darBajaAnuncio
+
+[33mcommit 24ebdd0cc9e1d1faf20874f5481e9a4added7500[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Mon Feb 11 10:44:20 2019 -0500
+
+    ss
+
+[33mcommit 0633c6630782b60676de7e73339f5db868025af0[m
+Author: mike <eduardo23@gmail.com>
+Date:   Sun Feb 10 17:42:39 2019 -0500
+
+    ss
+
+[33mcommit 2a36e92a1131baf39454f20706fb94a23b53edb3[m
+Merge: 18f40fb 6d21eb6
+Author: Dante <daccaba@hotmail.com>
+Date:   Sat Feb 9 10:22:27 2019 -0500
+
+    cambios en anuncio - merge
+
+[33mcommit 6d21eb696655f2c3fd4b0188a0dfd4d1c1ca7e26[m
+Author: Dante <daccaba@hotmail.com>
+Date:   Sat Feb 9 10:19:06 2019 -0500
+
+    cambios en anuncio
+
+[33mcommit 18f40fbd4d76238e4bd45161c7b522f53ea6b738[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Fri Feb 8 16:16:49 2019 -0500
+
+    ss
+
+[33mcommit ce77a98389bdf55ae3aeed725dd7568c0857d49a[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Fri Feb 8 13:01:08 2019 -0500
+
+    se agregaron nuevos cambios
+
+[33mcommit c2f8147ebc54c329e60d8ef15c89b7070153b212[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Thu Feb 7 17:06:36 2019 -0500
+
+    ss
+
+[33mcommit 4b161f492d7c3b28f783bb62a2fee5b8fb690ce7[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Thu Feb 7 17:04:36 2019 -0500
+
+    sdsds
+
+[33mcommit 48e1c0e1238dada0e31c62f6c2caaceaee2820c3[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Thu Feb 7 13:02:53 2019 -0500
+
+    ss
+
+[33mcommit 613e5bf922f154fa1159e4e4f49c04ffecbaeedb[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Fri Feb 1 16:33:34 2019 -0500
+
+    nuevo cambios
+
+[33mcommit f236ac1ddd64f6bde5e5660ffbac83e7ca41a99c[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Thu Jan 31 19:04:36 2019 -0500
+
+    ss
+
+[33mcommit 843a7d1352d9e8114ed174c01c27cdf2b074033b[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Thu Jan 31 18:52:38 2019 -0500
+
+    segundo cambio
+
+[33mcommit d95a125efa62b812f45c0c74a92d254a364c2025[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Thu Jan 31 17:06:49 2019 -0500
+
+    s
+
+[33mcommit c16492bda68d76e3d275cc5b99a1491c95d56ecc[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Fri Dec 7 14:35:06 2018 -0500
+
+    ss
+
+[33mcommit fd6f4365faee530afcf140cac4a2dd7d1ec161ce[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Fri Dec 7 13:48:39 2018 -0500
+
+    se subio nuevos cambbios
+
+[33mcommit 575aed1b617a4b20aa6f4d9f5931f61006ff4925[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Fri Dec 7 12:24:15 2018 -0500
+
+    sss
+
+[33mcommit ed458c6fb4a1c196807aa2836db4cf86546d2733[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Thu Dec 6 16:12:41 2018 -0500
+
+    sss
+
+[33mcommit 3cd90c65c10bcb8ca57aaeb82ea6ecfac42b0fc6[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Wed Dec 5 16:24:42 2018 -0500
+
+    ss
+
+[33mcommit 9746eaacf754c04c1370874d5c3017dbfc6c9fb6[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Wed Dec 5 15:45:50 2018 -0500
+
+    se subio
+
+[33mcommit 9dcfd1d6bacb48e1cc9acc1873cdf6ae50d19c75[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Tue Nov 27 18:00:30 2018 -0500
+
+    sss
+
+[33mcommit 858894c42c2e3eafb8e7a9eafd84d18df94c164d[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Mon Nov 26 17:01:10 2018 -0500
+
+    sdsd
+
+[33mcommit 8c9d78ae077c7afef730a8a263096ff00e8b0f29[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Mon Nov 26 16:29:33 2018 -0500
+
+    ss
+
+[33mcommit 0f8dd01b5169ccb0497f5ef7561ff4985dcf4994[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Fri Nov 23 17:57:43 2018 -0500
+
+    ss
+
+[33mcommit 8e2f701f943816881fd992dd5f3148c5d6fccbb4[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Fri Nov 23 17:52:24 2018 -0500
+
+    sss
+
+[33mcommit a862ea28ad8b333f8583c39c7640003e4ae8b82a[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Fri Nov 23 14:18:10 2018 -0500
+
+    ss
+
+[33mcommit 0b82de5321001010d107b1d355b610a2dec47b6f[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Thu Nov 22 17:58:21 2018 -0500
+
+    ss
+
+[33mcommit 66eefca609c1485ba3283cb94df2b6f0e1751972[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Thu Nov 22 16:46:38 2018 -0500
+
+    sss
+
+[33mcommit 5e797ac067089b4a21be37ddea687624255ea166[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Wed Nov 21 17:45:00 2018 -0500
+
+    cambios del 21/11/2018
+
+[33mcommit 97f08bbf1ba95e7d24e284dd0fe820835500d6a1[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Fri Nov 16 17:06:39 2018 -0500
+
+    sss
+
+[33mcommit 7686e99b9254c97e6bb65896a43513bd6b82f655[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Fri Nov 9 18:00:34 2018 -0500
+
+    ss
+
+[33mcommit 3f7cf123b3c20c20423000d2de50887770ee56d4[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Fri Nov 9 15:48:07 2018 -0500
+
+    sss
+
+[33mcommit 42e992f03ccdb3e7666164548198aa60c9a94374[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Thu Nov 8 16:48:14 2018 -0500
+
+    ss
+
+[33mcommit 8416ad60d5638418ab733b406b70ebfa16d79211[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Wed Nov 7 18:18:34 2018 -0500
+
+    m
+
+[33mcommit 972dd3a53c9e03536a436850374ef2ab4d4e0fb7[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Wed Nov 7 17:52:37 2018 -0500
+
+    m
+
+[33mcommit 28cc0a17db367dd1399a387ddb97fec5b1a0d78c[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Wed Nov 7 17:18:00 2018 -0500
+
+    m
+
+[33mcommit 14dcdab7e64d0474d415c19b6677c839907a4583[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Wed Nov 7 16:58:28 2018 -0500
+
+    m
+
+[33mcommit f2217e630589425acd5ad2126d0799486e93dcdb[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Wed Nov 7 09:28:43 2018 -0500
+
+    m
+
+[33mcommit 65b447a7549f188e789846c783041355725ada8e[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Tue Nov 6 18:00:51 2018 -0500
+
+    m
+
+[33mcommit 7695a7a1177581a182ce3b05ba7ecc86ce70e94e[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Tue Nov 6 17:58:12 2018 -0500
+
+    m
+
+[33mcommit 6e1f8897313abd2b1db842b4ca6addd11bb44f79[m
+Author: ccarhuasmike <ccarhuas.mike@gmail.com>
+Date:   Tue Nov 6 17:49:58 2018 -0500
+
+    m

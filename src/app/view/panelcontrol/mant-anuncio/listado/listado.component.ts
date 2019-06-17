@@ -1,8 +1,12 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { MantenimientoAnuncioService } from 'src/app/shared/services/mantenimiento-anuncio/mantenimiento-anuncio.service';
-import { ClientResponseResult } from 'src/app/Models/ClientResponseModels';
+import { Pagination } from 'src/app/Models/ClientResponseModels';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalActualizaAnuncio } from '../modal-actualizar-anuncio/modal-actualizar-anuncio.component';
+
+
+
+
 import { AnuncioService } from 'src/app/shared/services/service.module';
 import { Router } from '@angular/router';
 
@@ -12,83 +16,54 @@ import { Router } from '@angular/router';
     styleUrls: ['./listado.component.css']
 })
 export class ListadoComponent implements OnInit {
-    modalRef: BsModalRef;
-
-    listaAnuncios: any;
-    pageSize = 10;     // Limit number for pagination display number.  
-    totalCount = 0;  // Total number of items in all pages. initialize as a zero  
-    pageIndex = 1;
-    pageSizeSelected = 10;
+    modalRef: BsModalRef;    
     listado: any[];
-    flagexistRegistro: any = true;
-    public itemsPerPage: number = 5;
-    public totalItems: number = 0;
-    public currentPage: number = 1;
-    paginacion: any = {};
+    flagexistRegistro: any = true;   
+    paginacion =new Pagination();       
     codigo: string = "";
     // web para guiarse con la paginacion
     //https://valor-software.com/ngx-bootstrap/#/pagination
-    ngOnInit(): void {
-        //this.listadoAnuncios();
+    ngOnInit(): void {        
         this.loadDatos();
     }
     pageChanged(event: any): void {
-        this.currentPage = event.page;
+        this.paginacion.CurrentPage = event.page;
         this.loadDatos();
     };
-
     constructor(
         private mantenimientoAnuncioService: MantenimientoAnuncioService,
         private modalService: BsModalService,
         private anuncioService: AnuncioService,
         private router: Router
-    ) {
-        this.paginacion.ItemsPerPage = this.itemsPerPage;
-        this.paginacion.TotalItems = this.totalItems;
-        this.paginacion.CurrentPage = this.currentPage;
+    ) { 
+        this.paginacion.ItemsPerPage = 5;
+        this.paginacion.TotalItems = 0;
+        this.paginacion.CurrentPage = 1;
     }
-
-    loadDatos(): void {
-        this.paginacion.CurrentPage = this.currentPage;
+    loadDatos(): void {        
         this.mantenimientoAnuncioService.ListaPaginado(this.paginacion).subscribe(
-            (res) => {
+            (res) => {                
                 if (res.Status = 'OK') {
                     this.listado = JSON.parse(res.DataJson);
                 }
                 if (this.listado.length > 0) {
                     this.flagexistRegistro = true;
+                    let  paginacionResponse = JSON.parse(res.paginacion);                
+                    this.paginacion.TotalItems = paginacionResponse.TotalItems;
                 } else {
                     this.flagexistRegistro = false;
-                }
-                //let s: any = JSON.parse(res.paginacion);
-                let s: any = res.paginacion;
-                this.totalItems = s.TotalItems;
+                }               
             },
             error => {
             }
         );
-    }
-    listadoAnuncios() {
-        let entidad: any = {
-            beanPaginate: {
-                pageIndex: 0,
-                pageSize: 0
-            }
-        };
-        entidad.beanPaginate.pageIndex = this.pageIndex;
-        entidad.beanPaginate.pageSize = this.pageSizeSelected;
-        this.mantenimientoAnuncioService.ListarAnuncioPaginate(entidad).subscribe(
-            (res: ClientResponseResult<any>) => {
-                this.listaAnuncios = JSON.parse(res.result.DataJson);
-                this.totalCount = res.result.totalCount;
-            }
-        );
-    }
+    }   
 
     modalEditar(id: string) {
         this.modalRef = this.modalService.show(ModalActualizaAnuncio, {
+            class: 'modal-lg' ,
             initialState: {
-                title: 'Actualizar Anuncio',
+                title: 'Actualizar Anuncio Demo',
                 data: {
                     id: id
                 }
@@ -117,7 +92,6 @@ export class ListadoComponent implements OnInit {
             );
         }
     }
-
     cancelarDarBaja() {
         this.modalRef.hide();
     }

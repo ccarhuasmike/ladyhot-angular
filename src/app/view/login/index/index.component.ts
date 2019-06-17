@@ -33,8 +33,7 @@ export class IngresarComponent implements OnInit {
 
         this.formIngresar = new FormGroup({
             txt_email: this.txt_emailCtrl,
-            txt_password: this.txt_passwordCtrl,
-
+            txt_password: this.txt_passwordCtrl
         });
     }
 
@@ -54,9 +53,7 @@ export class IngresarComponent implements OnInit {
             (res) => {
                 console.log(res);
                 if (res.result.Status == "OK") {
-                    this.router.navigate(['panelcontrol/misanuncios']);
-                    console.log(JSON.parse(res.result.DataJson));
-                    alert("inicio session");
+                    this.router.navigate(['panelcontrol/misanuncios']);                    
                 } else {
                     console.log("ejecute Error");
                 }

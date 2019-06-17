@@ -8,14 +8,14 @@ export interface ClientResponse {
     StatusCode: number;
     ViewResult: string;
     totalCount: string;
-    paginacion: object;
+    paginacion: string;
 }
 
 export class ClientResponseResult<T> {
     result: T;
 }
 
-export interface Pagination {
+export class Pagination {
     CurrentPage: number;
     ItemsPerPage: number;
     TotalItems: number;

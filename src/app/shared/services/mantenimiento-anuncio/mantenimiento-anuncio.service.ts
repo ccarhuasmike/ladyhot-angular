@@ -39,8 +39,8 @@ export class MantenimientoAnuncioService {
         this.handleError = httpErrorHandler.createHandleError('HeroesService');
     }
 
-    ListaPaginado(pagina: Pagination): Observable<ClientResponse> {
-        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Listarpaginado', pagina, httpOptions).pipe(
+    ListaPaginado(pagination: Pagination): Observable<ClientResponse> {
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Listarpaginado', pagination, httpOptions).pipe(
             catchError(this.handleError('ListaPaginado'))
         );
     }
@@ -53,5 +53,4 @@ export class MantenimientoAnuncioService {
             })
         );
     }
-
 }

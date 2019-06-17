@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { indexComponent } from './index/indexcomponent';
 import { ContactarComponent } from './contactar/contactar.component';
-
 const routes: Routes = [
     {
         path: '',
@@ -21,8 +20,8 @@ const routes: Routes = [
                 component: ContactarComponent
             },
             {
-                path: 'mantenimiento-anuncio',
-                loadChildren: '../../../app/view/panelcontrol/mantenimiento-anuncio/mantenimiento-anuncio.module#MantenimientoAnuncioModule'
+                path: 'mantanuncio',
+                loadChildren: '../../../app/view/panelcontrol/mant-anuncio/mant-anuncio.module#MantAnuncioModule'
             }
         ]
     }

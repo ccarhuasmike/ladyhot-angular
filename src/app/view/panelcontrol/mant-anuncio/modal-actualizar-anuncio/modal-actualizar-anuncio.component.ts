@@ -1,20 +1,18 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
-import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
+import { ParameterService, AnuncioService } from 'src/app/shared/services/service.module';
 import { ClientResponseResult } from 'src/app/Models/ClientResponseModels';
-import { Router } from '@angular/router';
-import { ConfigService } from 'src/app/shared/services/Utilitarios/config.service';
-import { ActivatedRoute } from '@angular/router';
-import { ParameterService } from "../../../../shared/services/anuncio/parameter.service";
-import { PaginatedResult } from '../../../../Models/Tbl_parameter_detModels';
-import { Location } from '@angular/common';
+import { PaginatedResult } from 'src/app/Models/Tbl_parameter_detModels';
+
+//import { NgbActiveModal } from 'ngx-bootstrap/ng-bootstrap';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
-    selector: 'app-editanuncio',
-    templateUrl: './editar.component.html',
-    styleUrls: ['./editar.component.css']
+    selector: 'app-modal-actualizar-anuncio',
+    templateUrl: './modal-actualizar-anuncio.component.html',
+    styleUrls: ['./modal-actualizar-anuncio.component.css']
 })
-export class EditarComponent implements OnInit {
+export class ModalActualizaAnuncio implements OnInit {
     fromGenerales: FormGroup;
     isSubmitted: boolean = false;
     _baseUrl: string = '';
@@ -65,7 +63,6 @@ export class EditarComponent implements OnInit {
     RegEx_mailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
     RegEx_txt_web = "^(http[s]?:\\/\\/){0,1}(www\\.){0,1}[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,5}[\\.]{0,1}$";
     RegEx_Telefono = "^[679]{1}[0-9]{8}$";
-
     ListEdad: any = [];
     ListPais: any = [];
     ListEstudios: any = [];
@@ -76,26 +73,20 @@ export class EditarComponent implements OnInit {
     ListDistrito: any = [];
     ListLugarAtencion: any = [];
     ListTipoServicio: any = [];
-
     //objeto obtener datos del anuncio
     datosAnuncio: any;
     listParameter: any;
-
     constructor(
+        public modalRef: BsModalRef,
         private anuncioService: AnuncioService,
-        private route: ActivatedRoute,
-        private router: Router,
-        private _location: Location,
-        private parameter: ParameterService,
-        private configService: ConfigService) {
-        this._baseUrl = configService.getWebApiURL();
-
+        private parameter: ParameterService
+    ) {
     }
 
-    ngOnInit() {      
-        this.anuncioService.getAnuncioPorId(this.route.params["value"]["id"]).subscribe(
+    ngOnInit() {
+        debugger;
+        this.anuncioService.getAnuncioPorId(this["data"]["id"]).subscribe(
             (res: ClientResponseResult<any>) => {
-
                 this.datosAnuncio = res.result;
                 this.parameter.getParameter().subscribe(
                     (res: PaginatedResult<any[]>) => {
@@ -181,10 +172,6 @@ export class EditarComponent implements OnInit {
                 );
             });
     }
-    selectName() {
-
-    }
-
     onChangeDistrito(val_valor: number, isChecked: boolean) {
 
         let index = this.ListDistrito.findIndex(x => x.val_valor === val_valor);
@@ -195,7 +182,6 @@ export class EditarComponent implements OnInit {
         }
     }
     onChangeFormaPago(val_valor: number, isChecked: boolean) {
-
         let index = this.ListFormaPago.findIndex(x => x.val_valor === val_valor);
         if (isChecked) {
             this.ListFormaPago[index].flag = isChecked;
@@ -266,7 +252,7 @@ export class EditarComponent implements OnInit {
             .filter(v => v !== null);
 
         let entidad: any = {};
-        entidad.id = parseInt(this.route.params["value"]["id"]);
+        entidad.id = parseInt(this["data"]["id"]);
         entidad.txt_nombre_ficha = this.fromGenerales.value.txt_nombre_ficha;
         entidad.txt_telefono_1 = this.fromGenerales.value.txt_telefono_1;
         entidad.txt_telefono_2 = this.fromGenerales.value.txt_telefono_2;
@@ -303,12 +289,9 @@ export class EditarComponent implements OnInit {
             (res) => {
                 console.log(res);
                 if (res.Status == "OK") {
-                    console.log("ejecute Ok");
-                    let DataJsonAnuncio: any = res.Data;
-                    localStorage.setItem('DataAnuncio', DataJsonAnuncio);
-                    this.router.navigate(['panelcontrol/misanuncios']);
+                    this.modalRef.hide();
                 } else {
-                    console.log("ejecute Error");
+                    console.log("ejecute erro");
                 }
             }
         );
@@ -323,8 +306,8 @@ export class EditarComponent implements OnInit {
         return selecionado;
     }
 
-    cancelar() {
-        this._location.back();
+    closeModal() {
+        this.modalRef.hide();
     }
 
     cargarControles() {

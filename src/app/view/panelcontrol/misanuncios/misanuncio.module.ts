@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MisAnuncioRoutingModule } from './misanuncio-routing.module';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IndexComponent } from "./index/index.component";
 import { EditarComponent } from './editar/editar.component';

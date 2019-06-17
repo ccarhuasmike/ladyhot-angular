@@ -9,7 +9,7 @@
             <div class="form-horizontal">
               <div class="form-group row">
                 <div class="col-sm-2" *ngFor="let item of ListGaleria; let i = index">
-                  <div class="Uploadbtn" *ngIf="!item.Base64ContentFicha">
+                  <div class="Uploadbtn" *ngIf="!item.txt_ruta_virtuales_cortada">
                     <div id="divfileinput">
                       <span class="fa fa-camera fa-4x"></span>
                       <input type="file" class="input-upload" accept="image/*"
@@ -17,8 +17,8 @@
 
                     </div>
                   </div>
-                  <div class="displayFoto" *ngIf="item.Base64ContentFicha">
-                    <img class="img-thumbnail" [src]="domSanitizer.bypassSecurityTrustUrl(item.Base64ContentFicha)" />
+                  <div class="displayFoto" *ngIf="item.txt_ruta_virtuales_cortada">
+                    <img class="img-thumbnail" [src]="item.txt_ruta_virtuales_cortada" />
                     <button class="btn btn-primary btn-sm btn-block" (click)="ClickEliminar(item.id)">Eliminar</button>
                     <button class="btn btn-primary btn-sm btn-block">Ver Imagen</button>
                   </div>

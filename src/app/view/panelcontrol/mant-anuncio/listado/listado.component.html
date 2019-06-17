@@ -1,13 +1,33 @@
+<form class="row">
+  <div class="form-group row">
+    <label for="inputEmail3" class="col-sm-1 col-form-label col-form-label-sm">Codigo</label>
+    <div class="col-sm-2">
+      <input type="text" class="form-control form-control form-control-sm" id="inputEmail3" placeholder="Codigo">
+    </div>
+    <label for="inputPassword3" class="col-sm-2 col-form-label col-form-label-sm">Nick Name</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control form-control form-control-sm" id="inputPassword3" placeholder="Nick Name">
+    </div>
+    <label for="inputPassword3" class="col-sm-2 col-form-label col-form-label-sm">Email</label>
+    <div class="col-sm-2">
+      <input type="text" class="form-control form-control form-control-sm" id="inputPassword3" placeholder="Email">
+    </div>
+  </div>  
+  <br>
+  <!-- <button type="submit" class="btn btn-primary btn-sm">Sign in</button>   -->
+</form>
+<br>
 <div class="row">
   <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover tabel-condensed table-sm">
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Name</th>
+          <th>Codigo</th>
+          <th>Nick Name</th>
+          <th>Telefonos</th>
           <th>Email</th>
           <th>Estado</th>
-          <th colspan="2">Opciones</th>
+          <th colspan="2">Acción</th>
         </tr>
       </thead>
       <div *ngIf="flagexistRegistro; then ocultarGrilla else mostrarGrilla"></div>
@@ -24,20 +44,27 @@
         <tr class="{{result.id_estado_reg?'table-danger':''}}">
           <td>{{result.id}}</td>
           <td>{{result.txt_nombre_ficha}}</td>
+          <td>{{result.txt_telefono_1}} - {{result.txt_telefono_2}}</td>
           <td>{{result.txt_email}}</td>
           <td>{{ result.id_estado_reg?'Inactivo':'Activo'}}</td>
-          <td><button class="btn btn-primary" disabled="{{result.id_estado_reg?'disabled':''}}" (click)="modalEditar(result.id)">Editar</button></td>
-          <td><button class="btn btn-success" disabled="{{result.id_estado_reg?'disabled':''}}" (click)="darBaja(modalConfirmacion,result.cod_anuncio_encryptado)">Dar
+          <td><button class="btn btn-primary btn-sm" disabled="{{result.id_estado_reg?'disabled':''}}"
+              (click)="modalEditar(result.id)"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</button>
+            <button class="btn btn-success btn-sm" disabled="{{result.id_estado_reg?'disabled':''}}"
+              (click)="darBaja(modalConfirmacion,result.cod_anuncio_encryptado)"><i class="fa fa-trash"
+                aria-hidden="true"></i> Dar
               Baja</button></td>
         </tr>
       </tbody>
-      <pagination [boundaryLinks]="true" [maxSize]="2" [itemsPerPage]="paginacion.ItemsPerPage" [totalItems]="paginacion.TotalItems"
-        [(ngModel)]="paginacion.CurrentPage" (pageChanged)="pageChanged($event)" class="pagination-sm" previousText="&lsaquo;"
-        nextText="&rsaquo;" firstText="Primero" lastText="Ultimo"></pagination>
+      <br>
+      <pagination [boundaryLinks]="true" [maxSize]="2" [itemsPerPage]="paginacion.ItemsPerPage"
+        [totalItems]="paginacion.TotalItems" [(ngModel)]="paginacion.CurrentPage" (pageChanged)="pageChanged($event)"
+        class="pagination-sm" previousText="&lsaquo;" nextText="&rsaquo;" firstText="Primero" lastText="Ultimo">
+      </pagination>
     </ng-template>
 
   </div>
 </div>
+
 
 <ng-template #modalConfirmacion>
   <div class="modal-body text-center">

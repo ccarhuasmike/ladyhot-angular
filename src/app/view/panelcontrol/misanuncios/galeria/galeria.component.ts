@@ -3,7 +3,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Tbl_galeria_anuncio } from "../../../../Models/Tbl_galeria_anuncioModels";
 import { ActivatedRoute, Router } from '@angular/router';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
-import { LoaderService } from "../../../../shared/services/loader/loader.service";
 import { Location } from '@angular/common';
 @Component({
     selector: 'app-editanuncio',
@@ -17,8 +16,7 @@ export class GaleriaComponent implements OnInit {
         private anuncioService: AnuncioService,
         private router: Router,
         private route: ActivatedRoute,
-        private _location: Location
-        // public loaderService: LoaderService
+        private _location: Location       
     ) {
 
 
@@ -28,6 +26,7 @@ export class GaleriaComponent implements OnInit {
         objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
         this.anuncioService.GetGaleriaXIdAnuncio(objeto).subscribe(
             (res) => {
+                debugger;
                 if (res.Status == "OK") {
                     this.listarGaleria(res.DataJson);
                 }
@@ -35,9 +34,11 @@ export class GaleriaComponent implements OnInit {
         );
     }
     listarGaleria(data) {
+        this.ListGaleria= [];
         for (let index = 0; index <= 5; index++) {
             var resultObject = JSON.parse(data)[index];
             if (resultObject != null) {
+                console.log(resultObject.txt_ruta_virtuales_cortada);
                 this.ListGaleria.push(resultObject);
             } else {
                 const tbl_galeria_anuncio: Tbl_galeria_anuncio = {
@@ -76,6 +77,7 @@ export class GaleriaComponent implements OnInit {
         this._location.back();
     }
     displayPhoto(fileInput, id: number) {
+        debugger;   
         if (fileInput.target.files && fileInput.target.files[0]) {
             const reader = new FileReader();
             if (fileInput.target.files && fileInput.target.files.length > 0) {
@@ -91,14 +93,11 @@ export class GaleriaComponent implements OnInit {
                             objeto.tx_extension_archivo = file.name.split(".")[1];
                             objeto.tx_filename = file.name.split(".")[0];
                             this.anuncioService.SaveGaleria(objeto).subscribe(
-                                (res) => {
-                                    // debugger;
-                                    // if (res.Status == "OK") {
-
-                                    //     let result = JSON.parse(res.DataJson);
-                                    //     this.ListGaleria[i].Base64ContentFicha = result.Base64ContentFicha;
-                                    //     this.ListGaleria[i].progressbar = result.progressbar;
-                                    // }
+                                (res) => {       
+                                    debugger;                             
+                                    if (res.Status == "OK") {                                        
+                                        this.listarGaleria(res.DataJson);
+                                    }
                                 }
                             );
                         }

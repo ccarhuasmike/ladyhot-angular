@@ -44,7 +44,9 @@ export class ListadoComponent implements OnInit {
         this.mantenimientoAnuncioService.ListaPaginado(this.paginacion).subscribe(
             (res) => {                
                 if (res.Status = 'OK') {
+                    debugger;
                     this.listado = JSON.parse(res.DataJson);
+                    console.log(this.listado[0]);
                 }
                 if (this.listado.length > 0) {
                     this.flagexistRegistro = true;

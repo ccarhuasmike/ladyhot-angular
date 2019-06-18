@@ -44,8 +44,7 @@ export class IngresarComponent implements OnInit {
         this.isSubmitted = true;
         if (!this.formIngresar.valid)
             return;
-        let entidad: any = {};
-        debugger;
+        let entidad: any = {};        
         entidad.tx_email = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_email);
         entidad.tx_pass = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_password);
 

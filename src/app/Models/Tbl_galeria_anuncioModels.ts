@@ -8,8 +8,6 @@ export interface Tbl_galeria_anuncio {
     dt_fe_crea: Date;
     id_anuncio: number;
     txt_ruta_virtuales: string;
-    txt_ruta_virtuales_cortada: string;
-    Base64ContentFicha: string;
-    Base64ContentFichaCort: string;
+    txt_ruta_virtuales_cortada: string;    
     progressbar: number
 }

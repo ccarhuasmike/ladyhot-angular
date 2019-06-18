@@ -92,14 +92,11 @@ export class DatosContactoComponent implements OnInit {
             entidad.txt_telefono_2 = this.fromContacto.value.txt_telefono_2;
             entidad.txt_email = this.fromContacto.value.txt_email;
             entidad.txt_web = this.fromContacto.value.txt_web;
-            this.anuncioService.SavePrimerPaso(entidad).subscribe(
-                //(res: ClientResponseResult<ClientResponse>) => {
+            this.anuncioService.SavePrimerPaso(entidad).subscribe(                
                 (res) => {
-                    if (res.Status == "OK") {
-                        debugger;
+                    if (res.Status == "OK") {                        
                         let DataJsonAnuncio: any = res.Data;
-                        localStorage.setItem('DataAnuncio', DataJsonAnuncio);
-                        //this.anuncioService.setDatosContacto(this.fromContacto.value)
+                        localStorage.setItem('DataAnuncio', DataJsonAnuncio);                        
                         this.router.navigate(['panelcontrol/nuevoanuncio/datos-generales']);
                     } else {
                         console.log("ejecute Error");

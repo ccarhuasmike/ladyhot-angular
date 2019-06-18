@@ -43,8 +43,7 @@ export class ListadoComponent implements OnInit {
     loadDatos(): void {        
         this.mantenimientoAnuncioService.ListaPaginado(this.paginacion).subscribe(
             (res) => {                
-                if (res.Status = 'OK') {
-                    debugger;
+                if (res.Status = 'OK') {                    
                     this.listado = JSON.parse(res.DataJson);
                     console.log(this.listado[0]);
                 }

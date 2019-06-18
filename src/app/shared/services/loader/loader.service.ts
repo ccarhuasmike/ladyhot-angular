@@ -13,16 +13,14 @@ export class LoaderService {
     }
     public increase(): void {
         this.requestsRunning++;
-        if (this.requestsRunning === 1) {
-            debugger;
+        if (this.requestsRunning === 1) {            
             this.updateProgressBar$.emit('query');
         }
     }
     public decrease(): void {
         if (this.requestsRunning > 0) {
             this.requestsRunning--;
-            if (this.requestsRunning === 0) {
-                debugger;
+            if (this.requestsRunning === 0) {                
                 this.updateProgressBar$.emit('none');
             }
         }

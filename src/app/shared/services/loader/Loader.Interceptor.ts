@@ -51,8 +51,7 @@ export class LoaderInterceptor implements HttpInterceptor {
     // private onRequestComplete(): void {
     //     this.completedRequests++;
     //     this.emitProgress();
-    //     if (this.completedRequests === this.totalRequests) {
-    //         debugger;
+    //     if (this.completedRequests === this.totalRequests) {    
     //         this.onRequestsComplete();
     //     }
     // }

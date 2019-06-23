@@ -57,7 +57,7 @@ export class GaleriaComponent implements OnInit {
                     dt_fe_crea: new Date(),
                     id_anuncio: 0,
                     txt_ruta_virtuales: "",
-                    txt_ruta_virtuales_cortada: "",                    
+                    txt_ruta_virtuales_cortada: "",
                     progressbar: 0
                 };
                 this.ListGaleriaPortada.push(tbl_galeria_anuncio);
@@ -80,7 +80,7 @@ export class GaleriaComponent implements OnInit {
                     dt_fe_crea: new Date(),
                     id_anuncio: 0,
                     txt_ruta_virtuales: "",
-                    txt_ruta_virtuales_cortada: "",                    
+                    txt_ruta_virtuales_cortada: "",
                     progressbar: 0
                 };
                 this.ListGaleria.push(tbl_galeria_anuncio);
@@ -94,11 +94,11 @@ export class GaleriaComponent implements OnInit {
         this.anuncioService.EliminarGaleriaXId(objeto).subscribe(
             (res) => {
                 if (res.Status == "OK") {
-                    if(IdTipoPresentacion == 1){
+                    if (IdTipoPresentacion == 1) {
                         this.ListGaleriaPortada[this.ListGaleriaPortada.findIndex(x => x.id == id)].txt_ruta_virtuales_cortada = "";
-                    }else{
+                    } else {
                         this.ListGaleria[this.ListGaleria.findIndex(x => x.id == id)].txt_ruta_virtuales_cortada = "";
-                    }                    
+                    }
                 }
             }
         );
@@ -113,26 +113,54 @@ export class GaleriaComponent implements OnInit {
                 let file = fileInput.target.files[0];
                 reader.onloadend = (e) => {
                     //Actualizamos el objeto del list
-                    this.ListGaleria.map((todo, i) => {
-                        if (todo.id == id) {
-                            let objeto: any = {};
-                            objeto.tx_ruta_file = reader.result;
-                            objeto.IdTipoPresentacion = IdTipoPresentacion;
-                            objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
-                            objeto.tx_ruta_file = objeto.tx_ruta_file.replace(/data\:image\/(jpeg|jpg|png)\;base64\,/gi, '');
-                            objeto.tx_extension_archivo = file.name.split(".")[1];
-                            objeto.tx_filename = file.name.split(".")[0];
-                            this.anuncioService.SaveGaleria(objeto).subscribe(
-                                (res) => {
-                                    if (res.Status == "OK") {
-                                        debugger;
-                                        var listGaleria = JSON.parse(res.DataJson)
-                                        this.listarGaleria(listGaleria);
+
+                    if (IdTipoPresentacion = 1) {
+                        this.ListGaleriaPortada.map((todo, i) => {
+                            debugger;
+                            if (todo.id == id) {
+
+                                let objeto: any = {};
+                                objeto.tx_ruta_file = reader.result;
+                                objeto.IdTipoPresentacion = IdTipoPresentacion;
+                                objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
+                                objeto.tx_ruta_file = objeto.tx_ruta_file.replace(/data\:image\/(jpeg|jpg|png)\;base64\,/gi, '');
+                                objeto.tx_extension_archivo = file.name.split(".")[1];
+                                objeto.tx_filename = file.name.split(".")[0];
+                                this.anuncioService.SaveGaleria(objeto).subscribe(
+                                    (res) => {
+                                        if (res.Status == "OK") {
+                                            debugger;
+                                            var listGaleria = JSON.parse(res.DataJson)
+                                            this.listarGaleria(listGaleria);
+                                        }
                                     }
-                                }
-                            );
-                        }
-                    });
+                                );
+                            }
+                        });
+                    } else {
+                        this.ListGaleria.map((todo, i) => {
+                            debugger;
+                            if (todo.id == id) {
+                                let objeto: any = {};
+                                objeto.tx_ruta_file = reader.result;
+                                objeto.IdTipoPresentacion = IdTipoPresentacion;
+                                objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
+                                objeto.tx_ruta_file = objeto.tx_ruta_file.replace(/data\:image\/(jpeg|jpg|png)\;base64\,/gi, '');
+                                objeto.tx_extension_archivo = file.name.split(".")[1];
+                                objeto.tx_filename = file.name.split(".")[0];
+                                this.anuncioService.SaveGaleria(objeto).subscribe(
+                                    (res) => {
+                                        if (res.Status == "OK") {
+                                            debugger;
+                                            var listGaleria = JSON.parse(res.DataJson)
+                                            this.listarGaleria(listGaleria);
+                                        }
+                                    }
+                                );
+                            }
+                        });
+                    }
+
                 }
                 reader.readAsDataURL(file);
             }

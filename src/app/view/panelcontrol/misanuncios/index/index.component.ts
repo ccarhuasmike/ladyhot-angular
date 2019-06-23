@@ -25,8 +25,9 @@ export class IndexComponent implements OnInit {
 
   ngOnInit() {
     this.anuncioService.getListarMisAnuncios().subscribe(
-      (res: ClientResponseResult<any>) => {        
+      (res: ClientResponseResult<any>) => {
         this.listaMisAnuncios = res.result;
+        console.log(this.listaMisAnuncios);
       }
     );
   }

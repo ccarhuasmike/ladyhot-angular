@@ -14,7 +14,7 @@ export class DarBajaComponent implements OnInit {
     _baseUrl: string = '';
     nombre: string = '';
     idEncrypt: string;
-
+    txt_imagen_prensetancion: string;
     constructor(
         private anuncioService: AnuncioService,
         private route: ActivatedRoute,
@@ -28,8 +28,11 @@ export class DarBajaComponent implements OnInit {
     ngOnInit() {
         this.anuncioService.getAnuncioPorId(this.route.params["value"]["id"]).subscribe(
             (res: ClientResponseResult<any>) => {
+
+                console.log(res);
                 this.nombre = res.result.DetailleAnuncion.txt_nombre_ficha;
                 this.idEncrypt = res.result.DetailleAnuncion.cod_anuncio_encryptado;
+                this.txt_imagen_prensetancion = res.result.DetailleAnuncion.txt_imagen_prensetancion;
             });
     }
 

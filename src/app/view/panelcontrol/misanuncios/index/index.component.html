@@ -2,9 +2,13 @@
   <div *ngFor="let anuncio of listaMisAnuncios">
     <div class="container-anuncio">
       <div class="container-left">
-        <img class="img-thumbnail"
-        [src]="anuncio.txt_imagen_prensetancion"
-          alt="Forest">
+        <div class="Uploadbtn" *ngIf="!anuncio.txt_imagen_prensetancion">
+          <img class="img-thumbnail" src="assets/profile.png" alt="Forest">
+        </div>
+        <div class="Uploadbtn" *ngIf="anuncio.txt_imagen_prensetancion">
+          <img class="img-thumbnail" [src]="anuncio.txt_imagen_prensetancion" alt="Forest">
+        </div>
+
       </div>
       <div class="container-right">
         <h1 class="parrafo-left" for="tx_descripcion_extra_servicio">{{anuncio.txt_nombre_ficha}}</h1>

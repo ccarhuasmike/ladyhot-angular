@@ -87,6 +87,7 @@ export class AnuncioService {
 
     /*Galeria*/
     SaveGaleria(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
+        debugger;
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/InsertGaleria', galeria, httpOptions)
             .pipe(
                 catchError(this.handleError('GetGaleriaXIdAnuncio'))

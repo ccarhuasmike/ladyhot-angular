@@ -114,7 +114,7 @@ export class GaleriaComponent implements OnInit {
                 reader.onloadend = (e) => {
                     //Actualizamos el objeto del list
 
-                    if (IdTipoPresentacion = 1) {
+                    if (IdTipoPresentacion == 1) {
                         this.ListGaleriaPortada.map((todo, i) => {
                             debugger;
                             if (todo.id == id) {

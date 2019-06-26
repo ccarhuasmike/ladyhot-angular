@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { FormGroup, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
-import { ClientResponseResult } from 'src/app/Models/ClientResponseModels';
+import { ClientResponse } from 'src/app/Models/ClientResponseModels';
 import { Router } from '@angular/router';
 import { ConfigService } from 'src/app/shared/services/Utilitarios/config.service';
 import { ActivatedRoute } from '@angular/router';
@@ -89,17 +89,15 @@ export class EditarComponent implements OnInit {
         private parameter: ParameterService,
         private configService: ConfigService) {
         this._baseUrl = configService.getWebApiURL();
-
     }
 
     ngOnInit() {      
         this.anuncioService.getAnuncioPorId(this.route.params["value"]["id"]).subscribe(
-            (res: ClientResponseResult<any>) => {
-
-                this.datosAnuncio = res.result;
+            (res: ClientResponse) => {                
+                this.datosAnuncio = res.Data;
                 this.parameter.getParameter().subscribe(
-                    (res: PaginatedResult<any[]>) => {
-                        this.listParameter = res.result; // aqui se obtiene los paramter de la base de datos                
+                    (res: ClientResponse) => {
+                        this.listParameter =  JSON.parse(res.DataJson) ; // aqui se obtiene los paramter de la base de datos                
                         this.ListEdad = this.listParameter.edad;//this.anuncioService.getListEdad();
                         this.ListPais = this.listParameter.pais;//this.anuncioService.getListPais();
                         this.ListEstudios = this.listParameter.estudios;//this.anuncioService.getListEstudios();

@@ -3,7 +3,7 @@ import { AnuncioService } from 'src/app/shared/services/service.module';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from 'src/app/shared/services/Utilitarios/config.service';
 import { Location } from '@angular/common';
-import { ClientResponseResult } from 'src/app/Models/ClientResponseModels';
+import { ClientResponse } from 'src/app/Models/ClientResponseModels';
 @Component({
     selector: 'app-darBaja',
     templateUrl: './darbaja.component.html',
@@ -27,12 +27,12 @@ export class DarBajaComponent implements OnInit {
 
     ngOnInit() {
         this.anuncioService.getAnuncioPorId(this.route.params["value"]["id"]).subscribe(
-            (res: ClientResponseResult<any>) => {
+            (res: ClientResponse) => {
 
                 console.log(res);
-                this.nombre = res.result.DetailleAnuncion.txt_nombre_ficha;
-                this.idEncrypt = res.result.DetailleAnuncion.cod_anuncio_encryptado;
-                this.txt_imagen_prensetancion = res.result.DetailleAnuncion.txt_imagen_prensetancion;
+                // this.nombre = res.result.DetailleAnuncion.txt_nombre_ficha;
+                // this.idEncrypt = res.result.DetailleAnuncion.cod_anuncio_encryptado;
+                // this.txt_imagen_prensetancion = res.result.DetailleAnuncion.txt_imagen_prensetancion;
             });
     }
 

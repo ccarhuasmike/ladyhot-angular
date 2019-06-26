@@ -1,10 +1,12 @@
-
 <app-headerfilter></app-headerfilter>
+<div style="display: none;">
+    {{masonryImages.length}}
+</div>
 <div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5"
   [infiniteScrollThrottle]="500" (scrolled)="onScrollDown()" (scrolledUp)="onScrollUp()">
-  <div class="masonry">
-    <div class="item" *ngFor="let item of masonryImages; let i = index">
-      <img src="{{item.foto}}">
+  <div class="masonry">    
+    <div class="item" *ngFor="let item of masonryImages ">
+      <img src="{{item.txt_imagen_prensetancion}}">
       <div class="icons-fichas">
         <span class="icons-fichas-info">
           <span class="fa fa-info"></span>
@@ -13,12 +15,13 @@
           <span class="fa fa-play"></span>
         </span>
       </div>
-      <a href="#" class="btn-small">{{item.distrito}}</a>
-      <a href="#" class="btn-small"> {{item.edad}}</a>
-      <a href="#" class="btn-small">{{item.precio}}</a>
-      <a href="#" class="btn-small">{{item.pais}}</a>
+      <a href="#" class="btn-small">{{item.txt_nombre_ficha}}</a>
+      <a href="#" class="btn-small">{{item.tx_pais_origen}}</a>
+      <a href="#" class="btn-small"> {{item.int_edad}}</a>
+      <!-- <a href="#" class="btn-small">{{item.precio}}</a> -->
+      <!-- <a href="#" class="btn-small">{{item.pais}}</a> -->
       <p class="descripcion">
-        {{item.descripcion}}
+        {{item.txt_presentacion}}
       </p>
     </div>
   </div>

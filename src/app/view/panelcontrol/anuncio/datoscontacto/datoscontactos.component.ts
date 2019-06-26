@@ -40,8 +40,8 @@ export class DatosContactoComponent implements OnInit {
     ngOnInit() {
         this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         this.parameter.getParameter().subscribe(
-            (res: PaginatedResult<any[]>) => {
-                this.listParameter = res.result;
+            (res: ClientResponse) => {
+                this.listParameter = JSON.parse(res.DataJson) ;
                 localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
                 this._messageService = this.messageService;
                 console.log(this._messageService);

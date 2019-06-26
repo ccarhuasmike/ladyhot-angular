@@ -1,23 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
 import { StepService } from "./step.service";
 import { Tbl_anuncio } from '../../../Models/Tbl_anuncioModels';
-import { ClientResponse, ClientResponseResult } from '../../../Models/ClientResponseModels';
+import { ClientResponse } from '../../../Models/ClientResponseModels';
 import { Tbl_galeria_anuncio } from "../../../Models/Tbl_galeria_anuncioModels";
-import { map, tap } from 'rxjs/operators';
 import { FormData } from '../../../view/models/modelanuncio';
 import { ConfigService } from "../Utilitarios/config.service";
 import { catchError } from 'rxjs/operators';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpErrorHandler, HandleError } from '../../../throwError/http-error-handler.service';
-import { HttpClient, HttpRequest, HttpEvent, HttpEventType } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders} from '@angular/common/http';
 
-const options = new RequestOptions({
-    headers: new Headers({
-        "Content-Type": "application/json"
-    })
-});
 const httpOptions = {
     headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -26,8 +18,7 @@ const httpOptions = {
 };
 
 @Injectable() // The Injectable decorator is required for dependency injection to work
-export class AnuncioService {
-    private formData: FormData = new FormData();
+export class AnuncioService {    
     _baseUrl: string = '';
     private handleError: HandleError;
     public progress: number = 0;
@@ -35,8 +26,7 @@ export class AnuncioService {
     public percentage: number = 0
     public completed: number = 0
 
-    constructor(
-        private http: Http,
+    constructor(        
         private httpClient: HttpClient,
         private stepService: StepService,
         private configService: ConfigService,
@@ -86,8 +76,7 @@ export class AnuncioService {
     }
 
     /*Galeria*/
-    SaveGaleria(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
-        debugger;
+    SaveGaleria(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {        
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/InsertGaleria', galeria, httpOptions)
             .pipe(
                 catchError(this.handleError('GetGaleriaXIdAnuncio'))
@@ -112,24 +101,16 @@ export class AnuncioService {
                 catchError(this.handleError('Saveactualizartodo'))
             );
     }
-    getListarMisAnuncios(): Observable<ClientResponseResult<any[]>> {
-        var paginatedResult: ClientResponseResult<any[]> = new ClientResponseResult<any[]>();
-        return this.http.get(this._baseUrl + 'misanuncios/ListarMisAnuncios').pipe(
-            map(res => {
-                paginatedResult.result = JSON.parse(res.json().DataJson);
-                return paginatedResult;
-            })
-        );
+    getListarMisAnuncios(): Observable<ClientResponse> {
+        return this.httpClient.get<ClientResponse>(this._baseUrl + 'misanuncios/ListarMisAnuncios').pipe(
+            catchError(this.handleError('getListarMisAnuncios'))
+        );        
     }
 
-    getAnuncioPorId(id: String): Observable<ClientResponseResult<any[]>> {
-        var paginatedResult: ClientResponseResult<any[]> = new ClientResponseResult<any[]>();
-        return this.http.post(this._baseUrl + 'anuncio/GetAnucionXId/' + id, options).pipe(
-            map(res => {
-                paginatedResult.result = res.json().Data;
-                return paginatedResult;
-            })
-        );
+    getAnuncioPorId(id: String): Observable<ClientResponse> {
+        return this.httpClient.get<ClientResponse>(this._baseUrl + 'anuncio/GetAnucionXId/' + id).pipe(
+            catchError(this.handleError('getAnuncioPorId'))
+        );          
     }
     darBajaMiAnuncio(anuncio: Tbl_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/DarBajarAnuncio/', anuncio, httpOptions)

@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AnuncioService } from 'src/app/shared/services/service.module';
 import { ConfigService } from 'src/app/shared/services/Utilitarios/config.service';
-import { ClientResponseResult } from 'src/app/Models/ClientResponseModels';
+import { ClientResponse,ClientResponseResult } from 'src/app/Models/ClientResponseModels';
 import { Tbl_anuncio } from 'src/app/Models/Tbl_anuncioModels';
 import { Router } from '@angular/router';
 
@@ -25,8 +25,8 @@ export class IndexComponent implements OnInit {
 
   ngOnInit() {
     this.anuncioService.getListarMisAnuncios().subscribe(
-      (res: ClientResponseResult<any>) => {
-        this.listaMisAnuncios = res.result;
+      (res: ClientResponse) => {        
+        this.listaMisAnuncios = JSON.parse(res.DataJson) ;
         console.log(this.listaMisAnuncios);
       }
     );

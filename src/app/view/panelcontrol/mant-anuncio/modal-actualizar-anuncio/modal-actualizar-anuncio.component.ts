@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { ParameterService, AnuncioService } from 'src/app/shared/services/service.module';
-import { ClientResponseResult } from 'src/app/Models/ClientResponseModels';
+import { ClientResponse } from 'src/app/Models/ClientResponseModels';
 import { PaginatedResult } from 'src/app/Models/Tbl_parameter_detModels';
 
 //import { NgbActiveModal } from 'ngx-bootstrap/ng-bootstrap';
@@ -83,13 +83,14 @@ export class ModalActualizaAnuncio implements OnInit {
     ) {
     }
 
-    ngOnInit() {        
+    ngOnInit() {          
         this.anuncioService.getAnuncioPorId(this["data"]["id"]).subscribe(
-            (res: ClientResponseResult<any>) => {
-                this.datosAnuncio = res.result;
+            (res: ClientResponse) => {
+                
+                this.datosAnuncio = res.DataJson;
                 this.parameter.getParameter().subscribe(
-                    (res: PaginatedResult<any[]>) => {
-                        this.listParameter = res.result; // aqui se obtiene los paramter de la base de datos                
+                    (res: ClientResponse) => {
+                        this.listParameter = JSON.parse(res.DataJson) ; // aqui se obtiene los paramter de la base de datos                
                         this.ListEdad = this.listParameter.edad;//this.anuncioService.getListEdad();
                         this.ListPais = this.listParameter.pais;//this.anuncioService.getListPais();
                         this.ListEstudios = this.listParameter.estudios;//this.anuncioService.getListEstudios();

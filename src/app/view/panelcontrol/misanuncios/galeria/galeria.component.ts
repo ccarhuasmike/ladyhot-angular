@@ -116,9 +116,8 @@ export class GaleriaComponent implements OnInit {
 
                     if (IdTipoPresentacion == 1) {
                         this.ListGaleriaPortada.map((todo, i) => {
-                            debugger;
+                            
                             if (todo.id == id) {
-
                                 let objeto: any = {};
                                 objeto.tx_ruta_file = reader.result;
                                 objeto.IdTipoPresentacion = IdTipoPresentacion;
@@ -128,8 +127,7 @@ export class GaleriaComponent implements OnInit {
                                 objeto.tx_filename = file.name.split(".")[0];
                                 this.anuncioService.SaveGaleria(objeto).subscribe(
                                     (res) => {
-                                        if (res.Status == "OK") {
-                                            debugger;
+                                        if (res.Status == "OK") {                                            
                                             var listGaleria = JSON.parse(res.DataJson)
                                             this.listarGaleria(listGaleria);
                                         }
@@ -138,8 +136,7 @@ export class GaleriaComponent implements OnInit {
                             }
                         });
                     } else {
-                        this.ListGaleria.map((todo, i) => {
-                            debugger;
+                        this.ListGaleria.map((todo, i) => {                            
                             if (todo.id == id) {
                                 let objeto: any = {};
                                 objeto.tx_ruta_file = reader.result;
@@ -150,8 +147,7 @@ export class GaleriaComponent implements OnInit {
                                 objeto.tx_filename = file.name.split(".")[0];
                                 this.anuncioService.SaveGaleria(objeto).subscribe(
                                     (res) => {
-                                        if (res.Status == "OK") {
-                                            debugger;
+                                        if (res.Status == "OK") {                                            
                                             var listGaleria = JSON.parse(res.DataJson)
                                             this.listarGaleria(listGaleria);
                                         }

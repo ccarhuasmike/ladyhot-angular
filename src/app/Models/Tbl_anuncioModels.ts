@@ -58,6 +58,6 @@ export interface Tbl_anuncio {
     txt_imagen_prensetancion: string;
 
     //parametros adicionales
-    beanPaginate: Bean_paginate;
+    //beanPaginate: Bean_paginate;
 }
 

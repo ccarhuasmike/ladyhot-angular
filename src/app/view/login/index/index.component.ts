@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { UsuarioService } from 'src/app/shared/services/usuario/usuario.service';
 import { Router } from '@angular/router';
-import * as CryptoJS from 'crypto-js';
+// import * as CryptoJS from 'crypto-js';
 
 @Component({
     selector: 'app-ingresar',
@@ -66,24 +66,24 @@ export class IngresarComponent implements OnInit {
      * @param value -> valor encriptado
      */
     encriptar(keys, value) {
-        // random salt for derivation
-        var keySize = 256;
-        var salt = CryptoJS.lib.WordArray.random(16);
-        // well known algorithm to generate key
-        var key = CryptoJS.PBKDF2(keys, salt, {
-            keySize: keySize / 32,
-            iterations: 100
-        });
-        // random IV
-        var iv = CryptoJS.lib.WordArray.random(128 / 8);
-        // specify everything explicitly
-        var encrypted = CryptoJS.AES.encrypt(value, key, {
-            iv: iv,
-            padding: CryptoJS.pad.Pkcs7,
-            mode: CryptoJS.mode.CBC
-        });
+        // // random salt for derivation
+        // var keySize = 256;
+        // var salt = CryptoJS.lib.WordArray.random(16);
+        // // well known algorithm to generate key
+        // var key = CryptoJS.PBKDF2(keys, salt, {
+        //     keySize: keySize / 32,
+        //     iterations: 100
+        // });
+        // // random IV
+        // var iv = CryptoJS.lib.WordArray.random(128 / 8);
+        // // specify everything explicitly
+        // var encrypted = CryptoJS.AES.encrypt(value, key, {
+        //     iv: iv,
+        //     padding: CryptoJS.pad.Pkcs7,
+        //     mode: CryptoJS.mode.CBC
+        // });
         // combine everything together in base64 string
-        var result = CryptoJS.enc.Base64.stringify(salt.concat(iv).concat(encrypted.ciphertext));
+        var result = "";//CryptoJS.enc.Base64.stringify(salt.concat(iv).concat(encrypted.ciphertext));
         return result;
     }
 }

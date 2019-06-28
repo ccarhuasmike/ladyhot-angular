@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { NotFoundComponent } from "../app/view/not-found/not-found.component";
+//import { IndexComponent } from "../app/view/home/index/index.component";
 
 const routes: Routes = [
   {
@@ -10,6 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
+   // component :  IndexComponent
     loadChildren: '../app/view/home/home.module#HomeModule'
   },
   {

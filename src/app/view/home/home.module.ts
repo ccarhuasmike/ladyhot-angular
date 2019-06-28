@@ -13,5 +13,6 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
         InfiniteScrollModule
     ],
     declarations: [IndexComponent,headerfilter]
+  
 })
 export class HomeModule { }

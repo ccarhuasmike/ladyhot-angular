@@ -7,11 +7,15 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from '../app/view/not-found/not-found.component';
 import { CoreModule } from '../app/view/core/core.module';
 import { SharedModule } from './shared/shared.module';
+// import { IndexComponent } from "../app/view/home/index/index.component";
+// import { NgxMasonryModule } from 'ngx-masonry';
+// import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    //IndexComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +23,9 @@ import { SharedModule } from './shared/shared.module';
     HttpModule,
     HttpClientModule,    
     CoreModule,
-    SharedModule
+    SharedModule,
+    // NgxMasonryModule,
+    // InfiniteScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]

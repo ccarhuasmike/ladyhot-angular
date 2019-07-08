@@ -5,13 +5,15 @@ import { IndexComponent } from './index/index.component';
 import { headerfilter } from './headerfilter/headerfilter.component';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { FormsModule } from '@angular/forms';
 @NgModule({
     imports: [
         CommonModule,
         HomeRoutingModule,
         NgxMasonryModule,
-        InfiniteScrollModule
+        InfiniteScrollModule,
+        FormsModule
     ],
-    declarations: [IndexComponent,headerfilter]
+    declarations: [IndexComponent, headerfilter]
 })
 export class HomeModule { }

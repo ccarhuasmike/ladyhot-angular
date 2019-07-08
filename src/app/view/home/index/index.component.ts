@@ -28,6 +28,11 @@ export class IndexComponent implements OnInit {
     private homeService: HomeService,
     public messageService: MessageService
   ) { }
+
+  showPueblo(event): void {
+    alert(event.nombre);
+  }
+
   onScrollDown() {
     this.limit += 15;
     this.masonryImages = this.clientes.slice(0, this.limit);
@@ -406,7 +411,7 @@ export class IndexComponent implements OnInit {
     this.clientes.push(this.clientesbean);
 
     this.masonryImages = this.clientes.slice(0, this.limit);
-    
+
     console.log(this.clientesbean);
   }
 

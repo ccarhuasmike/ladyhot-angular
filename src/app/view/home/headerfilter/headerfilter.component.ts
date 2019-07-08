@@ -1,9 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-headerfilter',
   templateUrl: "./headerfilter.component.html"
 })
 export class headerfilter implements OnInit {
-    ngOnInit(): void {        
-    }    
+  public nombre: string;
+  // Usamos el decorador Output
+  @Output() PasameElPueblo = new EventEmitter();
+  ngOnInit(): void {
+  }
+  // Cuando se lance el evento click en la plantilla llamaremos a este método
+  lanzar(event) {
+    // Usamos el método emit
+    this.PasameElPueblo.emit({ nombre: this.nombre });
+  }
+
 }

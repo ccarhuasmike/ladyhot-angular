@@ -1,5 +1,4 @@
-
-<app-headerfilter></app-headerfilter>
+<app-headerfilter (PasameElPueblo)="showPueblo($event)"></app-headerfilter>
 <div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5"
   [infiniteScrollThrottle]="500" (scrolled)="onScrollDown()" (scrolledUp)="onScrollUp()">
   <div class="masonry">

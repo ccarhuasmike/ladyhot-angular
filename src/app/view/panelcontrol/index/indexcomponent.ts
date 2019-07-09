@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { Router } from "@angular/router";
 import { debug } from 'util';
 // import { BehaviorSubject } from 'rxjs';
@@ -7,7 +7,8 @@ import { debug } from 'util';
 @Component({
     selector: 'app-coredashboard',
     templateUrl: "./index.component.html",
-    styleUrls: ['./index.component.css']
+    styleUrls: ['./index.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class indexComponent implements OnInit {
     constructor(

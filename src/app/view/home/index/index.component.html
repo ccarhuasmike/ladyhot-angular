@@ -1,35 +1,5 @@
-<app-headerfilter></app-headerfilter>
-<div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5"
-  [infiniteScrollThrottle]="500" (scrolled)="onScrollDown()" (scrolledUp)="onScrollUp()">
-  <div class="masonry">
-    <div class="item" *ngFor="let items of masonryImages">
-      <img src="{{items.txt_imagen_prensetancion}}">
-      <div class="icons-fichas">
-        <span class="icons-fichas-info">
-          <span class="fa fa-info"></span>
-        </span>
-        <span class="icons-fichas-player ">
-          <span class="fa fa-play"></span>
-        </span>
-      </div>
-      <a href="#" class="btn-small">{{items.txt_nombre_ficha}}</a>
-      <a href="#" class="btn-small">{{items.tx_pais_origen}}</a>
-      <a href="#" class="btn-small"> {{items.int_edad}}</a>
-      <!-- <a href="#" class="btn-small">{{item.precio}}</a> -->
-      <!-- <a href="#" class="btn-small">{{item.pais}}</a> -->
-      <p class="descripcion">
-        {{items.txt_presentacion}}
-      </p>
-    </div>
-  </div>
-</div>
-
-<!-- <div style="text-align:center">
-    <h1>
-      Shopping app
-    </h1>
-    <a routerLink="/tienda">Tienda</a>
-  </div>
-<router-outlet></router-outlet> -->
-<!-- <li *ngFor="let todo of todos$ | async">{{todo.name}}</li> -->
-<!-- </ul> -->
+<main class="cd-main-content">
+  <app-header></app-header>
+  <app-content></app-content>
+  <app-filter></app-filter>
+</main>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewEncapsulation } from '@angular/core';
 import { ClientResponse } from '../../../Models/ClientResponseModels';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { HomeService } from "../../../shared/services/anuncio/home.services";
@@ -6,8 +6,8 @@ import { MessageService } from "../../../throwError/message.service";
 @Component({
   selector: 'app-home',
   templateUrl: "./index.component.html",
-  styleUrls: ['./index.component.css']
-  
+  styleUrls: ['./index.component.css'],
+  encapsulation: ViewEncapsulation.None  
 })
 export class IndexComponent implements OnInit {
 
@@ -25,6 +25,11 @@ export class IndexComponent implements OnInit {
     public messageService: MessageService,
     
   ) { }
+
+  showPueblo(event): void {
+    alert(event.nombre);
+  }
+
   onScrollDown() {
     this.limit += 15;
     this.masonryImages = this.list.slice(0, this.limit);

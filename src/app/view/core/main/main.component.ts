@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-main',
-  template: ` 
-    <div class="container-fluid">
-      <router-outlet></router-outlet>
-    </div>  
+  template: `     
+      <router-outlet></router-outlet>    
   `,
   styles: []
 })

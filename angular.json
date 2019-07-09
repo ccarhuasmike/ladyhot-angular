@@ -27,7 +27,9 @@
               "node_modules/typeface-noto-serif/index.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/script.js"
+            ]
           },
           "configurations": {
             "production": {

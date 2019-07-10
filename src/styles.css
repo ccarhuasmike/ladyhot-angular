@@ -7,3 +7,5 @@
 /* @import "assets/css/home.css"; */
 
 @import "assets/css/reset.css"; 
+@import "../node_modules/bootstrap/dist/css/bootstrap.css"; 
+

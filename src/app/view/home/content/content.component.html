@@ -1,5 +1,5 @@
 <section class="cd-gallery">
-    <ul>
+    <!-- <ul>
         <li class="mix color-1 check1 radio2 option3" style="display: inline-block;"><img src="../../../../assets/img-1.jpg" alt="Image 1"></li>
         <li class="mix color-2 check2 radio2 option2" style="display: inline-block;"><img src="../../../../assets/img-2.jpg" alt="Image 2"></li>
         <li class="mix color-1 check3 radio3 option1" style="display: inline-block;"><img src="../../../../assets/img-3.jpg" alt="Image 3"></li>
@@ -14,6 +14,33 @@
         <li class="gap"></li>
         <li class="gap"></li>
         <li class="gap"></li>
-    </ul>
+    </ul> -->
+
+
+    <div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5"
+        [infiniteScrollThrottle]="500" (scrolled)="onScrollDown()" (scrolledUp)="onScrollUp()">
+        <div class="masonry">
+            <div class="item" *ngFor="let items of masonryImages">
+                <img src="{{items.txt_imagen_prensetancion}}">
+                <div class="icons-fichas">
+                    <span class="icons-fichas-info">
+                        <span class="fa fa-info"></span>
+                    </span>
+                    <span class="icons-fichas-player ">
+                        <span class="fa fa-play"></span>
+                    </span>
+                </div>
+                <a href="#" class="btn-small">{{items.txt_nombre_ficha}}</a>
+                <a href="#" class="btn-small">{{items.tx_pais_origen}}</a>
+                <a href="#" class="btn-small"> {{items.int_edad}}</a>
+                <!-- <a href="#" class="btn-small">{{item.precio}}</a> -->
+                <!-- <a href="#" class="btn-small">{{item.pais}}</a> -->
+                <p class="descripcion">
+                    {{items.txt_presentacion}}
+                </p>
+            </div>
+        </div>
+    </div>
+
     <div class="cd-fail-message">No results found</div>
 </section> <!-- cd-gallery -->

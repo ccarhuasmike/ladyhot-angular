@@ -12,12 +12,10 @@ export class FilterComponent implements OnInit {
   ngOnInit() {
     
   }
-  onFilterClick() {
-    debugger;
+  onFilterClick() {    
     cdFilter();
   }
-  onCloseClick() {
-    debugger;
+  onCloseClick() {    
     cdClose();
   }
 }

@@ -11,8 +11,7 @@ export class headerfilter implements OnInit {
   }
   // Cuando se lance el evento click en la plantilla llamaremos a este método
   lanzar(event) {
-    // Usamos el método emit
-    debugger;
+    // Usamos el método emit    
     this.PasameElPueblo.emit({ nombre: this.nombre });
   }
 

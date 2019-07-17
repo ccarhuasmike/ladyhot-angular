@@ -1,27 +1,23 @@
 <div class="cd-filter">
     <form>
         <div class="cd-filter-block">
-            <h4>Search</h4>
-            
+            <h4>Buscar</h4>
             <div class="cd-filter-content">
-                <input type="search" class="form-control form-control form-control-sm" placeholder="Ingrese filtro de busqueda">
-            </div> <!-- cd-filter-content -->
+                <input type="search" class="form-control form-control form-control-sm"
+                    placeholder="Ingrese filtro de busqueda">
+            </div>
         </div> <!-- cd-filter-block -->
-
         <div class="cd-filter-block">
-            <h4>Check boxes</h4>
-
+            <h4>Distritos</h4>
             <ul class="cd-filter-content cd-filters list">
                 <li>
                     <input class="filter" data-filter=".check1" checked type="checkbox" id="checkbox1">
                     <label class="checkbox-label" for="checkbox1">Option 1</label>
                 </li>
-
                 <li>
                     <input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
                     <label class="checkbox-label" for="checkbox2">Option 2</label>
                 </li>
-
                 <li>
                     <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
                     <label class="checkbox-label" for="checkbox3">Option 3</label>
@@ -30,11 +26,11 @@
         </div> <!-- cd-filter-block -->
 
         <div class="cd-filter-block">
-            <h4>Select</h4>
-            
+            <h4>Tipo de Servicios</h4>
             <div class="cd-filter-content">
                 <div class="cd-select cd-filters">
-                    <select class="filter" class="form-control form-control form-control-sm"  name="selectThis" id="selectThis">
+                    <select class="filter" class="form-control form-control form-control-sm" name="selectThis"
+                        id="selectThis">
                         <option value="">Choose an option</option>
                         <option value=".option1">Option 1</option>
                         <option value=".option2">Option 2</option>
@@ -46,27 +42,29 @@
         </div> <!-- cd-filter-block -->
 
         <div class="cd-filter-block">
-            <h4>Radio buttons</h4>
-
+            <h4>Lugar de Atencion</h4>
             <ul class="cd-filter-content cd-filters list">
                 <li>
                     <input class="filter" data-filter="" type="radio" name="radioButton" id="radio1" checked>
                     <label class="radio-label" for="radio1">All</label>
                 </li>
-
                 <li>
-                    <input class="filter" data-filter=".radio2" type="radio"  name="radioButton" id="radio2">
+                    <input class="filter" data-filter=".radio2" type="radio" name="radioButton" id="radio2">
                     <label class="radio-label" for="radio2">Choice 2</label>
                 </li>
-
                 <li>
                     <input class="filter" data-filter=".radio3" type="radio" name="radioButton" id="radio3">
                     <label class="radio-label" for="radio3">Choice 3</label>
                 </li>
             </ul> <!-- cd-filter-content -->
         </div> <!-- cd-filter-block -->
+        <div class="cd-filter-block">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary">Aplicar</button>
+                <button type="button" class="btn btn-secondary">Limpiar</button>                
+            </div>
+        </div>
     </form>
-
-    <a [routerLink]="[]" (click)="onCloseClick()" class="cd-close">Close</a>
+    <a href="javascript:void(0)" (click)="onCloseClick()" class="cd-close">Close</a>
 </div> <!-- cd-filter -->
-<a [routerLink]="[]" (click)="onFilterClick()"  class="cd-filter-trigger">Filters</a>
+<a href="javascript:void(0)" (click)="onFilterClick()" class="cd-filter-trigger">Filters</a>

@@ -85,6 +85,7 @@ label {
     background-color: #ffffff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
     z-index: 1;
+    text-align: left !important;
   }
   .cd-tab-filter-wrapper:after {
     content: "";
@@ -508,6 +509,13 @@ label {
     height: 16px;
     left: 0;
   }
+  .cd-filter-block input, .cd-filter-block select, .cd-filter-block .radio-label::before, .cd-filter-block .checkbox-label::before {
+    font-family: "Open Sans", sans-serif;
+    border-radius: 0;
+    background-color: #ffffff;
+    border: 2px solid #e6e6e6;
+}
+
   .cd-filter-block .checkbox-label::after,
   .cd-filter-block .radio-label::after {
     /* check mark - hidden */

@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ClientResponse } from '../../../Models/ClientResponseModels';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { HomeService } from "../../../shared/services/anuncio/home.services";
@@ -7,7 +7,7 @@ import { MessageService } from "../../../throwError/message.service";
   selector: 'app-home',
   templateUrl: "./index.component.html",
   styleUrls: ['./index.component.css'],
-  encapsulation: ViewEncapsulation.None  
+  encapsulation: ViewEncapsulation.None
 })
 export class IndexComponent implements OnInit {
 
@@ -17,17 +17,17 @@ export class IndexComponent implements OnInit {
   };
 
   list: any;
-  public title = 'autobot';  
-  masonryImages  :any;
-  limit = 16;  
+  public title = 'autobot';
+  masonryImages: any;
+  limit = 16;
   constructor(
     private homeService: HomeService,
     public messageService: MessageService,
-    
+
   ) { }
 
   showPueblo(event): void {
-    alert(event.nombre);
+    console.log(event.entidad);
   }
 
   onScrollDown() {
@@ -40,9 +40,9 @@ export class IndexComponent implements OnInit {
   }
   getLisAnuncios() {
     this.homeService.getAnuncio().subscribe(
-      (res: ClientResponse) => {             
-         this.list = JSON.parse(res.DataJson);
-         this.masonryImages = this.list.slice(0, this.limit);             
+      (res: ClientResponse) => {
+        this.list = JSON.parse(res.DataJson);
+        this.masonryImages = this.list.slice(0, this.limit);
       },
       (error) => {
         console.log(error);
@@ -50,7 +50,7 @@ export class IndexComponent implements OnInit {
     );
   }
   ngOnInit() {
-    this.getLisAnuncios();       
+    this.getLisAnuncios();
   }
 }
 

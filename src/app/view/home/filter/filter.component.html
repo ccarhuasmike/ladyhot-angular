@@ -1,5 +1,5 @@
 <div class="cd-filter">
-    <form [formGroup]='fromGenerales'>
+    <form *ngIf="fromGenerales" [formGroup]='fromGenerales'>
         <div class="cd-filter-block">
             <h4>Buscar</h4>
             <div class="cd-filter-content">

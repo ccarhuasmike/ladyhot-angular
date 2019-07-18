@@ -21,6 +21,7 @@ export class FilterComponent implements OnInit {
   controlsLugar: any;
   controlsTipServ: any;
   entidad: any = {};
+  txt_nombre_fichaCtrl: FormControl;
   @Output() PasameElPueblo = new EventEmitter();
 
   constructor(
@@ -40,6 +41,7 @@ export class FilterComponent implements OnInit {
         this.controlsDist = this.ListDistrito.map(c => new FormControl(false));
         this.controlsLugar = this.ListLugarAtencion.map(c => new FormControl(false));
         this.controlsTipServ = this.ListTipoServicio.map(c => new FormControl(false));
+        this.txt_nombre_fichaCtrl = new FormControl('');
         // this.controlsDist[0].setValue(true);
         // this.ListDistrito[0].flag = true;
         // this.controlsLugar[0].setValue(true);
@@ -50,7 +52,8 @@ export class FilterComponent implements OnInit {
         this.fromGenerales = new FormGroup({
           ListDistrito: new FormArray(this.controlsDist),
           ListLugarAtencion: new FormArray(this.controlsLugar),
-          ListTipoServicio: new FormArray(this.controlsTipServ)
+          ListTipoServicio: new FormArray(this.controlsTipServ),
+          txt_nombre_ficha: this.txt_nombre_fichaCtrl
         });
       }
     );
@@ -119,6 +122,7 @@ export class FilterComponent implements OnInit {
     const selectedTipoServicio = this.fromGenerales.value.ListTipoServicio
       .map((v, i) => v ? this.ListTipoServicio[i].val_valor : null)
       .filter(v => v !== null);
+    this.entidad.txt_nombre_ficha = this.fromGenerales.value.txt_nombre_ficha;
     this.entidad.txt_lugar_servicio_distrito = this.getCheboxerSeleccionado(selectedDistrito);
     this.entidad.tx_lugar_atencion = this.getCheboxerSeleccionado(selectedLugarAtencion);
     this.entidad.tx_servicios_ofrece = this.getCheboxerSeleccionado(selectedTipoServicio);

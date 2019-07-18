@@ -10,8 +10,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     $(document).ready(() => {
-      $('#cd-tab-filter li').click(function (event) {   
-        debugger;     
+      $('#cd-tab-filter li').click(function (event) {
         //mobile version - detect click event on filters tab
         var filter_tab_placeholder = $('.cd-tab-filter .placeholder a'),
           filter_tab_placeholder_default_value = 'Select',
@@ -19,14 +18,14 @@ export class HeaderComponent implements OnInit {
         //detect which tab filter item was selected
         var selected_filter = $(event.target).data('type');
         //check if user has clicked the placeholder item
-        if ($(event.target).is(filter_tab_placeholder)) {          
-          $('.cd-tab-filter').toggleClass('is-open');          
-        }       
-      });      
+        if ($(event.target).is(filter_tab_placeholder)) {
+          $('.cd-tab-filter').toggleClass('is-open');
+        }
+      });
     });
   }
-  onCClick(event: any) {   
-    
+  onCClick(event: any) {
+
   }
 }
 

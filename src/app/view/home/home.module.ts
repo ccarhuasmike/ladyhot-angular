@@ -10,7 +10,7 @@ import { headerfilter } from './headerfilter/headerfilter.component';
 import { ModalModule } from 'ngx-bootstrap';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -19,17 +19,18 @@ import { FormsModule } from '@angular/forms';
         NgxMasonryModule,
         InfiniteScrollModule,
         FormsModule,
+        ReactiveFormsModule,
         ModalModule.forRoot()
     ],
     declarations: [
-            IndexComponent,
-            HeaderComponent,
-            FilterComponent,
-            ContentComponent, 
-            headerfilter,
-            ModalDetalleAnuncio],    
+        IndexComponent,
+        HeaderComponent,
+        FilterComponent,
+        ContentComponent,
+        headerfilter,
+        ModalDetalleAnuncio],
     entryComponents: [
-        ModalDetalleAnuncio        
+        ModalDetalleAnuncio
     ]
 })
 export class HomeModule { }

@@ -461,10 +461,10 @@
                     <label formArrayName="ListDistrito"
                       *ngFor="let order of fromGenerales.controls.ListDistrito['controls']; let i = index"
                       [ngClass]="{'checked': ListDistrito[i].flag, '': ListDistrito[i].flag}" class="categoria ">
-                      <input type="checkbox" class="chk_categoria"
+                      <!-- <input type="checkbox" class="chk_categoria"
                         (change)="onChangeDistrito(ListDistrito[i].val_valor, $event.target.checked)"
                         [id]="'check_distrito_'+ListDistrito[i].val_valor" [formControlName]="i" />
-                      {{ListDistrito[i].tx_descripcion}}
+                      {{ListDistrito[i].tx_descripcion}} -->
                     </label>
                   </div>
                   <div *ngIf="fromGenerales.controls.ListDistrito.invalid"

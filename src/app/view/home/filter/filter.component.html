@@ -1,5 +1,5 @@
 <div class="cd-filter">
-    <form>
+    <form [formGroup]='fromGenerales'>
         <div class="cd-filter-block">
             <h4>Buscar</h4>
             <div class="cd-filter-content">
@@ -10,7 +10,19 @@
         <div class="cd-filter-block">
             <h4>Distritos</h4>
             <ul class="cd-filter-content cd-filters list">
-                <li>
+                <div class="categorias-anuncio">
+                    <div class="tc_valores">
+                        <label formArrayName="ListDistrito"
+                            *ngFor="let order of fromGenerales.controls.ListDistrito['controls']; let i = index"
+                            [ngClass]="{'checked': ListDistrito[i].flag, '': ListDistrito[i].flag}" class="categoria ">
+                            <input type="checkbox" class="chk_categoria"
+                                (change)="onChangeDistrito(ListDistrito[i].val_valor, $event.target.checked)"
+                                [id]="'check_distrito_'+ListDistrito[i].val_valor" [formControlName]="i" />
+                            {{ListDistrito[i].tx_descripcion}}
+                        </label>
+                    </div>
+                </div>
+                <!-- <li>
                     <input class="filter" data-filter=".check1" checked type="checkbox" id="checkbox1">
                     <label class="checkbox-label" for="checkbox1">Option 1</label>
                 </li>
@@ -21,13 +33,33 @@
                 <li>
                     <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
                     <label class="checkbox-label" for="checkbox3">Option 3</label>
-                </li>
+                </li> -->
             </ul> <!-- cd-filter-content -->
         </div> <!-- cd-filter-block -->
 
         <div class="cd-filter-block">
             <h4>Tipo de Servicios</h4>
-            <div class="cd-filter-content">
+
+            <ul class="cd-filter-content cd-filters list">
+                <div class="categorias-anuncio">
+                    <div class="tc_valores">
+                        <label *ngFor="let order of fromGenerales.controls.ListTipoServicio['controls']; let i = index"
+                            formArrayName="ListTipoServicio"
+                            [ngClass]="{'checked': ListTipoServicio[i].flag, '': ListTipoServicio[i].flag}"
+                            class="categoria " [for]="'check_tiposervicios_'+ListTipoServicio[i].val_valor">
+                            <input type="checkbox" class="chk_categoria"
+                                [id]="'check_tiposervicios_'+ListTipoServicio[i].val_valor"
+                                (change)="onChangeTipoServicio(ListTipoServicio[i].val_valor, $event.target.checked)"
+                                [formControlName]="i" />
+                            {{ListTipoServicio[i].tx_descripcion}}</label>
+                    </div>
+                    <div *ngIf="fromGenerales.controls.ListTipoServicio.invalid"
+                        class="text-danger text-xs-left text-sm-left">
+                        Por favor seleccione por lo menos un tipo de servicio
+                    </div>
+                </div>
+            </ul>
+            <!-- <div class="cd-filter-content">
                 <div class="cd-select cd-filters">
                     <select class="filter" class="form-control form-control form-control-sm" name="selectThis"
                         id="selectThis">
@@ -37,14 +69,28 @@
                         <option value=".option3">Option 3</option>
                         <option value=".option4">Option 4</option>
                     </select>
-                </div> <!-- cd-select -->
-            </div> <!-- cd-filter-content -->
+                </div> 
+            </div>  -->
         </div> <!-- cd-filter-block -->
 
         <div class="cd-filter-block">
             <h4>Lugar de Atencion</h4>
             <ul class="cd-filter-content cd-filters list">
-                <li>
+                <div class="categorias-anuncio">
+                    <div class="tc_valores">
+                        <label *ngFor="let order of fromGenerales.controls.ListLugarAtencion['controls']; let i = index"
+                            formArrayName="ListLugarAtencion"
+                            [ngClass]="{'checked': ListLugarAtencion[i].flag, '': ListLugarAtencion[i].flag}"
+                            class="categoria " [for]="'check_lugarAtencion_'+ListLugarAtencion[i].val_valor">
+                            <input type="checkbox" class="chk_categoria"
+                                [id]="'check_lugarAtencion_'+ListLugarAtencion[i].val_valor"
+                                (change)="onChangeLugarAtencion(ListLugarAtencion[i].val_valor, $event.target.checked)"
+                                [formControlName]="i" />
+                            {{ListLugarAtencion[i].tx_descripcion}}
+                        </label>
+                    </div>
+                </div>
+                <!-- <li>
                     <input class="filter" data-filter="" type="radio" name="radioButton" id="radio1" checked>
                     <label class="radio-label" for="radio1">All</label>
                 </li>
@@ -55,13 +101,13 @@
                 <li>
                     <input class="filter" data-filter=".radio3" type="radio" name="radioButton" id="radio3">
                     <label class="radio-label" for="radio3">Choice 3</label>
-                </li>
+                </li> -->
             </ul> <!-- cd-filter-content -->
         </div> <!-- cd-filter-block -->
         <div class="cd-filter-block">
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-secondary">Aplicar</button>
-                <button type="button" class="btn btn-secondary">Limpiar</button>                
+                <button type="button" class="btn btn-secondary">Limpiar</button>
             </div>
         </div>
     </form>

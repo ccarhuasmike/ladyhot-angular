@@ -26,8 +26,19 @@ export class IndexComponent implements OnInit {
 
   ) { }
 
-  showPueblo(event): void {
+  FiltrarDatos(event): void {
+
     console.log(event.entidad);
+    // this.homeService.getAnuncio().subscribe(
+    //   (res: ClientResponse) => {
+    //     this.list = JSON.parse(res.DataJson);
+    //     this.masonryImages = this.list.slice(0, this.limit);
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
+
   }
 
   onScrollDown() {

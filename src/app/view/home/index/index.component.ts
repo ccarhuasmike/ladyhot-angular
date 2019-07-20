@@ -24,6 +24,7 @@ export class IndexComponent implements OnInit {
   list: any;
   public title = 'autobot';
   masonryImages: any;
+  EntidadFiltro: any = {};
   limit = 16;
   constructor(
     private homeService: HomeService,
@@ -32,17 +33,8 @@ export class IndexComponent implements OnInit {
 
   FiltrarDatos(event): void {
     this.limit = 15;
-    console.log(event.entidad);
-    let txt_nombre_ficha = event.entidad.txt_nombre_ficha;
-    let tx_servicios_ofrece = event.entidad.tx_servicios_ofrece;
-    let txt_lugar_servicio_distrito = event.entidad.txt_lugar_servicio_distrito;
-    let tx_lugar_atencion = event.entidad.tx_lugar_atencion;
-    this.masonryImages = this.list.filter(function (event) {
-      return event.txt_nombre_ficha.toLowerCase().indexOf(txt_nombre_ficha.toLowerCase()) > -1 ||
-        event.txt_lugar_servicio_distrito.indexOf(txt_lugar_servicio_distrito) ||
-        event.tx_servicios_ofrece.indexOf(tx_servicios_ofrece) ||
-        event.tx_lugar_atencion.indexOf(tx_lugar_atencion)
-    }).slice(0, this.limit);
+    this.EntidadFiltro = event.entidad;   
+    this.getLisAnuncios(true, event.entidad);
   }
 
   onScrollDown() {
@@ -53,30 +45,42 @@ export class IndexComponent implements OnInit {
   onScrollUp() {
     console.log('scrolled up!!')
   }
-  getLisAnuncios() {
-    this.homeService.getAnuncio().subscribe(
-      (res: ClientResponse) => {
-        debugger;
-        this.list = JSON.parse(res.DataJson);
-        this.masonryImages = this.list.slice(0, this.limit);
-
-        /*Truncamiento de texto multilínea en tamaño de ventana*/
-        $(document).ready(() => {
-          var p = $('#dash .descripcion');
-          var ks = $('#dash').height();
-          while ($(p).outerHeight() > ks) {
-            $(p).text(function (index, text) {
-              debugger;
-              return text.replace(/\W*\s(\S)*$/, '...');
-            });
-          }
+  TruncamientoMultiline() {
+    /*Truncamiento de texto multilínea en tamaño de ventana*/
+    $(document).ready(() => {
+      var p = $('#dash .descripcion');
+      var ks = $('#dash').height();
+      while ($(p).outerHeight() > ks) {
+        $(p).text(function (index, text) {
+          return text.replace(/\W*\s(\S)*$/, '...');
         });
-
-      },
-      (error) => {
-        console.log(error);
       }
-    );
+    });
+  }
+  getLisAnuncios(filtrer: boolean = false, entidadFiltro: any = {}) {
+
+    if (filtrer) {
+      this.masonryImages = this.list.filter(function (e) {
+        return e.txt_nombre_ficha.toLowerCase().indexOf(entidadFiltro.txt_nombre_ficha.toLowerCase()) > -1 ||
+          e.txt_lugar_servicio_distrito.indexOf(entidadFiltro.txt_lugar_servicio_distrito) ||
+          e.tx_servicios_ofrece.indexOf(entidadFiltro.tx_servicios_ofrece) ||
+          e.tx_lugar_atencion.indexOf(entidadFiltro.tx_lugar_atencion)
+      }).slice(0, this.limit);
+      debugger;
+      this.TruncamientoMultiline();
+    } else {
+      this.homeService.getAnuncio().subscribe(
+        (res: ClientResponse) => {
+          debugger;
+          this.list = JSON.parse(res.DataJson);
+          this.masonryImages = this.list.slice(0, this.limit);
+          this.TruncamientoMultiline();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
   ngOnInit() {
     this.getLisAnuncios();

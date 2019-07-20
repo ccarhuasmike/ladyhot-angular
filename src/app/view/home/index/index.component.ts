@@ -5,6 +5,7 @@ import { HomeService } from "../../../shared/services/anuncio/home.services";
 import { MessageService } from "../../../throwError/message.service";
 import { ModalDetalleAnuncio } from '../modalDetalleAnuncio/modalDetalleAnuncio.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+declare var $: any;
 @Component({
   selector: 'app-home',
   templateUrl: "./index.component.html",
@@ -58,6 +59,19 @@ export class IndexComponent implements OnInit {
         debugger;
         this.list = JSON.parse(res.DataJson);
         this.masonryImages = this.list.slice(0, this.limit);
+
+        /*Truncamiento de texto multilínea en tamaño de ventana*/
+        $(document).ready(() => {
+          var p = $('#dash .descripcion');
+          var ks = $('#dash').height();
+          while ($(p).outerHeight() > ks) {
+            $(p).text(function (index, text) {
+              debugger;
+              return text.replace(/\W*\s(\S)*$/, '...');
+            });
+          }
+        });
+
       },
       (error) => {
         console.log(error);
@@ -66,6 +80,8 @@ export class IndexComponent implements OnInit {
   }
   ngOnInit() {
     this.getLisAnuncios();
+
+
   }
   openModalDetalleAnuncio(id: number) {
     this.modalRef = this.modalService.show(ModalDetalleAnuncio, {

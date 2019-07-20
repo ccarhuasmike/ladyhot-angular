@@ -1,37 +1,38 @@
-<div class="modal-body">
+<div class="modal-body" *ngIf="DetalleDelAnuncio">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-sm-12">
                 <div class="row">
-
                     <div class="col-12 d-block d-sm-none">
                         <div class="card w-100">
-                            <img class="img-thumbnail" src="http://192.168.0.14/fileserver/uploads_fichas/2196/16.jpg">
+                            <img class="img-thumbnail" src="{{DetalleDelAnuncio.txt_imagen_prensetancion }}">
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body bg-white">
-                                <p class="h4 text-dark font-weight-bold text-left">Goku 956670064, es un
-                                    personaje, chevere de la
-                                    infancia.</p>
+                                <p class="h4 text-dark font-weight-bold text-left">
+                                    {{DetalleDelAnuncio.txt_nombre_ficha }} {{DetalleDelAnuncio.txt_telefono_1 }}</p>
                                 <div class="row">
                                     <div class="col-lg-6 mt-0 text-left">
                                         <span id='anuncio_provincia'>Lima Metropolitana</span>
                                         <span>-</span>
-                                        <span id='anuncio_poblacion'>Los Olivos</span>
+                                        <span
+                                            id='anuncio_poblacion'>{{DetalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
                                         <span></span><span id='anuncio_zona'></span><br />
-                                        <span id='anuncio_nombre'>Abigaíl</span><span id='anuncio_edad'> |
-                                            38 años</span>
+                                        <span id='anuncio_nombre'>{{DetalleDelAnuncio.txt_nombre_ficha }}</span>
+                                        <span id='anuncio_edad'> {{DetalleDelAnuncio.int_edad }} años</span>
                                         <span id='anuncio_tarifa'></span><br /><span id='anuncio_fecha'>29/06/2019 12:00
                                             am</span>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="btn-group btn-group-lg btn-group-horizontal">
-                                            <a href='tel:925982064' class="btn btn-large btn-primary rounded-0"><i
-                                                    class="fa fa-phone"></i> <span class="font-weight-bold">925 982
-                                                    064</span></a>
+                                            <a href='tel:925982064' class="btn btn-large btn-primary rounded-0">
+                                                <i class="fa fa-phone"></i>
+                                                <span
+                                                    class="font-weight-bold">{{DetalleDelAnuncio.txt_telefono_1 }}</span>
+                                            </a>
                                             <a href='tel:925982064' class="btn btn-large btn-success rounded-0"><i
                                                     class="fa fa-whatsapp"></i>
                                                 <span class="font-weight-bold">WhatsApp</span></a>
@@ -59,7 +60,8 @@
                     <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body bg-white">
-                                <p class="h5 text-dark text-left">Lorem ipsum dolor sit, amet consectetur
+                                <p class="h5 text-dark text-left">{{DetalleDelAnuncio.txt_presentacion }}</p>
+                                <!-- <p class="h5 text-dark text-left">Lorem ipsum dolor sit, amet consectetur
                                     adipisicing elit. Eum, porro
                                     pariatur accusantium voluptatem omnis recusandae consequuntur nemo eius
                                     sit beatae quibusdam corrupti
@@ -70,12 +72,7 @@
                                     sit beatae quibusdam corrupti
                                     non, natus tempore rerum velit consequatur dolores officiis.</p>
                                 <p class="h5 text-dark text-left">Lorem ipsum dolor sit, amet consectetur
-                                    adipisicing elit. Eum, porro
-                                    pariatur accusantium voluptatem omnis recusandae consequuntur nemo eius
-                                    sit beatae quibusdam corrupti
-                                    non, natus tempore rerum velit consequatur dolores officiis.</p>
-                                <p class="h5 text-dark text-left">Lorem ipsum dolor sit, amet consectetur
-                                    adipisicing elit.</p>
+                                    adipisicing elit.</p> -->
                                 <p class="h5 text-error text-left">No olvides mencionarme que viste mi
                                     anuncio en <a class="text-error font-weight-bold"
                                         href='https://www.photokinesiologas.com'>Photokines</a>.</p>
@@ -101,15 +98,15 @@
                         <div class="card w-100">
                             <div class="card-body bg-white">
                                 <p class="h3 text-dark font-weight-bold text-left">
-                                    4 Fotos
+                                    {{DetalleDelAnuncio.txt_imagen_galeria.split(';').length  }} Fotos
                                 </p>
                                 <div class="row">
-                                    <div class="col-6">
-                                        <img class="w-100 h-100"
-                                            src="http://192.168.0.14/fileserver/uploads_fichas/2194/6.jpg" data-id="2"
+                                    <div class="col-6"
+                                        *ngFor="let item of DetalleDelAnuncio.txt_imagen_galeria.split(';'); let i = index">
+                                        <img class="w-100 h-100 img-thumbnail" src="{{item.trim()}}" data-id="2"
                                             alt="Abigaíl 925982064 - Kinesióloga en Los Olivos">
                                     </div>
-                                    <div class="col-6">
+                                    <!-- <div class="col-6">
                                         <img class="w-100 h-100"
                                             src="http://192.168.0.14/fileserver/uploads_fichas/2198/23.jpg" data-id="2"
                                             alt="Abigaíl 925982064 - Kinesióloga en Los Olivos">
@@ -123,7 +120,7 @@
                                         <img class="w-100 h-100"
                                             src="http://192.168.0.14/fileserver/uploads_fichas/2192/4.jpg" data-id="2"
                                             alt="Abigaíl 925982064 - Kinesióloga en Los Olivos">
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -206,8 +203,7 @@
                     </div>
                     <div class="col-12 d-block d-sm-none">
                         <div class="card w-100">
-                            <img class="img-thumbnail"
-                                src="https://i2.wp.com/codigoespagueti.com/wp-content/uploads/2019/05/akira-toriyama-dragon-ball-vegeta-goku.jpg?resize=1080%2C600&quality=90&ssl=1">
+                            <img class="img-thumbnail" src="{{DetalleDelAnuncio.txt_imagen_prensetancion }}">
                             <div class="card-body bg-white">
                             </div>
                         </div>
@@ -218,7 +214,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card row">
-                            <img class="img-fluid" src="http://192.168.0.14/fileserver/uploads_fichas/2195/11.jpg">
+                            <img class="img-fluid" src="{{DetalleDelAnuncio.txt_imagen_prensetancion}}">
                             <div class="card-body bg-white">
                                 <div class="row">
                                     <div class="col-12 mb-2">

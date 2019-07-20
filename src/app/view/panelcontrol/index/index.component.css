@@ -216,7 +216,7 @@ img {
 
 .categorias-anuncio label.checked,
 .categorias-anuncio span.checked {
-  color: white;
+  color: white !important ;
   background-color: #0072C6;
 }
 

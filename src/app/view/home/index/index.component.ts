@@ -31,6 +31,7 @@ export class IndexComponent implements OnInit {
 
   FiltrarDatos(event): void {
     this.limit = 15;
+    console.log(event.entidad);
     let txt_nombre_ficha = event.entidad.txt_nombre_ficha;
     let tx_servicios_ofrece = event.entidad.tx_servicios_ofrece;
     let txt_lugar_servicio_distrito = event.entidad.txt_lugar_servicio_distrito;

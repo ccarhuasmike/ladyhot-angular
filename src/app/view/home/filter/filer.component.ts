@@ -42,7 +42,7 @@ export class FilterComponent implements OnInit {
         this.controlsLugar = this.ListLugarAtencion.map(c => new FormControl(false));
         this.controlsTipServ = this.ListTipoServicio.map(c => new FormControl(false));
         this.txt_nombre_fichaCtrl = new FormControl('');
-   
+
         this.fromGenerales = new FormGroup({
           ListDistrito: new FormArray(this.controlsDist),
           ListLugarAtencion: new FormArray(this.controlsLugar),
@@ -101,8 +101,22 @@ export class FilterComponent implements OnInit {
     return selecionado;
   }
 
-  cancelar() {
-    //Implementar logica limpiar controles
+  Limpiar() {
+    //Implementar logica limpiar controles 
+    this.fromGenerales.reset({
+      txt_nombre_ficha: ''
+    });
+
+    this.ListDistrito.forEach(element => {
+      element.flag = false;
+    });
+    this.ListLugarAtencion.forEach(element => {
+      element.flag = false;
+    });
+    this.ListTipoServicio.forEach(element => {
+      element.flag = false;
+    });
+
   }
 
   save() {

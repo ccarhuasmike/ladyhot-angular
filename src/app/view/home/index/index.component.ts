@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, TemplateRef } from '@angular/core';
 import { ClientResponse } from '../../../Models/ClientResponseModels';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { HomeService } from "../../../shared/services/anuncio/home.services";
 import { MessageService } from "../../../throwError/message.service";
+import { ModalDetalleAnuncio } from '../modalDetalleAnuncio/modalDetalleAnuncio.component';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-home',
   templateUrl: "./index.component.html",
@@ -10,6 +12,8 @@ import { MessageService } from "../../../throwError/message.service";
   encapsulation: ViewEncapsulation.None
 })
 export class IndexComponent implements OnInit {
+
+  modalRef: BsModalRef;
 
   public masonryOptions: NgxMasonryOptions = {
     transitionDuration: '2.0s',
@@ -22,23 +26,11 @@ export class IndexComponent implements OnInit {
   limit = 16;
   constructor(
     private homeService: HomeService,
-    public messageService: MessageService,
-
+    private modalService: BsModalService
   ) { }
 
-  FiltrarDatos(event): void {
-    console.log(event.entidad);
-    console.log(this.list);
-    // this.homeService.getAnuncio().subscribe(
-    //   (res: ClientResponse) => {
-    //     this.list = JSON.parse(res.DataJson);
-    //     this.masonryImages = this.list.slice(0, this.limit);
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   }
-    // );
-
+  showPueblo(event): void {
+    alert(event.nombre);
   }
 
   onScrollDown() {
@@ -62,6 +54,21 @@ export class IndexComponent implements OnInit {
   }
   ngOnInit() {
     this.getLisAnuncios();
+  }
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+  openModalDetalleAnuncio(id: number) {
+    this.modalRef = this.modalService.show(ModalDetalleAnuncio, {
+      class: 'modal-lg',
+      initialState: {
+        title: 'Actualizar Anuncio Demo',
+        data: {
+          id: id
+        }
+      }
+    });
   }
 }
 

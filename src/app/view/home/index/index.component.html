@@ -1,5 +1,34 @@
 <main class="cd-main-content">
   <app-header></app-header>
-  <app-content></app-content>
+
+  <section class="cd-gallery">
+    <div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5"
+      [infiniteScrollThrottle]="500" (scrolled)="onScrollDown()" (scrolledUp)="onScrollUp()">
+      <div class="masonry">
+        <!-- <div class="item" *ngFor="let items of masonryImages" (mouseup)="lgModal.show()"> -->
+        <div class="item" *ngFor="let items of masonryImages" (mouseup)="openModalDetalleAnuncio(items.id)">
+          <img src="{{items.txt_imagen_prensetancion}}">
+          <div class="icons-fichas">
+            <span class="icons-fichas-info">
+              <span class="fa fa-info"></span>
+            </span>
+            <span class="icons-fichas-player ">
+              <span class="fa fa-play"></span>
+            </span>
+          </div>
+          <a href="#" class="btn-small">{{items.txt_nombre_ficha}}</a>
+          <a href="#" class="btn-small">{{items.tx_pais_origen}}</a>
+          <a href="#" class="btn-small"> {{items.int_edad}}</a>
+          <!-- <a href="#" class="btn-small">{{item.precio}}</a> -->
+          <!-- <a href="#" class="btn-small">{{item.pais}}</a> -->
+          <p class="descripcion">
+            {{items.txt_presentacion}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="cd-fail-message">No results found</div>
+  </section> <!-- cd-gallery -->
+  <!-- <app-content></app-content> -->
   <app-filter (PasameElPueblo)="FiltrarDatos($event)"></app-filter>
 </main>

@@ -8,7 +8,7 @@ import { ConfigService } from "../Utilitarios/config.service";
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { HttpErrorHandler, HandleError } from '../../../throwError/http-error-handler.service';
-import { HttpClient,HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -18,7 +18,7 @@ const httpOptions = {
 };
 
 @Injectable() // The Injectable decorator is required for dependency injection to work
-export class AnuncioService {    
+export class AnuncioService {
     _baseUrl: string = '';
     private handleError: HandleError;
     public progress: number = 0;
@@ -26,7 +26,7 @@ export class AnuncioService {
     public percentage: number = 0
     public completed: number = 0
 
-    constructor(        
+    constructor(
         private httpClient: HttpClient,
         private stepService: StepService,
         private configService: ConfigService,
@@ -76,7 +76,7 @@ export class AnuncioService {
     }
 
     /*Galeria*/
-    SaveGaleria(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {        
+    SaveGaleria(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/InsertGaleria', galeria, httpOptions)
             .pipe(
                 catchError(this.handleError('GetGaleriaXIdAnuncio'))
@@ -102,15 +102,15 @@ export class AnuncioService {
             );
     }
     getListarMisAnuncios(): Observable<ClientResponse> {
-        return this.httpClient.get<ClientResponse>(this._baseUrl + 'misanuncios/ListarMisAnuncios').pipe(
-            catchError(this.handleError('getListarMisAnuncios'))
-        );        
+        return this.httpClient.get<ClientResponse>(this._baseUrl + 'misanuncios/ListarMisAnuncioPorUsuario').pipe(
+            catchError(this.handleError('getListarMisAnuncioPorUsuario'))
+        );
     }
 
     getAnuncioPorId(id: String): Observable<ClientResponse> {
         return this.httpClient.get<ClientResponse>(this._baseUrl + 'anuncio/GetAnucionXId/' + id).pipe(
             catchError(this.handleError('getAnuncioPorId'))
-        );          
+        );
     }
     darBajaMiAnuncio(anuncio: Tbl_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/DarBajarAnuncio/', anuncio, httpOptions)

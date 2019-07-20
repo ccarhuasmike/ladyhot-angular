@@ -19,8 +19,8 @@ categorias-anuncio label {
     width: 21.7%;
     padding: 0.5% 1%;
     margin: 0.5%;
-    width: calc(32% - 1%);
-    padding: calc(9px) calc(8px) calc(8px) calc(8px);
+    width: calc(30% - 1%);
+    padding: calc(6px) calc(6px) calc(3px) calc(4px);
     margin: calc(4px);
     cursor: pointer;
     overflow: hidden;
@@ -30,7 +30,7 @@ categorias-anuncio label {
   
   .categorias-anuncio label.checked,
   .categorias-anuncio span.checked {
-    color: white;
+    color: white !important;
     background-color: #0072C6;
   }
   
@@ -57,4 +57,8 @@ categorias-anuncio label {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold;
+  }
+
+  .list{
+    padding: 2px 2px !important;
   }

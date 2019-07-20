@@ -42,13 +42,7 @@ export class FilterComponent implements OnInit {
         this.controlsLugar = this.ListLugarAtencion.map(c => new FormControl(false));
         this.controlsTipServ = this.ListTipoServicio.map(c => new FormControl(false));
         this.txt_nombre_fichaCtrl = new FormControl('');
-        // this.controlsDist[0].setValue(true);
-        // this.ListDistrito[0].flag = true;
-        // this.controlsLugar[0].setValue(true);
-        // this.ListLugarAtencion[0].flag = true;
-        // this.controlsTipServ[0].setValue(true);
-        // this.ListTipoServicio[0].flag = true;
-
+   
         this.fromGenerales = new FormGroup({
           ListDistrito: new FormArray(this.controlsDist),
           ListLugarAtencion: new FormArray(this.controlsLugar),

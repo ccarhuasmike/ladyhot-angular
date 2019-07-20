@@ -59,7 +59,7 @@ export class ContentComponent implements OnInit {
 
   openModalDetalleAnuncio(id: number) {
     this.modalRef = this.modalService.show(ModalDetalleAnuncio, {
-      class: 'modal-lg',      
+      class: 'modal-lg',
       initialState: {
         title: 'Actualizar Anuncio Demo',
         data: {

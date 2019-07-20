@@ -27,8 +27,8 @@ export class IndexComponent implements OnInit {
   ) { }
 
   FiltrarDatos(event): void {
-
     console.log(event.entidad);
+    console.log(this.list);
     // this.homeService.getAnuncio().subscribe(
     //   (res: ClientResponse) => {
     //     this.list = JSON.parse(res.DataJson);

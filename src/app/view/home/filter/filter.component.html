@@ -1,6 +1,13 @@
 <div class="cd-filter">
     <form *ngIf="fromGenerales" [formGroup]='fromGenerales' (ngSubmit)='save()'>
         <div class="cd-filter-block">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type='submit' class="btn btn-secondary">Aplicar</button>
+                <button type="button" class="btn btn-secondary" (click)="Limpiar()">Limpiar</button>
+
+            </div>
+        </div>
+        <div class="cd-filter-block">
             <h4>Buscar</h4>
             <div class="cd-filter-content">
                 <input type="search" class="form-control form-control form-control-sm"

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, TemplateRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ClientResponse } from '../../../Models/ClientResponseModels';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { HomeService } from "../../../shared/services/anuncio/home.services";
@@ -29,8 +29,18 @@ export class IndexComponent implements OnInit {
     private modalService: BsModalService
   ) { }
 
-  showPueblo(event): void {
-    alert(event.nombre);
+  FiltrarDatos(event): void {
+    this.limit = 15;
+    let txt_nombre_ficha = event.entidad.txt_nombre_ficha;
+    let tx_servicios_ofrece = event.entidad.tx_servicios_ofrece;
+    let txt_lugar_servicio_distrito = event.entidad.txt_lugar_servicio_distrito;
+    let tx_lugar_atencion = event.entidad.tx_lugar_atencion;
+    this.masonryImages = this.list.filter(function (event) {
+      return event.txt_nombre_ficha.toLowerCase().indexOf(txt_nombre_ficha.toLowerCase()) > -1 ||
+        event.txt_lugar_servicio_distrito.indexOf(txt_lugar_servicio_distrito) ||
+        event.tx_servicios_ofrece.indexOf(tx_servicios_ofrece) ||
+        event.tx_lugar_atencion.indexOf(tx_lugar_atencion)
+    }).slice(0, this.limit);
   }
 
   onScrollDown() {
@@ -55,10 +65,6 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
     this.getLisAnuncios();
   }
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  }
-
   openModalDetalleAnuncio(id: number) {
     this.modalRef = this.modalService.show(ModalDetalleAnuncio, {
       class: 'modal-lg',

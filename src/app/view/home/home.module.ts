@@ -5,7 +5,7 @@ import { IndexComponent } from './index/index.component';
 import { HeaderComponent } from './header/header.component';
 import { FilterComponent } from './filter/filer.component';
 import { ModalDetalleAnuncio } from './modalDetalleAnuncio/modalDetalleAnuncio.component';
-import { ContentComponent } from './content/content.component';
+
 import { headerfilter } from './headerfilter/headerfilter.component';
 import { ModalModule } from 'ngx-bootstrap';
 import { NgxMasonryModule } from 'ngx-masonry';
@@ -26,7 +26,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         IndexComponent,
         HeaderComponent,
         FilterComponent,
-        ContentComponent,
         headerfilter,
         ModalDetalleAnuncio],
     entryComponents: [

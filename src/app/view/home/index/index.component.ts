@@ -33,17 +33,17 @@ export class IndexComponent implements OnInit {
 
   FiltrarDatos(event): void {
     this.limit = 15;
-    this.EntidadFiltro = event.entidad;   
+    this.EntidadFiltro = event.entidad;
     this.getLisAnuncios(true, event.entidad);
   }
 
   onScrollDown() {
     this.limit += 15;
     this.masonryImages = this.list.slice(0, this.limit);
-    console.log('scrolled down!!')
+    this.TruncamientoMultiline();
   }
   onScrollUp() {
-    console.log('scrolled up!!')
+
   }
   TruncamientoMultiline() {
     /*Truncamiento de texto multilínea en tamaño de ventana*/
@@ -66,12 +66,10 @@ export class IndexComponent implements OnInit {
           e.tx_servicios_ofrece.indexOf(entidadFiltro.tx_servicios_ofrece) ||
           e.tx_lugar_atencion.indexOf(entidadFiltro.tx_lugar_atencion)
       }).slice(0, this.limit);
-      debugger;
       this.TruncamientoMultiline();
     } else {
       this.homeService.getAnuncio().subscribe(
         (res: ClientResponse) => {
-          debugger;
           this.list = JSON.parse(res.DataJson);
           this.masonryImages = this.list.slice(0, this.limit);
           this.TruncamientoMultiline();

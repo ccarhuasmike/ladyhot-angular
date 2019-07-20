@@ -8,17 +8,23 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
     templateUrl: './modalDetalleAnuncio.component.html',
     styleUrls: ['./modalDetalleAnuncio.component.css']
 })
-export class ModalDetalleAnuncio implements OnInit {  
+export class ModalDetalleAnuncio implements OnInit {
+    DetalleDelAnuncio: any;
     constructor(
         public modalRef: BsModalRef,
         private anuncioService: AnuncioService,
         private parameter: ParameterService
     ) {
     }
-    ngOnInit() {          
+    ngOnInit() {
         console.log(this["data"]["id"]);
+        this.anuncioService.ObtenerDetalleAnucionXId(this["data"]["id"]).subscribe(
+            (res: ClientResponse) => {
+                debugger;
+                this.DetalleDelAnuncio = res.Data;
+            });
     }
     closeModal() {
         this.modalRef.hide();
-    }  
+    }
 }

@@ -112,6 +112,12 @@ export class AnuncioService {
             catchError(this.handleError('getAnuncioPorId'))
         );
     }
+    ObtenerDetalleAnucionXId(id: String): Observable<ClientResponse> {
+        return this.httpClient.get<ClientResponse>(this._baseUrl + 'anuncio/ObtenerDetalleAnucionXId/' + id).pipe(
+            catchError(this.handleError('getObtenerDetalleAnucionXId'))
+        );
+    }
+
     darBajaMiAnuncio(anuncio: Tbl_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/DarBajarAnuncio/', anuncio, httpOptions)
             .pipe(

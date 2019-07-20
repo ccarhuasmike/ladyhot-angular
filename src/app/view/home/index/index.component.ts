@@ -54,6 +54,7 @@ export class IndexComponent implements OnInit {
   getLisAnuncios() {
     this.homeService.getAnuncio().subscribe(
       (res: ClientResponse) => {
+        debugger;
         this.list = JSON.parse(res.DataJson);
         this.masonryImages = this.list.slice(0, this.limit);
       },

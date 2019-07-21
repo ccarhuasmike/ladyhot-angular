@@ -4,7 +4,7 @@ import { HttpErrorHandler, HandleError, } from '../../../throwError/http-error-h
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ClientResponse } from '../../../Models/ClientResponseModels';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 const httpOptions = {
     headers: new HttpHeaders({
@@ -17,22 +17,22 @@ const httpOptions = {
 export class HomeService {
     filter: any = {};
     _baseUrl: string = '';
-    list: any = [];    
+    list: any = [];
     private handleError: HandleError;
-    constructor(        
+    constructor(
         private configService: ConfigService,
         httpErrorHandler: HttpErrorHandler,
         private httpClient: HttpClient
     ) {
         this.handleError = httpErrorHandler.createHandleError('HeroesService');
         this._baseUrl = configService.getWebApiURL();
-    } 
+    }
     getAnuncio(): Observable<ClientResponse> {
-        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/ListarAnuncio', httpOptions).pipe(
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/ListarAnuncio', {}, httpOptions).pipe(
             catchError(this.handleError('getAnuncio'))
         );
     }
- 
+
     getSerialized<T>(arg: any): T {
         return <T>JSON.parse(JSON.stringify(arg));
     }

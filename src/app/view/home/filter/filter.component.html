@@ -1,10 +1,11 @@
 <div class="cd-filter">
     <form *ngIf="fromGenerales" [formGroup]='fromGenerales' (ngSubmit)='save()'>
         <div class="cd-filter-block">
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type='submit' class="btn btn-secondary">Aplicar</button>
-                <button type="button" class="btn btn-secondary" (click)="Limpiar()">Limpiar</button>
-
+            <div class="block-buttons">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <button type='submit' class="btn btn-secondary">Aplicar</button>
+                    <button type="button" class="btn btn-secondary" (click)="Limpiar()">Limpiar</button>
+                </div>
             </div>
         </div>
         <div class="cd-filter-block">
@@ -112,10 +113,11 @@
             </ul> <!-- cd-filter-content -->
         </div> <!-- cd-filter-block -->
         <div class="cd-filter-block">
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type='submit' class="btn btn-secondary">Aplicar</button>
-                <button type="button" class="btn btn-secondary" (click)="Limpiar()">Limpiar</button>
-
+            <div class="block-buttons">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <button type='submit' class="btn btn-secondary">Aplicar</button>
+                    <button type="button" class="btn btn-secondary" (click)="Limpiar()">Limpiar</button>
+                </div>
             </div>
         </div>
     </form>

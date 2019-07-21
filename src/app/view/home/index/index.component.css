@@ -230,7 +230,7 @@ label {
   xgallery   
   -------------------------------- */
   .cd-gallery {
-    padding: 26px 5%;
+    padding: 0px 0%;
     width: 100%;
   }
   .cd-gallery li {
@@ -681,3 +681,11 @@ label {
   }
 }
 
+
+
+/* @media only screen and (max-width: 767px) and (min-width: 320px)  {
+
+  .cd-gallery {
+    padding: 0px 0%;
+  }
+} */

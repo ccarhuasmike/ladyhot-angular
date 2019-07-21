@@ -1,55 +1,92 @@
-<div class="modal-body" *ngIf="DetalleDelAnuncio">
+<div class="modal-body" *ngIf="detalleDelAnuncio">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8 col-sm-12">
                 <div class="row">
                     <div class="col-12 d-block d-sm-none">
                         <div class="card w-100">
-                            <img class="img-thumbnail" src="{{DetalleDelAnuncio.txt_imagen_prensetancion }}">
+                            <img class="img-thumbnail w-100 h-100"
+                                src="{{detalleDelAnuncio.txt_imagen_prensetancion }}">
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body bg-white">
                                 <p class="h4 text-dark font-weight-bold text-left">
-                                    {{DetalleDelAnuncio.txt_nombre_ficha }} {{DetalleDelAnuncio.txt_telefono_1 }}</p>
+                                    {{detalleDelAnuncio.txt_nombre_ficha }} {{detalleDelAnuncio.txt_telefono_1 }}</p>
                                 <div class="row">
-                                    <div class="col-lg-6 mt-0 text-left">
-                                        <span id='anuncio_provincia'>Lima Metropolitana</span>
+                                    <div class="col-lg-6 mt-0 text-left text-secondary h6">
+                                        <span>Lima Metropolitana</span>
                                         <span>-</span>
-                                        <span
-                                            id='anuncio_poblacion'>{{DetalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
+                                        <span>{{detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
                                         <span></span><span id='anuncio_zona'></span><br />
-                                        <span id='anuncio_nombre'>{{DetalleDelAnuncio.txt_nombre_ficha }}</span>
-                                        <span id='anuncio_edad'> {{DetalleDelAnuncio.int_edad }} años</span>
-                                        <span id='anuncio_tarifa'></span><br /><span id='anuncio_fecha'>29/06/2019 12:00
+                                        <span>{{detalleDelAnuncio.txt_nombre_ficha }}</span>
+                                        <span>| {{detalleDelAnuncio.int_edad }} años</span>
+                                        <span></span><br /><span>29/06/2019 12:00
                                             am</span>
+                                        <br />
+                                        <a href="{{detalleDelAnuncio.txt_web }}"
+                                            class="text-muted font-weight-bold"><span>Visita mi página</span></a>
                                     </div>
 
                                     <div class="col-lg-6">
                                         <div class="btn-group btn-group-lg btn-group-horizontal">
-                                            <a href='tel:925982064' class="btn btn-large btn-primary rounded-0">
-                                                <i class="fa fa-phone"></i>
+                                            <a href='tel:{{detalleDelAnuncio.txt_telefono_1}}'
+                                                class="btn btn-large btn-primary rounded-0">
+                                                <i class="fas fa-phone-alt mr-1"></i>
                                                 <span
-                                                    class="font-weight-bold">{{DetalleDelAnuncio.txt_telefono_1 }}</span>
+                                                    class="font-weight-bold">{{detalleDelAnuncio.txt_telefono_1}}</span>
                                             </a>
-                                            <a href='tel:925982064' class="btn btn-large btn-success rounded-0"><i
-                                                    class="fa fa-whatsapp"></i>
+                                            <a href='tel:{{detalleDelAnuncio.txt_telefono_1}}'
+                                                class="btn btn-large btn-success rounded-0"><i
+                                                    class="fab fa-whatsapp mr-1"></i>
                                                 <span class="font-weight-bold">WhatsApp</span></a>
                                         </div>
                                         <div class="row mt-1">
-                                            <div class="col-4">
-                                                <i class='fa fa-share-alt'></i>
-                                                <span class="small">Compartir</span>
+                                            <div class="col-4 cursor-pointer" data-target="#compartir"
+                                                data-toggle="collapse">
+                                                <i class='fa fa-share-alt text-secondary'></i>
+                                                <span class="small ml-1 text-secondary">Compartir</span>
                                             </div>
-                                            <div class="col-4">
-                                                <i class='fa fa-star'></i>
-                                                <span class="small">Favoritos</span>
+                                            <div class="col-4 cursor-pointer">
+                                                <i class='fa fa-star text-primary'></i>
+                                                <span class="small ml-1 text-secondary">Favoritos</span>
                                             </div>
-                                            <div class="col-4">
-                                                <i class='fa fa-hand-pointer-o'></i>
-                                                <span class="small">Denunciar</span>
+                                            <div class="col-4 cursor-pointer">
+                                                <i class='far fa-hand-pointer text-danger'></i>
+                                                <span class="small ml-1 text-secondary">Denunciar</span>
                                             </div>
+                                            <div class="col-12">
+                                                <a class="btn btn-success" href="#" role="button">
+                                                    <i class="fab fa-whatsapp"></i>
+                                                </a>
+                                                <a class="btn btn-primary" href="#" role="button">
+                                                    <i class="fab fa-telegram-plane"></i>
+                                                </a>
+                                                <a class="btn btn-success" href="#" role="button">
+                                                    <i class="fab fa-line"></i>
+                                                </a>
+                                                <a class="btn btn-primary" href="#" role="button">
+                                                    <i class="fab fa-facebook-f"></i>
+                                                </a>
+                                                <a class="btn btn-danger" href="#" role="button">
+                                                    <i class="fab fa-google-plus-square"></i>
+                                                </a>
+                                                <a class="btn btn-primary" href="#" role="button">
+                                                    <i class="fab fa-twitter"></i>
+                                                </a>
+                                            </div>
+                                            <!--                                         <p>
+                                                <button type="button" class="btn btn-outline-primary"
+                                                    (click)="">
+                                                    Toggle
+                                                </button>
+                                            </p>
+                                            <div id="collapseExample">
+                                                <div class="col-12">
+                                                    You can collapse this card by clicking Toggle
+                                                </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -60,7 +97,7 @@
                     <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body bg-white">
-                                <p class="h5 text-dark text-left">{{DetalleDelAnuncio.txt_presentacion }}</p>
+                                <p class="h5 text-dark text-left">{{detalleDelAnuncio.txt_presentacion }}</p>
                                 <!-- <p class="h5 text-dark text-left">Lorem ipsum dolor sit, amet consectetur
                                     adipisicing elit. Eum, porro
                                     pariatur accusantium voluptatem omnis recusandae consequuntur nemo eius
@@ -73,22 +110,93 @@
                                     non, natus tempore rerum velit consequatur dolores officiis.</p>
                                 <p class="h5 text-dark text-left">Lorem ipsum dolor sit, amet consectetur
                                     adipisicing elit.</p> -->
-                                <p class="h5 text-error text-left">No olvides mencionarme que viste mi
-                                    anuncio en <a class="text-error font-weight-bold"
+                                <p class="h5 text-error text-left text-danger">No olvides mencionarme que viste mi
+                                    anuncio en <a class="text-error font-weight-bold text-danger"
                                         href='https://www.photokinesiologas.com'>Photokines</a>.</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-12">
-                        <div class="card w-100">
+                    <div class="col-12 d-lg-flex">
+                        <div class="card col-lg-6 col-sm-12">
                             <div class="card-body bg-white">
                                 <p class="h3 text-dark font-weight-bold text-left">
-                                    Horario
+                                    Datos Generales
                                 </p>
-                                <div class="clearfix">
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">Edad</span>
+                                    <span class="float-right">{{detalleDelAnuncio.int_edad}}</span>
+                                </div>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">País de origen</span>
+                                    <span class="float-right">{{detalleDelAnuncio.tx_pais_origen}}</span>
+                                </div>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">Estudios</span>
+                                    <span class="float-right">{{detalleDelAnuncio.tx_estudio}}</span>
+                                </div>
+                                <!--     
+                                    <p class="h3 text-dark font-weight-bold text-left">
+                                        Horario
+                                    </p>                           
+                                    <div class="clearfix">
                                     <span class="float-left">Lunes a Domingo</span>
                                     <span class="float-right">11:00 am - 8:00 pm</span>
+                                </div> -->
+                            </div>
+                        </div>
+
+                        <div class="card col-lg-6 col-sm-12">
+                            <div class="card-body bg-white">
+                                <p class="h3 text-dark font-weight-bold text-left">
+                                    Tarifas
+                                </p>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">30 Minutos</span>
+                                    <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_30min}}</span>
+                                </div>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">45 Minutos</span>
+                                    <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_45min}}</span>
+                                </div>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">1 hora</span>
+                                    <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_1hora}}</span>
+                                </div>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">1 hora y media</span>
+                                    <span
+                                        class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media}}</span>
+                                </div>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">2 hora</span>
+                                    <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_2hora}}</span>
+                                </div>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">3 hora</span>
+                                    <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_3hora}}</span>
+                                </div>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">Salidas</span>
+                                    <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_salidas}}</span>
+                                </div>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">Toda la noche</span>
+                                    <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche}}</span>
+                                </div>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">Viajes</span>
+                                    <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_viaje}}</span>
+                                </div>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="">Forma de Pago</span>
+                                    <div class="col-12 mt-2">
+                                        <a *ngFor="let item of detalleDelAnuncio.txt_forma_pago.split(','); let i = index"
+                                            href="#" class="btn btn-sm bg-dark text-white float-left m-1">
+                                            {{item.trim()}}
+                                        </a>
+                                    </div>
+                                    <!-- <span class="float-right">{{detalleDelAnuncio.txt_forma_pago}}</span> -->
                                 </div>
                             </div>
                         </div>
@@ -98,11 +206,41 @@
                         <div class="card w-100">
                             <div class="card-body bg-white">
                                 <p class="h3 text-dark font-weight-bold text-left">
-                                    {{DetalleDelAnuncio.txt_imagen_galeria.split(';').length  }} Fotos
+                                    Apariencia
+                                </p>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">Color de Cabello</span>
+                                    <span class="float-right">{{detalleDelAnuncio.tx_color_cabello}}</span>
+                                </div>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">Color de Ojos</span>
+                                    <span class="float-right">{{detalleDelAnuncio.tx_color_ojos}}</span>
+                                </div>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">Estatura</span>
+                                    <span class="float-right">{{detalleDelAnuncio.tx_estatura}}</span>
+                                </div>
+                                <div class="clearfix text-secondary h6">
+                                    <span class="float-left">Peso en Kg</span>
+                                    <span
+                                        class="float-right">{{detalleDelAnuncio.txt_medidas_busto_cintura_cadera}}</span>
+                                </div>
+                                <div class="text-secondary h5 text-capitalize">
+                                    <span>{{detalleDelAnuncio.txt_descripcion_extra_apariencia}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="card w-100">
+                            <div class="card-body bg-white">
+                                <p class="h3 text-dark font-weight-bold text-left">
+                                    {{detalleDelAnuncio.txt_imagen_galeria.split(';').length  }} Fotos
                                 </p>
                                 <div class="row">
-                                    <div class="col-6"
-                                        *ngFor="let item of DetalleDelAnuncio.txt_imagen_galeria.split(';'); let i = index">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-1"
+                                        *ngFor="let item of detalleDelAnuncio.txt_imagen_galeria.split(';'); let i = index">
                                         <img class="w-100 h-100 img-thumbnail" src="{{item.trim()}}" data-id="2"
                                             alt="Abigaíl 925982064 - Kinesióloga en Los Olivos">
                                     </div>
@@ -126,6 +264,7 @@
                         </div>
                     </div>
 
+                    <!--                     
                     <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body bg-white">
@@ -134,33 +273,33 @@
                                 </p>
                                 <div class="row">
                                     <div class="col-12 mb-2">
-                                        <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
-                                            Interesante
+                                        <a *ngFor="let item of detalleDelAnuncio.tx_descripcion_servicios_ofrece.split(';'); let i = index"
+                                            href="#" class="btn btn-sm bg-dark text-white float-left m-1">
+                                            {{item.trim()}}
                                         </a>
-                                        <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
-                                            Todos los juegos
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div class="col-12">
+                        <div class="card w-100">
+                            <div class="card-body bg-white">
+                                <p class="h3 text-dark font-weight-bold text-left">
+                                    Mis servicios
+                                </p>
+                                <div class="row">
+                                    <div class="col-12 mb-2">
+                                        <a *ngFor="let item of detalleDelAnuncio.tx_descripcion_servicios_ofrece.split(';'); let i = index"
+                                            href="#" class="btn btn-sm bg-dark text-white float-left m-1">
+                                            {{item.trim()}}
                                         </a>
-                                        <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
-                                            Juego
-                                        </a>
-                                        <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
-                                            Divertido
-                                        </a>
-                                        <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
-                                            Sensacional
-                                        </a>
-                                        <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
-                                            Buena Onda
-                                        </a>
-                                        <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
-                                            Super Buena Onda
-                                        </a>
-                                        <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
-                                            Genial
-                                        </a>
-                                        <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
-                                            Magnifico
-                                        </a>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="text-secondary h5 text-capitalize">
+                                            <span>{{detalleDelAnuncio.tx_descripcion_extra_servicio}}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -171,15 +310,13 @@
                         <div class="card w-100">
                             <div class="card-body bg-white">
                                 <p class="h3 text-dark font-weight-bold text-left">
-                                    Mis servicios
+                                    Lugar del encuentro
                                 </p>
                                 <div class="row">
                                     <div class="col-12 mb-2">
-                                        <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
-                                            Interesante
-                                        </a>
-                                        <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
-                                            Todos los juegos
+                                        <a *ngFor="let item of detalleDelAnuncio.tx_descripcion_lugar_atencion.split(';'); let i = index"
+                                            href="#" class="btn btn-sm bg-dark text-white float-left m-1">
+                                            {{item.trim()}}
                                         </a>
                                     </div>
                                 </div>
@@ -203,7 +340,7 @@
                     </div>
                     <div class="col-12 d-block d-sm-none">
                         <div class="card w-100">
-                            <img class="img-thumbnail" src="{{DetalleDelAnuncio.txt_imagen_prensetancion }}">
+                            <img class="img-thumbnail" src="{{detalleDelAnuncio.txt_imagen_prensetancion }}">
                             <div class="card-body bg-white">
                             </div>
                         </div>
@@ -214,11 +351,16 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card row">
-                            <img class="img-fluid" src="{{DetalleDelAnuncio.txt_imagen_prensetancion}}">
+                            <img class="img-fluid" src="{{detalleDelAnuncio.txt_imagen_prensetancion}}">
                             <div class="card-body bg-white">
                                 <div class="row">
                                     <div class="col-12 mb-2">
-                                        <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
+                                        <a *ngFor="let item of detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';'); let i = index"
+                                            href="#" class="btn btn-sm bg-dark text-white float-left m-1">
+                                            {{item.trim()}}
+                                        </a>
+                                        <!--                                         
+                                            <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             Interesante
                                         </a>
                                         <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
@@ -226,7 +368,7 @@
                                         </a>
                                         <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             Todos los juegos
-                                        </a>
+                                        </a> -->
                                     </div>
                                 </div>
                             </div>
@@ -240,18 +382,18 @@
                                     Haz más visible tu anuncio
                                 </p>
                                 <div class="row">
-                                    <div class="clearfix col-12 mb-1">
-                                        <button type="button" class="btn btn-danger float-left font-weight-bold">Subir
+                                    <div class="col-12 mb-2">
+                                        <button type="button" class="col-6 btn btn-danger font-weight-bold">Subir
                                             automático</button>
-                                        <button type="button" class="btn btn-danger float-right font-weight-bold">Top
+                                        <button type="button" class="col-5 offset-1 btn btn-danger font-weight-bold">Top
                                             Anuncios</button>
                                     </div>
 
-                                    <div class="clearfix col-12">
-                                        <button type="button" class="btn btn-danger float-left font-weight-bold">Subir
+                                    <div class="col-12">
+                                        <button type="button" class="col-6 btn btn-danger font-weight-bold">Subir
                                             GRATIS</button>
                                         <button type="button"
-                                            class="btn btn-danger float-right font-weight-bold">Certificar
+                                            class="col-5 offset-1 btn btn-danger font-weight-bold">Certificar
                                             fotos</button>
                                     </div>
                                 </div>

@@ -9,7 +9,9 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
     styleUrls: ['./modalDetalleAnuncio.component.css']
 })
 export class ModalDetalleAnuncio implements OnInit {
-    DetalleDelAnuncio: any;
+    detalleDelAnuncio: any;
+    isCollapsed = false;
+    estiloColapsar = "";
     constructor(
         public modalRef: BsModalRef,
         private anuncioService: AnuncioService,
@@ -20,11 +22,20 @@ export class ModalDetalleAnuncio implements OnInit {
         console.log(this["data"]["id"]);
         this.anuncioService.ObtenerDetalleAnucionXId(this["data"]["id"]).subscribe(
             (res: ClientResponse) => {
-                this.DetalleDelAnuncio = res.Data;
-                console.log(this.DetalleDelAnuncio);
+                this.detalleDelAnuncio = res.Data;
+                console.log(this.detalleDelAnuncio);
             });
     }
     closeModal() {
         this.modalRef.hide();
+    }
+
+    colapsar() {
+        this.isCollapsed = !this.isCollapsed;
+        if (this.isCollapsed) {
+            this.estiloColapsar = "style='display:block'";
+        } else {
+            this.estiloColapsar = "style='display:none'";
+        }
     }
 }

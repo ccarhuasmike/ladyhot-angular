@@ -605,7 +605,7 @@ label {
 
 .icons-fichas-info {
   background: #f100ffb5;
-  padding: 0px 5px;
+  padding: 3px 5px;
   text-align: center;
   margin-bottom: 2px;
 }
@@ -689,3 +689,10 @@ label {
     padding: 0px 0%;
   }
 } */
+
+.w-10{
+  width: 10% !important
+}
+.line-h-2{
+  line-height:2em
+}

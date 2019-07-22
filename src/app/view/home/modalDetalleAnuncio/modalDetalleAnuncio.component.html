@@ -1,9 +1,8 @@
-<!-- <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4> 
+<div class="modal-header border-0">
     <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
-        <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
     </button>
-</div> -->
+</div>
 <div class="modal-body" *ngIf="detalleDelAnuncio">
     <div class="container-fluid">
         <div class="row">
@@ -11,8 +10,7 @@
                 <div class="row">
                     <div class="col-12 d-block d-sm-none">
                         <div class="card w-100">
-                            <img class="img-thumbnail w-100 h-100"
-                                src="{{detalleDelAnuncio.txt_imagen_prensetancion }}">
+                            <img class="img-thumbnail w-100 h-100" src="{{detalleDelAnuncio.txt_imagen_prensetancion}}">
                         </div>
                     </div>
                     <div class="col-12">
@@ -22,16 +20,16 @@
                                     {{detalleDelAnuncio.txt_nombre_ficha }} {{detalleDelAnuncio.txt_telefono_1 }}</p>
                                 <div class="row">
                                     <div class="col-lg-6 mt-0 text-left text-secondary h6">
-                                        <span>Lima Metropolitana</span>
-                                        <span>-</span>
+                                        <!--                                         <span>Lima Metropolitana</span>
+                                        <span>-</span> -->
                                         <span>{{detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
                                         <span></span><span id='anuncio_zona'></span><br />
                                         <span>{{detalleDelAnuncio.txt_nombre_ficha }}</span>
-                                        <span>| {{detalleDelAnuncio.int_edad }} años</span>
-                                        <span></span><br /><span>29/06/2019 12:00
-                                            am</span>
+                                        <span> | {{detalleDelAnuncio.int_edad }} años</span>
+                                        <!--                                         <span></span><br /><span>29/06/2019 12:00
+                                            am</span> -->
                                         <br />
-                                        <a href="{{detalleDelAnuncio.txt_web }}"
+                                        <a *ngIf="detalleDelAnuncio.txt_web" href="{{detalleDelAnuncio.txt_web}}"
                                             class="text-muted font-weight-bold"><span>Visita mi página</span></a>
                                     </div>
 
@@ -43,8 +41,8 @@
                                                 <span
                                                     class="font-weight-bold">{{detalleDelAnuncio.txt_telefono_1}}</span>
                                             </a>
-                                            <a href='tel:{{detalleDelAnuncio.txt_telefono_1}}'
-                                                class="btn btn-large btn-success rounded-0"><i
+                                            <a href="https://api.whatsapp.com/send?phone=51{{detalleDelAnuncio.txt_telefono_1}}&text=Hola {{detalleDelAnuncio.txt_nombre_ficha }}, te he visto en LadyHot y me gustaría quedar contigo."
+                                                class="btn btn-large btn-success rounded-0 ml-1" target="_blank"><i
                                                     class="fab fa-whatsapp mr-1"></i>
                                                 <span class="font-weight-bold">WhatsApp</span></a>
                                         </div>
@@ -62,36 +60,26 @@
                                                 <i class='far fa-hand-pointer text-danger'></i>
                                                 <span class="small ml-1 text-secondary">Denunciar</span>
                                             </div>
+                                            <!--                                             
                                             <div class="col-12">
-                                                <a class="btn btn-success btn-sm" href="#" role="button">
+                                                <a class="btn btn-success btn-sm" href="javascript:void(0)" role="button">
                                                     <i class="fab fa-whatsapp fa-2x"></i>
                                                 </a>
-                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                <a class="btn btn-primary btn-sm" href="https://t.me/share/url?url={url}" role="button">
                                                     <i class="fab fa-telegram-plane fa-2x"></i>
                                                 </a>
-                                                <a class="btn btn-success btn-sm" href="#" role="button">
+                                                <a class="btn btn-success btn-sm" href="https://lineit.line.me/share/ui?url={url}" role="button">
                                                     <i class="fab fa-line fa-2x"></i>
                                                 </a>
-                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                <a class="btn btn-primary btn-sm" href="https://www.facebook.com/sharer.php?u={url}" role="button">
                                                     <i class="fab fa-facebook-f fa-2x"></i>
                                                 </a>
-                                                <a class="btn btn-danger btn-sm" href="#" role="button">
+                                                <a class="btn btn-danger btn-sm" href="https://plus.google.com/share?url={url}" role="button">
                                                     <i class="fab fa-google-plus-square fa-2x"></i>
                                                 </a>
-                                                <a class="btn btn-primary btn-sm" href="#" role="button">
+                                                <a class="btn btn-primary btn-sm" href="https://twitter.com/intent/tweet?url={url}" role="button">
                                                     <i class="fab fa-twitter fa-2x"></i>
                                                 </a>
-                                            </div>
-                                            <!--                                         <p>
-                                                <button type="button" class="btn btn-outline-primary"
-                                                    (click)="">
-                                                    Toggle
-                                                </button>
-                                            </p>
-                                            <div id="collapseExample">
-                                                <div class="col-12">
-                                                    You can collapse this card by clicking Toggle
-                                                </div>
                                             </div> -->
                                         </div>
                                     </div>
@@ -129,15 +117,15 @@
                                 <p class="h3 text-dark font-weight-bold text-left">
                                     Datos Generales
                                 </p>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.int_edad">
                                     <span class="float-left">Edad</span>
                                     <span class="float-right">{{detalleDelAnuncio.int_edad}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.tx_pais_origen">
                                     <span class="float-left">País de origen</span>
                                     <span class="float-right">{{detalleDelAnuncio.tx_pais_origen}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.tx_estudio">
                                     <span class="float-left">Estudios</span>
                                     <span class="float-right">{{detalleDelAnuncio.tx_estudio}}</span>
                                 </div>
@@ -157,47 +145,55 @@
                                 <p class="h3 text-dark font-weight-bold text-left">
                                     Tarifas
                                 </p>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6"
+                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_30min">
                                     <span class="float-left">30 Minutos</span>
                                     <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_30min}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6"
+                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_45min">
                                     <span class="float-left">45 Minutos</span>
                                     <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_45min}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6"
+                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora">
                                     <span class="float-left">1 hora</span>
                                     <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_1hora}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6"
+                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media">
                                     <span class="float-left">1 hora y media</span>
                                     <span
                                         class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6"
+                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_2hora">
                                     <span class="float-left">2 hora</span>
                                     <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_2hora}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6"
+                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_3hora">
                                     <span class="float-left">3 hora</span>
                                     <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_3hora}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6"
+                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_salidas">
                                     <span class="float-left">Salidas</span>
                                     <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_salidas}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6"
+                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche">
                                     <span class="float-left">Toda la noche</span>
                                     <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.dbl_costo_x_viaje">
                                     <span class="float-left">Viajes</span>
                                     <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_viaje}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.txt_forma_pago">
                                     <span class="">Forma de Pago</span>
-                                    <div class="col-12 mt-2">
-                                        <a *ngFor="let item of detalleDelAnuncio.txt_forma_pago.split(','); let i = index"
+                                    <div class="col-12 mt-2 p-0">
+                                        <a *ngFor="let item of detalleDelAnuncio.txt_forma_pago.split(';'); let i = index"
                                             href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
                                         </a>
@@ -214,24 +210,26 @@
                                 <p class="h3 text-dark font-weight-bold text-left">
                                     Apariencia
                                 </p>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.tx_color_cabello">
                                     <span class="float-left">Color de Cabello</span>
                                     <span class="float-right">{{detalleDelAnuncio.tx_color_cabello}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.tx_color_ojos">
                                     <span class="float-left">Color de Ojos</span>
                                     <span class="float-right">{{detalleDelAnuncio.tx_color_ojos}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.tx_estatura">
                                     <span class="float-left">Estatura</span>
                                     <span class="float-right">{{detalleDelAnuncio.tx_estatura}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6">
+                                <div class="clearfix text-secondary h6"
+                                    *ngIf="detalleDelAnuncio.txt_medidas_busto_cintura_cadera">
                                     <span class="float-left">Peso en Kg</span>
                                     <span
                                         class="float-right">{{detalleDelAnuncio.txt_medidas_busto_cintura_cadera}}</span>
                                 </div>
-                                <div class="text-secondary h5 text-capitalize">
+                                <div class="text-secondary h5 text-capitalize"
+                                    *ngIf="detalleDelAnuncio.txt_descripcion_extra_apariencia">
                                     <span>{{detalleDelAnuncio.txt_descripcion_extra_apariencia}}</span>
                                 </div>
                             </div>
@@ -250,21 +248,6 @@
                                         <img class="w-100 h-100 img-thumbnail" src="{{item.trim()}}" data-id="2"
                                             alt="Abigaíl 925982064 - Kinesióloga en Los Olivos">
                                     </div>
-                                    <!-- <div class="col-6">
-                                        <img class="w-100 h-100"
-                                            src="http://192.168.0.14/fileserver/uploads_fichas/2198/23.jpg" data-id="2"
-                                            alt="Abigaíl 925982064 - Kinesióloga en Los Olivos">
-                                    </div>
-                                    <div class="col-6 mt-4">
-                                        <img class="w-100 h-100"
-                                            src="http://192.168.0.14/fileserver/uploads_fichas/2199/21.jpg" data-id="2"
-                                            alt="Abigaíl 925982064 - Kinesióloga en Los Olivos">
-                                    </div>
-                                    <div class="col-6 mt-4">
-                                        <img class="w-100 h-100"
-                                            src="http://192.168.0.14/fileserver/uploads_fichas/2192/4.jpg" data-id="2"
-                                            alt="Abigaíl 925982064 - Kinesióloga en Los Olivos">
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -289,7 +272,8 @@
                         </div>
                     </div> -->
 
-                    <div class="col-12">
+                    <div class="col-12"
+                        *ngIf="detalleDelAnuncio.tx_descripcion_servicios_ofrece && detalleDelAnuncio.tx_descripcion_extra_servicio">
                         <div class="card w-100">
                             <div class="card-body bg-white">
                                 <p class="h3 text-dark font-weight-bold text-left">
@@ -312,7 +296,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-12" *ngIf="detalleDelAnuncio.tx_descripcion_lugar_atencion">
                         <div class="card w-100">
                             <div class="card-body bg-white">
                                 <p class="h3 text-dark font-weight-bold text-left">
@@ -345,9 +329,43 @@
                         </div>
                     </div>
                     <div class="col-12 d-block d-sm-none">
-                        <div class="card w-100">
+                        <!--                        
+                         <div class="card w-100">
                             <img class="img-thumbnail" src="{{detalleDelAnuncio.txt_imagen_prensetancion }}">
                             <div class="card-body bg-white">
+                            </div>
+                        </div> -->
+                        <div class="card">
+                            <div class="card-body bg-white">
+                                <p class="h6 text-dark font-weight-bold text-left">
+                                    Haz más visible tu anuncio
+                                </p>
+                                <div class="row">
+                                    <div class="col-12 mb-2">
+                                        <button type="button" class="col-6 btn btn-danger font-weight-bold">Subir
+                                            automático</button>
+                                        <button type="button" class="col-5 offset-1 btn btn-danger font-weight-bold">Top
+                                            Anuncios</button>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <button type="button" class="col-6 btn btn-danger font-weight-bold">Subir
+                                            GRATIS</button>
+                                        <button type="button"
+                                            class="col-5 offset-1 btn btn-danger font-weight-bold">Certificar
+                                            fotos</button>
+                                    </div>
+                                </div>
+                                <p class="h6 text-dark font-weight-bold text-left mt-3">
+                                    Gestiona tu anuncio
+                                </p>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button routerLink="../panelcontrol" (click)="closeModal()" type="button"
+                                            class="w-100 btn btn-danger font-weight-bold"><i class="fa fa-key mr-1"
+                                                aria-hidden="true"></i>Panel de control</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -403,7 +421,16 @@
                                             fotos</button>
                                     </div>
                                 </div>
-
+                                <p class="h6 text-dark font-weight-bold text-left mt-3">
+                                    Gestiona tu anuncio
+                                </p>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button routerLink="../panelcontrol" (click)="closeModal()" type="button"
+                                            class="w-100 btn btn-danger font-weight-bold"><i class="fa fa-key mr-1"
+                                                aria-hidden="true"></i>Panel de control</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

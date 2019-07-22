@@ -29,13 +29,4 @@ export class ModalDetalleAnuncio implements OnInit {
     closeModal() {
         this.modalRef.hide();
     }
-
-    colapsar() {
-        this.isCollapsed = !this.isCollapsed;
-        if (this.isCollapsed) {
-            this.estiloColapsar = "style='display:block'";
-        } else {
-            this.estiloColapsar = "style='display:none'";
-        }
-    }
 }

@@ -41,7 +41,7 @@ export class DatosContactoComponent implements OnInit {
         this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         this.parameter.getParameter().subscribe(
             (res: ClientResponse) => {
-                this.listParameter = JSON.parse(res.DataJson) ;
+                this.listParameter = JSON.parse(res.DataJson);
                 localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
                 this._messageService = this.messageService;
                 console.log(this._messageService);
@@ -92,11 +92,11 @@ export class DatosContactoComponent implements OnInit {
             entidad.txt_telefono_2 = this.fromContacto.value.txt_telefono_2;
             entidad.txt_email = this.fromContacto.value.txt_email;
             entidad.txt_web = this.fromContacto.value.txt_web;
-            this.anuncioService.SavePrimerPaso(entidad).subscribe(                
+            this.anuncioService.SavePrimerPaso(entidad).subscribe(
                 (res) => {
-                    if (res.Status == "OK") {                        
+                    if (res.Status == "OK") {
                         let DataJsonAnuncio: any = res.Data;
-                        localStorage.setItem('DataAnuncio', DataJsonAnuncio);                        
+                        localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                         this.router.navigate(['panelcontrol/nuevoanuncio/datos-generales']);
                     } else {
                         console.log("ejecute Error");
@@ -115,7 +115,6 @@ export class DatosContactoComponent implements OnInit {
                     if (res.Status == "OK") {
                         let DataJsonAnuncio: any = res.Data;
                         localStorage.setItem('DataAnuncio', DataJsonAnuncio);
-                        //this.anuncioService.setDatosContacto(this.fromContacto.value)
                         this.router.navigate(['panelcontrol/nuevoanuncio/datos-generales']);
                     }
                 }

@@ -44,15 +44,20 @@ export class IngresarComponent implements OnInit {
         this.isSubmitted = true;
         if (!this.formIngresar.valid)
             return;
-        let entidad: any = {};        
-        entidad.tx_email = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_email);
-        entidad.tx_pass = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_password);
-
+        let entidad: any = {};
+        entidad.tx_email = this.formIngresar.value.txt_email;
+        entidad.tx_pass = this.formIngresar.value.txt_password;
+        // entidad.tx_email = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_email);
+        // entidad.tx_pass = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_password);
         this.usuarioService.IniciarSession(entidad).subscribe(
             (res) => {
-                console.log(res);
-                if (res.result.Status == "OK") {
-                    this.router.navigate(['panelcontrol/misanuncios']);                    
+                debugger;
+                if (res.Status == "OK") {
+                    if (res.Data != null) {
+                        this.router.navigate(['panelcontrol/misanuncios']);
+                    } else {
+                        console.log("usuario y/o contraseña incorrecto");
+                    }
                 } else {
                     console.log("ejecute Error");
                 }

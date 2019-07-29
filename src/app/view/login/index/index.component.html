@@ -5,32 +5,31 @@
                 <img src="assets/user_login.svg" alt="rocket_contact" />
             </div>
             <form [formGroup]='formIngresar' (ngSubmit)="ingresar()" novalidate>
-                <h3>Sign In</h3>
+                <h3 class="text-center">Iniciar Sesión </h3>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Email address *" required
+                            <input type="text" class="form-control" placeholder="Correo electronico *" required
                                 [formControl]="txt_emailCtrl" />
                             <div *ngIf="txt_emailCtrl.invalid && (txt_emailCtrl.dirty || isSubmitted)"
                                 class="text-danger text-xs-left text-sm-left">
                                 <div *ngIf="txt_emailCtrl.errors.required">
-                                    Se requiere el email.
+                                    Se requiere correo electronico.
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password *" required
+                            <input type="password" class="form-control" placeholder="Contaseña *" required
                                 [formControl]="txt_passwordCtrl" />
                             <div *ngIf="txt_passwordCtrl.invalid && (txt_passwordCtrl.dirty || isSubmitted)"
                                 class="text-danger text-xs-left text-sm-left">
                                 <div *ngIf="txt_passwordCtrl.errors.required">
-                                    Se requiere el password.
+                                    Se requiere contraseña.
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <!-- <input type="submit" name="btnSubmit" class="btn-primary" value="Sign in" /> -->
-                            <button type='submit' class='btn btn-primary col'>Sign in</button>
+                            <button type='submit' class='btn btn-primary col'>Ingresar</button>
                         </div>
                     </div>
                 </div>

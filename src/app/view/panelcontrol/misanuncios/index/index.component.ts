@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { AnuncioService } from 'src/app/shared/services/service.module';
 import { ConfigService } from 'src/app/shared/services/Utilitarios/config.service';
-import { ClientResponse,ClientResponseResult } from 'src/app/Models/ClientResponseModels';
+import { ClientResponse, ClientResponseResult } from 'src/app/Models/ClientResponseModels';
 import { Tbl_anuncio } from 'src/app/Models/Tbl_anuncioModels';
 import { Router } from '@angular/router';
 
@@ -24,10 +24,14 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.anuncioService.getListarMisAnuncios().subscribe(
-      (res: ClientResponse) => {        
-        this.listaMisAnuncios = JSON.parse(res.DataJson) ;
-        console.log(this.listaMisAnuncios);
+    let DataUsuarioLogeado: any = JSON.parse(localStorage.getItem('DataUsuarioLogeado')); //Se Obtiene los datos del usuario logeado
+    let entidad: any = {};
+    debugger;
+    entidad.id_usuario = DataUsuarioLogeado.id;
+    this.anuncioService.getListarMisAnuncios(entidad).subscribe(
+      (res: ClientResponse) => {
+        debugger;
+        this.listaMisAnuncios = JSON.parse(res.DataJson);
       }
     );
   }

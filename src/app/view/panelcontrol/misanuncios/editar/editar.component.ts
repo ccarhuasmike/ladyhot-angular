@@ -298,7 +298,6 @@ export class EditarComponent implements OnInit {
             (res) => {
                 console.log(res);
                 if (res.Status == "OK") {
-                    console.log("ejecute Ok");
                     let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                     this.router.navigate(['panelcontrol/misanuncios']);

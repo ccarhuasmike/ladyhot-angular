@@ -12,11 +12,9 @@ import { Router } from '@angular/router';
 export class IngresarComponent implements OnInit {
     formIngresar: FormGroup;
     isSubmitted: boolean = false;
-
     //Controles Datos de Contacto
     txt_emailCtrl: FormControl;
     txt_passwordCtrl: FormControl;
-
     constructor(
         private usuarioService: UsuarioService,
         private router: Router
@@ -51,9 +49,9 @@ export class IngresarComponent implements OnInit {
         // entidad.tx_pass = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_password);
         this.usuarioService.IniciarSession(entidad).subscribe(
             (res) => {
-                debugger;
                 if (res.Status == "OK") {
                     if (res.Data != null) {
+                        localStorage.setItem('DataUsuarioLogeado', JSON.stringify(res.Data));
                         this.router.navigate(['panelcontrol/misanuncios']);
                     } else {
                         console.log("usuario y/o contraseña incorrecto");

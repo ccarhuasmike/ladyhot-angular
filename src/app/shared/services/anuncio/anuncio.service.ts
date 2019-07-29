@@ -101,8 +101,8 @@ export class AnuncioService {
                 catchError(this.handleError('Saveactualizartodo'))
             );
     }
-    getListarMisAnuncios(): Observable<ClientResponse> {
-        return this.httpClient.get<ClientResponse>(this._baseUrl + 'misanuncios/ListarMisAnuncioPorUsuario').pipe(
+    getListarMisAnuncios(anuncio: Tbl_anuncio): Observable<ClientResponse> {
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'misanuncios/ListarMisAnuncioPorUsuario', anuncio, httpOptions).pipe(
             catchError(this.handleError('getListarMisAnuncioPorUsuario'))
         );
     }

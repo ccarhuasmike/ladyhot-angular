@@ -23,7 +23,6 @@ export class ModalDetalleAnuncio implements OnInit {
         this.anuncioService.ObtenerDetalleAnucionXId(this["data"]["id"]).subscribe(
             (res: ClientResponse) => {
                 this.detalleDelAnuncio = res.Data;
-                console.log(this.detalleDelAnuncio);
             });
     }
     closeModal() {

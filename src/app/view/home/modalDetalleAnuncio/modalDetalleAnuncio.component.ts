@@ -34,6 +34,10 @@ export class ModalDetalleAnuncio implements OnInit {
             && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_viaje
             && this.detalleDelAnuncio.detalleDelAnuncio.txt_forma_pago);
         this.mostrarHorario = true;*/
+
+        /*
+        prueba
+         */
     }
     closeModal() {
         this.modalRef.hide();

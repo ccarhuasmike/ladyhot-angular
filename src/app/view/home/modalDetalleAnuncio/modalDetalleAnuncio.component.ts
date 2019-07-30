@@ -27,13 +27,13 @@ export class ModalDetalleAnuncio implements OnInit {
                 res.Data["txt_presentacion"] = res.Data["txt_presentacion"].replace(/(\n)+\n+|\t+/g, ";");
                 this.detalleDelAnuncio = res.Data;
             });
-        this.mostrarTarifas = (this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_30min && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_45min
+        /*this.mostrarTarifas = (this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_30min && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_45min
             && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_1hora && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media
             && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_2hora && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_3hora
             && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_salidas
             && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_viaje
             && this.detalleDelAnuncio.detalleDelAnuncio.txt_forma_pago);
-        this.mostrarHorario = true;
+        this.mostrarHorario = true;*/
     }
     closeModal() {
         this.modalRef.hide();

@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-   // component :  IndexComponent
+    // component :  IndexComponent
     loadChildren: '../app/view/home/home.module#HomeModule'
   },
   {
@@ -24,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: '../app/view/login/login.module#LoginAnuncioModule'
+    loadChildren: '../app/view/seguridad/seguridad.module#SeguridadModule'
   },
   {
     path: 'not-found',

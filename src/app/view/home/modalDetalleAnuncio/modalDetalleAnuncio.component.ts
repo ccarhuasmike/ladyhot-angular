@@ -26,7 +26,6 @@ export class ModalDetalleAnuncio implements OnInit {
             (res: ClientResponse) => {
                 res.Data["txt_presentacion"] = res.Data["txt_presentacion"].replace(/(\n)+\n+|\t+/g, ";");
                 this.detalleDelAnuncio = res.Data;
-                console.log(this.detalleDelAnuncio);
             });
         this.mostrarTarifas = (this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_30min && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_45min
             && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_1hora && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media

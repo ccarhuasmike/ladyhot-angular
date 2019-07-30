@@ -1,40 +1,89 @@
-<div class="container contact-form">
+<div id="content">
+    <div class="bloque bloque_login ">
+        <h1 class="titulo">Panel de control</h1>
+        <div class="login_container">
+            <span class="titulo">Ya tengo acceso</span>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <input type="text" name="email" id="login_email" class="form-control form-control-sm" value=""
+                        placeholder="Email" maxlength="50">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <input type="password" class="form-control form-control-sm" name="password" id="login_password"
+                        value="" placeholder="Contraseña" maxlength="50">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <label class="mantener_sesion">
+                        <input type="checkbox" name="mantener"> Recuérdame
+                    </label>
+                    <span class="recordar_password"><a href="">¿Has olvidado tu
+                            contraseña?</a></span>
+                </div>
+            </div>
+            <br>
+            <div class="form-group row">
+                <input id="login_acceder" type="submit" class="btn btn-primary" value="Entrar en mi panel">
+            </div>
+        </div>
+        <div class="landing_container">
+            <span class="titulo">Aún no tengo acceso</span>
+            <p class="descripcion">Si ya has publicado un anuncio, pero no has accedido nunca a tu panel de
+                control,
+                indícanos el email del anuncio que deseas gestionar y te enviaremos el enlace para entrar.</p>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <input type="text" name="recordar_email" class="form-control form-control-sm" id="recordar_email"
+                        value="" placeholder="Email" maxlength="50">
+                </div>
+            </div>
+            <div class="form-group row">
+                <input id="login_noaccess" type="submit" class="btn btn-primary" value="Enviar enlace">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="container contact-form">
     <div class="form-horizontal">
         <div class="form-group">
             <div class="contact-image">
                 <img src="assets/user_login.svg" alt="rocket_contact" />
             </div>
             <form [formGroup]='formIngresar' (ngSubmit)="ingresar()" novalidate>
-                <h3>Sign In</h3>
+                <h3 class="text-center">Iniciar Sesión </h3>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Email address *" required
+                            <input type="text" class="form-control" placeholder="Correo electronico *" required
                                 [formControl]="txt_emailCtrl" />
                             <div *ngIf="txt_emailCtrl.invalid && (txt_emailCtrl.dirty || isSubmitted)"
                                 class="text-danger text-xs-left text-sm-left">
                                 <div *ngIf="txt_emailCtrl.errors.required">
-                                    Se requiere el email.
+                                    Se requiere correo electronico.
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password *" required
+                            <input type="password" class="form-control" placeholder="Contaseña *" required
                                 [formControl]="txt_passwordCtrl" />
                             <div *ngIf="txt_passwordCtrl.invalid && (txt_passwordCtrl.dirty || isSubmitted)"
                                 class="text-danger text-xs-left text-sm-left">
                                 <div *ngIf="txt_passwordCtrl.errors.required">
-                                    Se requiere el password.
+                                    Se requiere contraseña.
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <!-- <input type="submit" name="btnSubmit" class="btn-primary" value="Sign in" /> -->
-                            <button type='submit' class='btn btn-primary col'>Sign in</button>
+                            <button type='submit' class='btn btn-primary col'>Ingresar</button>
                         </div>
                     </div>
                 </div>
             </form>
         </div>
     </div>
-</div>
+</div> -->

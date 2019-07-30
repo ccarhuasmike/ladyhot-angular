@@ -75,7 +75,7 @@ export class IndexComponent implements OnInit {
           this.TruncamientoMultiline();
         },
         (error) => {
-          console.log(error);
+          console.log(error + "getLisAnuncios");
         }
       );
     }

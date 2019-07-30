@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
-import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Apariencia } from "../../../models/modelanuncio";
-import { ClientResponse, ClientResponseResult } from '../../../../Models/ClientResponseModels';
 @Component({
     selector: 'app-apariencia',
     templateUrl: './apariencia.component.html',
@@ -83,12 +82,10 @@ export class AparienciaComponent implements OnInit {
             });
         }
     }
-
     selectName() {
 
     }
     saveApariencia() {
-
         this.isSubmittedApariencia = true;
         if (!this.fromApariencia.valid)
             return;
@@ -108,19 +105,7 @@ export class AparienciaComponent implements OnInit {
                 }
             }
         );
-        // busto: this.bustoCtrl,
-        // cintura: this.cinturaCtrl,
-        // cadera: this.caderaCtrl,
-        // cabello: this.int_color_cabelloCtrl,
-        // ojos: this.int_color_ojosCtrl,
-        // estatura: this.int_estaturaCtrl,
-        // peso: this.int_pesoCtrl,
-        // descripcionapariencia: this.txt_descripcion_extra_aparienciaCtrl
 
-        // this.anuncioService.setApariencia(this.fromApariencia.value)
-        // this.router.navigate(['DashboardAnuncion/nuevoanuncio/tarifa']);
-
-        // userService.Save(this.register.value);
         // this.result = this.fromApariencia.value;
         // setTimeout(() => {
         //     this.result = null;

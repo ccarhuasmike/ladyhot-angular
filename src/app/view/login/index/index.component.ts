@@ -12,11 +12,9 @@ import { Router } from '@angular/router';
 export class IngresarComponent implements OnInit {
     formIngresar: FormGroup;
     isSubmitted: boolean = false;
-
     //Controles Datos de Contacto
     txt_emailCtrl: FormControl;
     txt_passwordCtrl: FormControl;
-
     constructor(
         private usuarioService: UsuarioService,
         private router: Router
@@ -44,15 +42,20 @@ export class IngresarComponent implements OnInit {
         this.isSubmitted = true;
         if (!this.formIngresar.valid)
             return;
-        let entidad: any = {};        
-        entidad.tx_email = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_email);
-        entidad.tx_pass = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_password);
-
+        let entidad: any = {};
+        entidad.tx_email = this.formIngresar.value.txt_email;
+        entidad.tx_pass = this.formIngresar.value.txt_password;
+        // entidad.tx_email = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_email);
+        // entidad.tx_pass = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_password);
         this.usuarioService.IniciarSession(entidad).subscribe(
             (res) => {
-                console.log(res);
-                if (res.result.Status == "OK") {
-                    this.router.navigate(['panelcontrol/misanuncios']);                    
+                if (res.Status == "OK") {
+                    if (res.Data != null) {
+                        localStorage.setItem('DataUsuarioLogeado', JSON.stringify(res.Data));
+                        this.router.navigate(['panelcontrol/misanuncios']);
+                    } else {
+                        console.log("usuario y/o contraseña incorrecto");
+                    }
                 } else {
                     console.log("ejecute Error");
                 }

@@ -1,4 +1,63 @@
-<div class="container contact-form">
+<div id="content">
+    <div class="bloque bloque_login ">
+        <h1 class="titulo">Panel de control</h1>
+        <div class="login_container">
+            <span class="titulo">Ya tengo acceso</span>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <input type="text" name="email" id="login_email" class="form-control form-control-sm" value=""
+                        placeholder="Email" maxlength="50">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <input type="password" class="form-control form-control-sm" name="password" id="login_password"
+                        value="" placeholder="Contraseña" maxlength="50">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <label class="mantener_sesion">
+                        <input type="checkbox" name="mantener"> Recuérdame
+                    </label>
+                    <span class="recordar_password"><a href="">¿Has olvidado tu
+                            contraseña?</a></span>
+                </div>
+            </div>
+            <br>
+            <div class="form-group row">
+                <input id="login_acceder" type="submit" class="btn btn-primary" value="Entrar en mi panel">
+            </div>
+        </div>
+        <div class="landing_container">
+            <span class="titulo">Aún no tengo acceso</span>
+            <p class="descripcion">Si ya has publicado un anuncio, pero no has accedido nunca a tu panel de
+                control,
+                indícanos el email del anuncio que deseas gestionar y te enviaremos el enlace para entrar.</p>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <input type="text" name="recordar_email" class="form-control form-control-sm" id="recordar_email"
+                        value="" placeholder="Email" maxlength="50">
+                </div>
+            </div>
+            <div class="form-group row">
+                <input id="login_noaccess" type="submit" class="btn btn-primary" value="Enviar enlace">
+            </div>
+        </div>
+    </div>
+    <!-- email-password -->
+    <div class="bloque bloque_login bloque_recordar_password_ok">
+        <div class="titulo">Email enviado</div>
+        <p>Si el email indicado es válido, en breve recibirás un correo.<br><br>Revisa tu carpeta Spam. Si no lo recibes
+            pasados unos minutos, <a href="/contactar" class="link">contacta con nosotros</a>.</p>
+    </div>
+
+
+
+</div>
+
+
+<!-- <div class="container contact-form">
     <div class="form-horizontal">
         <div class="form-group">
             <div class="contact-image">
@@ -36,4 +95,4 @@
             </form>
         </div>
     </div>
-</div>
+</div> -->

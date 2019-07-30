@@ -10,7 +10,8 @@
                 <div class="row">
                     <div class="col-12 d-block d-sm-none">
                         <div class="card w-100">
-                            <img class="img-thumbnail w-100 h-100" src="{{detalleDelAnuncio.txt_imagen_prensetancion}}">
+                            <img class="img-thumbnail w-100 h-100"
+                                src="{{detalleDelAnuncio.txt_imagen_galeria?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}">
                         </div>
                     </div>
                     <div class="col-12">
@@ -20,17 +21,19 @@
                                     {{detalleDelAnuncio.txt_nombre_ficha }} {{detalleDelAnuncio.txt_telefono_1 }}</p>
                                 <div class="row">
                                     <div class="col-lg-6 mt-0 text-left text-secondary h6">
-                                        <!--                                         <span>Lima Metropolitana</span>
-                                        <span>-</span> -->
+                                        <span>Lima Metropolitana</span>
+                                        <span> - </span>
                                         <span>{{detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
-                                        <span></span><span id='anuncio_zona'></span><br />
+                                        <span></span><span></span><br />
                                         <span>{{detalleDelAnuncio.txt_nombre_ficha }}</span>
                                         <span> | {{detalleDelAnuncio.int_edad }} años</span>
-                                        <!--                                         <span></span><br /><span>29/06/2019 12:00
-                                            am</span> -->
+                                        <span> | S/. {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora}}</span>
+                                        <span></span><br /><span>29/06/2019 12:00
+                                            am</span>
                                         <br />
                                         <a *ngIf="detalleDelAnuncio.txt_web" href="{{detalleDelAnuncio.txt_web}}"
-                                            class="text-muted font-weight-bold"><span>Visita mi página</span></a>
+                                            class="text-muted font-weight-bold" target="_blank"><span>Visita mi
+                                                página</span></a>
                                     </div>
 
                                     <div class="col-lg-6">
@@ -91,27 +94,19 @@
                     <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body bg-white">
-                                <p class="h5 text-dark text-left">{{detalleDelAnuncio.txt_presentacion }}</p>
-                                <!-- <p class="h5 text-dark text-left">Lorem ipsum dolor sit, amet consectetur
-                                    adipisicing elit. Eum, porro
-                                    pariatur accusantium voluptatem omnis recusandae consequuntur nemo eius
-                                    sit beatae quibusdam corrupti
-                                    non, natus tempore rerum velit consequatur dolores officiis.</p>
-                                <p class="h5 text-dark text-left">Lorem ipsum dolor sit, amet consectetur
-                                    adipisicing elit. Eum, porro
-                                    pariatur accusantium voluptatem omnis recusandae consequuntur nemo eius
-                                    sit beatae quibusdam corrupti
-                                    non, natus tempore rerum velit consequatur dolores officiis.</p>
-                                <p class="h5 text-dark text-left">Lorem ipsum dolor sit, amet consectetur
-                                    adipisicing elit.</p> -->
+                                <p class="h5 text-dark text-left"
+                                    *ngFor="let item of detalleDelAnuncio.txt_presentacion.split(';'); let i = index">
+                                    {{item.trim()}}</p>
+                                <!-- <p class="h5 text-dark text-left">
+                                    {{detalleDelAnuncio.txt_presentacion | replace: '/(\n)+\n+|\t+/g': ';'}}</p> -->
                                 <p class="h5 text-error text-left text-danger">No olvides mencionarme que viste mi
                                     anuncio en <a class="text-error font-weight-bold text-danger"
                                         href='https://www.photokinesiologas.com'>Photokines</a>.</p>
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-12 d-lg-flex">
+                    <!-- d-lg-flex -->
+                    <div class="row col-12 mx-auto">
                         <div class="card col-lg-6 col-sm-12">
                             <div class="card-body bg-white">
                                 <p class="h3 text-dark font-weight-bold text-left">
@@ -140,7 +135,11 @@
                             </div>
                         </div>
 
-                        <div class="card col-lg-6 col-sm-12">
+                        <div class="card col-lg-6 col-sm-12"
+                            *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_30min || detalleDelAnuncio.dbl_costo_x_tiempo_45min 
+                            || detalleDelAnuncio.dbl_costo_x_tiempo_1hora || detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media 
+                            || detalleDelAnuncio.dbl_costo_x_tiempo_2hora || detalleDelAnuncio.dbl_costo_x_tiempo_3hora || detalleDelAnuncio.dbl_costo_x_tiempo_salidas 
+                            || detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche || detalleDelAnuncio.dbl_costo_x_viaje || detalleDelAnuncio.txt_forma_pago">
                             <div class="card-body bg-white">
                                 <p class="h3 text-dark font-weight-bold text-left">
                                     Tarifas
@@ -201,9 +200,37 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div *ngIf="detalleDelAnuncio.tx_descripcion_extra_horario"
+                            [className]="(detalleDelAnuncio.dbl_costo_x_tiempo_30min && detalleDelAnuncio.dbl_costo_x_tiempo_45min 
+                            && detalleDelAnuncio.dbl_costo_x_tiempo_1hora && detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media 
+                            && detalleDelAnuncio.dbl_costo_x_tiempo_2hora && detalleDelAnuncio.dbl_costo_x_tiempo_3hora && detalleDelAnuncio.dbl_costo_x_tiempo_salidas 
+                            && detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche && detalleDelAnuncio.dbl_costo_x_viaje && detalleDelAnuncio.txt_forma_pago) ? 'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12'">
+                            <div class="card-body bg-white">
+                                <p class="h3 text-dark font-weight-bold text-left">
+                                    Horario
+                                </p>
+                                <div class="clearfix text-secondary h6"
+                                    *ngIf="detalleDelAnuncio.tx_fl_atencion_24horas">
+                                    <span
+                                        class="float-left">{{detalleDelAnuncio.tx_descripcion_extra_horario?detalleDelAnuncio.tx_descripcion_extra_horario:'Lunes a Domingo'}}</span>
+                                    <span class="float-right">{{detalleDelAnuncio.tx_fl_atencion_24horas}}</span>
+                                </div>
+                                <!--     
+                                            <p class="h3 text-dark font-weight-bold text-left">
+                                                Horario
+                                            </p>                           
+                                            <div class="clearfix">
+                                            <span class="float-left">Lunes a Domingo</span>
+                                            <span class="float-right">11:00 am - 8:00 pm</span>
+                                        </div> -->
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-12"
+                        *ngIf="detalleDelAnuncio.tx_color_cabello && detalleDelAnuncio.tx_color_ojos && detalleDelAnuncio.tx_estatura 
+                    && detalleDelAnuncio.txt_medidas_busto_cintura_cadera && detalleDelAnuncio.txt_descripcion_extra_apariencia">
                         <div class="card w-100">
                             <div class="card-body bg-white">
                                 <p class="h3 text-dark font-weight-bold text-left">
@@ -219,11 +246,11 @@
                                 </div>
                                 <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.tx_estatura">
                                     <span class="float-left">Estatura</span>
-                                    <span class="float-right">{{detalleDelAnuncio.tx_estatura}}</span>
+                                    <span class="float-right">{{detalleDelAnuncio.tx_estatura}} cm</span>
                                 </div>
                                 <div class="clearfix text-secondary h6"
                                     *ngIf="detalleDelAnuncio.txt_medidas_busto_cintura_cadera">
-                                    <span class="float-left">Peso en Kg</span>
+                                    <span class="float-left">Medidas</span>
                                     <span
                                         class="float-right">{{detalleDelAnuncio.txt_medidas_busto_cintura_cadera}}</span>
                                 </div>
@@ -238,15 +265,22 @@
                     <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body bg-white">
-                                <p class="h3 text-dark font-weight-bold text-left">
-                                    {{detalleDelAnuncio.txt_imagen_galeria.split(';').length  }} Fotos
-                                </p>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-1"
-                                        *ngFor="let item of detalleDelAnuncio.txt_imagen_galeria.split(';'); let i = index">
-                                        <img class="w-100 h-100 img-thumbnail" src="{{item.trim()}}" data-id="2"
-                                            alt="Abigaíl 925982064 - Kinesióloga en Los Olivos">
+                                <div *ngIf="detalleDelAnuncio.txt_imagen_galeria">
+                                    <p class="h3 text-dark font-weight-bold text-left">
+                                        {{detalleDelAnuncio.txt_imagen_galeria.split(';').length  }} Fotos
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 mt-1"
+                                            *ngFor="let item of detalleDelAnuncio.txt_imagen_galeria.split(';'); let i = index">
+                                            <img class="w-100 h-100 img-thumbnail" src="{{item.trim()}}" data-id="2"
+                                                alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}} - Kinesióloga en Los Olivos">
+                                        </div>
                                     </div>
+                                </div>
+                                <div *ngIf="!detalleDelAnuncio.txt_imagen_galeria"
+                                    class="d-flex justify-content-center">
+                                    <img class="w-50 h-50 img-thumbnail" src="assets/scort_sin_foto.jpg"
+                                        alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}">
                                 </div>
                             </div>
                         </div>
@@ -374,7 +408,8 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card row">
-                            <img class="img-fluid" src="{{detalleDelAnuncio.txt_imagen_prensetancion}}">
+                            <img class="img-fluid"
+                                src="{{detalleDelAnuncio.txt_imagen_galeria?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}">
                             <div class="card-body bg-white">
                                 <div class="row">
                                     <div class="col-12 mb-2">

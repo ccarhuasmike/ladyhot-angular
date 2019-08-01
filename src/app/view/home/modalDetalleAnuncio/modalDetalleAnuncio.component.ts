@@ -12,8 +12,8 @@ export class ModalDetalleAnuncio implements OnInit {
     detalleDelAnuncio: any;
     isCollapsed = false;
     estiloColapsar = "";
-    mostrarTarifas: boolean = false;
-    mostrarHorario: boolean = false;
+    noMostrarTarifas: boolean = false;
+    noMostrarHorario: boolean = false;
     constructor(
         public modalRef: BsModalRef,
         private anuncioService: AnuncioService,
@@ -24,20 +24,21 @@ export class ModalDetalleAnuncio implements OnInit {
         console.log(this["data"]["id"]);
         this.anuncioService.ObtenerDetalleAnucionXId(this["data"]["id"]).subscribe(
             (res: ClientResponse) => {
-                res.Data["txt_presentacion"] = res.Data["txt_presentacion"].replace(/(\n)+\n+|\t+/g, ";");
+                if (res.Data["txt_presentacion"] != "") {
+                    res.Data["txt_presentacion"] = res.Data["txt_presentacion"].replace(/(\n)+\n+|\t+/g, ";");
+                }
+                if (res.Data["tx_descripcion_extra_horario"] != "") {
+                    res.Data["tx_descripcion_extra_horario"] = res.Data["tx_descripcion_extra_horario"].replace(/(\n)+\n+|\t+/g, ";").split("\n");
+                }
                 this.detalleDelAnuncio = res.Data;
+                this.noMostrarTarifas = (this.detalleDelAnuncio.dbl_costo_x_tiempo_30min == 0 || this.detalleDelAnuncio.dbl_costo_x_tiempo_45min == 0
+                    || this.detalleDelAnuncio.dbl_costo_x_tiempo_1hora == 0 || this.detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media == 0
+                    || this.detalleDelAnuncio.dbl_costo_x_tiempo_2hora == 0 || this.detalleDelAnuncio.dbl_costo_x_tiempo_3hora == 0
+                    || this.detalleDelAnuncio.dbl_costo_x_tiempo_salidas == 0
+                    || this.detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche == 0 || this.detalleDelAnuncio.dbl_costo_x_viaje == 0
+                    || this.detalleDelAnuncio.txt_forma_pago == null);
+                this.noMostrarHorario = (this.detalleDelAnuncio.tx_descripcion_extra_horario == "" && this.detalleDelAnuncio.fl_atencion_24horas == 0);
             });
-        /*this.mostrarTarifas = (this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_30min && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_45min
-            && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_1hora && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media
-            && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_2hora && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_3hora
-            && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_salidas
-            && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche && this.detalleDelAnuncio.detalleDelAnuncio.dbl_costo_x_viaje
-            && this.detalleDelAnuncio.detalleDelAnuncio.txt_forma_pago);
-        this.mostrarHorario = true;*/
-
-        /*
-        prueba
-         */
     }
     closeModal() {
         this.modalRef.hide();

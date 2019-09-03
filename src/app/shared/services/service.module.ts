@@ -9,6 +9,7 @@ import { ParameterService } from './anuncio/parameter.service';
 import { HttpErrorHandler } from '../../throwError/http-error-handler.service';
 import { MessageService } from '../../throwError/message.service';
 import { ContactarService } from './anuncio/contactar.service';
+import { SeguridadService } from './seguridad/seguridad.service';
 import { UsuarioService } from './usuario/usuario.service';
 import { MantenimientoAnuncioService } from './mantenimiento-anuncio/mantenimiento-anuncio.service';
 
@@ -32,6 +33,7 @@ import { LoaderService } from "../../shared/services/loader/loader.service";
         MessageService,
         ParameterService,
         ContactarService,
+        SeguridadService,
         UsuarioService,
         MantenimientoAnuncioService,
         LoaderService

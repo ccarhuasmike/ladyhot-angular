@@ -1,18 +1,31 @@
 <div id="content">
     <div class="bloque bloque_login ">
         <h1 class="titulo">Panel de control</h1>
-        <div class="login_container">
+
+        <form [formGroup]='formLogin' (ngSubmit)="login()" novalidate class="login_container">
             <span class="titulo">Ya tengo acceso</span>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input type="text" name="email" id="login_email" class="form-control form-control-sm" value=""
-                        placeholder="Email" maxlength="50">
+                    <input type="text" class="form-control form-control-sm" placeholder="Email" maxlength="50" required
+                        [formControl]="txt_emailCtrl">
+                    <div *ngIf="txt_emailCtrl.invalid && (txt_emailCtrl.dirty || isSubmitted)"
+                        class="text-danger text-xs-left text-sm-left">
+                        <div *ngIf="txt_emailCtrl.errors.required">
+                            Se requiere Email.
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input type="password" class="form-control form-control-sm" name="password" id="login_password"
-                        value="" placeholder="Contraseña" maxlength="50">
+                    <input type="password" class="form-control form-control-sm" required
+                        [formControl]="txt_passwordCtrl" placeholder="Contraseña" maxlength="50">
+                    <div *ngIf="txt_passwordCtrl.invalid && (txt_passwordCtrl.dirty || isSubmitted)"
+                        class="text-danger text-xs-left text-sm-left">
+                        <div *ngIf="txt_passwordCtrl.errors.required">
+                            Por favor ingrese passsword.
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
@@ -26,64 +39,33 @@
             </div>
             <br>
             <div class="form-group row">
-                <input id="login_acceder" type="submit" class="btn btn-primary" value="Entrar en mi panel">
+                <button class="btn btn-primary btn-block">Entrar en mi panel </button>
             </div>
-        </div>
-        <div class="landing_container">
+        </form>
+
+
+        <form [formGroup]='formGenerarPassword' (ngSubmit)="GenerarPassword()" novalidate class="landing_container">
             <span class="titulo">Aún no tengo acceso</span>
             <p class="descripcion">Si ya has publicado un anuncio, pero no has accedido nunca a tu panel de
                 control,
                 indícanos el email del anuncio que deseas gestionar y te enviaremos el enlace para entrar.</p>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input type="text" name="recordar_email" class="form-control form-control-sm" id="recordar_email"
-                        value="" placeholder="Email" maxlength="50">
-                </div>
-            </div>
-            <div class="form-group row">
-                <input id="login_noaccess" type="submit" class="btn btn-primary" value="Enviar enlace">
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- <div class="container contact-form">
-    <div class="form-horizontal">
-        <div class="form-group">
-            <div class="contact-image">
-                <img src="assets/user_login.svg" alt="rocket_contact" />
-            </div>
-            <form [formGroup]='formIngresar' (ngSubmit)="ingresar()" novalidate>
-                <h3 class="text-center">Iniciar Sesión </h3>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Correo electronico *" required
-                                [formControl]="txt_emailCtrl" />
-                            <div *ngIf="txt_emailCtrl.invalid && (txt_emailCtrl.dirty || isSubmitted)"
-                                class="text-danger text-xs-left text-sm-left">
-                                <div *ngIf="txt_emailCtrl.errors.required">
-                                    Se requiere correo electronico.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Contaseña *" required
-                                [formControl]="txt_passwordCtrl" />
-                            <div *ngIf="txt_passwordCtrl.invalid && (txt_passwordCtrl.dirty || isSubmitted)"
-                                class="text-danger text-xs-left text-sm-left">
-                                <div *ngIf="txt_passwordCtrl.errors.required">
-                                    Se requiere contraseña.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <button type='submit' class='btn btn-primary col'>Ingresar</button>
+                    <input type="text" name="recordar_email" class="form-control form-control-sm"
+                        [formControl]="txt_emailGenerarPasswordCtrl"  placeholder="Email" maxlength="50">
+                    <div *ngIf="txt_emailGenerarPasswordCtrl.invalid && (txt_emailGenerarPasswordCtrl.dirty || isSubmitted)"
+                        class="text-danger text-xs-left text-sm-left">
+                        <div *ngIf="txt_emailGenerarPasswordCtrl.errors.required">
+                            Se requiere Email.
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+            <br>
+            <br>
+            <div class="form-group row">
+                <button class="btn btn-primary btn-block">Enviar enlace</button>
+            </div>
+        </form>
     </div>
-</div> -->
+</div>

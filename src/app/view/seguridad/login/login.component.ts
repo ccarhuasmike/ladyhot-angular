@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-ingresar',
-    templateUrl: "./index.component.html",
-    styleUrls: ['./index.component.css']
+    templateUrl: "./login.component.html",
+    styleUrls: ['../css/global.component.css']
 })
-export class IngresarComponent implements OnInit {
+export class LoginComponent implements OnInit {
     formLogin: FormGroup;
     formGenerarPassword: FormGroup;
     isSubmitted: boolean = false;

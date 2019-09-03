@@ -5,12 +5,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
     styleUrls: ['./index.component.css'],
     encapsulation: ViewEncapsulation.None
 })
-export class indexComponent implements OnInit {
+export class IndexComponent implements OnInit {
     constructor(
     ) { }
     ngOnInit() {
     }
-    nuevoanuncionclick() {
-        localStorage.removeItem('DataAnuncio');
-    }
+    
 }

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { indexComponent } from './index/indexcomponent';
+import { IndexComponent } from './index/indexcomponent';
 import { ContactarComponent } from './contactar/contactar.component';
 const routes: Routes = [
     {
         path: '',
-        component: indexComponent,
+        component: IndexComponent,
         children: [
             {
                 path: 'misanuncios',

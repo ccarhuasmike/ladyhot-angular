@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { NotFoundComponent } from "../app/view/not-found/not-found.component";
+import { CssSelector } from '@angular/compiler';
 //import { IndexComponent } from "../app/view/home/index/index.component";
 
 const routes: Routes = [
@@ -11,8 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    // component :  IndexComponent
-    loadChildren: '../app/view/home/home.module#HomeModule'
+    loadChildren: '../app/view/home/home.module#HomeModule', 
   },
   {
     path: 'about',
@@ -23,7 +23,7 @@ const routes: Routes = [
     loadChildren: '../app/view/panelcontrol/panelcontrol.module#PanelControlModule'
   },
   {
-    path: 'login',
+    path: 'seguridad',
     loadChildren: '../app/view/seguridad/seguridad.module#SeguridadModule'
   },
   {

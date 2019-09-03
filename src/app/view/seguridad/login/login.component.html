@@ -1,7 +1,6 @@
 <div id="content">
     <div class="bloque bloque_login ">
         <h1 class="titulo">Panel de control</h1>
-
         <form [formGroup]='formLogin' (ngSubmit)="login()" novalidate class="login_container">
             <span class="titulo">Ya tengo acceso</span>
             <div class="form-group row">
@@ -42,8 +41,6 @@
                 <button class="btn btn-primary btn-block">Entrar en mi panel </button>
             </div>
         </form>
-
-
         <form [formGroup]='formGenerarPassword' (ngSubmit)="GenerarPassword()" novalidate class="landing_container">
             <span class="titulo">Aún no tengo acceso</span>
             <p class="descripcion">Si ya has publicado un anuncio, pero no has accedido nunca a tu panel de

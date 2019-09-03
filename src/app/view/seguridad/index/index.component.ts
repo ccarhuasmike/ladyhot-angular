@@ -80,9 +80,7 @@ export class IngresarComponent implements OnInit {
             return;
         let entidad: any = {};
         debugger;
-        entidad.tx_email = this.formGenerarPassword.value.txt_emailGenerarPassword;        
-        // entidad.tx_email = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_email);
-        // entidad.tx_pass = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_password);
+        entidad.para = new Array(this.formGenerarPassword.value.txt_emailGenerarPassword);          
         this.seguridadService.EnvioEmailGenerarContrasenia(entidad).subscribe(
             (res) => {
                 if (res.Status == "OK") {

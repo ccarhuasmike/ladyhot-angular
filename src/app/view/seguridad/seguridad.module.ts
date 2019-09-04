@@ -7,12 +7,13 @@ import { RestablecerPasswordComponent } from './restablecer-password/restablecer
 import { SendEmailComponent } from './sent-email/sent-email.component';
 import { SendEmailPasswordComponent } from './sent-email-password/sent-email-password.component';
 import { LoginRoutingModule } from './seguridad-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
         LoginRoutingModule,
+        FormsModule,
         ReactiveFormsModule
     ],
     declarations: [
@@ -23,8 +24,9 @@ import { ReactiveFormsModule } from '@angular/forms';
         SendEmailComponent,
         SendEmailPasswordComponent
     ],
-    
+
     exports: [
+
     ]
 })
 

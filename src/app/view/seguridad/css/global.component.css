@@ -1104,6 +1104,14 @@ html.form_login #anuncio_edicion .bloque_login #eliminar_anuncio span.titulo ,
 #content .bloque_login .landing_container input[type=submit] {
 	left: 20px;
 }
+#content .bloque_login.bloque_restablecer_password,
+#content .bloque_login.bloque_restablecer_password_ok,
+#content .bloque_login.bloque_recordar_password,
+#content .bloque_login.bloque_cambiar_password{
+	position: relative;
+	width: 100%;
+	max-width: 550px;
+}
 #content .bloque_login.bloque_restablecer_password input[type=submit] ,
 #content .bloque_login.bloque_cambiar_password input[type=submit] {
 	position: relative;

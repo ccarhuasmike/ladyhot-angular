@@ -5,26 +5,14 @@
             <span class="titulo">Ya tengo acceso</span>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input type="text" class="form-control form-control-sm" placeholder="Email" maxlength="50" required
-                        [formControl]="txt_emailCtrl">
-                    <div *ngIf="txt_emailCtrl.invalid && (txt_emailCtrl.dirty || isSubmitted)"
-                        class="text-danger text-xs-left text-sm-left">
-                        <div *ngIf="txt_emailCtrl.errors.required">
-                            Se requiere Email.
-                        </div>
-                    </div>
+                    <input type="text" name="txt_emailCtrl" formControlName="txt_email"
+                        class="form-control form-control-sm" placeholder="Email" maxlength="50" required>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input type="password" class="form-control form-control-sm" required
-                        [formControl]="txt_passwordCtrl" placeholder="Contraseña" maxlength="50">
-                    <div *ngIf="txt_passwordCtrl.invalid && (txt_passwordCtrl.dirty || isSubmitted)"
-                        class="text-danger text-xs-left text-sm-left">
-                        <div *ngIf="txt_passwordCtrl.errors.required">
-                            Por favor ingrese passsword.
-                        </div>
-                    </div>
+                    <input type="password" name="txt_passwordCtrl" formControlName="txt_password"
+                        class="form-control form-control-sm" required placeholder="Contraseña" maxlength="50">
                 </div>
             </div>
             <div class="form-group row">
@@ -38,7 +26,8 @@
             </div>
             <br>
             <div class="form-group row">
-                <button class="btn btn-primary btn-block">Entrar en mi panel </button>
+                <button class="btn btn-primary btn-block" [disabled]="formLogin.invalid">Entrar en mi panel </button>
+
             </div>
         </form>
         <form [formGroup]='formGenerarPassword' (ngSubmit)="GenerarPassword()" novalidate class="landing_container">
@@ -48,20 +37,15 @@
                 indícanos el email del anuncio que deseas gestionar y te enviaremos el enlace para entrar.</p>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <input type="text" name="recordar_email" class="form-control form-control-sm"
-                        [formControl]="txt_emailGenerarPasswordCtrl"  placeholder="Email" maxlength="50">
-                    <div *ngIf="txt_emailGenerarPasswordCtrl.invalid && (txt_emailGenerarPasswordCtrl.dirty || isSubmitted)"
-                        class="text-danger text-xs-left text-sm-left">
-                        <div *ngIf="txt_emailGenerarPasswordCtrl.errors.required">
-                            Se requiere Email.
-                        </div>
-                    </div>
+                    <input type="text" formControlName="recordar_email" class="form-control form-control-sm"
+                        [formControl]="txt_emailGenerarPasswordCtrl" placeholder="Email" maxlength="50">
                 </div>
             </div>
             <br>
             <br>
             <div class="form-group row">
-                <button class="btn btn-primary btn-block">Enviar enlace</button>
+                <button class="btn btn-primary btn-block" [disabled]="formGenerarPassword.invalid">Enviar
+                    enlace</button>
             </div>
         </form>
     </div>

@@ -26,7 +26,7 @@ const routes: Routes = [
             },
             
             {
-                path: 'EscogerPassword',
+                path: 'EscogerPassword/:token',
                 component: EscogerPasswordComponent,
             },        
             {

@@ -36,4 +36,10 @@ export class UsuarioService {
                 catchError(this.handleError('IniciarSession'))
             );
     }
+    getUsuarioPorToken(tblUsuario: Tbl_usuario): Observable<ClientResponse> {
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'usuario/getUsuarioPorToken', JSON.stringify(tblUsuario), httpOptions)
+            .pipe(
+                catchError(this.handleError('getUsuarioPorToken'))
+            );
+    }
 }

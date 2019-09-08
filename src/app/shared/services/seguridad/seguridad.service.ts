@@ -6,7 +6,7 @@ import { Bean_mail } from 'src/app/Models/Bean_mail';
 import { Observable } from 'rxjs';
 import { ClientResponse } from 'src/app/Models/ClientResponseModels';
 import { catchError } from 'rxjs/operators';
-
+import { Tbl_usuario } from 'src/app/Models/Tbl_usuario';
 const httpOptions = {
     headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -32,6 +32,11 @@ export class SeguridadService {
     EnvioEmailGenerarContrasenia(beanMail: Bean_mail): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'seguridad/EnvioEmailGenerarContrasnia', JSON.stringify(beanMail), httpOptions).pipe(
             catchError(this.handleError('EnvioEmailGenerarContrasnia'))
+        );
+    }
+    ActualizarPasswordUsuario(tblUsuario: Tbl_usuario): Observable<ClientResponse> {
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'seguridad/ActualizarPasswordUsuario', JSON.stringify(tblUsuario), httpOptions).pipe(
+            catchError(this.handleError('ActualizarPasswordUsuario'))
         );
     }
 }

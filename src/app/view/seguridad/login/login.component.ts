@@ -86,7 +86,7 @@ export class LoginComponent implements OnInit {
                 if (res.Status == "OK") {
                     // let DataJsonAnuncio: any = res.Data;
                     // localStorage.setItem('DataAnuncio', DataJsonAnuncio);
-                    // this.router.navigate(['panelcontrol/nuevoanuncio/datos-generales']);
+                     this.router.navigate(['seguridad/SendEmailPassword']);
                 } else {
                     console.log("ejecute Error");
                 }

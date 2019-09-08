@@ -1,66 +1,57 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-escoger-password',
     templateUrl: "./escoger-password.component.html",
     styleUrls: ['../css/global.component.css']
 })
+
 export class EscogerPasswordComponent implements OnInit {
-    public token;
     formEscogerPassword: FormGroup;
-    txt_passwordnuevoCtrl: FormControl;
-    txt_passwordconfirmarCtrl: FormControl;
-    isSubmitted: boolean = false;
-    constructor(
-        private route: ActivatedRoute
-    ) { }
+    submitted = false;
+    public token;
+    constructor(private route: ActivatedRoute,private formBuilder: FormBuilder) { }
 
     ngOnInit() {
         //http://localhost:4200/seguridad/EscogerPassword/C107A5F9-6B3F-4158-B928-4EDFCC422B90
         this.token = this.route.snapshot.params['token'];
-        this.cargarControles();
-        console.log(this.token);
+        this.formEscogerPassword = this.formBuilder.group({            
+            password: ['', [Validators.required, Validators.minLength(6),Validators.maxLength(15)]],
+            confirmPassword: ['', Validators.required]
+        }, {
+            validator: this.MustMatch('password', 'confirmPassword')
+        });
     }
-    cargarControles() {
-        //Controles Datos para contactar
-        this.txt_passwordnuevoCtrl = new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]);
-        this.txt_passwordconfirmarCtrl = new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]);
+     MustMatch(controlName: string, matchingControlName: string) {         
+        return (formGroup: FormGroup) => {
 
-        this.formEscogerPassword = new FormGroup({
-            txt_passwordnuevo: this.txt_passwordnuevoCtrl,
-            txt_passwordconfirmar: this.txt_passwordconfirmarCtrl
-        }, this.pwdMatchValidator);
-
-    }
-    pwdMatchValidator(frm: FormGroup) {        
-        var result=frm.get('txt_passwordnuevo').value === frm.get('txt_passwordconfirmar').value ? null : { 'mismatch': true };
-        return result;
-    }
-    ClickEscogerPassword() {
-        this.isSubmitted = true;
-        debugger;
-        if (!this.formEscogerPassword.valid)
-            return;
-        let entidad: any = {};
-        // entidad.tx_email = this.formLogin.value.txt_email;
-        // entidad.tx_pass = this.formLogin.value.txt_password;
-        // // entidad.tx_email = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_email);
-        // // entidad.tx_pass = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_password);
-        // this.usuarioService.IniciarSession(entidad).subscribe(
-        //     (res) => {
-        //         if (res.Status == "OK") {
-        //             if (res.Data != null) {
-        //                 localStorage.setItem('DataUsuarioLogeado', JSON.stringify(res.Data));
-        //                 this.router.navigate(['panelcontrol/misanuncios']);
-        //             } else {
-        //                 console.log("usuario y/o contraseña incorrecto");
-        //             }
-        //         } else {
-        //             console.log("ejecute Error");
-        //         }
-        //     }
-        // );
-    }
+            const control = formGroup.controls[controlName];
+            const matchingControl = formGroup.controls[matchingControlName];
     
+            if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+                // return if another validator has already found an error on the matchingControl
+                return;
+            }
+    
+            // set error on matchingControl if validation fails
+            if (control.value !== matchingControl.value) {
+                matchingControl.setErrors({ mustMatch: true });
+            } else {
+                matchingControl.setErrors(null);
+            }
+        }
+    }
+    // convenience getter for easy access to form fields
+    get f() { return this.formEscogerPassword.controls; }
+
+    ClickEscogerPassword() {
+        debugger;
+        this.submitted = true;
+        // stop here if form is invalid
+        if (this.formEscogerPassword.invalid) {
+            return;
+        }
+        alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.formEscogerPassword.value))
+    }
 }

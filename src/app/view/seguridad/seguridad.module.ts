@@ -9,8 +9,9 @@ import { SendEmailPasswordComponent } from './sent-email-password/sent-email-pas
 import { LoginRoutingModule } from './seguridad-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
-    imports: [
+    imports: [       
         CommonModule,
         LoginRoutingModule,
         FormsModule,

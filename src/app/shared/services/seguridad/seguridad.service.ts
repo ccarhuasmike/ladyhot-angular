@@ -34,6 +34,12 @@ export class SeguridadService {
             catchError(this.handleError('EnvioEmailGenerarContrasnia'))
         );
     }
+    ReestablecerContrasnia(beanMail: Bean_mail): Observable<ClientResponse> {
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'seguridad/ReestablecerContrasnia', JSON.stringify(beanMail), httpOptions).pipe(
+            catchError(this.handleError('ReestablecerContrasnia'))
+        );
+    }
+
     ActualizarPasswordUsuario(tblUsuario: Tbl_usuario): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'seguridad/ActualizarPasswordUsuario', JSON.stringify(tblUsuario), httpOptions).pipe(
             catchError(this.handleError('ActualizarPasswordUsuario'))

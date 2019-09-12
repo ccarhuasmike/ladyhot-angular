@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { NotFoundComponent } from "../app/view/not-found/not-found.component";
 import { CssSelector } from '@angular/compiler';
+import { PasarelaPagoComponent } from './view/pasarela-pago/pasarela-pago.component';
 //import { IndexComponent } from "../app/view/home/index/index.component";
 
 const routes: Routes = [
@@ -10,9 +11,15 @@ const routes: Routes = [
     redirectTo: '/home',
     pathMatch: 'full'
   },
+  //PRUEBA - Dante Cc. 
+  {
+    path: 'pasarela',
+    component: PasarelaPagoComponent
+  },
+  //PRUEBA - Dante Cc. 
   {
     path: 'home',
-    loadChildren: '../app/view/home/home.module#HomeModule', 
+    loadChildren: '../app/view/home/home.module#HomeModule',
   },
   {
     path: 'about',

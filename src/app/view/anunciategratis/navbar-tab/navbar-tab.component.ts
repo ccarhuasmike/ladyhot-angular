@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StepService } from "../../../../shared/services/anuncio/step.service";
+import { StepService } from "../../../shared/services/anuncio/step.service";
 
 @Component({
     selector: 'app-navbar-tab',

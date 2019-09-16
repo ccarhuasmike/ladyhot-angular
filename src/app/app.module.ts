@@ -11,7 +11,12 @@ import { PasarelaPagoModule } from './view/pasarela-pago/pasarela-pago.module';
 // import { IndexComponent } from "../app/view/home/index/index.component";
 // import { NgxMasonryModule } from 'ngx-masonry';
 // import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-
+// import { DatosContactoComponent } from "./view/panelcontrol/anuncio/datoscontacto/datoscontactos.component";
+// import { DatosGeneralesComponent } from "./view/panelcontrol/anuncio/datosgenerales/datosgenerales.component";
+// import { AparienciaComponent } from "./view/panelcontrol/anuncio/apariencia/apariencia.component";
+// import { TarifasComponent } from "./view/panelcontrol/anuncio/tarifa/tarifas.component";
+// import { ServiciosComponent } from "./view/panelcontrol/anuncio/servicios/servicios.component";
+// import { GaleriaComponent } from "./view/panelcontrol/anuncio/galeria/galeria.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +36,14 @@ import { PasarelaPagoModule } from './view/pasarela-pago/pasarela-pago.module';
     // NgxMasonryModule,
     // InfiniteScrollModule
   ],
+  // entryComponents: [
+  //   DatosContactoComponent,
+  //   DatosGeneralesComponent,
+  //   AparienciaComponent,
+  //   TarifasComponent,
+  //   ServiciosComponent,    
+  //   GaleriaComponent        
+  // ],
   providers: [],
   bootstrap: [AppComponent]
 })

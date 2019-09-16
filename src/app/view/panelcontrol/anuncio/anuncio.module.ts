@@ -30,7 +30,22 @@ import { GaleriaComponent } from "./galeria/galeria.component"
         GaleriaComponent,        
         OnlyNumber
     ],
+    // entryComponents: [
+    //     DatosContactoComponent,
+    //     DatosGeneralesComponent,
+    //     AparienciaComponent,
+    //     TarifasComponent,
+    //     ServiciosComponent,    
+    //     GaleriaComponent        
+    //   ],
     exports: [
+         NavBarTabComponent,
+        // DatosContactoComponent,
+        // DatosGeneralesComponent,
+        // AparienciaComponent,
+        // TarifasComponent,
+        // ServiciosComponent,    
+        // GaleriaComponent       
     ]
 })
 export class AnuncioModule { }

@@ -15,7 +15,7 @@ export class BotonPasarelaPagoComponent {
 
     modalPagar() {
         this.modalRef = this.modalService.show(ModalPasarelaPagoComponent, {
-            class: 'modal-sm',
+            class: 'modal-md',
             initialState: {
                 title: 'Actualizar Anuncio Demo',
                 data: {

@@ -11,7 +11,8 @@ import { IndexComponent } from './index/indexcomponent';
 // import { TarifasComponent } from "../../view/panelcontrol/anuncio/tarifa/tarifas.component";
 // import { ServiciosComponent } from "../../view/panelcontrol/anuncio/servicios/servicios.component";
 // import { GaleriaComponent } from "../../view/panelcontrol/anuncio/galeria/galeria.component";
- import { AnuncioModule } from "../../view/panelcontrol/anuncio/anuncio.module";
+// import { AnuncioModule } from "../../view/panelcontrol/anuncio/anuncio.module";
+import { NavBarTabComponent } from "./navbar-tab/navbar-tab.component"
 import { DatosContactoComponent } from "./datoscontacto/datoscontactos.component"
 import { DatosGeneralesComponent } from "./datosgenerales/datosgenerales.component"
 import { AparienciaComponent } from "./apariencia/apariencia.component"
@@ -23,11 +24,11 @@ import { GaleriaComponent } from "./galeria/galeria.component"
         AnunciateGratisRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        AnuncioModule
+        //AnuncioModule
     ],
     declarations: [
         IndexComponent,
-        //NavBarTabComponent,
+        NavBarTabComponent,
         DatosContactoComponent,
         DatosGeneralesComponent,
         AparienciaComponent,       

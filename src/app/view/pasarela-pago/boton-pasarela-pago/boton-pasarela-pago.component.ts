@@ -9,6 +9,7 @@ import { ModalPasarelaPagoComponent } from '../modal-pasarela-pago/pasarela-pago
 })
 export class BotonPasarelaPagoComponent {
     modalRef: BsModalRef;
+    montoPagar: number;
 
     constructor(
         private modalService: BsModalService) { }
@@ -17,9 +18,10 @@ export class BotonPasarelaPagoComponent {
         this.modalRef = this.modalService.show(ModalPasarelaPagoComponent, {
             class: 'modal-md',
             initialState: {
-                title: 'Actualizar Anuncio Demo',
+                title: 'Pasarale Pago',
                 data: {
-                    //id: id
+                    montoPagar: this.montoPagar,
+                    descripcionCargo: 'Cobro para publicitarse en el LadyHot'
                 }
             }
         });

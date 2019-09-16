@@ -27,7 +27,6 @@
     "ngx-infinite-scroll": "^6.0.1",
     "ngx-masonry": "^1.1.2",
     "ngx-smart-modal": "^7.1.1",
-    "ngx-stripe": "^7.4.4",
     "rebuild": "^0.1.2",
     "rxjs": "6.1.0",
     "rxjs-compat": "^6.4.0",

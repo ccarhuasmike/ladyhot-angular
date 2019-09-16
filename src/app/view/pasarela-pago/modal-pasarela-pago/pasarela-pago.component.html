@@ -10,37 +10,58 @@
             </div>
         </div>
         <div class="panel-body">
-            <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
+            <form role="form" [formGroup]="formPago" id="form_pago" method="POST">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <label for="cardNumber">CARD NUMBER</label>
-                            <div class="input-group">
-                                <input type="tel" class="form-control" name="cardNumber" placeholder="Valid Card Number"
-                                    autocomplete="cc-number" required autofocus />
-                                <div class="input-group-append">
-                                    <i class="fa fa-credit-card"></i>
-                                </div>
-
-                                <!-- <span class="input-group-addon"><i class="fa fa-credit-card"></i></span> -->
-                            </div>
+                            <label for="nombre_completo">Nombre en la tarjeta</label>
+                            <input type="text" class="form-control" id="nombre_completo"
+                                formControlName="nombre_completo" name="nombre_completo"
+                                placeholder="Nombre Completo" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <label for="correo">Correo</label>
+                            <input type="email" class="form-control" id="correo" formControlName="correo" name="correo"
+                                placeholder="Correo" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <label for="telefono_celular">Teléfono Celular</label>
+                            <input type="tel" class="form-control" id="telefono_celular"
+                                formControlName="telefono_celular" name="telefono_celular"
+                                placeholder="Teléfono Celular" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <label for="elemento-tarjeta">NUMERO TARJETA</label>
+                            <div id="elemento-tarjeta" class="form-control"></div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-7 col-md-7">
                         <div class="form-group">
-                            <label for="cardExpiry"><span class="hidden-xs">EXPIRATION</span><span
+                            <label for="expiracion-tarjeta"><span class="hidden-xs">EXPIRACION</span><span
                                     class="visible-xs-inline">EXP</span> DATE</label>
-                            <input type="tel" class="form-control" name="cardExpiry" placeholder="MM / YY"
-                                autocomplete="cc-exp" required />
+                            <div id="expiracion-tarjeta" class="form-control"></div>
                         </div>
                     </div>
                     <div class="col-xs-5 col-md-5 pull-right">
                         <div class="form-group">
-                            <label for="cardCVC">CV CODE</label>
-                            <input type="tel" class="form-control" name="cardCVC" placeholder="CVC"
-                                autocomplete="cc-csc" required />
+                            <label for="cvc-tarjeta">CODIGO CVC</label>
+                            <div id="cvc-tarjeta" class="form-control"></div>
+                            <!--<input type="tel" class="form-control" name="cardCVC" placeholder="CVC"
+                                autocomplete="cc-csc" required />-->
                         </div>
                     </div>
                 </div>
@@ -53,9 +74,13 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div [style.display]="mostrarError ? 'block' : 'none'" id="errores-tarjeta" class="ml-3 alert alert-danger"
+                        role="alert"></div>
+                </div>
+                <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 mb-2">
-                        <button class="subscribe btn btn-success btn-lg btn-block" type="button">Start
-                            Subscription</button>
+                        <button class="subscribe btn btn-success btn-lg btn-block" type="submit">Pagar
+                            S/.{{montoPagar}}</button>
                     </div>
                 </div>
                 <div class="row" style="display:none;">

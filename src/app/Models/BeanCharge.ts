@@ -1,6 +1,8 @@
 export class BeanCharge {
-    cardName: string;
-    email: string;
-    phone: string;
+    nombreCompleto: string;
+    correo: string;
+    telefonoCelular: string;
     stripeToken: string;
+    montoPagar: number;
+    descripcionCargo: string;
 }

@@ -12,6 +12,12 @@
   height: 100%;
   padding: 10px 20px;
 }
+.text-danger {
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+}
 
 .container-anuncio {
   width: 100%;
@@ -44,13 +50,6 @@
 .btn-standar {
   margin-right: 2px;
   margin-bottom: 3px;  
-}
-
-.text-danger {
-  text-align: left;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
-  font-weight: bold;
 }
 
 img {
@@ -162,18 +161,6 @@ img {
   max-width: 100%;
 }
 
-/* 
-::-moz-selection {
-  background: #f35b3f;
-  color: #fff;
-  text-shadow: none;
-}
-
-::selection {
-  background: #f35b3f;
-  color: #fff;
-  text-shadow: none;
-} */
 
 .ng-valid[required],
 .ng-valid.required {

@@ -28,6 +28,10 @@ const routes: Routes = [
   {
     path: 'panelcontrol',
     loadChildren: '../app/view/panelcontrol/panelcontrol.module#PanelControlModule'
+  },  
+  {
+    path: 'anunciategratis',
+    loadChildren: '../app/view/anunciategratis/anunciategratis.module#AnunciateGratisModule'
   },
   {
     path: 'seguridad',

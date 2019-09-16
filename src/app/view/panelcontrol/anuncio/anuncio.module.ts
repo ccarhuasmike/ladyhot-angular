@@ -39,13 +39,13 @@ import { GaleriaComponent } from "./galeria/galeria.component"
     //     GaleriaComponent        
     //   ],
     exports: [
-        NavBarTabComponent,
-        DatosContactoComponent,
-        DatosGeneralesComponent,
-        AparienciaComponent,
-        TarifasComponent,
-        ServiciosComponent,    
-        GaleriaComponent       
+         NavBarTabComponent,
+        // DatosContactoComponent,
+        // DatosGeneralesComponent,
+        // AparienciaComponent,
+        // TarifasComponent,
+        // ServiciosComponent,    
+        // GaleriaComponent       
     ]
 })
 export class AnuncioModule { }

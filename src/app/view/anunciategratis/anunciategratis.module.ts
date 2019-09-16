@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AnunciateGratisRoutingModule } from './anunciategratis-routing.module';
-//import { OnlyNumber } from '../../directivas/onlynumber.directive';
+import { OnlyNumber } from '../../directivas/onlynumber.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IndexComponent } from './index/indexcomponent';
 //import { NavBarTabComponent } from "../../view/panelcontrol/anuncio/navbar-tab/navbar-tab.component"
@@ -11,7 +11,12 @@ import { IndexComponent } from './index/indexcomponent';
 // import { TarifasComponent } from "../../view/panelcontrol/anuncio/tarifa/tarifas.component";
 // import { ServiciosComponent } from "../../view/panelcontrol/anuncio/servicios/servicios.component";
 // import { GaleriaComponent } from "../../view/panelcontrol/anuncio/galeria/galeria.component";
-import { AnuncioModule } from "../../view/panelcontrol/anuncio/anuncio.module";
+ import { AnuncioModule } from "../../view/panelcontrol/anuncio/anuncio.module";
+import { DatosContactoComponent } from "./datoscontacto/datoscontactos.component"
+import { DatosGeneralesComponent } from "./datosgenerales/datosgenerales.component"
+import { AparienciaComponent } from "./apariencia/apariencia.component"
+import { ServiciosComponent } from "./servicios/servicios.component"
+import { GaleriaComponent } from "./galeria/galeria.component"
 @NgModule({
     imports: [
         CommonModule,
@@ -23,12 +28,11 @@ import { AnuncioModule } from "../../view/panelcontrol/anuncio/anuncio.module";
     declarations: [
         IndexComponent,
         //NavBarTabComponent,
-        // DatosContactoComponent,
-        // DatosGeneralesComponent,
-        // AparienciaComponent,
-        // TarifasComponent,
-        // ServiciosComponent,        
-        // GaleriaComponent,        
+        DatosContactoComponent,
+        DatosGeneralesComponent,
+        AparienciaComponent,       
+        ServiciosComponent,        
+        GaleriaComponent,        
         //OnlyNumber
     ],
     exports: [

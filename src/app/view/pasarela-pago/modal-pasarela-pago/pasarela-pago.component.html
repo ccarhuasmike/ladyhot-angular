@@ -16,8 +16,11 @@
                         <div class="form-group">
                             <label for="nombre_completo">Nombre en la tarjeta</label>
                             <input type="text" class="form-control" id="nombre_completo"
-                                formControlName="nombre_completo" name="nombre_completo"
-                                placeholder="Nombre Completo" />
+                                formControlName="nombre_completo" name="nombre_completo" placeholder="Nombre Completo"
+                                [ngClass]="{ 'is-invalid': submitted && f.nombre_completo.errors }" />
+                            <div *ngIf="submitted && f.nombre_completo.errors" class="invalid-feedback">
+                                <div *ngIf="f.nombre_completo.errors.required">Nombre Completo es requerido</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -26,7 +29,10 @@
                         <div class="form-group">
                             <label for="correo">Correo</label>
                             <input type="email" class="form-control" id="correo" formControlName="correo" name="correo"
-                                placeholder="Correo" />
+                                placeholder="Correo" [ngClass]="{ 'is-invalid': submitted && f.correo.errors }" />
+                            <div *ngIf="submitted && f.correo.errors" class="invalid-feedback">
+                                <div *ngIf="f.correo.errors.required">Correo es requerido</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -36,7 +42,11 @@
                             <label for="telefono_celular">Teléfono Celular</label>
                             <input type="tel" class="form-control" id="telefono_celular"
                                 formControlName="telefono_celular" name="telefono_celular"
-                                placeholder="Teléfono Celular" />
+                                placeholder="Teléfono Celular"
+                                [ngClass]="{ 'is-invalid': submitted && f.telefono_celular.errors }" />
+                            <div *ngIf="submitted && f.telefono_celular.errors" class="invalid-feedback">
+                                <div *ngIf="f.telefono_celular.errors.required">Teléfono es requerido</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -65,17 +75,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <!--<div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <label for="couponCode">COUPON CODE</label>
                             <input type="text" class="form-control" name="couponCode" />
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="row">
-                    <div [style.display]="mostrarError ? 'block' : 'none'" id="errores-tarjeta" class="ml-3 alert alert-danger"
-                        role="alert"></div>
+                    <div [style.display]="mostrarError ? 'block' : 'none'" id="errores-tarjeta"
+                        class="ml-3 alert alert-danger" role="alert"></div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 mb-2">

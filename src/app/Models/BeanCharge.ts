@@ -5,4 +5,5 @@ export class BeanCharge {
     stripeToken: string;
     montoPagar: number;
     descripcionCargo: string;
+    idAnuncio:number;
 }

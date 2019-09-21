@@ -14,19 +14,21 @@ export class ModalPasarelaPagoComponent {
     montoPagar: number;
     descripcionCargo: string;
     mostrarError: boolean;
-
+    submitted = false;
+    public formPago = null;
     constructor(
         private pasaPagoService: PasarelaPagoService) { }
 
-    public formPago = new FormGroup({
-        nombre_completo: new FormControl("", Validators.required),
-        correo: new FormControl("", Validators.required),
-        telefono_celular: new FormControl("", Validators.required)
 
-    });
 
 
     ngOnInit() {
+        this.formPago = new FormGroup({
+            nombre_completo: new FormControl("", Validators.required),
+            correo: new FormControl("", Validators.required),
+            telefono_celular: new FormControl("", Validators.required)
+
+        });
         this.mostrarError = false;
         this.montoPagar = this["data"]["montoPagar"];
         this.descripcionCargo = this["data"]["descripcionCargo"];
@@ -46,7 +48,8 @@ export class ModalPasarelaPagoComponent {
                 this.mostrarError = false;
             }
         });
-
+        this.formPago.addControl('cardnumber', new FormControl('', Validators.required));
+        debugger;
         const expiracionTarjeta = elementos.create('cardExpiry');
         expiracionTarjeta.mount('#expiracion-tarjeta');
         expiracionTarjeta.addEventListener('change', event => {
@@ -77,6 +80,12 @@ export class ModalPasarelaPagoComponent {
         const formPago = document.getElementById('form_pago');
         formPago.addEventListener('submit', event => {
             event.preventDefault();
+
+            this.submitted = true;
+            if (this.formPago.invalid) {
+                return;
+            }
+
             stripe.createToken(tarjeta).then(result => {
                 if (result.error) {
                     console.log('Error creating payment method.');
@@ -92,8 +101,8 @@ export class ModalPasarelaPagoComponent {
                         nombreCompleto: formPago["nombre_completo"].value,
                         telefonoCelular: formPago["telefono_celular"].value,
                         montoPagar: this.montoPagar,
-                        descripcionCargo: this.descripcionCargo
-                        //amount: this.price,
+                        descripcionCargo: this.descripcionCargo,
+                        idAnuncio: 1167,//cambiar el 1 por codigo de anucio real
                         //product: this.product,
 
                     }
@@ -101,6 +110,7 @@ export class ModalPasarelaPagoComponent {
                     this.pasaPagoService.CrearCargo(infoCargo).subscribe(
                         (res) => {
                             console.log(res);
+                            this.onReset();
                         }
                     );
                     console.log('Token acquired!');
@@ -110,4 +120,13 @@ export class ModalPasarelaPagoComponent {
             });
         });
     }
+
+    /*Limpiar los controles del formulario*/
+    onReset() {
+        this.submitted = false;
+        this.formPago.reset();
+    }
+
+    /*Accede facilmente a los campos de formulario*/
+    get f() { return this.formPago.controls; }
 }

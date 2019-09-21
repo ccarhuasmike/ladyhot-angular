@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-servicios',
     templateUrl: './servicios.component.html',
-    styleUrls: ['./servicios.component.css']
+    styleUrls: ['../css/global.component.css'],
 })
 export class ServiciosComponent implements OnInit {
 
@@ -175,8 +175,8 @@ export class ServiciosComponent implements OnInit {
             (res) => {
                 if (res.Status == "OK") {
                     let DataJsonAnuncio: any = res.Data;
-                    localStorage.setItem('DataAnuncio', DataJsonAnuncio);
-                    this.router.navigate(['panelcontrol/nuevoanuncio/galeria']);
+                    localStorage.setItem('DataAnuncio', DataJsonAnuncio);                    
+                    this.router.navigate(['anunciategratis/galeria']);
                 }
             }
         );

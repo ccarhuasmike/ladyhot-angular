@@ -101,7 +101,7 @@ export class AparienciaComponent implements OnInit {
                 if (res.Status == "OK") {
                     let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
-                    this.router.navigate(['anunciategratis/tarifa']);
+                    this.router.navigate(['anunciategratis/servicios']);
                 }
             }
         );

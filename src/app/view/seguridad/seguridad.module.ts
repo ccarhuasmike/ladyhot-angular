@@ -9,6 +9,7 @@ import { SendEmailPasswordComponent } from './sent-email-password/sent-email-pas
 import { LoginRoutingModule } from './seguridad-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedCompoentModule } from '../../view/shared/sharedcomponent.module';
+import { IndexComponent } from './index/index.component';
 //import { HeaderShared } from "../shared/header/header.component"
 
 @NgModule({
@@ -21,6 +22,7 @@ import { SharedCompoentModule } from '../../view/shared/sharedcomponent.module';
         //HeaderShared
     ],
     declarations: [
+        IndexComponent,
         LoginComponent,
         EscogerPasswordComponent,
         PasswordGuardadoComponent,

@@ -18,6 +18,7 @@ import { DatosGeneralesComponent } from "./datosgenerales/datosgenerales.compone
 import { AparienciaComponent } from "./apariencia/apariencia.component"
 import { ServiciosComponent } from "./servicios/servicios.component"
 import { GaleriaComponent } from "./galeria/galeria.component"
+import { HeaderShared } from "../shared/header/header.component"
 @NgModule({
     imports: [
         CommonModule,
@@ -33,7 +34,8 @@ import { GaleriaComponent } from "./galeria/galeria.component"
         DatosGeneralesComponent,
         AparienciaComponent,       
         ServiciosComponent,        
-        GaleriaComponent,        
+        GaleriaComponent,      
+        HeaderShared  
         //OnlyNumber
     ],
     exports: [

@@ -14,5 +14,4 @@ export class headerfilter implements OnInit {
     // Usamos el método emit    
     this.PasameElPueblo.emit({ nombre: this.nombre });
   }
-
 }

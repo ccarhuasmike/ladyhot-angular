@@ -8,7 +8,7 @@ import { SendEmailComponent } from './sent-email/sent-email.component';
 import { SendEmailPasswordComponent } from './sent-email-password/sent-email-password.component';
 import { LoginRoutingModule } from './seguridad-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { HeaderShared } from "../shared/header/header.component"
 
 @NgModule({
     imports: [       
@@ -23,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         PasswordGuardadoComponent,
         RestablecerPasswordComponent,
         SendEmailComponent,
-        SendEmailPasswordComponent
+        SendEmailPasswordComponent,
+        HeaderShared
     ],
     exports: [
 

@@ -1,9 +1,10 @@
-
-
-
-
-
-
+  /* --------------------------------   
+  xgallery   
+  -------------------------------- */
+  .cd-gallery {
+    padding: 26px 5%;
+    width: 100%;
+  }
   .f1 {
     padding: 25px;
     background: #fff;

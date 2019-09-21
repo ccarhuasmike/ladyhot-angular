@@ -1,3 +1,4 @@
+
 .cd-gallery {
     padding: 26px 5%;
     width: 100%;
@@ -9,3 +10,13 @@
     -webkit-border-radius: 4px;
     border-radius: 4px;
   }
+
+  body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #888 !important;
+    line-height: 30px;
+    text-align: center;
+  }
+  

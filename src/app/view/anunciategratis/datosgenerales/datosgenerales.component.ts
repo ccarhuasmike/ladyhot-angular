@@ -7,7 +7,7 @@ import { ParameterService } from "../../../shared/services/anuncio/parameter.ser
 @Component({
     selector: 'app-datosgenerales-gratis',
     templateUrl: './datosgenerales.component.html',
-    styleUrls: ['./datosgenerales.component.css']
+    styleUrls: ['../css/global.component.css'],
 })
 export class DatosGeneralesComponent implements OnInit {
 

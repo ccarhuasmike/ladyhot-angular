@@ -146,6 +146,7 @@
     float: left;
     width: 16.33%;
     padding: 0 5px;
+    text-align: center;
   }
   
   .f1-step-icon {
@@ -202,7 +203,10 @@
   .f1 .input-error {
     border-color: #f35b3f;
   }
-  
+  p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px !important;
+  }
  
   /***** Media queries *****/
   

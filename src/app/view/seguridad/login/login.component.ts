@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-ingresar',
     templateUrl: "./login.component.html",  
+    styleUrls: ['../css/global.component.css'],
 })
 export class LoginComponent implements OnInit {
     formLogin: FormGroup;
@@ -26,7 +27,6 @@ export class LoginComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        debugger;
         this.cargarControles();
     }
 

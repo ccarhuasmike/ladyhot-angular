@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Tbl_galeria_anuncio } from "../../../../Models/Tbl_galeria_anuncioModels";
+import { ActivatedRoute } from '@angular/router';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
-import { debug } from 'util';
-
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 // import { Galeria, Fileinput } from "../../../models/modelanuncio";
 @Component({
     selector: 'app-galeria',
@@ -11,10 +12,12 @@ import { debug } from 'util';
 
 })
 export class GaleriaComponent implements OnInit {
-    imageSrc: any;
+    public ListGaleria: Tbl_galeria_anuncio[] = [];
+    public ListGaleriaPortada: Tbl_galeria_anuncio[] = [];
     constructor(
         private anuncioService: AnuncioService,
         private router: Router,
+        private route: ActivatedRoute,
     ) { }
 
     ngOnInit() {
@@ -23,51 +26,147 @@ export class GaleriaComponent implements OnInit {
         this.anuncioService.cuartopaso(true);
         this.anuncioService.quintopaso(true);
         this.anuncioService.sextopaso(true);
+        let objeto: any = {};
+        objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
+        this.anuncioService.GetGaleriaXIdAnuncio(objeto).subscribe(
+            (res) => {
+                if (res.Status == "OK") {
+                    var listGaleria = JSON.parse(res.DataJson)
+                    this.listarGaleria(listGaleria);
+                }
+            }
+        );
     }
-    // onFileChange(event) {
-    //     let reader = new FileReader();
+    listarGaleria(data) {
+        this.ListGaleria = [];
+        this.ListGaleriaPortada = [];
 
-    //     if (event.target.files && event.target.files.length) {
-    //         const [file] = event.target.files;
-    //         reader.readAsDataURL(file);
+        var dataGaleriaPortada = data.filter(function (el) {
+            return el.IdTipoPresentacion == 1
+        });
 
-    //         reader.onload = () => {
-    //             this.formGroup.patchValue({
-    //                 file: reader.result
-    //             });
+        var dataGaleria = data.filter(function (el) {
+            return el.IdTipoPresentacion == 2
+        });
 
-    //             // need to run CD since file load runs outside of zone
-    //             this.cd.markForCheck();
-    //         };
-    //     }
-    // }
-    displayPhoto(fileInput) {
-        // var binary;
-        // if (fileInput.target.files && fileInput.target.files[0]) {
-        //     const reader = new FileReader();
+        for (let index = 0; index < 1; index++) {
+            var resultObject = dataGaleriaPortada[index];
+            if (resultObject != null) {
+                console.log(resultObject.txt_ruta_virtuales_cortada);
+                this.ListGaleriaPortada.push(resultObject);
+            } else {
+                const tbl_galeria_anuncio: Tbl_galeria_anuncio = {
+                    id: index,
+                    tx_filename: "",
+                    tx_ruta_file: "",
+                    tx_ruta_file_cort: "",
+                    size_file: 0,
+                    id_tipo_archivo: 0,
+                    dt_fe_crea: new Date(),
+                    id_anuncio: 0,
+                    txt_ruta_virtuales: "",
+                    txt_ruta_virtuales_cortada: "",
+                    progressbar: 0
+                };
+                this.ListGaleriaPortada.push(tbl_galeria_anuncio);
+            }
+        }
 
-        //     if (fileInput.target.files && fileInput.target.files.length > 0) {
-        //         let file = fileInput.target.files[0];
-        //         reader.readAsDataURL(file);
-        //         // reader.onload = () => {
-        //         //   this.form.get('avatar').setValue({
-        //         //     filename: file.name,
-        //         //     filetype: file.type,
-        //         //     value: reader.result.split(',')[1]
-        //         //   })
-        //         // };
-        //          binary = reader.result.split(',')[1];
-        //     }
-
-
-
-        //     reader.onload = ((e) => {
-        //         this.imageSrc = e.target['result'];
-        //     });
-
-        //     reader.readAsDataURL(fileInput.target.files[0]);
-        // }
+        for (let index = 0; index <= 5; index++) {
+            var resultObject = dataGaleria[index];
+            if (resultObject != null) {
+                console.log(resultObject.txt_ruta_virtuales_cortada);
+                this.ListGaleria.push(resultObject);
+            } else {
+                const tbl_galeria_anuncio: Tbl_galeria_anuncio = {
+                    id: index,
+                    tx_filename: "",
+                    tx_ruta_file: "",
+                    tx_ruta_file_cort: "",
+                    size_file: 0,
+                    id_tipo_archivo: 0,
+                    dt_fe_crea: new Date(),
+                    id_anuncio: 0,
+                    txt_ruta_virtuales: "",
+                    txt_ruta_virtuales_cortada: "",
+                    progressbar: 0
+                };
+                this.ListGaleria.push(tbl_galeria_anuncio);
+            }
+        }
     }
+    ClickEliminar(id: number, IdTipoPresentacion: number) {
+        let objeto: any = {};
+        objeto.id = id;
+        objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
+        this.anuncioService.EliminarGaleriaXId(objeto).subscribe(
+            (res) => {
+                if (res.Status == "OK") {
+                    if (IdTipoPresentacion == 1) {
+                        this.ListGaleriaPortada[this.ListGaleriaPortada.findIndex(x => x.id == id)].txt_ruta_virtuales_cortada = "";
+                    } else {
+                        this.ListGaleria[this.ListGaleria.findIndex(x => x.id == id)].txt_ruta_virtuales_cortada = "";
+                    }
+                }
+            }
+        );
+    }
+    displayPhoto(fileInput, id: number, IdTipoPresentacion: number) {
+        if (fileInput.target.files && fileInput.target.files[0]) {
+            const reader = new FileReader();
+            if (fileInput.target.files && fileInput.target.files.length > 0) {
+                let file = fileInput.target.files[0];
+                reader.onloadend = (e) => {
+                    //Actualizamos el objeto del list
+
+                    if (IdTipoPresentacion == 1) {
+                        this.ListGaleriaPortada.map((todo, i) => {
+                            
+                            if (todo.id == id) {
+                                let objeto: any = {};
+                                objeto.tx_ruta_file = reader.result;
+                                objeto.IdTipoPresentacion = IdTipoPresentacion;
+                                objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
+                                objeto.tx_ruta_file = objeto.tx_ruta_file.replace(/data\:image\/(jpeg|jpg|png)\;base64\,/gi, '');
+                                objeto.tx_extension_archivo = file.name.split(".")[1];
+                                objeto.tx_filename = file.name.split(".")[0];
+                                this.anuncioService.SaveGaleria(objeto).subscribe(
+                                    (res) => {
+                                        if (res.Status == "OK") {                                            
+                                            var listGaleria = JSON.parse(res.DataJson)
+                                            this.listarGaleria(listGaleria);
+                                        }
+                                    }
+                                );
+                            }
+                        });
+                    } else {
+                        this.ListGaleria.map((todo, i) => {                            
+                            if (todo.id == id) {
+                                let objeto: any = {};
+                                objeto.tx_ruta_file = reader.result;
+                                objeto.IdTipoPresentacion = IdTipoPresentacion;
+                                objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
+                                objeto.tx_ruta_file = objeto.tx_ruta_file.replace(/data\:image\/(jpeg|jpg|png)\;base64\,/gi, '');
+                                objeto.tx_extension_archivo = file.name.split(".")[1];
+                                objeto.tx_filename = file.name.split(".")[0];
+                                this.anuncioService.SaveGaleria(objeto).subscribe(
+                                    (res) => {
+                                        if (res.Status == "OK") {                                            
+                                            var listGaleria = JSON.parse(res.DataJson)
+                                            this.listarGaleria(listGaleria);
+                                        }
+                                    }
+                                );
+                            }
+                        });
+                    }
+
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    }    
     btnAtras() {
         this.router.navigate(['panelcontrol/nuevoanuncio/servicios']);
     }

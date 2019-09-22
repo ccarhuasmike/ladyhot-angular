@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 import { PasarelaPagoService } from 'src/app/shared/services/pasarela-pago/pasarela-pago';
 import { environment } from 'src/environments/environment';
 
@@ -16,14 +16,24 @@ export class ModalPasarelaPagoComponent {
     mostrarError: boolean;
     submitted = false;
     public formPago = null;
+
     constructor(
         private pasaPagoService: PasarelaPagoService) { }
 
     ngOnInit() {
         this.formPago = new FormGroup({
-            nombre_completo: new FormControl("", Validators.required),
-            correo: new FormControl("", Validators.required),
-            telefono_celular: new FormControl("", Validators.required)
+            nombre_completo: new FormControl("", [
+                Validators.required,
+                this.customPatternValid({ pattern: /[a-zA-Z]/, msg: 'Ingrese solo letras' })
+            ]),
+            correo: new FormControl("", [
+                Validators.required,
+                this.customPatternValid({ pattern: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, msg: 'Formato no correcto' })
+            ]),
+            telefono_celular: new FormControl("", [
+                Validators.required,
+                this.customPatternValid({ pattern: /[0-9]{9}/, msg: 'Formato no correcto' })
+            ])
 
         });
         this.mostrarError = false;
@@ -33,7 +43,12 @@ export class ModalPasarelaPagoComponent {
         const stripe = Stripe(environment.stripeKey);
         // Crea element parte de la tarjeta que busca actualizaciones y muestra mensajes de error
         const elementos = stripe.elements();
-        const tarjeta = elementos.create('cardNumber');
+        const tarjeta = elementos.create('cardNumber', {
+            classes: {
+                base: "form-control",
+                invalid: "is-invalid"
+            }
+        });
         tarjeta.mount('#elemento-tarjeta');
         tarjeta.addEventListener('change', event => {
             const contenedorError = document.getElementById('errores-tarjeta');
@@ -45,9 +60,13 @@ export class ModalPasarelaPagoComponent {
                 this.mostrarError = false;
             }
         });
-        this.formPago.addControl('cardnumber', new FormControl('', Validators.required));
-        debugger;
-        const expiracionTarjeta = elementos.create('cardExpiry');
+
+        const expiracionTarjeta = elementos.create('cardExpiry', {
+            classes: {
+                base: "form-control",
+                invalid: "is-invalid"
+            }
+        });
         expiracionTarjeta.mount('#expiracion-tarjeta');
         expiracionTarjeta.addEventListener('change', event => {
             const contenedorError = document.getElementById('errores-tarjeta');
@@ -60,7 +79,12 @@ export class ModalPasarelaPagoComponent {
             }
         });
 
-        const cvcTarjeta = elementos.create('cardCvc');
+        const cvcTarjeta = elementos.create('cardCvc', {
+            classes: {
+                base: "form-control",
+                invalid: "is-invalid"
+            }
+        });
         cvcTarjeta.mount('#cvc-tarjeta');
         cvcTarjeta.addEventListener('change', event => {
             const contenedorError = document.getElementById('errores-tarjeta');
@@ -79,17 +103,21 @@ export class ModalPasarelaPagoComponent {
             event.preventDefault();
             debugger;
             this.submitted = true;
-            if (this.formPago.invalid) {
+            /*if (this.formPago.invalid) {
                 return;
-            }
+            }*/
 
-            stripe.createToken(tarjeta).then(result => {
+            stripe.createToken(tarjeta, expiracionTarjeta, cvcTarjeta).then(result => {
                 if (result.error) {
                     console.log('Error creating payment method.');
                     const contenedorError = document.getElementById('errores-tarjeta');
                     contenedorError.textContent = result.error.message;
                     this.mostrarError = true;
                 } else {
+                    if (this.formPago.invalid) {
+                        return;
+                    }
+
                     this.mostrarError = false;
                     // Envia el token de identificacion para adjuntar la fuente de pago al cliente
                     let infoCargo = {
@@ -103,16 +131,12 @@ export class ModalPasarelaPagoComponent {
                         //product: this.product,
 
                     }
-
                     this.pasaPagoService.CrearCargo(infoCargo).subscribe(
                         (res) => {
                             console.log(res);
                             this.onReset();
                         }
                     );
-                    console.log('Token acquired!');
-                    console.log(result.token);
-                    console.log(result.token.id);
                 }
             });
         });
@@ -126,4 +150,22 @@ export class ModalPasarelaPagoComponent {
 
     /*Accede facilmente a los campos de formulario*/
     get f() { return this.formPago.controls; }
+
+    /*
+    Metodo que validar patron regular y retorna mensaje validacion
+    @param:regex
+    @param:mensaje
+    */
+    public customPatternValid(config: any): ValidatorFn {
+        return (control: FormControl) => {
+            let urlRegEx: RegExp = config.pattern;
+            if (control.value && !control.value.match(urlRegEx)) {
+                return {
+                    invalidMsg: config.msg
+                };
+            } else {
+                return null;
+            }
+        };
+    }
 }

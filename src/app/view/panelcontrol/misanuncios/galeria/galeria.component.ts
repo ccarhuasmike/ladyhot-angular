@@ -103,9 +103,6 @@ export class GaleriaComponent implements OnInit {
             }
         );
     }
-    cancelar() {
-        this._location.back();
-    }
     displayPhoto(fileInput, id: number, IdTipoPresentacion: number) {
         if (fileInput.target.files && fileInput.target.files[0]) {
             const reader = new FileReader();
@@ -162,4 +159,9 @@ export class GaleriaComponent implements OnInit {
             }
         }
     }
+
+    cancelar() {
+        this._location.back();
+    }
+   
 }

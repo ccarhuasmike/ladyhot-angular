@@ -1,43 +1,17 @@
-<div class="form-horizontal">
+<!-- <div class="form-horizontal">
   <div class="form-group row">
-    <div class="col-sm-2">
-      <div class="Uploadbtn">
+    <div class="col-sm-2" *ngFor="let item of ListGaleriaPortada; let i = index">
+      <div class="Uploadbtn" *ngIf="!item.txt_ruta_virtuales_cortada">
         <div id="divfileinput">
           <span class="fa fa-camera fa-4x"></span>
-          <input type="file" class="input-upload" accept="image/*" (change)="displayPhoto($event)" />
+          <input type="file" class="input-upload" accept="image/*"
+            (change)="displayPhoto($event,item.id,1)" />
         </div>
-        <!-- <img [src]="imageSrc" alt="" /> -->
       </div>
-
-    </div>
-    <div class="col-sm-2">
-      <div class="Uploadbtn">
-        <span class="fa fa-camera fa-4x"></span>
-        <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="Uploadbtn">
-        <span class="fa fa-camera fa-4x"></span>
-        <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="Uploadbtn">
-        <span class="fa fa-camera fa-4x"></span>
-        <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="Uploadbtn">
-        <span class="fa fa-camera fa-4x"></span>
-        <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->
-      </div>
-    </div>
-    <div class="col-sm-2">
-      <div class="Uploadbtn">
-        <span class="fa fa-camera fa-4x"></span>
-        <input type="file" class="input-upload" accept="image/*" /> <!-- <span>Upload</span> -->
+      <div class="displayFoto" *ngIf="item.txt_ruta_virtuales_cortada">
+        <img class="img-thumbnail" [src]="item.txt_ruta_virtuales_cortada" />
+        <button class="btn btn-primary btn-sm btn-block" (click)="ClickEliminar(item.id,1)">Eliminar</button>
+        <button class="btn btn-primary btn-sm btn-block">Ver Imagen</button>
       </div>
     </div>
   </div>
@@ -45,4 +19,67 @@
 
 
 <button class="btn btn-outline-rounded btn-default" (click)="btnAtras()"> <span style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span>
-  Atras</button>
+  Atras</button> -->
+
+  <form>
+    <h1>Fotos</h1>
+    <div class="form-horizontal">
+      <fieldset>
+        <legend style="text-align: left;">Foto Portada</legend>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="form-horizontal">
+              <div class="form-group row">
+                <div class="col-sm-2" *ngFor="let item of ListGaleriaPortada; let i = index">
+                  <div class="Uploadbtn" *ngIf="!item.txt_ruta_virtuales_cortada">
+                    <div id="divfileinput">
+                      <span class="fa fa-camera fa-4x"></span>
+                      <input type="file" class="input-upload" accept="image/*"
+                        (change)="displayPhoto($event,item.id,1)" />
+                    </div>
+                  </div>
+                  <div class="displayFoto" *ngIf="item.txt_ruta_virtuales_cortada">
+                    <img class="img-thumbnail" [src]="item.txt_ruta_virtuales_cortada" />
+                    <button class="btn btn-primary btn-sm btn-block" (click)="ClickEliminar(item.id,1)">Eliminar</button>
+                    <button class="btn btn-primary btn-sm btn-block">Ver Imagen</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend style="text-align: left;">Galeria</legend>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="form-horizontal">
+              <div class="form-group row">
+                <div class="col-sm-2" *ngFor="let item of ListGaleria; let i = index">
+                  <div class="Uploadbtn" *ngIf="!item.txt_ruta_virtuales_cortada">
+                    <div id="divfileinput">
+                      <span class="fa fa-camera fa-4x"></span>
+                      <input type="file" class="input-upload" accept="image/*"
+                        (change)="displayPhoto($event,item.id,2)" />
+
+                    </div>
+                  </div>
+                  <div class="displayFoto" *ngIf="item.txt_ruta_virtuales_cortada">
+                    <img class="img-thumbnail" [src]="item.txt_ruta_virtuales_cortada" />
+                    <button class="btn btn-primary btn-sm btn-block" (click)="ClickEliminar(item.id,2)">Eliminar</button>
+                    <button class="btn btn-primary btn-sm btn-block">Ver Imagen</button>
+                  </div>
+                  <!-- <progressbar [animate]="true" [value]=anuncioService.progress type="primary" [max]="100"><b>{{anuncioService.progress}}
+                      / {{100}}</b></progressbar> -->
+
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-outline-rounded btn-default" (click)="btnAtras()"> <span style="margin-right:10px;"
+                class="glyphicon glyphicon-arrow-left"></span>
+              Atras</button>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </form>

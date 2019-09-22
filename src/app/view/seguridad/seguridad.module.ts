@@ -8,22 +8,28 @@ import { SendEmailComponent } from './sent-email/sent-email.component';
 import { SendEmailPasswordComponent } from './sent-email-password/sent-email-password.component';
 import { LoginRoutingModule } from './seguridad-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { SharedCompoentModule } from '../../view/shared/sharedcomponent.module';
+import { IndexComponent } from './index/index.component';
+//import { HeaderShared } from "../shared/header/header.component"
 
 @NgModule({
     imports: [       
         CommonModule,
         LoginRoutingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        SharedCompoentModule
+        //HeaderShared
     ],
     declarations: [
+        IndexComponent,
         LoginComponent,
         EscogerPasswordComponent,
         PasswordGuardadoComponent,
         RestablecerPasswordComponent,
         SendEmailComponent,
-        SendEmailPasswordComponent
+        SendEmailPasswordComponent,
+        //HeaderShared
     ],
     exports: [
 

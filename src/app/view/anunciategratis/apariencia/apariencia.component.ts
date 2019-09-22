@@ -6,7 +6,7 @@ import { Apariencia } from "../../models/modelanuncio";
 @Component({
     selector: 'app-apariencia',
     templateUrl: './apariencia.component.html',
-    styleUrls: ['./apariencia.component.css']
+    styleUrls: ['../css/global.component.css'],
 })
 export class AparienciaComponent implements OnInit {
 
@@ -101,7 +101,7 @@ export class AparienciaComponent implements OnInit {
                 if (res.Status == "OK") {
                     let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
-                    this.router.navigate(['anunciategratis/tarifa']);
+                    this.router.navigate(['anunciategratis/servicios']);
                 }
             }
         );

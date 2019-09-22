@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 @Component({
-    selector: 'app-coreanunciategratis',
+    selector: 'app-core-seguridad',
     templateUrl: "./index.component.html",
-    styleUrls: ['./index.component.css'],
+  
+    //ViewEncapsulation.None
+    //encapsulation: ViewEncapsulation.None herada las clases de los css principales
 })
 export class IndexComponent implements OnInit {
     constructor(

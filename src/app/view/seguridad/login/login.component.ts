@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewEncapsulation} from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { UsuarioService } from 'src/app/shared/services/usuario/usuario.service';
 import { SeguridadService } from 'src/app/shared/services/seguridad/seguridad.service';
@@ -7,8 +7,9 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-ingresar',
-    templateUrl: "./login.component.html",
-    styleUrls: ['../css/global.component.css']
+    templateUrl: "./login.component.html",  
+    styleUrls: ['../css/global.component.css'],
+    //encapsulation: ViewEncapsulation.ShadowDom
 })
 export class LoginComponent implements OnInit {
     formLogin: FormGroup;

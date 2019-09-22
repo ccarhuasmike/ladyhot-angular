@@ -101,7 +101,7 @@ export class ModalPasarelaPagoComponent {
         const formPago = document.getElementById('form_pago');
         formPago.addEventListener('submit', event => {
             event.preventDefault();
-
+            debugger;
             this.submitted = true;
             /*if (this.formPago.invalid) {
                 return;

@@ -18,12 +18,16 @@ import { DatosGeneralesComponent } from "./datosgenerales/datosgenerales.compone
 import { AparienciaComponent } from "./apariencia/apariencia.component"
 import { ServiciosComponent } from "./servicios/servicios.component"
 import { GaleriaComponent } from "./galeria/galeria.component"
+ import { SharedCompoentModule } from '../../view/shared/sharedcomponent.module';
+//import { HeaderShared } from "../shared/header/header.component"
 @NgModule({
     imports: [
         CommonModule,
         AnunciateGratisRoutingModule,
         FormsModule,
         ReactiveFormsModule,
+        SharedCompoentModule
+        //HeaderShared
         //AnuncioModule
     ],
     declarations: [
@@ -33,7 +37,8 @@ import { GaleriaComponent } from "./galeria/galeria.component"
         DatosGeneralesComponent,
         AparienciaComponent,       
         ServiciosComponent,        
-        GaleriaComponent,        
+        GaleriaComponent,      
+        //HeaderShared  
         //OnlyNumber
     ],
     exports: [

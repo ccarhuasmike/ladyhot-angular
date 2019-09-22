@@ -33,11 +33,7 @@ const routes: Routes = [
             {
                 path: "apariencia",
                 component: AparienciaComponent
-            },
-            // {
-            //     path: "tarifa",
-            //     component: TarifasComponent
-            // },
+            },          
             {
                 path: "servicios",
                 component: ServiciosComponent

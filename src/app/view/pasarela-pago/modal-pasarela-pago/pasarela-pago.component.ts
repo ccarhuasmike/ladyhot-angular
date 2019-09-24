@@ -17,24 +17,38 @@ export class ModalPasarelaPagoComponent {
     submitted = false;
     public formPago = null;
 
+    //Controles Datos de Contacto
+    txt_numero_tarjetaCtrl: FormControl;
+    txt_expiracionCtrl: FormControl;
+    txt_cvvCtrl: FormControl;
+    txt_emailCtrl: FormControl;    
+   //Registro de Expresiones
+   RegEx_mailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+
     constructor(
         private pasaPagoService: PasarelaPagoService) { }
 
     ngOnInit() {
-        this.formPago = new FormGroup({
-            nombre_completo: new FormControl("", [
-                Validators.required,
-                this.customPatternValid({ pattern: /[a-zA-Z]/, msg: 'Ingrese solo letras' })
-            ]),
-            correo: new FormControl("", [
-                Validators.required,
-                this.customPatternValid({ pattern: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, msg: 'Formato no correcto' })
-            ]),
-            telefono_celular: new FormControl("", [
-                Validators.required,
-                this.customPatternValid({ pattern: /[0-9]{9}/, msg: 'Formato no correcto' })
-            ])
+        this.txt_numero_tarjetaCtrl = new FormControl('', [Validators.required]);
+        this.txt_expiracionCtrl = new FormControl('', [Validators.required]);
+        this.txt_emailCtrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_mailPattern)]);
+        this.txt_cvvCtrl = new FormControl('', [Validators.required]);
+        // this.txt_telefono_1Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
+        // this.txt_telefono_2Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
 
+        // this.fromContacto = new FormGroup({
+        //     txt_nombre_ficha: this.txt_nombre_fichaCtrl,
+        //     txt_email: this.txt_emailCtrl,
+        //     txt_web: this.txt_webCtrl,
+        //     txt_telefono_1: this.txt_telefono_1Ctrl,
+        //     txt_telefono_2: this.txt_telefono_2Ctrl
+        // });
+
+        this.formPago = new FormGroup({
+            txt_numero_tarjeta: this.txt_numero_tarjetaCtrl,
+            txt_expiracion: this.txt_expiracionCtrl,            
+            txt_cvv: this.txt_cvvCtrl,
+            txt_email: this.txt_emailCtrl           
         });
         this.mostrarError = false;
         this.montoPagar = this["data"]["montoPagar"];

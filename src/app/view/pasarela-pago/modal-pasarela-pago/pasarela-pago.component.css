@@ -1,8 +1,6 @@
-/* Padding - just for asthetics on Bootsnipp.com */
-body {
-    margin-top: 20px;
+label{
+    font-size: 12px;
 }
-
 /* CSS for Credit Card Payment form */
 .credit-card-box .panel-title {
     display: inline;

@@ -1,5 +1,103 @@
+<div class="modal-body ">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-6 d-sm-none">
+                <img style="max-width: 100%;width: 100%;height: auto;"
+                    src="http://192.168.0.14/fileserver/uploads_fichas_cortadas/2199/21.jpg">
+                <div class="text-left text-secondary h6">
+                    <p class="h4 text-dark font-weight-bold text-left"> segundo mike 983150754</p>
+                    <div class="col-lg-12 mt-0 text-left text-secondary h6">
+                        <span>Lima Metropolitana</span>
+                        <span> - </span>
+                        <span>Cercado de Lima</span>
+                        <span></span><span></span>
+                        <br>
+                        <span>segundo mike </span>
+                        <span> | 19 años</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="-webkit-box-shadow: -8px 2px 5px 1px rgba(235,230,235,1);
+            -moz-box-shadow: -8px 2px 5px 1px rgba(235,230,235,1);
+            box-shadow: -8px 2px 5px 1px rgba(235,230,235,1);">
+                <div id="pay-invoice">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h2 class="text-center"> Pago</h2>
+                        </div>
+                        <hr>
+                        <form [formGroup]='formPago'>
+                            <!-- <div class="form-group text-center">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"><i class="text-muted fa fa-cc-visa fa-2x"></i></li>
+                                    <li class="list-inline-item"><i class="fa fa-cc-mastercard fa-2x"></i></li>
+                                    <li class="list-inline-item"><i class="fa fa-cc-amex fa-2x"></i></li>
+                                    <li class="list-inline-item"><i class="fa fa-cc-discover fa-2x"></i></li>
+                                </ul>
+                            </div> -->
+                            <div class="form-group">
+                                <label>Monto del pago</label>
+                                <h2>$100.00</h2>
+                            </div>
+                            <div class="form-group">
+                                <label for="elemento-tarjeta" class="control-label">Número de Tarjeta</label>
+                                <input id="elemento-tarjeta" required type="text" class="form-control"
+                                    [formControl]="txt_numero_tarjetaCtrl" placeholder="Número de Tarjeta">
+                                <div *ngIf="txt_numero_tarjetaCtrl.invalid && (txt_numero_tarjetaCtrl.dirty || isSubmitted)"
+                                    class="text-danger">
+                                    <div *ngIf="txt_numero_tarjetaCtrl.errors.required">
+                                        Se requiere número de tarjeta.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="cc-exp" class="control-label">Expiración</label>
+                                        <input id="cc-exp" name="cc-exp" type="tel" class="form-control "
+                                            placeholder="Mes / Año">
+
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label for="x_card_code" class="control-label">Código de seguridad</label>
+                                    <div class="input-group">
+                                        <input id="x_card_code" name="x_card_code" type="tel" class="form-control"
+                                            placeholder="CVV">
+                                        <div class="input-group-addon">
+                                            <span class="fa fa-question-circle fa-lg" data-toggle="popover"
+                                                data-container="body" data-html="true" data-title="Security Code"
+                                                data-content="<div class='text-center one-card'>The 3 digit code on back of the card..<div class='visa-mc-cvc-preview'></div></div>"
+                                                data-trigger="hover"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="x_zip" class="control-label">Correo Electrónico</label>
+                                <input id="x_zip" name="x_zip" type="text" class="form-control"
+                                    placeholder="Correo Electrónico">
+
+                            </div>
+                            <div>
+                                <button id="payment-button" type="submit" class="btn btn-lg btn-success btn-block">
+                                    <i class="fa fa-lock fa-lg"></i>&nbsp;
+                                    <span id="payment-button-amount">Pay $100.00</span>
+                                    <span id="payment-button-sending" style="display:none;">Sending…</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 
 <div class="col-xs-12 col-md-12">
-    <!-- CREDIT CARD FORM STARTS HERE -->
+
     <div class="panel panel-default credit-card-box">
         <div class="panel-heading display-table">
             <div class="row display-tr">
@@ -48,10 +146,11 @@
                             <input type="tel" class="form-control" id="telefono_celular"
                                 formControlName="telefono_celular" name="telefono_celular"
                                 placeholder="Teléfono Celular"
-                                [ngClass]="{ 'is-invalid': submitted && f.telefono_celular.errors }" maxlength="9"/>
+                                [ngClass]="{ 'is-invalid': submitted && f.telefono_celular.errors }" maxlength="9" />
                             <div *ngIf="submitted && f.telefono_celular.errors" class="invalid-feedback">
                                 <div *ngIf="f.telefono_celular.errors.required">Teléfono es requerido</div>
-                                <div *ngIf="f.telefono_celular.errors.invalidMsg">{{f.telefono_celular.errors.invalidMsg}}
+                                <div *ngIf="f.telefono_celular.errors.invalidMsg">
+                                    {{f.telefono_celular.errors.invalidMsg}}
                                 </div>
                             </div>
                         </div>
@@ -63,10 +162,7 @@
                             <label for="elemento-tarjeta">NUMERO TARJETA</label>
                             <div id="elemento-tarjeta" class="form-control">
                             </div>
-                            <!--<div [style.display]="mostrarError ? 'block' : 'none'" class="invalid-feedback"
-                                id="errores-tarjeta">
-                                <div>Número de tarjeta es requerido</div>
-                            </div>-->
+                           
                         </div>
                     </div>
                 </div>
@@ -82,19 +178,11 @@
                         <div class="form-group">
                             <label for="cvc-tarjeta">CODIGO CVC</label>
                             <div id="cvc-tarjeta" class="form-control"></div>
-                            <!--<input type="tel" class="form-control" name="cardCVC" placeholder="CVC"
-                                autocomplete="cc-csc" required />-->
+                           
                         </div>
                     </div>
                 </div>
-                <!--<div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <div class="form-group">
-                            <label for="couponCode">COUPON CODE</label>
-                            <input type="text" class="form-control" name="couponCode" />
-                        </div>
-                    </div>
-                </div>-->
+             
                 <div class="row">
                     <div [style.display]="mostrarError ? 'block' : 'none'" id="errores-tarjeta"
                         class="ml-3 alert alert-danger" role="alert"></div>
@@ -113,5 +201,4 @@
             </form>
         </div>
     </div>
-    <!-- CREDIT CARD FORM ENDS HERE -->
-</div>
+</div> -->

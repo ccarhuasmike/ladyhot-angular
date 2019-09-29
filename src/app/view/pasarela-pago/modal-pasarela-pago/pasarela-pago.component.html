@@ -27,7 +27,7 @@
                             <h2 class="text-center"> Pago</h2>
                         </div>
                         <hr>
-                        <form [formGroup]='formPago'>
+                        <form id="form_pago" [formGroup]='formPago'>
                             <!-- <div class="form-group text-center">
                                 <ul class="list-inline">
                                     <li class="list-inline-item"><i class="text-muted fa fa-cc-visa fa-2x"></i></li>
@@ -38,47 +38,60 @@
                             </div> -->
                             <div class="form-group">
                                 <label>Monto del pago</label>
-                                <h2>$100.00</h2>
+                                <h2>S/.{{montoPagar}}</h2>
                             </div>
                             <div class="form-group">
                                 <label for="elemento-tarjeta" class="control-label">Número de Tarjeta</label>
-                                <input id="elemento-tarjeta" required type="text" class="form-control"
-                                    [formControl]="txt_numero_tarjetaCtrl" placeholder="Número de Tarjeta">
-                                <div *ngIf="txt_numero_tarjetaCtrl.invalid && (txt_numero_tarjetaCtrl.dirty || isSubmitted)"
+                                <div id="elemento-tarjeta" class="form-control">
+                                </div>
+                                <!--<input id="elemento-tarjeta" required type="text" class="form-control"
+                                    [formControl]="txt_numero_tarjetaCtrl" placeholder="Número de Tarjeta">-->
+                                <!--<div *ngIf="txt_numero_tarjetaCtrl.invalid && (txt_numero_tarjetaCtrl.dirty || isSubmitted)"
                                     class="text-danger">
                                     <div *ngIf="txt_numero_tarjetaCtrl.errors.required">
                                         Se requiere número de tarjeta.
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="cc-exp" class="control-label">Expiración</label>
-                                        <input id="cc-exp" name="cc-exp" type="tel" class="form-control "
-                                            placeholder="Mes / Año">
+                                        <!--<input id="cc-exp" name="cc-exp" type="tel" class="form-control "
+                                            placeholder="Mes / Año">-->
+                                        <div id="expiracion-tarjeta" class="form-control"></div>
 
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <label for="x_card_code" class="control-label">Código de seguridad</label>
                                     <div class="input-group">
-                                        <input id="x_card_code" name="x_card_code" type="tel" class="form-control"
-                                            placeholder="CVV">
+                                        <!--<input id="x_card_code" name="x_card_code" type="tel" class="form-control"
+                                            placeholder="CVC">-->
+                                        <div id="cvc-tarjeta" class="form-control"></div>
                                         <div class="input-group-addon">
                                             <span class="fa fa-question-circle fa-lg" data-toggle="popover"
                                                 data-container="body" data-html="true" data-title="Security Code"
-                                                data-content="<div class='text-center one-card'>The 3 digit code on back of the card..<div class='visa-mc-cvc-preview'></div></div>"
+                                                data-content="div class='text-center one-card'>The 3 digit code on back of the card..<div class='visa-mc-cvc-preview'></div></div>"
                                                 data-trigger="hover"></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="x_zip" class="control-label">Correo Electrónico</label>
-                                <input id="x_zip" name="x_zip" type="text" class="form-control"
-                                    placeholder="Correo Electrónico">
-
+                                <label for="correo" class="control-label">Correo Electrónico</label>
+                                <input id="correo" name="correo" type="text" class="form-control"
+                                    placeholder="Correo Electrónico" formControlName="txt_email"
+                                    [ngClass]="{ 'is-invalid': submitted && f.txt_email.errors }" maxlength="50">
+                                <div *ngIf="submitted && f.txt_email.errors" class="invalid-feedback">
+                                    <div *ngIf="f.txt_email.errors.required">Correo es requerido</div>
+                                    <div *ngIf="f.txt_email.errors.invalidMsg">{{f.txt_email.errors.invalidMsg}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div [style.display]="mostrarError ? 'block' : 'none'" id="errores-tarjeta"
+                                    class="ml-3 alert alert-danger" role="alert"></div>
                             </div>
                             <div>
                                 <button id="payment-button" type="submit" class="btn btn-lg btn-success btn-block">

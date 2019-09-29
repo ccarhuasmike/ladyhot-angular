@@ -18,21 +18,24 @@ export class ModalPasarelaPagoComponent {
     public formPago = null;
 
     //Controles Datos de Contacto
-    txt_numero_tarjetaCtrl: FormControl;
-    txt_expiracionCtrl: FormControl;
-    txt_cvvCtrl: FormControl;
-    txt_emailCtrl: FormControl;    
-   //Registro de Expresiones
-   RegEx_mailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-
+    //txt_numero_tarjetaCtrl: FormControl;
+    //txt_expiracionCtrl: FormControl;
+    //txt_cvvCtrl: FormControl;
+    txt_emailCtrl: FormControl;
+    //Registro de Expresiones
+    RegEx_mailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+    ///^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     constructor(
         private pasaPagoService: PasarelaPagoService) { }
 
     ngOnInit() {
-        this.txt_numero_tarjetaCtrl = new FormControl('', [Validators.required]);
-        this.txt_expiracionCtrl = new FormControl('', [Validators.required]);
-        this.txt_emailCtrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_mailPattern)]);
-        this.txt_cvvCtrl = new FormControl('', [Validators.required]);
+        //this.txt_numero_tarjetaCtrl = new FormControl('', [Validators.required]);
+        //this.txt_expiracionCtrl = new FormControl('', [Validators.required]);
+        this.txt_emailCtrl = new FormControl('', [
+            Validators.required,
+            this.customPatternValid({ pattern: this.RegEx_mailPattern, msg: 'Formato no correcto' })
+        ]);
+        //this.txt_cvvCtrl = new FormControl('', [Validators.required]);
         // this.txt_telefono_1Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
         // this.txt_telefono_2Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
 
@@ -45,10 +48,10 @@ export class ModalPasarelaPagoComponent {
         // });
 
         this.formPago = new FormGroup({
-            txt_numero_tarjeta: this.txt_numero_tarjetaCtrl,
-            txt_expiracion: this.txt_expiracionCtrl,            
-            txt_cvv: this.txt_cvvCtrl,
-            txt_email: this.txt_emailCtrl           
+            //txt_numero_tarjeta: this.txt_numero_tarjetaCtrl,
+            //txt_expiracion: this.txt_expiracionCtrl,
+            //txt_cvv: this.txt_cvvCtrl,
+            txt_email: this.txt_emailCtrl
         });
         this.mostrarError = false;
         this.montoPagar = this["data"]["montoPagar"];
@@ -61,7 +64,8 @@ export class ModalPasarelaPagoComponent {
             classes: {
                 base: "form-control",
                 invalid: "is-invalid"
-            }
+            },
+            placeholder: "Número de Tarjeta"
         });
         tarjeta.mount('#elemento-tarjeta');
         tarjeta.addEventListener('change', event => {
@@ -79,7 +83,8 @@ export class ModalPasarelaPagoComponent {
             classes: {
                 base: "form-control",
                 invalid: "is-invalid"
-            }
+            },
+            placeholder: "Mes / Año"
         });
         expiracionTarjeta.mount('#expiracion-tarjeta');
         expiracionTarjeta.addEventListener('change', event => {
@@ -97,8 +102,10 @@ export class ModalPasarelaPagoComponent {
             classes: {
                 base: "form-control",
                 invalid: "is-invalid"
-            }
+            },
+            placeholder: "CVC"
         });
+
         cvcTarjeta.mount('#cvc-tarjeta');
         cvcTarjeta.addEventListener('change', event => {
             const contenedorError = document.getElementById('errores-tarjeta');
@@ -115,7 +122,7 @@ export class ModalPasarelaPagoComponent {
         const formPago = document.getElementById('form_pago');
         formPago.addEventListener('submit', event => {
             event.preventDefault();
-            debugger;
+
             this.submitted = true;
             /*if (this.formPago.invalid) {
                 return;
@@ -123,7 +130,6 @@ export class ModalPasarelaPagoComponent {
 
             stripe.createToken(tarjeta, expiracionTarjeta, cvcTarjeta).then(result => {
                 if (result.error) {
-                    console.log('Error creating payment method.');
                     const contenedorError = document.getElementById('errores-tarjeta');
                     contenedorError.textContent = result.error.message;
                     this.mostrarError = true;
@@ -137,8 +143,10 @@ export class ModalPasarelaPagoComponent {
                     let infoCargo = {
                         stripeToken: result.token.id,
                         correo: formPago["correo"].value,
-                        nombreCompleto: formPago["nombre_completo"].value,
-                        telefonoCelular: formPago["telefono_celular"].value,
+                        //nombreCompleto: formPago["nombre_completo"].value,
+                        nombreCompleto: '',
+                        //telefonoCelular: formPago["telefono_celular"].value,
+                        telefonoCelular: '',
                         montoPagar: this.montoPagar,
                         descripcionCargo: this.descripcionCargo,
                         idAnuncio: 1167,//cambiar el 1 por codigo de anucio real
@@ -148,6 +156,9 @@ export class ModalPasarelaPagoComponent {
                     this.pasaPagoService.CrearCargo(infoCargo).subscribe(
                         (res) => {
                             console.log(res);
+                            tarjeta.clear();
+                            expiracionTarjeta.clear();
+                            cvcTarjeta.clear();
                             this.onReset();
                         }
                     );

@@ -26,7 +26,7 @@
                                         <span>{{detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
                                         <span></span><span></span><br />
                                         <span>{{detalleDelAnuncio.txt_nombre_ficha }}</span>
-                                        <span> | {{detalleDelAnuncio.int_edad }} años</span>
+                                        <span> | {{detalleDelAnuncio.txt_descripcion_edad }} años</span>
                                         <span *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora"> | S/.
                                             {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora}}</span>
                                         <span></span><br /><span>29/06/2019 12:00
@@ -114,9 +114,9 @@
                                 <p class="h3 text-dark font-weight-bold text-left">
                                     Datos Generales
                                 </p>
-                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.int_edad">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.txt_descripcion_edad">
                                     <span class="float-left">Edad</span>
-                                    <span class="float-right">{{detalleDelAnuncio.int_edad}}</span>
+                                    <span class="float-right">{{detalleDelAnuncio.txt_descripcion_edad}}</span>
                                 </div>
                                 <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.tx_pais_origen">
                                     <span class="float-left">País de origen</span>
@@ -187,10 +187,10 @@
                                     <span class="float-left">Viajes</span>
                                     <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_viaje}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.txt_forma_pago">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.txt_descripcion_forma_pago">
                                     <span class="float-left w-100">Forma de Pago</span>
                                     <div class="col-12 mt-2 p-0">
-                                        <a *ngFor="let item of detalleDelAnuncio.txt_forma_pago.split(';'); let i = index"
+                                        <a *ngFor="let item of detalleDelAnuncio.txt_descripcion_forma_pago.split(';'); let i = index"
                                             href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
                                         </a>

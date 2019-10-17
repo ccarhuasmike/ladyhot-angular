@@ -20,8 +20,7 @@ export class ModalDetalleAnuncio implements OnInit {
         private parameter: ParameterService
     ) {
     }
-    ngOnInit() {
-        console.log(this["data"]["id"]);
+    ngOnInit() {     
         this.anuncioService.ObtenerDetalleAnucionXId(this["data"]["id"]).subscribe(
             (res: ClientResponse) => {
                 if (res.Data["txt_presentacion"] != "") {

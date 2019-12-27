@@ -3,7 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { NotFoundComponent } from "../app/view/not-found/not-found.component";
 import { BotonPasarelaPagoComponent } from './view/pasarela-pago/boton-pasarela-pago/boton-pasarela-pago.component';
 
-//
+///
 const routes: Routes = [
   {
     path: '',

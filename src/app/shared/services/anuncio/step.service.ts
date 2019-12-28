@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { activeStep } from '../../../view/models/modelanuncio';
+import { activeStep } from '../../../models/modelanuncio';
 import { debug } from 'util';
 @Injectable()
 export class StepService {

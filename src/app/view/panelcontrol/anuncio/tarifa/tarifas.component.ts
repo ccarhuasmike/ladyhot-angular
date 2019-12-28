@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Tarifas, ModelCarga } from "../../../models/modelanuncio";
+import { Tarifas, ModelCarga } from "../../../../models/modelanuncio";
 import { ClientResponse, ClientResponseResult } from '../../../../Models/ClientResponseModels';
 @Component({
     selector: 'app-tarifas',

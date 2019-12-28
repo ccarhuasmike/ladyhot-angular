@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { MantenimientoAnuncioService } from 'src/app/shared/services/mantenimiento-anuncio/mantenimiento-anuncio.service';
-import { Pagination } from 'src/app/Models/ClientResponseModels';
+import { Pagination } from '../../../../Models/ClientResponseModels';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalActualizaAnuncio } from '../modal-actualizar-anuncio/modal-actualizar-anuncio.component';
 import { AnuncioService } from 'src/app/shared/services/service.module';

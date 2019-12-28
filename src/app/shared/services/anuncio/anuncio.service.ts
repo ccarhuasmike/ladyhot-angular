@@ -3,7 +3,6 @@ import { StepService } from "./step.service";
 import { Tbl_anuncio } from '../../../Models/Tbl_anuncioModels';
 import { ClientResponse } from '../../../Models/ClientResponseModels';
 import { Tbl_galeria_anuncio } from "../../../Models/Tbl_galeria_anuncioModels";
-import { FormData } from '../../../view/models/modelanuncio';
 import { ConfigService } from "../Utilitarios/config.service";
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';

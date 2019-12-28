@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AnuncioService } from "../../../shared/services/anuncio/anuncio.service";
-import { DatosGenerales } from "../../models/modelanuncio";
+import { DatosGenerales } from "../../../models/modelanuncio";
 import { ParameterService } from "../../../shared/services/anuncio/parameter.service";
 @Component({
     selector: 'app-datosgenerales-gratis',

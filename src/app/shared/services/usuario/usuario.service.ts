@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConfigService } from '../Utilitarios/config.service';
 import { HandleError, HttpErrorHandler } from 'src/app/throwError/http-error-handler.service';
 import { Observable } from 'rxjs';
-import { ClientResponseResult, ClientResponse } from 'src/app/Models/ClientResponseModels';
+import { ClientResponseResult, ClientResponse } from '../../..//Models/ClientResponseModels';
 import { map, catchError } from 'rxjs/operators';
 import { Tbl_usuario } from 'src/app/Models/Tbl_usuario';
 

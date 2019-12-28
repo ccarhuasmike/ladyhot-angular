@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Apariencia } from "../../../models/modelanuncio";
+import { Apariencia } from "../../../../models/modelanuncio";
 @Component({
     selector: 'app-apariencia',
     templateUrl: './apariencia.component.html',

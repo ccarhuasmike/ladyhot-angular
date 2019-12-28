@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AnuncioService } from "../../../../shared/services/anuncio/anuncio.service";
-import { DatosContacto } from "../../../models/modelanuncio";
+import { DatosContacto } from "../../../../models/modelanuncio";
 import { ParameterService } from "../../../../shared/services/anuncio/parameter.service";
 import { ClientResponse, ClientResponseResult } from '../../../../Models/ClientResponseModels';
 import { PaginatedResult } from '../../../../Models/Tbl_parameter_detModels';

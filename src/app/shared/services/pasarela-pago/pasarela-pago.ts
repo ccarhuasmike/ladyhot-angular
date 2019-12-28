@@ -3,7 +3,7 @@ import { HandleError, HttpErrorHandler } from 'src/app/throwError/http-error-han
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ConfigService } from '../Utilitarios/config.service';
 import { Observable } from 'rxjs';
-import { BeanChargeViewModel } from 'src/app/Models/BeanChargeViewModel';
+import { BeanChargeViewModel } from '../../../Models/BeanChargeViewModel';
 import { BeanCharge } from 'src/app/Models/BeanCharge';
 import { catchError } from 'rxjs/operators';
 

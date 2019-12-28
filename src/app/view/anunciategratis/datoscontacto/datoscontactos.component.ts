@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AnuncioService } from "../../../shared/services/anuncio/anuncio.service";
-import { DatosContacto } from "../../models/modelanuncio";
+import { DatosContacto } from "../../../models/modelanuncio";
 import { ParameterService } from "../../../shared/services/anuncio/parameter.service";
 import { ClientResponse } from '../../../Models/ClientResponseModels';
 import { MessageService } from "../../../throwError/message.service";
@@ -86,6 +86,7 @@ export class DatosContactoComponent implements OnInit {
         if (this.DataJsonAnuncio == null) {
             //Registrar Datos
             let entidad: any = {};
+            debugger;
             entidad.id_usuario = 11;
             entidad.txt_nombre_ficha = this.fromContacto.value.txt_nombre_ficha;
             entidad.txt_telefono_1 = this.fromContacto.value.txt_telefono_1;

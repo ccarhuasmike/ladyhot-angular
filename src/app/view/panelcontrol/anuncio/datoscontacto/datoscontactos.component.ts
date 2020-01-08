@@ -43,8 +43,7 @@ export class DatosContactoComponent implements OnInit {
             (res: ClientResponse) => {
                 this.listParameter = JSON.parse(res.DataJson);
                 localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
-                this._messageService = this.messageService;
-                console.log(this._messageService);
+                this._messageService = this.messageService;            
             }
         );
         this.anuncioService.segundopaso(false);

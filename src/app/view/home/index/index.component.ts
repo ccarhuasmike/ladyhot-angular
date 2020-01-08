@@ -48,7 +48,7 @@ export class IndexComponent implements OnInit {
   TruncamientoMultiline() {
     /*Truncamiento de texto multilínea en tamaño de ventana*/
     $(document).ready(() => {
-      var p = $('#dash .descripcion');
+      var p = $(' .descripcion');
       var ks = $('#dash').height();
       while ($(p).outerHeight() > ks) {
         $(p).text(function (index, text) {

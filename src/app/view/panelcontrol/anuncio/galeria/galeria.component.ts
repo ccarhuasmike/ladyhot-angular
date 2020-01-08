@@ -51,8 +51,7 @@ export class GaleriaComponent implements OnInit {
 
         for (let index = 0; index < 1; index++) {
             var resultObject = dataGaleriaPortada[index];
-            if (resultObject != null) {
-                console.log(resultObject.txt_ruta_virtuales_cortada);
+            if (resultObject != null) {                
                 this.ListGaleriaPortada.push(resultObject);
             } else {
                 const tbl_galeria_anuncio: Tbl_galeria_anuncio = {

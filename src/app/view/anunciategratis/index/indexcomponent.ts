@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit,OnDestroy, ViewEncapsulation } from '@angular/core';
 @Component({
     selector: 'app-coreanunciategratis',
     templateUrl: "./index.component.html",

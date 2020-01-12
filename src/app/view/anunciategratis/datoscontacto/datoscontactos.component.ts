@@ -44,7 +44,7 @@ export class DatosContactoComponent implements OnInit {
                 this.listParameter = JSON.parse(res.DataJson);
                 localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
                 this._messageService = this.messageService;
-                console.log(this._messageService);
+                
             }
         );
         this.anuncioService.segundopaso(false);
@@ -78,11 +78,9 @@ export class DatosContactoComponent implements OnInit {
     }
 
     save() {
-
         this.isSubmitted = true;
         if (!this.fromContacto.valid)
             return;
-
         if (this.DataJsonAnuncio == null) {
             //Registrar Datos
             let entidad: any = {};

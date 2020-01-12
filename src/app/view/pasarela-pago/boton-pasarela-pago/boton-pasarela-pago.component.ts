@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalPasarelaPagoComponent } from '../modal-pasarela-pago/pasarela-pago.component';
+import { PasarelaPagoService } from 'src/app/shared/services/pasarela-pago/pasarela-pago';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-boton-pasarela-pago',
@@ -12,7 +14,10 @@ export class BotonPasarelaPagoComponent {
     montoPagar: number;
 
     constructor(
-        private modalService: BsModalService) { }
+        private modalService: BsModalService,
+        private pasaPagoService: PasarelaPagoService) {
+        this.obtenerLlavePublica();
+    }
 
     modalPagar() {
         this.modalRef = this.modalService.show(ModalPasarelaPagoComponent, {
@@ -25,5 +30,18 @@ export class BotonPasarelaPagoComponent {
                 }
             }
         });
+    }
+
+    obtenerLlavePublica() {
+        if (sessionStorage.getItem("LLAVE_PUBLICA") == null) {
+            this.pasaPagoService.obtenerLlavePublica().subscribe(
+                (res) => {
+                    sessionStorage.setItem("LLAVE_PUBLICA", res.DataJson);
+                    environment.stripeKey = res.DataJson;
+                }
+            );
+        } else {
+            environment.stripeKey = sessionStorage.getItem("LLAVE_PUBLICA");
+        }
     }
 }

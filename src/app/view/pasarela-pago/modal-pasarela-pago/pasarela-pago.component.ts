@@ -24,40 +24,27 @@ export class ModalPasarelaPagoComponent {
     txt_emailCtrl: FormControl;
     //Registro de Expresiones
     RegEx_mailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-    ///^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    
     constructor(
-        private pasaPagoService: PasarelaPagoService) { }
+        private pasaPagoService: PasarelaPagoService) {
+         }
 
     ngOnInit() {
-        //this.txt_numero_tarjetaCtrl = new FormControl('', [Validators.required]);
-        //this.txt_expiracionCtrl = new FormControl('', [Validators.required]);
+        // Llave publica Stripe
+        const stripe = Stripe(environment.stripeKey);
+        
         this.txt_emailCtrl = new FormControl('', [
             Validators.required,
             this.customPatternValid({ pattern: this.RegEx_mailPattern, msg: 'Formato no correcto' })
         ]);
-        //this.txt_cvvCtrl = new FormControl('', [Validators.required]);
-        // this.txt_telefono_1Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
-        // this.txt_telefono_2Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
-
-        // this.fromContacto = new FormGroup({
-        //     txt_nombre_ficha: this.txt_nombre_fichaCtrl,
-        //     txt_email: this.txt_emailCtrl,
-        //     txt_web: this.txt_webCtrl,
-        //     txt_telefono_1: this.txt_telefono_1Ctrl,
-        //     txt_telefono_2: this.txt_telefono_2Ctrl
-        // });
-
+        
         this.formPago = new FormGroup({
-            //txt_numero_tarjeta: this.txt_numero_tarjetaCtrl,
-            //txt_expiracion: this.txt_expiracionCtrl,
-            //txt_cvv: this.txt_cvvCtrl,
             txt_email: this.txt_emailCtrl
         });
         this.mostrarError = false;
         this.montoPagar = this["data"]["montoPagar"];
         this.descripcionCargo = this["data"]["descripcionCargo"];
-        // Llave publica Stripe
-        const stripe = Stripe(environment.stripeKey);
+
         // Crea element parte de la tarjeta que busca actualizaciones y muestra mensajes de error
         const elementos = stripe.elements();
         const tarjeta = elementos.create('cardNumber', {
@@ -120,7 +107,7 @@ export class ModalPasarelaPagoComponent {
 
         // Escucha el envio y procesa el formulario con Stripe,
         const formPago = document.getElementById('form_pago');
-        formPago.addEventListener('submit', event => {
+        formPago.addEventListener('submit', event => {            
             event.preventDefault();
 
             this.submitted = true;
@@ -134,28 +121,23 @@ export class ModalPasarelaPagoComponent {
                     contenedorError.textContent = result.error.message;
                     this.mostrarError = true;
                 } else {
-                    if (this.formPago.invalid) {
-                        return;
-                    }
+                    if (this.formPago.invalid) 
+                        return;                    
 
                     this.mostrarError = false;
                     // Envia el token de identificacion para adjuntar la fuente de pago al cliente
                     let infoCargo = {
                         stripeToken: result.token.id,
-                        correo: formPago["correo"].value,
-                        //nombreCompleto: formPago["nombre_completo"].value,
-                        nombreCompleto: '',
-                        //telefonoCelular: formPago["telefono_celular"].value,
+                        correo: formPago["correo"].value,                        
+                        nombreCompleto: '',                        
                         telefonoCelular: '',
                         montoPagar: this.montoPagar,
                         descripcionCargo: this.descripcionCargo,
                         idAnuncio: 1167,//cambiar el 1 por codigo de anucio real
-                        //product: this.product,
-
+                        idProducto: 1
                     }
                     this.pasaPagoService.CrearCargo(infoCargo).subscribe(
-                        (res) => {
-                            console.log(res);
+                        (res) => {                            
                             tarjeta.clear();
                             expiracionTarjeta.clear();
                             cvcTarjeta.clear();

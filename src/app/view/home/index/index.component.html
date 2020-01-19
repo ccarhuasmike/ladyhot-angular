@@ -1,35 +1,40 @@
 <main class="cd-main-content">
-  <app-header></app-header>
-  <section class="cd-gallery">
-    <div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5"
-      [infiniteScrollThrottle]="500" (scrolled)="onScrollDown()" (scrolledUp)="onScrollUp()">
-      <div class="masonry">
-        <div class="item cursor-pointer" *ngFor="let items of masonryImages"
-          (mouseup)="openModalDetalleAnuncio(items.id)">
-          <img src="{{items.txt_imagen_prensetancion}}">
-          <div class="icons-fichas w-10">
-            <span class="icons-fichas-info text-white line-h-2">
-              <span class="fa fa-info"></span>
-            </span>
-            <span class="icons-fichas-player text-white line-h-2">
-              <span class="fa fa-play"></span>
-            </span>
-          </div>
-          <a href="#" class="btn-small">{{items.txt_nombre_ficha}}</a>
-          <a href="#" class="btn-small">{{items.tx_pais_origen}}</a>
-          <a href="#" class="btn-small"> {{items.int_edad}} Años</a>
-          <!-- <a href="#" class="btn-small">{{item.precio}}</a> -->
-          <!-- <a href="#" class="btn-small">{{item.pais}}</a> -->
-          
-            <p class="descripcion">
-              {{items.txt_presentacion}}
-            </p>
-          
+    <app-header></app-header>
+    <section class="cd-gallery">
+        <div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5" [infiniteScrollThrottle]="500" (scrolled)="onScrollDown()" (scrolledUp)="onScrollUp()">
+            <div class="masonry">
+                <div class="item cursor-pointer" *ngFor="let items of masonryImages" (mouseup)="openModalDetalleAnuncio(items.id)">
+                    <img src="{{items.txt_imagen_prensetancion}}">
+                    <div class="icons-fichas w-10">
+                        <span class="icons-fichas-info text-white line-h-2">
+                            <span class="fa fa-info"></span>
+                        </span>
+                        <span class="icons-fichas-player text-white line-h-2">
+                            <span class="fa fa-play"></span>
+                        </span>
+                    </div>
+                    <a href="#" class="btn-small">{{items.txt_nombre_ficha}}</a>
+                    <a href="#" class="btn-small">{{items.tx_pais_origen}}</a>
+                    <a href="#" class="btn-small"> {{items.int_edad}} Años</a>
+                    <!-- <a href="#" class="btn-small">{{item.precio}}</a> -->
+                    <!-- <a href="#" class="btn-small">{{item.pais}}</a> -->
+
+                    <!-- <div class="descripcion">
+
+                        {{items.txt_presentacion}}
+
+                    </div> -->
+
+                    <div class="block-ellipsis">
+                        This is an example of a multi-line ellipsis. We just set the number of lines we want to display before the ellipsis takes into effect and make some changes to the CSS and the ellipsis should take into effect once we reach the number of lines we want.
+                    </div>
+
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="cd-fail-message">No results found</div>
-  </section> <!-- cd-gallery -->
-  <!-- <app-content></app-content> -->
-  <app-filter (PasameElPueblo)="FiltrarDatos($event)"></app-filter>
+        <div class="cd-fail-message">No results found</div>
+    </section>
+    <!-- cd-gallery -->
+    <!-- <app-content></app-content> -->
+    <app-filter (PasameElPueblo)="FiltrarDatos($event)"></app-filter>
 </main>

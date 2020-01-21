@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ClientResponse } from '../../../Models/ClientResponseModels';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { HomeService } from "../../../shared/services/anuncio/home.services";
-import { MessageService } from "../../../throwError/message.service";
+
 import { ModalDetalleAnuncio } from '../modalDetalleAnuncio/modalDetalleAnuncio.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 declare var $: any;
@@ -46,15 +46,17 @@ export class IndexComponent implements OnInit {
 
   }
   TruncamientoMultiline() {
-    /*Truncamiento de texto multilínea en tamaño de ventana*/
+    /*Truncamiento de texto multilínea en tamaño de ventana*/    
     $(document).ready(() => {
-      var p = $(' .descripcion');
-      var ks = $('#dash').height();
-      while ($(p).outerHeight() > ks) {
-        $(p).text(function (index, text) {
-          return text.replace(/\W*\s(\S)*$/, '...');
-        });
-      }
+    
+      
+      // var p = $(' .descripcion');
+      // var ks = $('#dash').height();
+      // while ($(p).outerHeight() > ks) {
+      //   $(p).text(function (index, text) {
+      //     return text.replace(/\W*\s(\S)*$/, '...');
+      //   });
+      // }
     });
   }
   getLisAnuncios(filtrer: boolean = false, entidadFiltro: any = {}) {

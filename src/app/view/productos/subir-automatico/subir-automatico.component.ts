@@ -13,7 +13,6 @@ export class SubirAutomaticoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    debugger;
     this.productoService.getListarProductosSubirAutomatico().subscribe(
       (res) => {
         if (res.Status == "OK") {

@@ -27,7 +27,7 @@ const routes: Routes = [
   {
     path: 'panelcontrol',
     loadChildren: '../app/view/panelcontrol/panelcontrol.module#PanelControlModule'
-  },  
+  },
   {
     path: 'anunciategratis',
     loadChildren: '../app/view/anunciategratis/anunciategratis.module#AnunciateGratisModule'
@@ -35,6 +35,10 @@ const routes: Routes = [
   {
     path: 'seguridad',
     loadChildren: '../app/view/seguridad/seguridad.module#SeguridadModule'
+  },
+  {
+    path: 'productos',
+    loadChildren: '../app/view/productos/productos.module#ProductosModule'
   },
   {
     path: 'not-found',

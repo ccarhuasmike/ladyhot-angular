@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ParameterService, AnuncioService } from 'src/app/shared/services/service.module';
 import { ClientResponse } from 'src/app/Models/ClientResponseModels';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-modal-detalle-anuncio',
@@ -17,10 +18,11 @@ export class ModalDetalleAnuncio implements OnInit {
     constructor(
         public modalRef: BsModalRef,
         private anuncioService: AnuncioService,
-        private parameter: ParameterService
+        private parameter: ParameterService,
+        private router: Router
     ) {
     }
-    ngOnInit() {     
+    ngOnInit() {
         this.anuncioService.ObtenerDetalleAnucionXId(this["data"]["id"]).subscribe(
             (res: ClientResponse) => {
                 if (res.Data["txt_presentacion"] != "") {
@@ -41,5 +43,10 @@ export class ModalDetalleAnuncio implements OnInit {
     }
     closeModal() {
         this.modalRef.hide();
+    }
+
+    subirAutomatico() {
+        let url = this.router.navigate(['productos/subir-automatico']);
+        window.open(url.toString(), '_blank');
     }
 }

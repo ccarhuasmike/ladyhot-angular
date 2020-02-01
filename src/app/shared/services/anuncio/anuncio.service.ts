@@ -32,7 +32,7 @@ export class AnuncioService {
         httpErrorHandler: HttpErrorHandler
     ) {
         this._baseUrl = configService.getWebApiURL();
-        this.handleError = httpErrorHandler.createHandleError('HeroesService');
+        this.handleError = httpErrorHandler.createHandleError('AnuncioService');
     }
 
     SavePrimerPaso(anuncio: Tbl_anuncio): Observable<ClientResponse> {

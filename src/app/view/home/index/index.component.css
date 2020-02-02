@@ -696,36 +696,28 @@ label {
 
 /* #dash  */
 
-.descripcion {
-    padding: 3px 5px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    margin-top: 14px;
-    display: block;
-    display: -webkit-box;
-    max-width: 100%;
-    height: 43px;
-    margin: 0 auto;
-    font-size: 14px;
-    line-height: 1;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.block-ellipse-descripcion::after {
+    content: "...";
+    position: absolute;
+    right: 0;
+    width: 1rem;
+    bottom: 0;
+    background: inherit;
+    margin-right: 0.1rem;
+    text-align: right;
 }
 
-.block-ellipsis {
-    display: block;
-    display: -webkit-box;
+.block-ellipse-descripcion {
+    padding: 3px 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
     max-width: 100%;
-    height: 43px;
-    margin: 0 auto;
-    font-size: 14px;
-    line-height: 1;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
+    text-align: justify !important;
+    position: relative;
+    line-height: 1.2em;
+    max-height: 7em;
+    padding-right: 16px;
 }
 
 .btn-small {

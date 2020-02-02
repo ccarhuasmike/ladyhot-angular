@@ -30,8 +30,8 @@ export class ProductoService {
     this.handleError = httpErrorHandler.createHandleError('ProductoService');
   }
 
-  getListarProductosSubirAutomatico(): Observable<ClientResponse> {
-    return this.httpClient.post<ClientResponse>(this._baseUrl + 'misanuncios/ListarMisAnuncioPorUsuario', httpOptions).pipe(
+  getListarProductosSubirAutomatico(tipoSubirAutomatico: number): Observable<ClientResponse> {
+    return this.httpClient.get<ClientResponse>(this._baseUrl + 'producto/ListarProductos/' + tipoSubirAutomatico).pipe(
       catchError(this.handleError('getListarProductosSubirAutomatico'))
     );
   }

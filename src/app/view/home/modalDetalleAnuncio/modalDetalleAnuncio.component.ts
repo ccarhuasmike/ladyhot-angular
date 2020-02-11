@@ -39,14 +39,16 @@ export class ModalDetalleAnuncio implements OnInit {
                     || this.detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche == 0 || this.detalleDelAnuncio.dbl_costo_x_viaje == 0
                     || this.detalleDelAnuncio.txt_forma_pago == null);
                 this.noMostrarHorario = (this.detalleDelAnuncio.tx_descripcion_extra_horario == "" && this.detalleDelAnuncio.fl_atencion_24horas == 0);
+                let dataSubirAutomatico = {
+                    titulo: this.detalleDelAnuncio.txt_nombre_ficha,
+                    foto: this.detalleDelAnuncio.txt_imagen_galeria ? this.detalleDelAnuncio.txt_imagen_prensetancion : 'assets/scort_sin_foto.jpg',
+                    textPresentacion: this.detalleDelAnuncio.txt_presentacion.split(';')[0],
+                    idAnuncio: this["data"]["id"]
+                };
+                sessionStorage.setItem("dataSubirAutomatico", JSON.stringify(dataSubirAutomatico));
             });
     }
     closeModal() {
         this.modalRef.hide();
-    }
-
-    subirAutomatico() {
-        let url = this.router.navigate(['productos/subir-automatico']);
-        window.open(url.toString(), '_blank');
     }
 }

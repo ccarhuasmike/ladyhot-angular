@@ -8,7 +8,8 @@
     <div class="destacados">
       <div
         [ngClass]="prodPlanSubida.posicion_plan_subida != 2 ? 'producto' : 'producto producto_recomendado seleccionado'"
-        id="featured_SU15X12" *ngFor="let prodPlanSubida of listProductoPlanSubidas">
+        id="featured_SU15X12" *ngFor="let prodPlanSubida of listProductoPlanSubidas"
+        [attr.data-codigo-producto]="prodPlanSubida.id_producto">
         <span class="recomendacion" *ngIf="prodPlanSubida.posicion_plan_subida == 2">Recomendado para tu ciudad</span>
         <span class="dias">
           <b>{{prodPlanSubida.numero_dias_activo}}</b> d&iacute;as<br /><b>{{prodPlanSubida.numero_subida_top}}</b>
@@ -28,7 +29,22 @@
 
     </div>
 
-    <div class="masProductos" [innerHTML]="htmlMasProductos"></div>
+    <div class="masProductos">
+      <div class="producto" id="SU7X12" *ngFor="let prodPlanSubida of listProductoSubirAutomatico"
+        [attr.data-codigo-producto]="prodPlanSubida.id_producto">
+        <span class="dias"><b>
+            {{prodPlanSubida.numero_dias_activo}}
+          </b> d&iacute;as<br /><b>
+            {{prodPlanSubida.numero_subida_top}}
+          </b> subidas/d&iacute;a</span><span class="precio_tachado"></span><span class="precio">
+          S/.
+          {{prodPlanSubida.mt_monto}}
+        </span><span class="precio_unitario">
+          S/.
+          {{(prodPlanSubida.mt_monto/prodPlanSubida.numero_dias_activo)/prodPlanSubida.numero_subida_top | number:'0.0-2'}}
+          / subida</span><span class="seleccionar">Contratar</span>
+      </div>
+    </div>
   </div>
 
   <div class="horas">
@@ -216,7 +232,8 @@
               name="SUBIR_AUTOMATICO_24H" value="Y" autocomplete="off" /><input type="hidden"
               name="SUBIR_AUTOMATICO_FECHA_INI" value="" autocomplete="off" /><input type="hidden"
               name="SUBIR_AUTOMATICO_DIAS_SEMANA" value="1111111" autocomplete="off" />
-            <button class="submit">Pagar</button>
+            <!--class="submit"-->
+            <button type="button" (click)="modalPagar()" class="btn btn-danger">Pagar</button>
           </form>
         </div>
       </div>

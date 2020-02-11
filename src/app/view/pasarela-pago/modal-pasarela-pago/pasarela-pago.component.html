@@ -2,19 +2,29 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-md-6 d-sm-none">
-                <img style="max-width: 100%;width: 100%;height: auto;"
-                    src="http://192.168.0.14/fileserver/uploads_fichas_cortadas/2199/21.jpg">
+            <div class="col-md-6 d-sx-none">
+                <img style="max-width: 100%;width: 100%;height: auto;" src="{{foto}}">
                 <div class="text-left text-secondary h6">
-                    <p class="h4 text-dark font-weight-bold text-left"> segundo mike 983150754</p>
+                    <p class="h4 text-dark font-weight-bold text-left"> {{titulo}}</p>
                     <div class="col-lg-12 mt-0 text-left text-secondary h6">
-                        <span>Lima Metropolitana</span>
+                        <!--<span>Lima Metropolitana</span>
                         <span> - </span>
                         <span>Cercado de Lima</span>
                         <span></span><span></span>
                         <br>
                         <span>segundo mike </span>
-                        <span> | 19 años</span>
+                        <span> | 19 años</span>-->
+
+                        <div class="producto w-100"
+                            id="featured_SU15X12">
+                            <span class="dias" [innerHtml]="bodyProductSeleccionado.diasActivo">
+                            </span>
+                            <span class="precio_tachado"></span>
+                            <span class="precio">{{bodyProductSeleccionado.precio}}</span>
+                            <span class="precio_unitario">{{bodyProductSeleccionado.precioUnitario}}</span>
+                            <span class="seleccionar" style="height: 25px;"></span>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -38,7 +48,7 @@
                             </div> -->
                             <div class="form-group">
                                 <label>Monto del pago</label>
-                                <h2>S/.{{montoPagar}}</h2>
+                                <h2>{{montoPagar}}</h2>
                             </div>
                             <div class="form-group">
                                 <label for="elemento-tarjeta" class="control-label">Número de Tarjeta</label>
@@ -96,7 +106,7 @@
                             <div>
                                 <button id="payment-button" type="submit" class="btn btn-lg btn-success btn-block">
                                     <i class="fa fa-lock fa-lg"></i>&nbsp;
-                                    <span id="payment-button-amount">Pay $100.00</span>
+                                    <span id="payment-button-amount">Pay {{montoPagar}}</span>
                                     <span id="payment-button-sending" style="display:none;">Sending…</span>
                                 </button>
                             </div>

@@ -11,9 +11,14 @@ declare var Stripe: any;
     styleUrls: ['./pasarela-pago.component.css']
 })
 export class ModalPasarelaPagoComponent {
+    foto: string;
     montoPagar: number;
     descripcionCargo: string;
+    titulo: string;
+    idProducto: number;
+    idAnuncio: number;
     mostrarError: boolean;
+    bodyProductSeleccionado;
     submitted = false;
     public formPago = null;
 
@@ -24,26 +29,31 @@ export class ModalPasarelaPagoComponent {
     txt_emailCtrl: FormControl;
     //Registro de Expresiones
     RegEx_mailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-    
+
     constructor(
         private pasaPagoService: PasarelaPagoService) {
-         }
+    }
 
     ngOnInit() {
         // Llave publica Stripe
         const stripe = Stripe(environment.stripeKey);
-        
+
         this.txt_emailCtrl = new FormControl('', [
             Validators.required,
             this.customPatternValid({ pattern: this.RegEx_mailPattern, msg: 'Formato no correcto' })
         ]);
-        
+
         this.formPago = new FormGroup({
             txt_email: this.txt_emailCtrl
         });
         this.mostrarError = false;
+        this.foto = this["data"]["foto"];
         this.montoPagar = this["data"]["montoPagar"];
         this.descripcionCargo = this["data"]["descripcionCargo"];
+        this.bodyProductSeleccionado = JSON.parse(this["data"]["bodyProductSeleccionado"]);
+        this.titulo = this["data"]["titulo"];
+        this.idProducto = this["data"]["idProducto"];
+        this.idAnuncio = this["data"]["idAnuncio"];
 
         // Crea element parte de la tarjeta que busca actualizaciones y muestra mensajes de error
         const elementos = stripe.elements();
@@ -107,7 +117,7 @@ export class ModalPasarelaPagoComponent {
 
         // Escucha el envio y procesa el formulario con Stripe,
         const formPago = document.getElementById('form_pago');
-        formPago.addEventListener('submit', event => {            
+        formPago.addEventListener('submit', event => {
             event.preventDefault();
 
             this.submitted = true;
@@ -121,23 +131,23 @@ export class ModalPasarelaPagoComponent {
                     contenedorError.textContent = result.error.message;
                     this.mostrarError = true;
                 } else {
-                    if (this.formPago.invalid) 
-                        return;                    
+                    if (this.formPago.invalid)
+                        return;
 
                     this.mostrarError = false;
                     // Envia el token de identificacion para adjuntar la fuente de pago al cliente
                     let infoCargo = {
                         stripeToken: result.token.id,
-                        correo: formPago["correo"].value,                        
-                        nombreCompleto: '',                        
+                        correo: formPago["correo"].value,
+                        nombreCompleto: '',
                         telefonoCelular: '',
                         montoPagar: this.montoPagar,
                         descripcionCargo: this.descripcionCargo,
-                        idAnuncio: 1167,//cambiar el 1 por codigo de anucio real
-                        idProducto: 1
+                        idAnuncio: this.idAnuncio,//cambiar el 1 por codigo de anucio real
+                        idProducto: this.idProducto
                     }
                     this.pasaPagoService.CrearCargo(infoCargo).subscribe(
-                        (res) => {                            
+                        (res) => {
                             tarjeta.clear();
                             expiracionTarjeta.clear();
                             cvcTarjeta.clear();

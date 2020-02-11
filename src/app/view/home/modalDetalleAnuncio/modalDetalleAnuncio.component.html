@@ -187,7 +187,8 @@
                                     <span class="float-left">Viajes</span>
                                     <span class="float-right">{{detalleDelAnuncio.dbl_costo_x_viaje}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.txt_descripcion_forma_pago">
+                                <div class="clearfix text-secondary h6"
+                                    *ngIf="detalleDelAnuncio.txt_descripcion_forma_pago">
                                     <span class="float-left w-100">Forma de Pago</span>
                                     <div class="col-12 mt-2 p-0">
                                         <a *ngFor="let item of detalleDelAnuncio.txt_descripcion_forma_pago.split(';'); let i = index"
@@ -381,12 +382,12 @@
                         <div class="card">
                             <div class="card-body bg-white">
                                 <p class="h6 text-dark font-weight-bold text-left">
-                                    Haz más visible tu anuncio
+                                    Haz m&aacute;s visible tu anuncio
                                 </p>
                                 <div class="row">
                                     <div class="col-12 mb-2">
                                         <button type="button" class="col-6 btn btn-danger font-weight-bold">Subir
-                                            automático</button>
+                                            autom&aacute;tico</button>
                                         <button type="button" class="col-5 offset-1 btn btn-danger font-weight-bold">Top
                                             Anuncios</button>
                                     </div>
@@ -447,12 +448,13 @@
                         <div class="card row">
                             <div class="card-body bg-white">
                                 <p class="h6 text-dark font-weight-bold text-left">
-                                    Haz más visible tu anuncio
+                                    Haz m&aacute;s visible tu anuncio
                                 </p>
                                 <div class="row">
                                     <div class="col-12 mb-2">
-                                        <a target="_blank" [routerLink]="['/productos/subir-automatico']" type="button" class="col-6 btn btn-danger font-weight-bold">Subir
-                                            automático</a>
+                                        <a target="_blank" [routerLink]="['/productos/subir-automatico']"
+                                            type="button" class="col-6 btn btn-danger font-weight-bold">Subir
+                                            autom&aacute;tico</a>
                                         <button type="button" class="col-5 offset-1 btn btn-danger font-weight-bold">Top
                                             Anuncios</button>
                                     </div>

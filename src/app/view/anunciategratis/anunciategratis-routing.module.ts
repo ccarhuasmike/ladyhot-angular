@@ -10,6 +10,7 @@ import { IndexComponent } from './index/indexcomponent';
 import { DatosContactoComponent } from "./datoscontacto/datoscontactos.component"
 import { DatosGeneralesComponent } from "./datosgenerales/datosgenerales.component"
 import { AparienciaComponent } from "./apariencia/apariencia.component"
+import { TarifasComponent } from "./tarifa/tarifas.component"
 import { ServiciosComponent } from "./servicios/servicios.component"
 import { GaleriaComponent } from "./galeria/galeria.component"
 const routes: Routes = [
@@ -33,6 +34,10 @@ const routes: Routes = [
             {
                 path: "apariencia",
                 component: AparienciaComponent
+            },
+            {
+                path: "tarifa",
+                component: TarifasComponent
             },          
             {
                 path: "servicios",

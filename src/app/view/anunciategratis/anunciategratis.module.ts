@@ -10,6 +10,7 @@ import { DatosGeneralesComponent } from "./datosgenerales/datosgenerales.compone
 import { AparienciaComponent } from "./apariencia/apariencia.component"
 import { ServiciosComponent } from "./servicios/servicios.component"
 import { GaleriaComponent } from "./galeria/galeria.component"
+import { TarifasComponent } from "./tarifa/tarifas.component"
  import { SharedCompoentModule } from '../../view/shared/sharedcomponent.module';
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import { GaleriaComponent } from "./galeria/galeria.component"
         DatosContactoComponent,
         DatosGeneralesComponent,
         AparienciaComponent,       
-        ServiciosComponent,        
+        ServiciosComponent,     
+        TarifasComponent,   
         GaleriaComponent,      
         //HeaderShared  
         //OnlyNumber

@@ -4,10 +4,16 @@ import { Component, OnInit,OnDestroy, ViewEncapsulation } from '@angular/core';
     templateUrl: "./index.component.html",
     styleUrls: ['./index.component.css'],
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent implements OnInit, OnDestroy {
+    ngOnDestroy(): void {        
+        localStorage.clear();
+    }
     constructor(
     ) { }
     ngOnInit() {
     }
+
+
+
     
 }

@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class GaleriaComponent implements OnInit {
     public ListGaleria: Tbl_galeria_anuncio[] = [];
     public ListGaleriaPortada: Tbl_galeria_anuncio[] = [];
+    DataJsonAnuncio: any;
     constructor(
         private anuncioService: AnuncioService,
         private router: Router,
@@ -26,8 +27,9 @@ export class GaleriaComponent implements OnInit {
         this.anuncioService.cuartopaso(true);
         this.anuncioService.quintopaso(true);
         this.anuncioService.sextopaso(true);
+        this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         let objeto: any = {};
-        objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
+        objeto.id_anuncio = this.DataJsonAnuncio.id;
         this.anuncioService.GetGaleriaXIdAnuncio(objeto).subscribe(
             (res) => {
                 if (res.Status == "OK") {
@@ -125,7 +127,7 @@ export class GaleriaComponent implements OnInit {
                                 let objeto: any = {};
                                 objeto.tx_ruta_file = reader.result;
                                 objeto.IdTipoPresentacion = IdTipoPresentacion;
-                                objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
+                                objeto.id_anuncio = this.DataJsonAnuncio.id;
                                 objeto.tx_ruta_file = objeto.tx_ruta_file.replace(/data\:image\/(jpeg|jpg|png)\;base64\,/gi, '');
                                 objeto.tx_extension_archivo = file.name.split(".")[1];
                                 objeto.tx_filename = file.name.split(".")[0];
@@ -145,7 +147,7 @@ export class GaleriaComponent implements OnInit {
                                 let objeto: any = {};
                                 objeto.tx_ruta_file = reader.result;
                                 objeto.IdTipoPresentacion = IdTipoPresentacion;
-                                objeto.id_anuncio = parseInt(this.route.params["value"]["id"]);
+                                objeto.id_anuncio = this.DataJsonAnuncio.id;
                                 objeto.tx_ruta_file = objeto.tx_ruta_file.replace(/data\:image\/(jpeg|jpg|png)\;base64\,/gi, '');
                                 objeto.tx_extension_archivo = file.name.split(".")[1];
                                 objeto.tx_filename = file.name.split(".")[0];

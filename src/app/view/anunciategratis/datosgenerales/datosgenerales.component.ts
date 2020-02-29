@@ -34,7 +34,8 @@ export class DatosGeneralesComponent implements OnInit {
 
     ) { }
 
-    ngOnInit() {        
+    ngOnInit() {
+        debugger;
         this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
         this.anuncioService.segundopaso(true);
@@ -77,6 +78,7 @@ export class DatosGeneralesComponent implements OnInit {
         this.isSubmittedDatosGenerales = true;
         if (!this.fromDatosGenerales.valid)
             return;
+            debugger;
         this.DataJsonAnuncio.int_edad = parseInt(this.fromDatosGenerales.value.int_edad);
         this.DataJsonAnuncio.int_pais_origen = parseInt(this.fromDatosGenerales.value.int_pais_origen);
         this.DataJsonAnuncio.int_estudios = parseInt(this.fromDatosGenerales.value.int_estudios);

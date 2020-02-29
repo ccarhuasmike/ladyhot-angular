@@ -9,7 +9,7 @@ export class IndexComponent implements OnInit, OnDestroy {
     constructor(
     ) { }
     ngOnDestroy(): void {       
-        debugger; 
+        
         localStorage.clear();
     }
     ngOnInit() {

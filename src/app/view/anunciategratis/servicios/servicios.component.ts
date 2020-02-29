@@ -203,7 +203,7 @@ export class ServiciosComponent implements OnInit {
     }
 
     btnAtras(form: any) {
-        this.router.navigate(['panelcontrol/nuevoanuncio/tarifa']);
+        this.router.navigate(['anunciategratis/tarifa']);
     }
 
 }

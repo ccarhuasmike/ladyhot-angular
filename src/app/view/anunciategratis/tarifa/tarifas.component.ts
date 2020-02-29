@@ -156,7 +156,7 @@ export class TarifasComponent implements OnInit {
                 if (res.Status == "OK") {
                     let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
-                    this.router.navigate(['panelcontrol/nuevoanuncio/servicios']);
+                    this.router.navigate(['anunciategratis/servicios']);
                 }
             }
         );
@@ -184,7 +184,7 @@ export class TarifasComponent implements OnInit {
         this.fromTarifa.reset();
     }
 
-    btnAtras(form: any) {
-        this.router.navigate(['panelcontrol/nuevoanuncio/apariencia']);
+    btnAtras(form: any) {        
+        this.router.navigate(['anunciategratis/apariencia']);
     }
 }

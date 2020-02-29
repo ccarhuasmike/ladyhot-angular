@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-servicios',
     templateUrl: './servicios.component.html',
-    styleUrls: ['../css/global.component.css'],
+    //styleUrls: ['../css/global.component.css'],
 })
 export class ServiciosComponent implements OnInit {
 

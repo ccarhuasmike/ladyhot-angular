@@ -51,4 +51,49 @@ label{
     min-width: 180px;
 }
 
+/*Estilo para el productos seleccionado*/
+.destacados .producto {
+	font-size: 18px;
+	width: calc(24% - 1px);
+	max-width: 220px;
+	vertical-align: bottom;
+}
 
+.producto_suelto,
+.producto
+{
+	display: inline-block;
+	text-align: center;
+	vertical-align: top;
+	background-color: white;
+	color: #0072C6;
+	border: 1px solid #0072C6;
+	border-radius: 5px;
+	font-size: 17px;
+	/*height: 60px;*/
+	/*width: 130px;
+	margin: 0 25px;
+	margin-top: 30px;*/
+	width: calc(17% - 2px);
+	margin: 2% 2%;
+
+	cursor: unset;
+
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+
+}
+.producto_suelto {
+	cursor: initial;
+	border: 2px solid #0072C6;
+	margin-top: 55px;
+}
+
+.producto_suelto .dias,
+.producto .dias
+{
+	display: block;
+	padding-top: 10px;
+	margin-bottom: 5px;
+}

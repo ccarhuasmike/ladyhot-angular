@@ -47,6 +47,17 @@
       <div class="col-sm-5">
         <textarea class="form-control form-control-sm" [formControl]="txt_descripcion_generalesCtrl" required id="txt_presentacion"
           rows="12" placeholder="Explica un poco más sobre ti, cómo eres, que te gusta, tus aficiones y habilidades...."></textarea>
+          <div *ngIf="txt_descripcion_generalesCtrl.invalid && (txt_descripcion_generalesCtrl.dirty || isSubmitted)" class="text-danger">
+            <div *ngIf="txt_descripcion_generalesCtrl.errors.required">
+              Se requiere Presentación.
+            </div>
+            <div *ngIf="txt_descripcion_generalesCtrl.errors.minlength">
+              El nombre debe tener al menos 50 caracteres.
+            </div>
+            <div *ngIf="txt_descripcion_generalesCtrl.errors.maxlength">
+              El nombre no debe exceder los 2000 caracteres.
+            </div>
+          </div>
       </div>
       <div class="col-sm-4">
         <p class="form-control-static">Explica un poco más sobre ti. Aquí puedes presentarte a los

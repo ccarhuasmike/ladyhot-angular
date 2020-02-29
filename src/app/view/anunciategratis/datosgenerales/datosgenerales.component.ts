@@ -49,7 +49,7 @@ export class DatosGeneralesComponent implements OnInit {
         this.edadCtrl = new FormControl('', [Validators.required]);
         this.paisCtrl = new FormControl('', [Validators.required]);
         this.estudiosCtrl = new FormControl('', [Validators.required]);
-        this.txt_descripcion_generalesCtrl = new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(500)]);
+        this.txt_descripcion_generalesCtrl = new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(2000)]);
 
 
         this.fromDatosGenerales = new FormGroup({

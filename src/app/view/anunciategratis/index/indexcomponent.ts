@@ -11,9 +11,6 @@ export class IndexComponent implements OnInit, OnDestroy {
     constructor(
     ) { }
     ngOnInit() {
-    }
-
-
-
-    
+        debugger;
+    }    
 }

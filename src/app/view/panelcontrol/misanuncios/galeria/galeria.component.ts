@@ -110,7 +110,6 @@ export class GaleriaComponent implements OnInit {
                 let file = fileInput.target.files[0];
                 reader.onloadend = (e) => {
                     //Actualizamos el objeto del list
-
                     if (IdTipoPresentacion == 1) {
                         this.ListGaleriaPortada.map((todo, i) => {
                             

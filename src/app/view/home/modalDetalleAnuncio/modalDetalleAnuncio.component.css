@@ -30,3 +30,12 @@
       height: auto !important;
     }
 }  
+
+.card-body-presentacion p {
+
+  font-size: 22px !important;  
+  font-family: Arial;
+}
+.card-body-title h1{
+  font-size: 24px !important;  
+}

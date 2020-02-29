@@ -16,9 +16,9 @@
                     </div>
                     <div class="col-12">
                         <div class="card w-100">
-                            <div class="card-body bg-white">
-                                <p class="h4 text-dark font-weight-bold text-left">
-                                    {{detalleDelAnuncio.txt_nombre_ficha }} {{detalleDelAnuncio.txt_telefono_1 }}</p>
+                            <div class="card-body bg-white card-body-title">
+                                <h1 class="h4 text-dark font-weight-bold text-left">
+                                    {{detalleDelAnuncio.txt_nombre_ficha }} {{detalleDelAnuncio.txt_telefono_1 }}</h1>
                                 <div class="row">
                                     <div class="col-lg-6 mt-0 text-left text-secondary h6">
                                         <span>Lima Metropolitana</span>
@@ -94,7 +94,7 @@
 
                     <div class="col-12">
                         <div class="card w-100">
-                            <div class="card-body bg-white">
+                            <div class="card-body bg-white card-body-presentacion">
                                 <p class="h5 text-dark text-left"
                                     *ngFor="let item of detalleDelAnuncio.txt_presentacion.split(';'); let i = index">
                                     {{item.trim()}}</p>

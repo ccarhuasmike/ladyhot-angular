@@ -3,7 +3,7 @@ export class BeanCharge {
     correo: string;
     telefonoCelular: string;
     stripeToken: string;
-    montoPagar: number;
+    montoPagar?: number;
     descripcionCargo: string;
     idAnuncio:number;
 }

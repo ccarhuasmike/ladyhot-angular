@@ -6,6 +6,7 @@ import { PasarelaPagoService } from 'src/app/shared/services/pasarela-pago/pasar
 import { environment } from 'src/environments/environment';
 
 declare var $: any;
+declare var window: any;
 
 @Component({
   selector: 'app-subir-automatico',
@@ -22,6 +23,8 @@ export class SubirAutomaticoComponent implements OnInit {
   listProductoPlanSubidas: any;
   muestraSaltoLinea: boolean = false;
   htmlMasProductos: String = "";
+  mensajePago:String;
+  nombre:String;
 
   constructor(
     private productoService: ProductoService,
@@ -50,108 +53,27 @@ export class SubirAutomaticoComponent implements OnInit {
         }
       }
     );
-
-    $(document).ready(function () {
-
-      var animar_formas_pago = true;
-      var $vermas = $('#productos .destacados .vermas');
-
-      $('#productos').on('click', '.destacados .vermas', function () {
-        $(this).toggleClass('menos');
-        $('.destacados + div').toggleClass('vertodo');
-      });
-
-      /* PRODUCTOS ***************************************************************************************************************/
-      $('#productos').on('click', '.producto', function () {
-        var $this = $(this);
-        if ($this.hasClass('producto_selected')) return;
-
-        $('.producto_selected').removeClass('producto_selected');
-        $this.addClass('producto_selected'); //Marcar como seleccionado
-
-        //Desplegar "ver mas productos" si fuera necesario
-        if (!$this.is(':visible') && $vermas.length) $vermas.click();
-
-        //Mostrar formularios pago
-        if (animar_formas_pago) {
-          $('#formas_pago').slideDown(300, function () {
-            $('html, body').animate({
-              scrollTop: $(".paso").eq(1).offset().top - $('#cabecera').outerHeight(true)
-            }, 1000);
-          });
-        }
-        else $('#formas_pago').css('display', 'block');
-
-        $('#precio').text($('.precio', this).text()); //Precio total
-
-        $('#coste_total').css('display', 'block');
-        //$('.elegir_forma_pago').css('display', $(' > *', $pagar).length > 1 ? 'block' : 'none');{}
-
-        $this.trigger('selected');
-      });
-
-      function agregarSaltoLineaProducto() {
-        var timeoutProducto = setTimeout(() => {
-          if ($(".masProductos").find(".producto").length > 0) {
-            let indexItem: any = 0;
-            let divisiblePorTres;
-            let vecesAgrupadasEnTres = 1;
-            let CANTIDAD_PRODUCTOS_POR_FILA = 3;
-            var productos = $(".masProductos").find(".producto");
-            for (var i = 0; i < productos.length; i++) {
-              indexItem = i + 1;
-              divisiblePorTres = indexItem % CANTIDAD_PRODUCTOS_POR_FILA;
-              if ((divisiblePorTres === 0 ? true : false) && vecesAgrupadasEnTres < CANTIDAD_PRODUCTOS_POR_FILA) {
-                $(productos[i])[0].outerHTML = $(productos[i])[0].outerHTML + "<br/>";
-                vecesAgrupadasEnTres = vecesAgrupadasEnTres + 1;
-              }
-            }
-            clearTimeout(timeoutProducto);
-          } else {
-            clearTimeout(timeoutProducto);
-            agregarSaltoLineaProducto();
-          }
-        }, 100);
+    var cargaEventos = setInterval(function () {
+      if ($(".destacados .producto").length > 0 && $(".masProductos .producto").length > 0) {
+        clearInterval(cargaEventos);
+        loadScripts();
       }
+    }, 200);
 
-      agregarSaltoLineaProducto();
-    });
-
-  }
-
-  /*poblarMasProducto() {
-    let indexItem: any = 0;
-    let divisiblePorTres;
-    let vecesAgrupadasEnTres = 1;
-    let monto;
-    let diasActivo;
-    let diasSubidaTop;
-    let precioPorDia;
-    for (var i = 0; i < this.listProductoSubirAutomatico.length; i++) {
-      indexItem = i + 1;
-      divisiblePorTres = indexItem % this.CANTIDAD_PRODUCTOS_POR_FILA;
-      monto = this.listProductoSubirAutomatico[i]['mt_monto'];
-      diasActivo = this.listProductoSubirAutomatico[i]['numero_dias_activo'];
-      diasSubidaTop = this.listProductoSubirAutomatico[i]['numero_subida_top'];
-      precioPorDia = (monto / diasActivo);
-      this.htmlMasProductos += '<div class="producto" id="SU7X12" codigo-producto="' + this.listProductoSubirAutomatico[i]['id_producto'] + '">';
-      this.htmlMasProductos += '<span class="dias"><b>';
-      this.htmlMasProductos += this.listProductoSubirAutomatico[i]['numero_dias_activo'];
-      this.htmlMasProductos += '</b> d&iacute;as<br /><b>';
-      this.htmlMasProductos += this.listProductoSubirAutomatico[i]['numero_subida_top'];
-      this.htmlMasProductos += '</b> subidas/d&iacute;a</span><span class="precio_tachado"></span><span class="precio">'
-      this.htmlMasProductos += 'S/.';
-      this.htmlMasProductos += this.listProductoSubirAutomatico[i]['mt_monto'];
-      this.htmlMasProductos += '</span><span class="precio_unitario">';
-      this.htmlMasProductos += 'S/. ' + parseFloat((precioPorDia / diasSubidaTop).toString()).toFixed(2);
-      this.htmlMasProductos += ' / subida</span><span class="seleccionar">Contratar</span><input type="hidden" name="ID_PRODUCTO" value="831e8dee866e1c20680a396fec22db1c"/>';
-      this.htmlMasProductos += '</div>';
-      if ((divisiblePorTres === 0 ? true : false) && vecesAgrupadasEnTres < this.CANTIDAD_PRODUCTOS_POR_FILA) {
-        this.htmlMasProductos += '<br/>';
-        vecesAgrupadasEnTres = vecesAgrupadasEnTres + 1;
+    function loadScripts() {
+      const dynamicScripts = [
+        '../../../assets/js/subir-automatico.js'
+      ];
+      for (let i = 0; i < dynamicScripts.length; i++) {
+        const node = document.createElement('script');
+        node.src = dynamicScripts[i];
+        node.type = 'text/javascript';
+        node.async = false;
+        node.charset = 'utf-8';
+        document.getElementsByTagName('head')[0].appendChild(node);
       }
     }
-  }*/
+  }
 
   modalPagar() {
     let dataSubirAutomatico = JSON.parse(sessionStorage.getItem("dataSubirAutomatico"));
@@ -161,7 +83,11 @@ export class SubirAutomaticoComponent implements OnInit {
       precio: $(".producto.producto_selected").find(".precio").html(),
       precioUnitario: $(".producto.producto_selected").find(".precio_unitario").html(),
       idProducto: $(".producto.producto_selected").data("codigo-producto"),
-      idAnuncio: dataSubirAutomatico.idAnuncio
+      idAnuncio: dataSubirAutomatico.idAnuncio,
+      primerDiaSubida: $("#fecha_inicial").val(),
+      ultimoDiaSubida: $("#fecha_final").val(),
+      primerHoraSubida: $("#hora_inicio").val(),
+      ultimoHoraSubida: $("#hora_fin").val()
     };
     this.modalRef = this.modalService.show(ModalPasarelaPagoComponent, {
       class: 'modal-md',
@@ -175,6 +101,12 @@ export class SubirAutomaticoComponent implements OnInit {
           descripcionCargo: 'Cobro para publicitarse en el LadyHot'
         }
       }
+    });
+
+    this.modalRef.content.onClose.subscribe(result => {
+      this.mensajePago = result;
+      this.nombre = dataSubirAutomatico.titulo;
+      console.log('results', result);
     });
   }
 

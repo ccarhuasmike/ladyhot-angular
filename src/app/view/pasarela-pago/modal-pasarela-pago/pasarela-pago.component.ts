@@ -2,8 +2,11 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 import { PasarelaPagoService } from 'src/app/shared/services/pasarela-pago/pasarela-pago';
 import { environment } from 'src/environments/environment';
+import { Subject } from 'rxjs';
+import { BsModalRef } from 'ngx-bootstrap';
 
 declare var Stripe: any;
+declare var $: any;
 
 @Component({
     selector: 'app-modal-pasarela-pago',
@@ -22,6 +25,8 @@ export class ModalPasarelaPagoComponent {
     submitted = false;
     public formPago = null;
 
+    public onClose: Subject<String>;
+
     //Controles Datos de Contacto
     //txt_numero_tarjetaCtrl: FormControl;
     //txt_expiracionCtrl: FormControl;
@@ -31,10 +36,12 @@ export class ModalPasarelaPagoComponent {
     RegEx_mailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
     constructor(
-        private pasaPagoService: PasarelaPagoService) {
+        private pasaPagoService: PasarelaPagoService,
+        private _bsModalRef: BsModalRef) {
     }
 
     ngOnInit() {
+        this.onClose = new Subject();
         // Llave publica Stripe
         const stripe = Stripe(environment.stripeKey);
 
@@ -119,11 +126,13 @@ export class ModalPasarelaPagoComponent {
         const formPago = document.getElementById('form_pago');
         formPago.addEventListener('submit', event => {
             event.preventDefault();
-
             this.submitted = true;
             /*if (this.formPago.invalid) {
                 return;
             }*/
+
+            $("#payment-button-sending").show();
+            $("#payment-button-amount").hide();
 
             stripe.createToken(tarjeta, expiracionTarjeta, cvcTarjeta).then(result => {
                 if (result.error) {
@@ -141,17 +150,24 @@ export class ModalPasarelaPagoComponent {
                         correo: formPago["correo"].value,
                         nombreCompleto: '',
                         telefonoCelular: '',
-                        montoPagar: this.montoPagar,
                         descripcionCargo: this.descripcionCargo,
-                        idAnuncio: this.idAnuncio,//cambiar el 1 por codigo de anucio real
-                        idProducto: this.idProducto
+                        idAnuncio: this.bodyProductSeleccionado.idAnuncio,//cambiar el 1 por codigo de anucio real
+                        idProducto: this.bodyProductSeleccionado.idProducto,
+                        primerDiaSubida: this.bodyProductSeleccionado.primerDiaSubida,
+                        ultimoDiaSubida: this.bodyProductSeleccionado.ultimoDiaSubida,
+                        primerHoraSubida: this.bodyProductSeleccionado.primerHoraSubida,
+                        ultimoHoraSubida: this.bodyProductSeleccionado.ultimoHoraSubida
                     }
                     this.pasaPagoService.CrearCargo(infoCargo).subscribe(
                         (res) => {
+                            $("#payment-button-sending").hide();
+                            $("#payment-button-amount").show();
+
                             tarjeta.clear();
                             expiracionTarjeta.clear();
                             cvcTarjeta.clear();
                             this.onReset();
+                            this.onConfirm(JSON.parse(res["Data"])["mensajePago"]);
                         }
                     );
                 }
@@ -184,5 +200,10 @@ export class ModalPasarelaPagoComponent {
                 return null;
             }
         };
+    }
+
+    public onConfirm(mensaje: String): void {
+        this.onClose.next(mensaje);
+        this._bsModalRef.hide();
     }
 }

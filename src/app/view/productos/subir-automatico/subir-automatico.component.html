@@ -8,7 +8,7 @@
     <div class="destacados">
       <div
         [ngClass]="prodPlanSubida.posicion_plan_subida != 2 ? 'producto' : 'producto producto_recomendado seleccionado'"
-        id="featured_SU15X12" *ngFor="let prodPlanSubida of listProductoPlanSubidas"
+        id="featured_{{prodPlanSubida.id_producto}}" *ngFor="let prodPlanSubida of listProductoPlanSubidas"
         [attr.data-codigo-producto]="prodPlanSubida.id_producto">
         <span class="recomendacion" *ngIf="prodPlanSubida.posicion_plan_subida == 2">Recomendado para tu ciudad</span>
         <span class="dias">
@@ -30,7 +30,8 @@
     </div>
 
     <div class="masProductos">
-      <div class="producto" id="SU7X12" *ngFor="let prodPlanSubida of listProductoSubirAutomatico"
+      <div class="producto" id="prod{{prodPlanSubida.id_producto}}"
+        *ngFor="let prodPlanSubida of listProductoSubirAutomatico"
         [attr.data-codigo-producto]="prodPlanSubida.id_producto">
         <span class="dias"><b>
             {{prodPlanSubida.numero_dias_activo}}
@@ -53,24 +54,25 @@
     <div class="horas_visa primer_dia">
       <span class="horas_titulo">Primer día</span>
       <input type="text" id="fecha_inicial_text" readonly />
-      <input type="hidden" id="fecha_inicial" value="2020/01/18 20:13:39" autocomplete="off" />
-      <input type="hidden" id="fecha_hora" value="2020/01/18 20:13:39" autocomplete="off" />
+      <input type="hidden" id="fecha_inicial" value="" autocomplete="off" />
+      <input type="hidden" id="fecha_hora" value="" autocomplete="off" />
       <div class="error" id="error_SUBIR_AUTOMATICO_FECHA_INI"><i class="material-icons">&#xE000;</i><span></span></div>
     </div>
     <div class="horas_visa ultimo_dia">
       <span class="horas_titulo">Último día</span>
       <input type="text" id="fecha_final_text" readonly />
+      <input id="fecha_final" type="hidden" value="">
     </div>
     <div class="horas_visa">
       <span for="24h" class="horas_titulo">Las 24h del día</span><label><input type="checkbox" id="24h"
-          autocomplete="off" checked /><span class="check material-icons-before"></span></label>
+          autocomplete="off" /><span class="check material-icons-before"></span></label>
     </div>
     <div class="horas_visa">
       <span class="horas_titulo">Primera subida</span>
       <span class="col">
         <select id="hora_inicio" autocomplete="off">
           <option></option>
-          <option value="0:00" selected>12:00 am</option>
+          <option value="0:00">12:00 am</option>
           <option value="0:30">12:30 am</option>
           <option value="1:00">01:00 am</option>
           <option value="1:30">01:30 am</option>
@@ -173,7 +175,7 @@
           <option value="21:30">09:30 pm</option>
           <option value="22:00">10:00 pm</option>
           <option value="22:30">10:30 pm</option>
-          <option value="23:00" selected>11:00 pm</option>
+          <option value="23:00">11:00 pm</option>
           <option value="23:30">11:30 pm</option>
         </select>
       </span>
@@ -185,7 +187,7 @@
     <p class="paso"><span>Paso 3:&nbsp;&nbsp;</span>Realizar pago.</p>
     <p id="coste_total" class="coste">Precio final:&nbsp;&nbsp;<span class="precio"><span id="precio"></span> <span
           id="precio_descuento"></span></span>
-      <table id="selector_formas_pago" cellpadding="0" cellspacing="0">
+      <!--<table id="selector_formas_pago" cellpadding="0" cellspacing="0">
         <tr class="forma_pago forma_pago_transferencia">
           <td><input type="radio" name="FORMA_PAGO" value="zhefitaelqibod27fm5svbhjo53bqfdc" autocomplete="off" /></td>
           <td><span>BCP Agentes</span></td>
@@ -220,7 +222,7 @@
           <div class="error" id="error_acepto_terminos_condiciones"><i class="material-icons">error</i><span></span>
           </div>
         </div>
-      </div>
+      </div>-->
       <div id='pagar'>
         <div class="forma_pago">
           <form action="/subir-ok/wk5mn" method="post" autocomplete="off">
@@ -235,6 +237,16 @@
             <!--class="submit"-->
             <button type="button" (click)="modalPagar()" class="btn btn-danger">Pagar</button>
           </form>
+        </div>
+        <div *ngIf="mensajePago">
+          <br />
+          <br />
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Hola {{nombre}}!</strong> {{mensajePago}}.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
       </div>
   </div>

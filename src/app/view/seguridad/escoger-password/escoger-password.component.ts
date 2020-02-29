@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-escoger-password',
     templateUrl: "./escoger-password.component.html",
-    styleUrls: ['../css/global.component.css']
+    //styleUrls: ['../css/global.component.css']
 })
 
 export class EscogerPasswordComponent implements OnInit {

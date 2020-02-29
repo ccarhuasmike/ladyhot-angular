@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-restablecer-password',
     templateUrl: "./restablecer-password.component.html",
-    styleUrls: ['../css/global.component.css']
+    //styleUrls: ['../css/global.component.css']
 })
 export class RestablecerPasswordComponent implements OnInit {
     formGenerarPassword: FormGroup;

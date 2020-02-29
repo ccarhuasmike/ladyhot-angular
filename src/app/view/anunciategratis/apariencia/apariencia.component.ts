@@ -6,7 +6,7 @@ import { Apariencia } from "../../../models/modelanuncio";
 @Component({
     selector: 'app-apariencia',
     templateUrl: './apariencia.component.html',
-    styleUrls: ['../css/global.component.css'],
+    
 })
 export class AparienciaComponent implements OnInit {
 

@@ -11,7 +11,7 @@ import { MessageService } from "../../../throwError/message.service";
     selector: 'app-datoscontactos-gratis',
     templateUrl: './datoscontactos.component.html',
     //styleUrls: ['./datoscontactos.component.css']
-    styleUrls: ['../css/global.component.css'],
+    // styleUrls: ['../css/global.component.css'],
 })
 export class DatosContactoComponent implements OnInit {
 

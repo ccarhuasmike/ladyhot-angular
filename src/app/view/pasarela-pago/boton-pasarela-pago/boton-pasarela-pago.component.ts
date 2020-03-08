@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class BotonPasarelaPagoComponent {
     modalRef: BsModalRef;
     montoPagar: number;
-
+    Environment:any =environment;
     constructor(
         private modalService: BsModalService,
         private pasaPagoService: PasarelaPagoService) {
@@ -37,11 +37,11 @@ export class BotonPasarelaPagoComponent {
             this.pasaPagoService.obtenerLlavePublica().subscribe(
                 (res) => {
                     sessionStorage.setItem("LLAVE_PUBLICA", res.DataJson);
-                    environment.stripeKey = res.DataJson;
+                    this.Environment.stripeKey = res.DataJson;
                 }
             );
         } else {
-            environment.stripeKey = sessionStorage.getItem("LLAVE_PUBLICA");
+            this.Environment.stripeKey = sessionStorage.getItem("LLAVE_PUBLICA");
         }
     }
 }

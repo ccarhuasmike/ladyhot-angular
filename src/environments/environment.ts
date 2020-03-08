@@ -6,6 +6,10 @@ export const environment = {
   production: false,
   stripeKey: ''//Llave publica
 };
+// export class environment {
+//   public static production: boolean = false;
+//   public static stripeKey: String = '';
+// }
 
 /*
  * For easier debugging in development mode, you can import the following file

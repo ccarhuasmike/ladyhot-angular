@@ -44,7 +44,7 @@ export class DatosContactoComponent implements OnInit {
                 this.listParameter = JSON.parse(res.DataJson);
                 localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
                 this._messageService = this.messageService;
-                
+
             }
         );
         this.anuncioService.segundopaso(false);
@@ -66,6 +66,7 @@ export class DatosContactoComponent implements OnInit {
             txt_telefono_1: this.txt_telefono_1Ctrl,
             txt_telefono_2: this.txt_telefono_2Ctrl
         });
+        debugger;
         if (this.DataJsonAnuncio !== null) {
             this.fromContacto.patchValue({
                 txt_nombre_ficha: this.DataJsonAnuncio.txt_nombre_ficha,
@@ -74,7 +75,8 @@ export class DatosContactoComponent implements OnInit {
                 txt_telefono_1: this.DataJsonAnuncio.txt_telefono_1,
                 txt_telefono_2: this.DataJsonAnuncio.txt_telefono_2
             });
-        }
+        } else
+            this.fromContacto.reset();
     }
 
     save() {

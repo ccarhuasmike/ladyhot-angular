@@ -72,54 +72,8 @@
       <span class="col">
         <select id="hora_inicio" autocomplete="off">
           <option></option>
-          <option value="0:00">12:00 am</option>
-          <option value="0:30">12:30 am</option>
-          <option value="1:00">01:00 am</option>
-          <option value="1:30">01:30 am</option>
-          <option value="2:00">02:00 am</option>
-          <option value="2:30">02:30 am</option>
-          <option value="3:00">03:00 am</option>
-          <option value="3:30">03:30 am</option>
-          <option value="4:00">04:00 am</option>
-          <option value="4:30">04:30 am</option>
-          <option value="5:00">05:00 am</option>
-          <option value="5:30">05:30 am</option>
-          <option value="6:00">06:00 am</option>
-          <option value="6:30">06:30 am</option>
-          <option value="7:00">07:00 am</option>
-          <option value="7:30">07:30 am</option>
-          <option value="8:00">08:00 am</option>
-          <option value="8:30">08:30 am</option>
-          <option value="9:00">09:00 am</option>
-          <option value="9:30">09:30 am</option>
-          <option value="10:00">10:00 am</option>
-          <option value="10:30">10:30 am</option>
-          <option value="11:00">11:00 am</option>
-          <option value="11:30">11:30 am</option>
-          <option value="12:00">12:00 pm</option>
-          <option value="12:30">12:30 pm</option>
-          <option value="13:00">01:00 pm</option>
-          <option value="13:30">01:30 pm</option>
-          <option value="14:00">02:00 pm</option>
-          <option value="14:30">02:30 pm</option>
-          <option value="15:00">03:00 pm</option>
-          <option value="15:30">03:30 pm</option>
-          <option value="16:00">04:00 pm</option>
-          <option value="16:30">04:30 pm</option>
-          <option value="17:00">05:00 pm</option>
-          <option value="17:30">05:30 pm</option>
-          <option value="18:00">06:00 pm</option>
-          <option value="18:30">06:30 pm</option>
-          <option value="19:00">07:00 pm</option>
-          <option value="19:30">07:30 pm</option>
-          <option value="20:00">08:00 pm</option>
-          <option value="20:30">08:30 pm</option>
-          <option value="21:00">09:00 pm</option>
-          <option value="21:30">09:30 pm</option>
-          <option value="22:00">10:00 pm</option>
-          <option value="22:30">10:30 pm</option>
-          <option value="23:00">11:00 pm</option>
-          <option value="23:30">11:30 pm</option>
+          <option *ngFor="let horaSubida of listHorariosSubida" value="{{horaSubida.tx_valor}}">
+            {{horaSubida.tx_descripcion}}</option>
         </select>
       </span>
       <div class="error" id="error_SUBIR_AUTOMATICO_INI"><i class="material-icons">&#xE000;</i><span></span></div>
@@ -129,54 +83,8 @@
       <span class="col">
         <select id="hora_fin" autocomplete="off">
           <option></option>
-          <option value="0:00">12:00 am</option>
-          <option value="0:30">12:30 am</option>
-          <option value="1:00">01:00 am</option>
-          <option value="1:30">01:30 am</option>
-          <option value="2:00">02:00 am</option>
-          <option value="2:30">02:30 am</option>
-          <option value="3:00">03:00 am</option>
-          <option value="3:30">03:30 am</option>
-          <option value="4:00">04:00 am</option>
-          <option value="4:30">04:30 am</option>
-          <option value="5:00">05:00 am</option>
-          <option value="5:30">05:30 am</option>
-          <option value="6:00">06:00 am</option>
-          <option value="6:30">06:30 am</option>
-          <option value="7:00">07:00 am</option>
-          <option value="7:30">07:30 am</option>
-          <option value="8:00">08:00 am</option>
-          <option value="8:30">08:30 am</option>
-          <option value="9:00">09:00 am</option>
-          <option value="9:30">09:30 am</option>
-          <option value="10:00">10:00 am</option>
-          <option value="10:30">10:30 am</option>
-          <option value="11:00">11:00 am</option>
-          <option value="11:30">11:30 am</option>
-          <option value="12:00">12:00 pm</option>
-          <option value="12:30">12:30 pm</option>
-          <option value="13:00">01:00 pm</option>
-          <option value="13:30">01:30 pm</option>
-          <option value="14:00">02:00 pm</option>
-          <option value="14:30">02:30 pm</option>
-          <option value="15:00">03:00 pm</option>
-          <option value="15:30">03:30 pm</option>
-          <option value="16:00">04:00 pm</option>
-          <option value="16:30">04:30 pm</option>
-          <option value="17:00">05:00 pm</option>
-          <option value="17:30">05:30 pm</option>
-          <option value="18:00">06:00 pm</option>
-          <option value="18:30">06:30 pm</option>
-          <option value="19:00">07:00 pm</option>
-          <option value="19:30">07:30 pm</option>
-          <option value="20:00">08:00 pm</option>
-          <option value="20:30">08:30 pm</option>
-          <option value="21:00">09:00 pm</option>
-          <option value="21:30">09:30 pm</option>
-          <option value="22:00">10:00 pm</option>
-          <option value="22:30">10:30 pm</option>
-          <option value="23:00">11:00 pm</option>
-          <option value="23:30">11:30 pm</option>
+          <option *ngFor="let horaSubida of listHorariosSubida" value="{{horaSubida.tx_valor}}">
+            {{horaSubida.tx_descripcion}}</option>
         </select>
       </span>
       <div class="error" id="error_SUBIR_AUTOMATICO_FIN"><i class="material-icons">&#xE000;</i><span></span></div>
@@ -225,7 +133,7 @@
       </div>-->
       <div id='pagar'>
         <div class="forma_pago">
-          <form action="/subir-ok/wk5mn" method="post" autocomplete="off">
+          <!--<form action="/subir-ok/wk5mn" method="post" autocomplete="off">
             <input type="hidden" name="ANUNCIO" value="wk5mn" autocomplete="off" />
             <input type="hidden" name="PRODUCTO" value="" autocomplete="off" />
             <input type="hidden" name="DATA" value="" autocomplete="off" />
@@ -233,10 +141,10 @@
               name="SUBIR_AUTOMATICO_FIN" value="23:00" autocomplete="off" /><input type="hidden"
               name="SUBIR_AUTOMATICO_24H" value="Y" autocomplete="off" /><input type="hidden"
               name="SUBIR_AUTOMATICO_FECHA_INI" value="" autocomplete="off" /><input type="hidden"
-              name="SUBIR_AUTOMATICO_DIAS_SEMANA" value="1111111" autocomplete="off" />
-            <!--class="submit"-->
-            <button type="button" (click)="modalPagar()" class="btn btn-danger">Pagar</button>
-          </form>
+              name="SUBIR_AUTOMATICO_DIAS_SEMANA" value="1111111" autocomplete="off" />-->
+          <!--class="submit"-->
+          <button type="button" (click)="modalPagar()" class="btn btn-danger">Pagar</button>
+          <!--</form>-->
         </div>
         <div *ngIf="mensajePago">
           <br />

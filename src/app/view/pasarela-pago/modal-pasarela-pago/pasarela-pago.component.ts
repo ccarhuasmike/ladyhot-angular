@@ -131,18 +131,19 @@ export class ModalPasarelaPagoComponent {
                 return;
             }*/
 
-            $("#payment-button-sending").show();
-            $("#payment-button-amount").hide();
-
             stripe.createToken(tarjeta, expiracionTarjeta, cvcTarjeta).then(result => {
+
                 if (result.error) {
                     const contenedorError = document.getElementById('errores-tarjeta');
                     contenedorError.textContent = result.error.message;
                     this.mostrarError = true;
                 } else {
+
                     if (this.formPago.invalid)
                         return;
 
+                    $("#payment-button-sending").show();
+                    $("#payment-button-amount").hide();
                     this.mostrarError = false;
                     // Envia el token de identificacion para adjuntar la fuente de pago al cliente
                     let infoCargo = {
@@ -153,8 +154,8 @@ export class ModalPasarelaPagoComponent {
                         descripcionCargo: this.descripcionCargo,
                         idAnuncio: this.bodyProductSeleccionado.idAnuncio,//cambiar el 1 por codigo de anucio real
                         idProducto: this.bodyProductSeleccionado.idProducto,
-                        primerDiaSubida: this.bodyProductSeleccionado.primerDiaSubida,
-                        ultimoDiaSubida: this.bodyProductSeleccionado.ultimoDiaSubida,
+                        primerDiaSubida: this.bodyProductSeleccionado.primerDiaSubida == undefined ? null : this.bodyProductSeleccionado.primerDiaSubida,
+                        ultimoDiaSubida: this.bodyProductSeleccionado.ultimoDiaSubida == undefined ? null : this.bodyProductSeleccionado.ultimoDiaSubida,
                         primerHoraSubida: this.bodyProductSeleccionado.primerHoraSubida,
                         ultimoHoraSubida: this.bodyProductSeleccionado.ultimoHoraSubida
                     }

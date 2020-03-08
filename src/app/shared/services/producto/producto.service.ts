@@ -35,4 +35,10 @@ export class ProductoService {
       catchError(this.handleError('getListarProductosSubirAutomatico'))
     );
   }
+
+  cargarHorariosSubida(): Observable<ClientResponse> {
+    return this.httpClient.get<ClientResponse>(this._baseUrl + 'producto/ObtenerHorariosSubida/').pipe(
+      catchError(this.handleError('ObtenerHorariosSubida'))
+    );
+  }
 }

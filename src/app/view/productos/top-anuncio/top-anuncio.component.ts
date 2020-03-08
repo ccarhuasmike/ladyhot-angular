@@ -1,29 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { PasarelaPagoService } from 'src/app/shared/services/pasarela-pago/pasarela-pago';
+import { environment } from 'src/environments/environment';
 import { ProductoService } from 'src/app/shared/services/producto/producto.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalPasarelaPagoComponent } from '../../pasarela-pago/modal-pasarela-pago/pasarela-pago.component';
-import { PasarelaPagoService } from 'src/app/shared/services/pasarela-pago/pasarela-pago';
-import { environment } from 'src/environments/environment';
 
 declare var $: any;
-declare var window: any;
 
 @Component({
-  selector: 'app-subir-automatico',
-  templateUrl: './subir-automatico.component.html',
-  styleUrls: ['./subir-automatico.component.css']
+  selector: 'app-top-anuncio',
+  templateUrl: './top-anuncio.component.html',
+  styleUrls: ['./top-anuncio.component.css']
 })
-export class SubirAutomaticoComponent implements OnInit {
+export class TopAnuncioComponent implements OnInit {
 
   modalRef: BsModalRef;
 
-  TIPO_PRODUCTO_SUBIR_AUTOMATICO: number = 293;
-  CANTIDAD_PRODUCTOS_POR_FILA: number = 3;
+  TIPO_PRODUCTO_SUBIR_AUTOMATICO: number = 294;
   listProductoSubirAutomatico: [];
-  listProductoPlanSubidas: any;
-  listHorariosSubida: [];
-  muestraSaltoLinea: boolean = false;
-  htmlMasProductos: String = "";
   mensajePago: String;
   nombre: String;
 
@@ -35,34 +29,28 @@ export class SubirAutomaticoComponent implements OnInit {
 
   ngOnInit() {
     this.obtenerLlavePublica();
-    this.productoService.cargarHorariosSubida().subscribe(
-      (res) => {
-        if (res.Status == "OK") {
-          this.listHorariosSubida = JSON.parse(res.DataJson);
-        }
-      }
-    );
     this.productoService.getListarProductosSubirAutomatico(this.TIPO_PRODUCTO_SUBIR_AUTOMATICO).subscribe(
       (res) => {
         if (res.Status == "OK") {
           this.listProductoSubirAutomatico = JSON.parse(res.DataJson);
-          this.listProductoPlanSubidas = [];
-          this.listProductoSubirAutomatico.forEach((item) => {
-            if (item["posicion_plan_subida"] > 0) {
-              this.listProductoPlanSubidas.push(item);
-            }
-          });
-          this.listProductoPlanSubidas.sort((a, b) => a["posicion_plan_subida"] - b["posicion_plan_subida"]);
-          console.log(this.listProductoPlanSubidas);
-          //this.poblarMasProducto();
-          this.CANTIDAD_PRODUCTOS_POR_FILA = Math.ceil(this.listProductoSubirAutomatico.length / this.CANTIDAD_PRODUCTOS_POR_FILA);
+          //this.listProductoPlanSubidas = [];
+          //this.listProductoSubirAutomatico.forEach((item) => {
+          //  if (item["posicion_plan_subida"] > 0) {
+          //    this.listProductoPlanSubidas.push(item);
+          //  }
+          //});
+          //this.listProductoPlanSubidas.sort((a, b) => a["posicion_plan_subida"] - b["posicion_plan_subida"]);
           console.log(this.listProductoSubirAutomatico);
-          console.log(":::::: TAMAÑO ::::::" + this.listProductoSubirAutomatico.length);
+          //this.poblarMasProducto();
+          //this.CANTIDAD_PRODUCTOS_POR_FILA = Math.ceil(this.listProductoSubirAutomatico.length / this.CANTIDAD_PRODUCTOS_POR_FILA);
+          //console.log(this.listProductoSubirAutomatico);
+          //console.log(":::::: TAMAÑO ::::::" + this.listProductoSubirAutomatico.length);
+          //}
         }
-      }
-    );
+      });
+
     var cargaEventos = setInterval(function () {
-      if ($(".destacados .producto").length > 0 && $(".masProductos .producto").length > 0) {
+      if ($(".producto").length > 0) {
         clearInterval(cargaEventos);
         loadScripts();
       }
@@ -70,7 +58,7 @@ export class SubirAutomaticoComponent implements OnInit {
 
     function loadScripts() {
       const dynamicScripts = [
-        '../../../assets/js/subir-automatico.js'
+        '../../../assets/js/top-anuncios.js'
       ];
       for (let i = 0; i < dynamicScripts.length; i++) {
         const node = document.createElement('script');
@@ -86,16 +74,16 @@ export class SubirAutomaticoComponent implements OnInit {
   modalPagar() {
     let dataSubirAutomatico = JSON.parse(sessionStorage.getItem("dataSubirAutomatico"));
     let bodyProductSeleccionado = {
-      tipoProducto: 'sa',
+      tipoProducto: 'ta',
       diasActivo: $(".producto.producto_selected").find(".dias").html(),
       precio: $(".producto.producto_selected").find(".precio").html(),
       precioUnitario: $(".producto.producto_selected").find(".precio_unitario").html(),
       idProducto: $(".producto.producto_selected").data("codigo-producto"),
       idAnuncio: dataSubirAutomatico.idAnuncio,
-      primerDiaSubida: $("#fecha_inicial").val(),
-      ultimoDiaSubida: $("#fecha_final").val(),
-      primerHoraSubida: $("#hora_inicio").val(),
-      ultimoHoraSubida: $("#hora_fin").val()
+      //primerDiaSubida: $("#fecha_inicial").val(),
+      //ultimoDiaSubida: $("#fecha_final").val(),
+      //primerHoraSubida: $("#hora_inicio").val(),
+      //ultimoHoraSubida: $("#hora_fin").val()
     };
     this.modalRef = this.modalService.show(ModalPasarelaPagoComponent, {
       class: 'modal-md',

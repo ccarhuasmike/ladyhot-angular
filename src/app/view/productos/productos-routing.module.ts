@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 import { SubirAutomaticoComponent } from './subir-automatico/subir-automatico.component';
+import { TopAnuncioComponent } from './top-anuncio/top-anuncio.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
       {
         path: 'subir-automatico',
         component: SubirAutomaticoComponent
+      },
+      {
+        path: 'top-anuncio',
+        component: TopAnuncioComponent
       }
     ]
   }

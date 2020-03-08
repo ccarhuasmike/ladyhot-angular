@@ -348,7 +348,7 @@
 			if (animar_formas_pago) {
 				$('#formas_pago').slideDown(300, function () {
 					$('html, body').animate({
-						scrollTop: $(".paso").eq(1).offset().top - $('#cabecera').outerHeight(true)
+						scrollTop: $(".paso").eq(1).offset().top - $('#cabecera-header').outerHeight(true)
 					}, 1000);
 				});
 				//animar_formas_pago = false;

@@ -1,0 +1,2481 @@
+/* User agent Fixes ********************************************************************************************************** */
+html {
+	/*elimina delay 300ms click en IE*/
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	/*elimina el la iluminacion azul al "tocar" sobre un elemento*/
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: transparent;
+}
+
+input[type="number"], input[type="text"], input[type="password"], input[type="email"], textarea {
+	-moz-appearance: none !important;
+	-webkit-appearance: none !important;
+	appearance: none !important;
+}
+input[type="button"], input[type="submit"], button/*, select, textarea*/ {
+	appearance: none;
+	-webkit-appearance: none;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+}
+
+input:focus, button:focus, select:focus, textarea:focus, video:focus {
+	outline: none;
+}
+
+input::-moz-focus-inner { /*Remove button padding in FF*/
+    border: 0;
+    padding: 0;
+}
+
+input::-ms-clear {
+    /*display: none;*/
+	width : 0;
+	height: 0;
+}
+
+a:active, a:focus {
+	outline: none;
+}
+
+img {
+	-webkit-user-drag: none;
+}
+
+a img {
+	border: 0;
+}
+
+form {
+	margin: 0;
+}
+
+header, nav, footer, main, section, article {
+	background-color: inherit;
+	display: block;
+	/*position: relative;*/
+}
+
+/* Estilo general ********************************************************************************************************** */
+body {
+	margin: 0px;
+	background-color: #F4F4F4;
+	font-family: Arial;
+	font-size: 13px;
+	color: #303030;
+	/*text-rendering: optimizeLegibility;*/
+}
+
+a {
+	text-decoration: none;
+	color: #303030;
+}
+
+input, textarea {
+	font-family: Arial !important;
+}
+
+#content input[type="button"],
+#header input[type="button"],
+#content input[type="submit"],
+#content button,
+#content .boton,
+#header .boton {
+	border: 0;
+	border-radius: 3px;
+	display: inline-block;
+	color: white;
+	background-color: #CA1E25;
+	cursor: pointer;
+	/*Para que iPhone no aplique su estilo*/
+	appearance: none;
+	-webkit-appearance: none;	
+}
+
+#content input[type="button"].disabled,
+#header input[type="button"].disabled,
+#content input[type="submit"].disabled,
+#content button.disabled,
+#content .boton.disabled,
+#header .boton.disabled {
+	/*background-color: silver !important;*/
+	background-color: #707070 !important;
+	cursor: auto !important;
+}
+
+html.form_login #content #anuncio_edicion input[type="text"],
+html.form_login #content #anuncio_edicion input[type="password"],
+html.form_login #content #anuncio_edicion select,
+html.form_login #content #anuncio_edicion textarea,
+#content input[type="text"],
+#content input[type="password"],
+#header input[type="text"],
+#content select,
+#header select,
+#content textarea
+{
+	display: inline-block;
+	color: #303030;
+	background-color: white;
+	border: 1px solid #E8E8E8;
+	border-radius: 3px;
+}
+
+*:-moz-placeholder			{ color: #A9A9A9; /*font-style: italic;*/ }
+*:-ms-input-placeholder		{ color: #A9A9A9; /*font-style: italic;*/ }
+*::-webkit-input-placeholder{ color: #A9A9A9; /*font-style: italic;*/ }
+
+hr {
+	border: 0;
+	border-top: 1px solid #E8E8E8;
+	border-bottom: 1px solid #FFF;
+	margin: 15px 0px;
+	display:none;
+}
+
+.lightbox {
+	position: fixed;
+	display: block;
+	background-color: black;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+/*#header *, #content * {
+	box-sizing: content-box;
+}*/
+
+@font-face {
+	font-family: 'Material Icons';
+	font-display: block;
+	font-style: normal;
+	font-weight: 400;
+	src: url(/fonts/MaterialIcons/MaterialIcons-Regular.eot); /* For IE6-8 */
+	src: local('Material Icons'),
+		 local('MaterialIcons-Regular'),
+		 url(/assets/icons/MaterialIcons-Regular.woff2) format('woff2'),
+		 url(/assets/icons/MaterialIcons-Regular.woff) format('woff'),
+		 url(/assets/icons/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+	/*cursor: default;*/
+	cursor: inherit;
+
+	/* Support for all WebKit browsers. */
+	-webkit-font-smoothing: antialiased;
+	/* Support for Safari and Chrome. */
+	text-rendering: optimizeLegibility;
+
+	/* Support for Firefox. */
+	-moz-osx-font-smoothing: grayscale;
+
+	/* Support for IE. */
+	font-feature-settings: 'liga';
+    -webkit-font-feature-settings: 'liga';
+	
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.material-icons.url,
+.material-icons.link,
+a .material-icons {
+	cursor: pointer;
+}
+.material-icons,
+.material-icons-before:before,
+.material-icons-after:after,
+/*#div_navegacion *:before,
+#div_navegacion *:after,*/
+#cabecera_sub_buscar *:before,
+#div_busqueda_cabecera span:after,
+#expandir_filtros_busqueda span:before,
+#navegacion_categorias span:before,
+.favorita_corazon:before {
+	font-family: 'Material Icons' !important;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+/* Cabecera ********************************************************************************************************** */
+
+
+/* Content ********************************************************************************************************** */
+#content {
+	position: relative;/*para que la cabecera con "position: relative" pueda quedar arriba*/
+	width: 94%;
+	width: calc(100% - 28px);
+	max-width: 940px;
+	padding: 2%;
+	padding: calc(14px);
+	margin: 0px auto;
+	margin-top: 90px;
+	background-color: inherit;
+}
+@media screen and (max-width: 800px) {
+	#content {
+		width: 98%;
+		width: calc(100% - 10px);
+		padding: 1%;
+		padding: calc(5px);
+		margin-top: 41px;
+	}
+}
+
+
+/* Visibilidad ********************************************************************************************************** */
+.visibility_off	{ visibility: hidden; }
+.visibility_on	{ visibility: visible; }
+.display_off	{ display: none; }
+.hide_on		{ display: none; }
+
+
+/* Bloques ********************************************************************************************************** */
+.bloque {
+	color: #303030;
+	background-color: white;
+	padding: 25px;
+	margin-top: 20px;
+	position: relative;
+	font-size: 15px;
+	border: 1px solid #E8E8E8;
+	border-radius: 0;
+}
+#content .bloque:first-child {
+	margin-top: 0px;
+}
+
+html.form_login #anuncio_edicion .bloque .titulo,
+.bloque .titulo {
+	margin-top: 0px;
+	font-size: 25px;
+	font-weight: normal;
+	color: #CA1E25;
+	display: block;
+	margin-bottom: 25px;
+}
+
+.bloque .link {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.bloque .enlace {
+	color: #0072C6;
+	text-decoration: underline;
+}
+
+.bloque strong {
+	color: #CA1E25;
+}
+
+.bloque.OK {
+	font-size: 17px;
+	color: #008A00;
+	font-weight: bold;
+	border: 1px solid #008A00;
+}
+
+.bloque.KO {
+	font-size: 17px;
+	color: #CA1E25;
+	font-weight: bold;
+	border: 1px solid #CA1E25;
+}
+
+.bloque.KO a{
+	color: #CA1E25;
+	text-decoration: underline;
+}
+
+.bloque.KO a.boton{
+	text-decoration: none;
+}
+
+@media screen and (max-width: 800px) {
+	.bloque {
+		margin-top: 5px;
+	}
+}
+
+
+/* Errores ********************************************************************************************************** */
+#header .error,
+#content .error,
+#div_navegacion .error {
+	display: none;
+	position: relative;
+	color: red;
+}
+
+#header .error > img,
+#content .error > img,
+#div_navegacion .error > img {
+	position: absolute;
+	width: 16px;
+}
+#header .error > i,
+#content .error > i,
+#div_navegacion .error > i {
+	color: #CA1E25;
+	font-size: 21px;
+	position: absolute;
+	margin-top: -2px;
+	margin-left: -1px;
+}
+
+#header .error > span,
+#content .error > span,
+#div_navegacion .error > span {
+	line-height: 18px;
+	display: inline-block;
+	margin-left: 24px;
+	font-size: 13px;
+}
+
+#content .error > span a {
+	text-decoration: underline;
+	font-weight: bold;
+	color: inherit;
+}
+
+html.droid #header .error > span,
+html.droid #content .error > span,
+html.droid #div_navegacion .error > span {
+	line-height: 17px;
+}
+
+
+/* Admin ********************************************************************************************************** */
+.adp {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	padding: 0;
+	background-color: white;
+	border: 1px silver solid;
+	border-bottom: 0;
+	border-right: 0;
+	border-top-left-radius: 5px;
+	box-shadow: 0px 0px 1px 0px #A4A4A4;
+	z-index: 1000;
+}
+
+.adp.min {
+	height: 30px;
+	width: 240px;
+	opacity: 0.5;
+}
+
+.adp .barra {
+	height: 30px;
+	color: white;
+	background-color: #CA1E25;
+	border-top-left-radius: 5px;
+	font-size: 15px;
+	line-height: 30px;
+	padding-left: 5px;
+	font-weight: bold;
+	position: relative;
+	cursor: pointer;
+}
+
+.adp .adp_mini {
+	position: absolute;
+	right: 10px;
+}
+
+.adp .opciones {
+	padding: 10px;
+}
+
+.adp input, .adp textarea {
+	border: 1px solid silver;
+}
+
+.adp textarea {
+	width: 300px;
+	height: 80px;
+	font-family: Arial;
+}
+
+.notransition {
+	transition: none !important;
+}
+
+@media screen and (max-width: 550px) {
+	.adp {
+		bottom: 29px;
+	}
+	.bloque {
+		padding: 15px;
+	}
+}
+
+/* Controlador Checkbox ********************************************************************************************************** */
+#condiciones_content span[id^="about-"] {
+	cursor: pointer;
+	text-decoration: underline;
+	font-weight: bold;
+}
+.capa_checkbox .error {
+	margin-left: 5px;
+	margin-bottom: 10px;
+	margin-top: 0px;
+}
+.icon_checkbox_box {
+	display: inline-block;
+	vertical-align: middle;
+	height: 36px;
+	margin: 2px 0px;
+}
+.icon_checkbox_box .icon_checkbox {
+	font-size: 36px;
+	cursor: pointer;
+	color: #008A00}
+.icon_checkbox_box .icon_checkbox.disabled {
+	color: #aaaaaa;
+	cursor: default;
+}
+.icon_checkbox_text {
+	display: inline-block;
+	vertical-align: middle;
+	margin-top: 1px;
+	margin-left: 8px;
+    width: calc(100% - 36px - 8px);
+
+}
+
+#about_content .icon_checkbox_text ,
+.alertas_content .icon_checkbox_text {
+	width: initial;
+}
+
+/* Captcha ********************************************************************************************************** */
+
+.g-recaptcha-cookies {
+	text-align: left;
+}
+
+.g-recaptcha-cookies > span {
+	display: block;
+}
+
+.g-recaptcha-cookies > span.titulo {
+	margin-bottom: 10px;
+}
+
+.g-recaptcha-cookies > span.aceptar {
+	display: inline-block;
+	color: white;
+	background-color: #0072C6;
+	border: 0;
+	border-radius: 3px;
+	padding: 5px 10px;
+	margin-top: 15px;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.g-recaptcha.g-recaptcha-cookies + .error {
+    /*display: none !important;*/
+}
+
+
+/* pie nombre empresa */
+.bloque_footer {
+	padding: 10px 15px;
+}
+#content > .bloque.bloque_footer {
+    margin-top: 50px;
+	margin-bottom: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: max-content;
+    width: max-content;
+    text-align: center;
+    line-height: 23px;
+}
+html.con_filtros #content > .bloque_footer {
+	margin-bottom: 63px;
+}
+#content > .bloque_footer:empty {
+	display: none;
+}
+
+@media screen and (max-width: 800px) {
+	#content > .bloque.bloque_footer {
+		margin-bottom: 15px;
+	}
+}
+@media screen and (max-width: 550px) {
+	#content > .bloque.bloque_footer {
+		margin-top: 20px;
+		max-width: max-content;
+		width: max-content;
+		text-align: center;
+		line-height: 23px;
+	}
+}
+
+@media screen and (max-width: 800px) {
+
+	#cabecera_sub_buscar .navegacion_about .navegacion_menu ul.drop {
+		max-height: 122px !important;
+		min-height: 122px !important;
+	}
+	
+	#cabecera_sub_buscar .navegacion_about .navegacion_menu ul.drop li {
+		margin-top: 1px !important;
+		margin-bottom: 7px !important;
+	}
+	
+}/*Cabecera *********************************************************************************************************************** */
+/* CABECERA *******************************************************************/
+#header {
+	/*position: relative;*/
+	z-index: 1000;
+}
+
+#cabecera {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: white;
+	border-bottom: 1px solid #E8E8E8;
+	text-align: center;
+	z-index: 1000;
+}
+
+#cabecera .cabecera_sup {
+	position: relative;
+	height: 50px;
+}
+
+#cabecera .cabecera_sub {
+	position: relative;
+	height: 39px;
+}
+
+#cabecera h1 {
+	color: #303030;
+	padding: 0;
+	margin: 0;
+	font-size: 16px;
+	font-weight: normal;
+	line-height: 39px;
+}
+
+#cabecera_sup_buscar {
+	text-align: left;
+}
+
+/* CABECERA > LOGO *******************************************************************/
+#div_logo {
+	display: inline-block;
+	position: relative;
+	line-height: 0;
+	z-index: 1;
+}
+
+#logo {
+	border: 0;
+	height: 36px;
+}
+
+#link_home {
+	color: white;
+	display: inline-block;
+	line-height: 0;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+#div_navegacion
+{
+	text-align: center;
+	/*line-height: 0;*/
+	font-size: 14px;
+}
+
+#div_navegacion div,
+#div_navegacion span,
+#div_navegacion li,
+#div_navegacion a
+{
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+#div_navegacion > a,
+#div_navegacion > div
+{
+	color: #303030;
+	display: inline-block;
+	height: 35px;
+	line-height: 35px;
+	vertical-align: top;
+}
+
+#div_navegacion > a {
+	padding: 0 10px;
+	white-space: nowrap;
+}
+
+html.droid #div_navegacion > a,
+html.droid #div_navegacion > div {
+	line-height: 31px;
+}
+
+#div_navegacion > div * {
+	line-height: normal;
+}
+
+
+/* RESPONSIVE **********************************************************************************************/
+@media screen and (max-width: 800px) {
+	#cabecera {
+		position: fixed;
+		right: 0;
+	}
+	html.noheader #cabecera {
+		/*position: relative;*/
+		position: absolute;
+	}
+
+	#cabecera .cabecera_sup {
+		height: 40px;
+		text-align: left;
+	}
+
+	#cabecera .cabecera_sub {
+		height: 0;
+		line-height: 0;
+		border: 0;
+		padding: 0;
+		margin: 0;
+	}
+
+	#logo {
+		height: 26px;
+	}
+
+	#link_home {
+		margin-left: 10px;
+		margin-top: 7px;
+	}
+
+	/* CABECERA GENERICA */
+	#cabecera #cabecera_sup_gen #div_logo {
+		margin: 0;
+	}
+
+	#cabecera #cabecera_sub_gen h1 {
+		position: absolute;
+		top: -39px;
+		right: 10px;
+	}
+
+	#div_navegacion {
+		position: absolute;
+		right: 0;
+		top: 0px;
+		background-color: white;
+		border: 1px solid #E8E8E8;
+		border-top: 0;
+		border-right: 0;
+		text-align: left;
+	}
+	#div_navegacion:before {
+		content: "menu";
+		position: absolute;
+		right: 7px;
+		top: -40px;
+		font-size: 48px;
+		width: 37px;
+		height: 40px;
+		line-height: 40px;
+		overflow: hidden;
+		color: #0072C6;
+		background-color: white;
+		cursor: pointer;
+	}
+
+	#div_navegacion:hover {
+	}
+
+	#div_navegacion > * {
+		display: none !important;
+	}
+	#div_navegacion:hover > *{
+		display: block !important;
+	}
+}
+@media screen and (max-width: 350px) {
+	#cabecera #cabecera_sub_gen h1 {
+		display: none;
+	}
+}
+/*Cabecera! *********************************************************************************************************************** */
+
+
+#content{
+    margin-top: 75px;
+	padding-top: 0px;
+}
+
+#cabecera{
+	font-size: 14px;
+}
+
+#cabecera span {
+	font-family: Arial !important;
+}
+
+#link_home{
+	margin-top: 13px;
+}
+
+#cabecera .cabecera_sup {
+    position: relative;
+    height: 62px;
+}
+
+#cabecera .cabecera_sub {
+    height: 0px;
+}
+#cabecera #login {
+	font-family: Arial !important;
+}
+
+
+#cabecera #ver_busqueda,
+#cabecera #publicar,
+#cabecera #login
+{
+	position: absolute;
+	top: -52px;
+	color: #0072C6;
+	background-color: transparent;
+	display: inline-block;
+	width: 64px;
+	font-size: 56px;
+	height: 42px;
+	line-height: 42px;
+	padding: 0px;
+	text-align:left;
+}
+
+#cabecera #publicar,
+#cabecera #login{
+	margin: 0px !important;
+}
+
+#cabecera #publicar
+{
+	right: 136px;
+	cursor: pointer;
+}
+#cabecera #login
+{
+	right: 70px;
+	line-height: 36px;
+	cursor: pointer;
+}
+#cabecera #login img {
+	width: 64px;
+	height: 42px;
+}
+
+
+
+/* NAVEGACION > DESPLEGABLES *******************************************************************/
+#cabecera .navegacion_titulo
+{
+	font-size: 16px;
+	display: inline-block;
+	line-height: 30px;
+	margin: 0 10px;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+#cabecera .navegacion_menu
+{
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	padding-top: 4px;
+	text-align: left;
+	display: none;
+}
+#cabecera .navegacion:hover .navegacion_menu,
+#cabecera .navegacion.navegacion_menu:hover
+{
+	display: block;
+}
+
+#cabecera .navegacion .navegacion_menu ul.drop
+{
+	background-color: white;
+	border: 1px solid #E8E8E8;
+	border-right: 0;
+	margin: 0px;
+	padding: 0;
+	min-width: 110px; /*150*/
+	/*max-height: 504px;*/
+	overflow: auto;
+	overflow-x: hidden;
+	z-index: 1;
+
+	max-width: 600px;
+	position: relative;
+}
+
+#cabecera .navegacion_menu ul.drop li
+{
+	/*list-style: none; Provoca que desaparezca el cursor point en el desplegable*/
+	white-space: nowrap;
+}
+
+#cabecera .navegacion_about ul.drop li > * {
+	display: inline-block;
+	padding: 0px 15px;
+	height: 35px;
+	line-height: 36px;
+	cursor: pointer;
+}
+html.droid #cabecera .navegacion_about ul.drop li > * {
+	line-height: 33px;
+}
+
+#cabecera_sub_buscar .navegacion_about .navegacion_menu ul.drop li span {
+	width: 100%;
+}
+
+#cabecera .navegacion_menu .sep_on
+{
+	border: 0;
+	clear: left;
+}
+#cabecera .navegacion_menu .sep_on:before
+{
+	content: " ";
+	position: absolute;
+	left: 0;
+	margin-top: 0px;
+	display: block;
+	width: 100%;
+	/*height: 1px;
+	border-top: 1px dotted #E8E8E8;*/
+}
+#cabecera .navegacion_menu .sep_on.mas
+{
+	width: 100%;
+	padding-top: 8px;
+	padding-bottom: 2px;
+}
+
+#cabecera .navegacion_about {
+	position: absolute;
+	top: -52px;
+	right: 10px;
+	/*right: calc(12% - 105px);*/
+}
+#cabecera .navegacion_about .navegacion_titulo {
+	font-size: 82px;
+    width: 52px;
+    height: 42px;
+    line-height: 42px;
+	overflow: hidden;
+    margin: 0;
+    margin-right: 5px;
+	color: #0072C6;
+	background-color: white;
+}
+
+
+#cabecera .navegacion_about .navegacion_menu {
+	right: -10px;
+	padding-top: 7px;
+}
+
+ul.drop > li:hover{
+	background-color: #CA1E25;
+	color:white;
+}
+
+
+/* RESPONSIVE **********************************************************************************************/
+
+@media screen and (max-width: 1664px) {
+	#cabecera .navegacion_about .navegacion_titulo {
+		margin-right: 0px;
+	}
+	#cabecera #publicar {
+		right: 132px;
+	}
+	#cabecera #login {
+		right: 66px;
+	}
+}
+@media screen and (max-width: 1499px) { /*1280x720 o 1366x768*/
+/*@media screen and (max-width: 1279px) { 1280x720 o 1366x768*/
+
+
+	#cabecera #publicar,
+	#cabecera #login,
+	#cabecera .navegacion_about {
+		/*top: -84px;*/
+		top: -52px;
+	}
+
+	#cabecera #publicar {
+		right: 120px;
+	}
+	#cabecera #login {
+		right: 61px;
+	}
+
+	#cabecera .navegacion_about {
+		right: 10px;
+	}
+
+	#cabecera #publicar,
+	#cabecera .navegacion_about .navegacion_titulo {
+		margin-right: 0px;
+	}
+	
+	#cabecera .navegacion_about .navegacion_menu{
+		padding-top:6px !important;
+	}
+	
+}
+
+@media screen and (max-width: 800px) {
+	
+	#cabecera .cabecera_sup {
+		height: 40px;
+	}
+	
+	#cabecera_sup_gen #link_home {
+		margin-top: 7px;
+	}
+	
+	#cabecera #ver_busqueda,
+	#cabecera #publicar,
+	#cabecera #login,
+	#cabecera .navegacion_about {
+		top: -40px;
+	}
+	
+	#cabecera .navegacion_about .navegacion_menu ul.drop {
+		margin-top: 0px !important;
+	}
+	
+	#content{
+		margin-top: 41px;
+	}
+	
+	#cabecera #login
+	{
+		top: -42px;
+		right: 12px;
+	}
+	#cabecera #login img {
+		width: 26px;
+		height: 30px;
+	}
+
+	#cabecera .navegacion_about {
+		right: 7px;
+	}
+
+	#cabecera .navegacion_about .navegacion_titulo {
+		width: 37px;
+		height: 40px;
+		font-size: 50px;
+		line-height: 40px;
+	}
+	
+	#cabecera #publicar {
+		width: 45px;
+		height: 40px;
+		right: 79px;
+		font-size: 34px;
+		line-height: 40px;
+		text-align: center;
+	}
+
+
+	#cabecera_sub_buscar .navegacion_about {
+		display: block;
+		width: auto;
+	}
+
+	#cabecera_sub_buscar .navegacion_about .navegacion_menu {
+		display: none;
+		top: 40px;
+		left: 0;
+		right: 0;
+		padding: 0;
+		margin: 0;
+		z-index: 1;
+		background-color: white;
+	}
+	#cabecera_sub_buscar .navegacion_about:hover .navegacion_menu {
+		display: none;
+	}
+
+	#cabecera .navegacion_about ul.drop li > * {
+		padding: 0px;
+	}
+	
+	#cabecera_sub_buscar .navegacion_about .navegacion_menu ul.drop {
+		padding: 0;
+		border: 0;
+		margin: 0 auto;
+		max-height: 122px;
+		min-height: 122px;
+		padding-top: 3px;
+	}
+	
+
+/*	#cabecera_sub_buscar .navegacion_about .navegacion_menu {
+		margin-top: 8px;
+	}*/
+	#cabecera_sub_buscar .navegacion_about .navegacion_menu ul.drop li {
+		display: inline-block;
+		margin: 1px auto;
+		padding-top: 1px;
+		height: 33px;
+		width: calc(50% - 8px);
+		border-radius: 3px;
+		display: block;
+		background-color: #CA1E25;
+		font-size: 15px;
+		box-sizing: border-box;
+		vertical-align: middle;
+		text-align: center;
+		font-weight: bold;
+		margin-top: 1px;
+		margin-bottom: 7px;
+	}
+	
+	#cabecera_sub_buscar .navegacion_about .navegacion_menu ul.drop li a,
+	#cabecera_sub_buscar .navegacion_about .navegacion_menu ul.drop li span {
+		color: white;
+	}
+	#cabecera_sub_buscar .navegacion_about .navegacion_menu ul.drop li:nth-child(odd) {
+		width: calc(50% - 8px);
+	}
+	#cabecera .navegacion_about ul.drop li > * {
+		height: auto;
+		line-height: 34px;
+	}
+
+	#cabecera_sub_buscar .navegacion_about .navegacion_menu .sep_on:before {
+		display: none;
+	}
+	
+	.borderDesplegable{
+		border-bottom: 1px solid #E8E8E8;
+	}
+	
+	#cabecera_sub_buscar .navegacion.navegacion_about.desp {
+		right: 0;
+		width: 100%;
+		background-color: white;
+		text-align: right;
+	}
+	#cabecera_sub_buscar .navegacion_about.desp .navegacion_menu {
+		display: block !important;
+		border-bottom: 1px solid #E8E8E8;
+	}
+	#cabecera_sub_buscar .navegacion_about.desp .navegacion_titulo {
+		/*padding-left: 50px;*/
+		width: 40px;
+		font-size: 40px;
+	}
+	#cabecera_sub_buscar .navegacion_about.desp .navegacion_titulo:before {
+		content: "close";
+		color: #0072C6;
+		background-color: white;
+		margin: -1px 0px 0px;
+		padding: 0;
+		width: 40px;
+		line-height: 42px;
+		font-size: 40px;
+		font-weight: bold;
+	}
+
+	#cabecera_sub_buscar .navegacion_about.desp ~ #div_busqueda_cabecera {
+		visibility: hidden;
+	}
+	
+	#content{
+		
+		padding: calc(5px);
+		margin-top: 41px;
+	}
+}
+@media screen and (max-width: 550px) {
+	
+}
+@media screen and (max-width: 374px) {
+	/*#cabecera #login {
+		right: 32px !important;
+	}*/
+}
+@media screen and (max-width: 359px) {
+	/*#cabecera #login {
+		right: 27px !important;
+	}
+	#cabecera #publicar {
+		right: 72px !important;
+	}*/
+}
+
+/*Content (top en funcion del alto de la cabecera) ******************************************************************************* */
+
+
+/*Formulario ********************************************************************************************************************* */
+h3
+{
+	font-size: 23px;
+	font-weight: normal;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 15px;
+}
+
+p
+{
+	margin: 0;
+}
+
+hr
+{
+	margin: 16px 0 21px 0;
+}
+
+select, input, .boton
+{
+	font-size: 17px;
+	border: 1px solid silver;
+	color: #707070;
+	background-color: #FFF;
+	padding: 5px 10px;
+
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+select {
+	font-size: 15px;
+	padding: 3px 5px;
+}
+select:focus, input:focus {
+	outline: none;
+}
+
+.bloque_anuncio_prev
+{
+	border: 1px #E8E8E8 solid;
+	margin-bottom: 20px;
+}
+
+.anuncio_prev
+{
+	display: block;
+	overflow: hidden;
+}
+
+.anuncio_prev .col1
+{
+	/*display: inline-block;*/
+	display: table-cell;
+	width: 104px;
+	height: 85px;
+	vertical-align: top;
+}
+
+.anuncio_prev .col2
+{
+	display: table-cell;
+	/*display: inline-block;
+	width: 779px;*/
+	vertical-align: top;
+}
+
+.anuncio_prev img
+{
+	/*width: 100px;*/
+	border: 0;
+	vertical-align: top;
+}
+
+.anuncio_prev .col2 span
+{
+	display: block;
+	font-size: 15px !important;
+}
+
+.anuncio_prev .titulo
+{
+	/*font-size: 15px;*/
+	font-weight: bold;
+	color: #303030;
+	margin-bottom: 0px;
+}
+
+.anuncio_prev .texto
+{
+	font-weight: normal;
+	margin-top: 10px;
+}
+
+
+/*** RESPONSIVE ************************************************************************************************/
+@media screen and (max-width: 550px) {
+	.anuncio_prev .texto
+	{
+		display: none !important;
+	}
+}/* Productos **********************************************************************/
+#productos {
+	
+}
+.productos {
+	text-align: center;
+}
+
+.productos .destacados {
+	position: relative;
+}
+
+.productos .destacados:empty {
+	display: none;
+}
+.productos .destacados:not(:empty) + div {
+	display: none;
+}
+.productos .destacados:not(:empty) + div.vertodo {
+	display:block;
+	margin-top: 20px;
+}
+
+.producto_suelto,
+.producto
+{
+	display: inline-block;
+	text-align: center;
+	vertical-align: top;
+	background-color: white;
+	color: #0072C6;
+	border: 1px solid #0072C6;
+	border-radius: 5px;
+	font-size: 17px;
+	/*height: 60px;*/
+	/*width: 130px;
+	margin: 0 25px;
+	margin-top: 30px;*/
+	width: calc(17% - 2px);
+	margin: 2% 2%;
+
+	cursor: pointer;
+
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+
+}
+.producto_suelto {
+	cursor: initial;
+	border: 2px solid #0072C6;
+	margin-top: 55px;
+}
+
+.producto_suelto .producto_form,
+.producto_suelto .desde,
+.producto .producto_form,
+.producto .desde
+{
+	display: none;
+}
+.producto_suelto .formas_pago,
+.producto .formas_pago
+{
+	display: none;
+}
+.producto_suelto .dias,
+.producto .dias
+{
+	display: block;
+	padding-top: 10px;
+	margin-bottom: 5px;
+}
+.producto .precio_tachado
+{
+	/*text-decoration: line-through;*/
+	color: #CA1E25;
+	font-size: 13px;
+	line-height: 16px;
+	/*margin: -3px 0;*/
+	margin: 0;
+	margin-top: 2px;
+	display: block;
+}
+.producto .precio_tachado:empty
+{
+	display: none;
+}
+.producto_suelto .precio,
+.producto .precio
+{
+	display: block;
+	padding-bottom: 5px;
+	font-size: 28px;
+	font-weight: bold;
+}
+.producto .precio_tachado:empty + .precio
+{
+	color: inherit;
+	/*font-size: 28px;*/
+	padding: 8px 0 13px 0;
+}
+.producto .precio
+{
+	color: #0A0;
+	/*font-size: 38px;*/
+}
+.producto_suelto .precio_unitario,
+.producto .precio_unitario
+{
+	display: block;
+	padding-bottom: 5px;
+	font-size: 15px;
+}
+.producto_suelto .seleccionar,
+.producto .seleccionar
+{
+	display: block;
+	background-color: #0072C6;
+	padding: 4px 10px;
+	color: white;
+	border: 1px solid white;
+
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+.seleccionar .boton
+{
+	background-color: #CA1E25;
+	color: white;
+	border: 0;
+	font-size: 15px;
+	padding: 2px 5px;
+}
+.producto_selected
+{
+	box-shadow: 0px 0px 5px 3px #0072C6;
+}
+
+.destacados .producto {
+	font-size: 18px;
+	width: calc(24% - 1px);
+	max-width: 220px;
+	vertical-align: bottom;
+}
+
+.destacados .producto .precio {
+	font-size: 34px;
+}
+
+.destacados .producto_recomendado
+{
+	width: calc(28% - 1px);
+	max-width: 250px;
+	color: #CA1E25;
+	background-color: white;
+	border-color: #CA1E25;
+}
+.destacados .producto_recomendado .seleccionar {
+	background-color: #CA1E25;
+}
+.destacados .producto_recomendado .recomendacion {
+	font-size: 14px;
+	font-weight: bold;
+	margin-top: 10px;
+	display: inline-block;
+}
+.destacados .producto_recomendado.producto_selected {
+	box-shadow: 0px 0px 5px 3px #CA1E25;
+}
+
+.destacados .vermas {
+	color: #A0A0A0;
+	margin-top: 15px;
+	display: block;
+	position: relative;
+	cursor: pointer;
+}
+.destacados .vermas > span {
+	position: relative;
+	padding: 0 10px;
+	background-color: white;
+}
+.destacados .vermas > span.mas,
+.destacados .vermas.menos > span.menos {
+	display: inline-block;
+}
+.destacados .vermas > span.menos,
+.destacados .vermas.menos > span.mas {
+	display: none;
+}
+.destacados .vermas:before {
+	content: "";
+	top: 8px;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	border-top: 3px solid #E8E8E8;
+}
+
+.recordamos {
+	text-align: left;
+	margin-top: 40px;
+}
+
+/* Pasos **************************************************************************/
+/*p.descripcion
+{
+	line-height: 22px;
+	display: inline-block;
+	width: 700px;
+}*/
+p.paso
+{
+	text-align: left;
+	margin: 20px 0;
+	margin-top: 30px;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+p.paso > span
+{
+	color: #CA1E25;
+}
+
+.productos p.paso
+{
+	/*margin-bottom: 0;*/
+}
+
+
+/* Formas de pago *****************************************************************/
+#formas_pago
+{
+	display: none;
+}
+
+.forma_pago {
+	margin-top: 20px;
+	position: relative;
+}
+
+.forma_pago,
+.forma_pago form {
+	display: inline-block;
+}
+
+.elegir_forma_pago,
+.ayuda_forma_pago,
+.email_forma_pago {
+	margin: 25px 0 0 0;
+}
+
+.email_forma_pago {
+	color: #CA1E25;
+}
+
+.email_forma_pago ul {
+	list-style: square;
+    padding-left: 20px;
+	margin: 10px 0;
+}
+
+.email_forma_pago li {
+	margin-top: 10px;
+}
+
+.elegir_forma_pago span {
+	font-size: 11px;
+	margin-left: 10px;
+}
+
+.ayuda_forma_pago a,
+.elegir_forma_pago a {
+	color: #0072C6;
+	text-decoration: underline;
+}
+
+/* TPV y transferencia*************************************************************/
+#formas_pago .submit
+{
+	border: 0;
+	font-size: 15px;
+	/*margin: 0;*/
+	cursor: pointer;
+	/*padding: 5px 10px;*/
+}
+
+.forma_pago .submit
+{
+	font-weight: bold;
+	min-width: 200px;
+	height: 40px;
+	padding: 0 20px;
+	/*margin-right: 10px !important;*/
+	margin: 0px;
+	display: block;
+	margin-right: 10px;
+}
+.forma_pago:last-child .submit
+{
+	margin-right: 0px;
+}
+/*.forma_pago + .forma_pago .submit,
+.forma_pago form + form .submit
+{
+	margin-left: 10px;
+}*/
+
+.forma_pago_gratis td {
+	color: #0A0 !important;
+}
+.forma_pago_gratis .submit {
+	background-color: #0A0 !important;
+}
+
+.forma_pago .submit.disabled {
+	background-color: #888888 !important;
+    cursor: default !important;
+}
+
+.forma_pago .submit img {
+	height: 20px;
+    vertical-align: middle;
+    margin-left: 10px;
+    margin-top: -6px;
+    margin-bottom: -4px;
+}
+
+.concepto_tarjeta {
+	display: block;
+	font-size: 10px;
+	position: absolute;
+	left: 0;
+	top: 32px;
+}
+.concepto_tarjeta:empty {
+	display: none;
+}
+.concepto_tarjeta + form .submit {
+	margin-bottom: 13px !important;
+}
+.concepto_tarjeta:empty + form .submit {
+	margin-bottom: 0px !important;
+}
+
+.gratis
+{
+	background-color: #008A00;
+}
+
+/* SMS** **************************************************************************/
+.forma_pago_sms {
+	margin-top: 0;
+}
+
+.forma_pago_sms strong
+{
+	text-transform: uppercase;
+}
+
+.pagar_sms {
+	margin-bottom: 20px;
+}
+
+#enviar_sms_editar {
+	cursor: pointer;
+}
+
+#capa_enviar_sms_editar {
+	display: none;
+}
+
+#capa_enviar_sms_editar {
+	display: none;
+}
+
+html.capa_sms #capa_enviar_sms_editar {
+	display: block;
+}
+
+html.capa_sms body {
+	overflow: hidden;
+}
+
+#capa_enviar_sms_editar .lightbox {
+	z-index: 10000;
+}
+
+#capa_enviar_sms_editar .capa {
+	font-size: 15px;
+	padding: 30px;
+	width: calc(100% - 62px);
+	max-width: 500px;
+	background-color: white;
+	border: 1px solid silver;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 10001;
+}
+
+#capa_enviar_sms_editar .capa .titulo {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+#capa_enviar_sms_editar .capa a {
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+#capa_enviar_sms_editar .capa .cargando {
+	text-align: center;
+}
+
+#capa_enviar_sms_editar .cargando img {
+	height: 52px;
+}
+
+#capa_enviar_sms_cerrar {
+	display: none;
+	position: absolute;
+	top: -8px;
+	right: -8px;
+	cursor: pointer;
+}
+
+/* Promocode **********************************************************************/
+.show_promocode
+{
+	text-decoration: underline;
+	font-weight: normal;
+	font-size: 13px;
+	display: inline-block;
+	margin-left: 10px;
+	color: #707070;
+	cursor: pointer;
+	display: none;
+}
+
+#form_promocode input.promocode_submit
+{
+	color: white;
+	background-color: #0072C6;
+	margin-left: 10px;
+}
+
+.promocode_form
+{
+	background-color: #F0F0F0;
+	padding: 10px 15px;
+	display: inline-block;
+	border-radius: 5px;
+	border: 1px solid #E0E0E0;
+	border-top: 0;
+	border-left: 0;
+	margin: 0;
+	margin-top: 20px;
+}
+
+.promocode_form #promocode_promocode {
+	width: 200px;
+}
+
+.promocode_form label
+{
+	font-size: 15px;
+	display: inline-block;
+	/*font-weight: bold;*/
+	margin: 0;
+	margin-right: 10px;
+}
+
+.promocode_form .error
+{
+	margin-left: 135px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.descontado
+{
+	font-size: 15px;
+	text-decoration: line-through;
+}
+
+p.coste .precio
+{
+	/*font-size: 17px;*/
+	font-weight: bold;
+}
+
+#precio_descuento
+{
+	color: #0A0;
+	font-size: 20px;
+}
+
+#coste_total {
+	font-size: 18px;
+}
+
+/* Recurrencia **********************************************************************/
+.formas_pago_con_suscripcion {
+	margin-top: 20px;
+	border: 1px solid #E8E8E8;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.formas_pago_con_suscripcion .titulo_formas_pago {
+	height: 46px;
+	line-height: 46px;
+	background-color: #F4F4F4;
+	color: #666;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 0 10px;
+	cursor: pointer;
+}
+
+.formas_pago_con_suscripcion .forma_pago_suscripcion .titulo_formas_pago {
+	color: #0072C6;
+}
+
+.formas_pago_con_suscripcion .titulo_formas_pago > span {
+	font-size: 16px;
+}
+
+.formas_pago_con_suscripcion .titulo_formas_pago > input {
+	margin: 0;
+	margin-right: 10px;
+	margin-top: 12px;
+	height: 21px;
+	width: 21px;
+	vertical-align: top;
+}
+
+.formas_pago_con_suscripcion .forma_pago_suscripcion .titulo_formas_pago {
+	border-bottom: 1px solid #E8E8E8;
+}
+.formas_pago_con_suscripcion .resto_formas_pago .titulo_formas_pago {
+	border-top: 1px solid #E8E8E8;
+}
+
+.formas_pago_con_suscripcion .titulo_formas_pago.selected {
+	background-color: white;
+	border: 0;
+	cursor: default;
+}
+
+.formas_pago_con_suscripcion .titulo_formas_pago.disabled {
+	display: none;
+}
+
+.formas_pago_con_suscripcion .botones_formas_pago {
+	display: none;
+	padding: 0px 10px;
+	padding-bottom: 20px;
+}
+
+.formas_pago_con_suscripcion .titulo_formas_pago.selected + .botones_formas_pago {
+	display: block;
+}
+
+.formas_pago_con_suscripcion .ayuda_forma_pago {
+	margin: 0;
+	/*font-size: 13px;*/
+}
+
+/*.formas_pago_con_suscripcion .forma_pago_suscripcion .ayuda_forma_pago {
+	font-size: 15px;
+}*/
+
+.formas_pago_con_suscripcion ul {
+	margin: 0;
+	padding: 0;
+}
+
+.formas_pago_con_suscripcion li {
+	/*font-size: 13px;*/
+	list-style: none;
+	margin-top: 10px;
+}
+
+.formas_pago_con_suscripcion li:before {
+	content: "check";
+	color: #008A00;
+	margin-right: 10px;
+	font-size: 22px;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+.formas_pago_con_suscripcion b {
+    color: red;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+
+/* Formas pago radio **********************************************************************/
+#selector_formas_pago {
+	margin-bottom: 5px;
+	margin-top: 20px;
+	border: 1px solid #E8E8E8;
+    border-radius: 10px;
+	display: inline-block;
+}
+#selector_formas_pago tbody {
+	display: inline;
+}
+
+#selector_formas_pago .forma_pago {
+	display: block;
+   /* height: 20px;*/
+    margin: 0;
+	/*padding: 15px;
+	padding-right: 20px;*/
+	border-top: 1px solid #E8E8E8;
+	position: relative;
+	cursor: pointer;
+}
+#selector_formas_pago .forma_pago:first-child {
+	border: 0;
+}
+#selector_formas_pago .forma_pago_boleto:first-child {
+	border: 0;
+	vertical-align: top;
+}
+#selector_formas_pago .forma_pago.selected {
+	cursor: initial;
+}
+
+#selector_formas_pago .forma_pago td {
+	padding: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Arial !important;
+	vertical-align: top;
+	line-height: 0px;
+}
+#selector_formas_pago .forma_pago td:first-child{
+	border-right: 1px solid #E8E8E8;
+	/*vertical-align: middle;*/
+}
+/*#selector_formas_pago .forma_pago_boleto td:first-child{
+	vertical-align: top;
+}*/
+
+#selector_formas_pago .forma_pago td > span {
+	line-height: 20px;
+	font-family: Arial !important;
+}
+
+#selector_formas_pago .forma_pago td input[type="radio"] {
+    margin: 0;
+    height: 21px;
+    width: 21px;
+	vertical-align: middle;
+}
+#selector_formas_pago .forma_pago_logo td > input[type="radio"] {
+	margin-top: 15px;
+}
+#selector_formas_pago .forma_pago_pagofacil td > input[type="radio"] {
+	margin-top: 35px;
+}
+#selector_formas_pago .forma_pago_dimoco td > input[type="radio"],
+#selector_formas_pago .forma_pago_paysafecard td > input[type="radio"] {
+	margin-top: 10px;
+}
+#selector_formas_pago .forma_pago_toditocash td > input[type="radio"] {
+	margin-top: 7px;
+}
+#selector_formas_pago .forma_pago_trustpay td > input[type="radio"] {
+	margin-top: 1px;
+}
+#selector_formas_pago .forma_pago_tarjeta_letpay td > input[type="radio"] {
+	margin-top: 5px;
+}
+#selector_formas_pago .forma_pago_transferencia_con_bancos td > input[type="radio"] {
+	margin-top: 28px;
+}
+#selector_formas_pago .forma_pago_transferencia_con_bancos.selected td > input[type="radio"] {
+	margin-top: 0;
+}
+
+#selector_formas_pago .forma_pago_logo td > img {
+	height: 50px;
+	line-height: 0;
+}
+#selector_formas_pago .forma_pago_pagofacil td > img {
+	height: 80px;
+}
+#selector_formas_pago .forma_pago_dimoco td > img,
+#selector_formas_pago .forma_pago_paysafecard td > img {
+	height: 40px;
+}
+#selector_formas_pago .forma_pago_toditocash td > img {
+	height: 31px;
+}
+#selector_formas_pago .forma_pago_trustpay td > img,
+#selector_formas_pago .forma_pago_tarjeta_letpay td > img {
+	height: 30px;
+}
+
+#selector_formas_pago .forma_pago .datos_forma_pago,
+#selector_formas_pago .forma_pago_boleto_letpay .datos_forma_pago + .loader {
+	font-size: 15px;
+	line-height: 15px;
+	font-weight: normal;
+	margin-top: 15px;
+	display: none;
+	max-width: 310px;
+}
+
+#selector_formas_pago .forma_pago.selected div.datos_forma_pago {
+	display: block;
+}
+
+#selector_formas_pago .forma_pago .datos_forma_pago > div {
+	margin-top: 5px;
+}
+#selector_formas_pago .forma_pago_boleto_letpay .datos_forma_pago > div {
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+
+#selector_formas_pago .forma_pago .datos_forma_pago label > span {
+    display: inline-block;
+	width: 100px;
+}
+#selector_formas_pago .forma_pago_boleto_directa24 .datos_forma_pago label > span {
+	width: 50px;
+}
+#selector_formas_pago .forma_pago_toditocash .datos_forma_pago label > span,
+#selector_formas_pago.formas_pago_naar .forma_pago .datos_forma_pago label > span,
+#selector_formas_pago.formas_pago_chcl .forma_pago .datos_forma_pago label > span {
+	width: 70px;
+}
+#selector_formas_pago.formas_pago_ppco .forma_pago .datos_forma_pago label > span,
+#selector_formas_pago.formas_pago_yiuy .forma_pago .datos_forma_pago label > span {
+	width: 125px;
+}
+
+#selector_formas_pago .forma_pago .datos_forma_pago input,
+#selector_formas_pago .forma_pago .datos_forma_pago select {
+	box-sizing: border-box;
+    height: 30px;
+    width: 200px;
+    padding: 5px 8px;
+    font-size: 15px;
+}
+#selector_formas_pago .forma_pago .datos_forma_pago select {
+	padding: 5px 4px;
+}
+
+#selector_formas_pago .forma_pago_toditocash .datos_forma_pago input {
+	width: 115px;
+}
+#selector_formas_pago .forma_pago_boleto_directa24 .datos_forma_pago input,
+#selector_formas_pago .forma_pago_boleto_letpay .datos_forma_pago input,
+#selector_formas_pago .forma_pago_boleto_letpay .datos_forma_pago select {
+	width: 240px;
+}
+#selector_formas_pago .forma_pago_boleto_letpay .datos_forma_pago input,
+#selector_formas_pago .forma_pago_boleto_letpay .datos_forma_pago select {
+	margin: 5px 5px 0px 0px;
+}
+
+#selector_formas_pago .forma_pago label span,
+#selector_formas_pago .forma_pago label input {
+	font-family: Arial !important;
+}
+
+#selector_formas_pago .bancos_prev,
+#selector_formas_pago .tarjetas {
+	display: block;
+	line-height: 0 !important;
+	margin-top: -4px;
+}
+#selector_formas_pago .forma_pago_transferencia_con_bancos.selected .bancos_prev {
+	display: none;
+}
+
+#selector_formas_pago .bancos_prev img,
+#selector_formas_pago .tarjetas img {
+	height: 40px;
+	margin-top: 20px;
+    margin-right: 20px;
+}
+#selector_formas_pago .tarjetas img {
+	height: 30px;
+	width: 47px;
+	margin-right: 10px;
+	border-radius: 3px;
+}
+/*#selector_formas_pago .bancos_prev img:first-child {
+	margin-left: 0;
+}*/
+#selector_formas_pago .bancos_prev img:last-child,
+#selector_formas_pago .tarjetas img:last-child {
+    margin-right: 0;
+}
+
+#selector_formas_pago .bancos {
+}
+
+#selector_formas_pago .bancos .titulo {
+    font-size: 16px;
+	font-weight: bold;
+	color: inherit;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+#selector_formas_pago .bancos #error_forma_pago_directa {
+	margin-top: 15px;
+    margin-bottom: 0;
+}
+
+#selector_formas_pago .banco {
+	margin-top: 10px;
+	position: relative;
+}
+
+#selector_formas_pago .banco.selected {
+	/*color: white;
+	background-color: #0072C6;*/
+}
+
+#selector_formas_pago .banco img {
+	height: 40px;
+}
+
+#selector_formas_pago .banco span {
+	line-height: 40px;
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 15px;
+}
+
+#selector_formas_pago .banco input[type="radio"] {
+	position: absolute;
+	left: 200px;
+	top: 11px;
+}
+
+#error_forma_pago {
+	/*margin-top: 10px;
+    margin-bottom: -10px;*/
+}
+
+/*#selector_formas_pago ~ div form {
+	display: none;
+}
+#selector_formas_pago ~ div .forma_pago_gratis form {
+	display: inline-block;
+}*/
+#selector_formas_pago .forma_pago .aviso_tarjeta {
+	max-width: 460px;
+}
+#selector_formas_pago .forma_pago .aviso_tarjeta strong {
+	display: inline-block;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+
+#selector_formas_pago .forma_pago_boleto_letpay .loader .titulo {
+	font-weight: bold;
+    font-size: 18px;
+	color: #0A0;
+}
+#selector_formas_pago .forma_pago_boleto_letpay .loader .imagen {
+	/*text-align: center;*/
+    margin: 20px 0;
+	margin-left: 25px;
+}
+#selector_formas_pago .forma_pago_boleto_letpay .loader .imagen img {
+	width: 100px;
+}
+#selector_formas_pago .forma_pago_boleto_letpay .loader .cuenta_atras {
+	
+}
+#selector_formas_pago .forma_pago_boleto_letpay .loader .cuenta_atras .contador {
+	color: #0A0;
+	font-weight: bold;
+}
+
+/* Checkbox aceptar condiciones **********************************************************************/
+#condiciones_content {
+	margin-top: 10px;
+}
+
+/* Capa IVA ************************************************************************************************/
+#capa_iva:not(:empty) {
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+/* Cargando ************************************************************************************************/
+html.cargando,
+html.cargando * {
+	cursor: wait !important;
+}
+
+html.cargando:before {
+	content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    z-index: 10000;
+	opacity: 0.5;
+}
+
+html.cargando:after {
+	content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-color: white;
+	background-image: url("https://cdn.photokinesiologas.com/sl/gfx/850/ajax-spinner.gif");
+	background-repeat: no-repeat;
+	background-size: 150px;
+	height: 150px;
+	width: 150px;
+	margin-left: -75px;
+    margin-top: -75px;
+	border-radius: 10px;
+	z-index: 10001;
+}
+
+
+/*** RESPONSIVE ************************************************************************************************/
+@media screen and (max-width: 800px) {
+	.producto_suelto,
+	.producto {
+		width: calc(24% - 2px);
+	}
+	.destacados .producto {
+		/*font-size: 19px;*/
+		width: calc(28% - 2px);
+	}
+	.destacados .producto_recomendado {
+		/*font-size: 19px;*/
+		width: calc(30% - 2px);
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.producto_suelto,
+	.producto {
+		font-size: 13px;
+		margin: 3% 0% 0% 3%;
+		width: calc(31% - 2px);
+	}
+	.producto_suelto .precio,
+	.producto .precio {
+		font-size: 21px;
+	}
+	.producto .precio_tachado:empty + .precio {
+		padding: 3px 0 8px 0;
+	}
+	.producto_suelto .precio_unitario,
+	.producto .precio_unitario {
+		font-size: 11px;
+	}
+	.producto_suelto .dias,
+	.producto .dias {
+		padding-top: 5px;
+	}
+
+	.destacados .producto {
+		font-size: 15px;
+		margin: 3% 0% 3% 3%;
+		width: calc(48% - 2px);
+		max-width: none;
+	}
+	.destacados .producto .precio {
+		font-size: 28px;
+	}
+	.destacados .producto .precio_tachado:empty + .precio {
+		padding: 8px 0 13px 0;
+	}
+	.destacados .producto .precio_unitario {
+		font-size: 15px;
+	}
+	.destacados .producto .dias {
+		padding-top: 10px;
+	}
+
+	.destacados .producto_recomendado {
+		font-size: 16px;
+		top: 0;
+		left: calc(0.5% - 1px);
+		position: absolute;
+		margin: 3% 0;
+		width: calc(100% - 2px) !important;
+		max-width: none;
+	}
+	.destacados .producto_recomendado .precio {
+		font-size: 36px;
+	}
+	.destacados .producto_recomendado .precio_tachado:empty + .precio {
+		padding: 9px 0 14px 0;
+	}
+	.destacados .producto_recomendado .precio_unitario {
+		font-size: 17px;
+	}
+	.destacados .producto_recomendado .dias {
+		padding-top: 10px;
+	}
+	.destacados .producto_recomendado .recomendacion {
+		font-size: 16px;
+	}
+
+	.producto:first-child,
+	.producto:nth-child(4n + 1) {
+		margin-left: 0;
+	}
+
+	.productos .destacados {
+		padding-top: 215px;
+	}
+	
+	/*.pago_recurrente {
+		margin-bottom: 30px;
+	}
+
+	.pago_recurrente:before {
+		left: 50%;
+		margin-left: -20px;
+	}
+
+	.pago_recurrente .descripcion {
+		display: none;
+	}*/
+
+	.a_partir .horas_titulo {
+		display: block;
+		margin-bottom: 5px;
+	}
+
+	.forma_pago,
+	.forma_pago form {
+		margin: 0;
+		display: block;
+	}
+
+	.forma_pago form .submit {
+		width: 100%;
+		margin: 0px !important;
+		margin-top: 20px !important;
+		padding-left: 0 !important;
+		padding-right: 0  !important;
+		
+	}
+
+	.promocode_form {
+		width: calc(100% - 31px);
+	}
+
+	.promocode_form label {
+		display: block;
+		margin-bottom: 5px;
+	}
+
+	.promocode_form input {
+		width: 60% !important;
+		width: calc(100% - 102px) !important;
+	}
+
+	.promocode_form .promocode_submit {
+		width: 25% !important;
+		width: calc(70px) !important;
+	}
+
+	.promocode_form .error {
+		margin-left: 0;
+		margin-bottom: 0;
+	}
+	
+	#capa_enviar_sms_cerrar {
+		top: 0px;
+		right: 0px;
+	}
+	
+	.email_forma_pago li {
+		margin-top: 20px;
+	}
+
+	#selector_formas_pago {
+		width: 100%;
+		/*margin-bottom: 10px;*/
+		margin-bottom: 0px;
+		margin-top: 20px;
+	}
+}
+@media screen and (max-width: 460px) {
+	#selector_formas_pago .forma_pago_transferencia_con_bancos td > input[type="radio"] {
+		margin-top: 58px;
+	}
+}
+@media screen and (max-width: 440px) {
+	.productos p.paso {
+		margin-bottom: 15px;
+	}
+}
+@media screen and (max-width: 428px) {
+	#selector_formas_pago .forma_pago .datos_forma_pago label > span {
+		display: inline-block;
+		margin-bottom: 5px;
+		margin-top: 5px;
+		/*font-weight: bold;*/
+	}
+	#selector_formas_pago .forma_pago .datos_forma_pago input,
+	#selector_formas_pago .forma_pago .datos_forma_pago select {
+		width: 100%;
+	}
+
+	#selector_formas_pago.formas_pago_yiuy .forma_pago_logo td > img {
+		height: 40px;
+	}
+
+	#selector_formas_pago .banco input[type="radio"] {
+		left: unset;
+		right: 0;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.destacados .producto,
+	.producto_suelto,
+	.producto {
+		font-size: 15px;
+		width: calc(100% - 2px);
+		margin: 3% 0;
+	}
+	.destacados .producto .precio,
+	.producto_suelto .precio,
+	.producto .precio {
+		font-size: 28px;
+	}
+	.destacados .producto .precio_unitario,
+	.producto_suelto .precio_unitario,
+	.producto .precio_unitario {
+		font-size: 15px;
+	}
+}
+
+.productos
+{
+	padding-top: 5px;
+}
+
+.dias
+{
+	/*font-weight: bold;*/
+	font-size: 20px;
+}
+
+#top_desde
+{
+	margin-top: 15px;
+	/*width: 550px;*/
+}
+#top_desde:empty
+{
+	display: none;
+}
+
+.pfecha
+{
+	margin-bottom: 10px;
+}
+.KO input
+{
+	color: white;
+	background-color: #CA1E25;
+	font-weight: bold;
+	border: 0;
+	margin-top: 20px;
+	width: 150px;
+}
+
+.aviso_tpv {
+	margin-top: 28px;
+	color: #CA1E25;
+	/*font-size: 18px;*/
+	font-weight: bold;
+}
+
+.aviso_tpv a {
+	text-decoration: underline;
+	color: inherit;
+}

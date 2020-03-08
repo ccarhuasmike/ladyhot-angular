@@ -894,7 +894,7 @@
 				} while (dias_subidas);
 
 				$('#fecha_final_text').val(datePickerController.printFormattedDate(dia, "%l %d/%m/%Y", 1));
-				$('#fecha_final').val(datePickerController.printFormattedDate(dia, "%d/%m/%Y", 1));
+				$('#fecha_final').val(datePickerController.printFormattedDate(dia, "%Y/%m/%d", 1));
 			}
 		}
 

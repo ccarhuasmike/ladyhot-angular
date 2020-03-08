@@ -138,12 +138,12 @@ export class ModalPasarelaPagoComponent {
                     contenedorError.textContent = result.error.message;
                     this.mostrarError = true;
                 } else {
-
                     if (this.formPago.invalid)
                         return;
 
                     $("#payment-button-sending").show();
                     $("#payment-button-amount").hide();
+                    debugger;
                     this.mostrarError = false;
                     // Envia el token de identificacion para adjuntar la fuente de pago al cliente
                     let infoCargo = {
@@ -159,7 +159,7 @@ export class ModalPasarelaPagoComponent {
                         primerHoraSubida: this.bodyProductSeleccionado.primerHoraSubida,
                         ultimoHoraSubida: this.bodyProductSeleccionado.ultimoHoraSubida
                     }
-                    this.pasaPagoService.CrearCargo(infoCargo).subscribe(
+                    /*this.pasaPagoService.CrearCargo(infoCargo).subscribe(
                         (res) => {
                             $("#payment-button-sending").hide();
                             $("#payment-button-amount").show();
@@ -170,7 +170,7 @@ export class ModalPasarelaPagoComponent {
                             this.onReset();
                             this.onConfirm(JSON.parse(res["Data"])["mensajePago"]);
                         }
-                    );
+                    );*/
                 }
             });
         });

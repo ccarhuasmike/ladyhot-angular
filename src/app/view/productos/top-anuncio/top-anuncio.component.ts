@@ -80,8 +80,8 @@ export class TopAnuncioComponent implements OnInit {
       precioUnitario: $(".producto.producto_selected").find(".precio_unitario").html(),
       idProducto: $(".producto.producto_selected").data("codigo-producto"),
       idAnuncio: dataSubirAutomatico.idAnuncio,
-      //primerDiaSubida: $("#fecha_inicial").val(),
-      //ultimoDiaSubida: $("#fecha_final").val(),
+      primerDiaSubida: $("#fecha_inicial").val(),
+      ultimoDiaSubida: $("#fecha_final").val(),
       //primerHoraSubida: $("#hora_inicio").val(),
       //ultimoHoraSubida: $("#hora_fin").val()
     };

@@ -156,10 +156,10 @@ export class ModalPasarelaPagoComponent {
                         idProducto: this.bodyProductSeleccionado.idProducto,
                         primerDiaSubida: this.bodyProductSeleccionado.primerDiaSubida == undefined ? null : this.bodyProductSeleccionado.primerDiaSubida,
                         ultimoDiaSubida: this.bodyProductSeleccionado.ultimoDiaSubida == undefined ? null : this.bodyProductSeleccionado.ultimoDiaSubida,
-                        primerHoraSubida: this.bodyProductSeleccionado.primerHoraSubida,
-                        ultimoHoraSubida: this.bodyProductSeleccionado.ultimoHoraSubida
+                        primerHoraSubida: this.bodyProductSeleccionado.primerHoraSubida == undefined ? "" : this.bodyProductSeleccionado.primerHoraSubida,
+                        ultimoHoraSubida: this.bodyProductSeleccionado.ultimoHoraSubida == undefined ? "" : this.bodyProductSeleccionado.ultimoHoraSubida
                     }
-                    /*this.pasaPagoService.CrearCargo(infoCargo).subscribe(
+                    this.pasaPagoService.CrearCargo(infoCargo).subscribe(
                         (res) => {
                             $("#payment-button-sending").hide();
                             $("#payment-button-amount").show();
@@ -170,7 +170,7 @@ export class ModalPasarelaPagoComponent {
                             this.onReset();
                             this.onConfirm(JSON.parse(res["Data"])["mensajePago"]);
                         }
-                    );*/
+                    );
                 }
             });
         });

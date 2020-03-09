@@ -291,6 +291,9 @@ $(document).ready( function() {
 });
 $( document ).ready( function()
 {
+	var ahora = new Date();
+	var fecha_inicial = ahora;
+	$('#fecha_inicial').val(fecha_inicial.getFullDate());
 	var $pagar = $('#pagar');
 	var $promocode = $('#form_promocode');
 	var promocode_on = false;
@@ -360,7 +363,9 @@ $( document ).ready( function()
 			$('#coste_total').css('display','block');
 			$('.elegir_forma_pago').css('display', $(' > *',$pagar).length>1? 'block' : 'none' );
 		//}
-
+		var fecha_final = fecha_inicial;
+		fecha_final.setDate(fecha_final.getDate() + 10);
+		$('#fecha_final').val(fecha_inicial.getFullDate());
 		$this.trigger('selected');
 	});
 

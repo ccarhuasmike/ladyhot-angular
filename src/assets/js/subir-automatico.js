@@ -865,7 +865,6 @@
 		fecha_inicial_max.setMonth(fecha_inicial_max.getMonth() + 1);
 
 		function actualizaUltimoDia() {
-			debugger;
 			var dias_subidas = $('.producto_selected .dias b').eq(0).text();
 			if (dias_subidas) {
 				var dia = new Date($('#fecha_inicial').val());

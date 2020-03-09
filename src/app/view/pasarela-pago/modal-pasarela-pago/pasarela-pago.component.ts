@@ -143,7 +143,6 @@ export class ModalPasarelaPagoComponent {
 
                     $("#payment-button-sending").show();
                     $("#payment-button-amount").hide();
-                    debugger;
                     this.mostrarError = false;
                     // Envia el token de identificacion para adjuntar la fuente de pago al cliente
                     let infoCargo = {

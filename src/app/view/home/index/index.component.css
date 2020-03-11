@@ -752,9 +752,9 @@ label {
 
 @media only screen and (min-width: 1201px) {
     .masonry {
-        -moz-column-count: 5;
-        -webkit-column-count: 5;
-        column-count: 5;
+        -moz-column-count: 7;
+        -webkit-column-count: 7;
+        column-count:7;
     }
 }
 .w-10 {
@@ -764,3 +764,4 @@ label {
 .line-h-2 {
     line-height: 2em
 }
+

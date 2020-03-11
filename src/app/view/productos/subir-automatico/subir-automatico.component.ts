@@ -114,6 +114,14 @@ export class SubirAutomaticoComponent implements OnInit {
     this.modalRef.content.onClose.subscribe(result => {
       this.mensajePago = result;
       this.nombre = dataSubirAutomatico.titulo;
+      var cargaEventos = setInterval(function () {
+        if ($("#success-alert").length > 0) {
+          clearInterval(cargaEventos);
+          $("#success-alert").fadeTo(2000, 1000).slideUp(1000, function () {
+            $("#success-alert").slideUp(1000);
+          });
+        }
+      }, 200);
       console.log('results', result);
     });
   }

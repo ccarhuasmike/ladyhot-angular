@@ -80,8 +80,8 @@ export class TopAnuncioComponent implements OnInit {
       precioUnitario: $(".producto.producto_selected").find(".precio_unitario").html(),
       idProducto: $(".producto.producto_selected").data("codigo-producto"),
       idAnuncio: dataSubirAutomatico.idAnuncio,
-      //primerDiaSubida: $("#fecha_inicial").val(),
-      //ultimoDiaSubida: $("#fecha_final").val(),
+      primerDiaSubida: $("#fecha_inicial").val(),
+      ultimoDiaSubida: $("#fecha_final").val(),
       //primerHoraSubida: $("#hora_inicio").val(),
       //ultimoHoraSubida: $("#hora_fin").val()
     };
@@ -102,6 +102,14 @@ export class TopAnuncioComponent implements OnInit {
     this.modalRef.content.onClose.subscribe(result => {
       this.mensajePago = result;
       this.nombre = dataSubirAutomatico.titulo;
+      var cargaEventos = setInterval(function () {
+        if ($("#success-alert").length > 0) {
+          clearInterval(cargaEventos);
+          $("#success-alert").fadeTo(2000, 1000).slideUp(1000, function () {
+            $("#success-alert").slideUp(1000);
+          });
+        }
+      }, 200);
       console.log('results', result);
     });
   }

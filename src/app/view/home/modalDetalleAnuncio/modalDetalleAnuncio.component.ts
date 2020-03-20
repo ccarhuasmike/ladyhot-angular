@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ParameterService, AnuncioService } from 'src/app/shared/services/service.module';
+import { AnuncioService } from 'src/app/shared/services/service.module';
 import { ClientResponse } from 'src/app/Models/ClientResponseModels';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { Router } from '@angular/router';
+import { ModalLightboxComponent } from '../modal-lightbox/modal-lightbox.component';
+
+declare var $: any;
 
 @Component({
     selector: 'app-modal-detalle-anuncio',
@@ -15,11 +17,12 @@ export class ModalDetalleAnuncio implements OnInit {
     estiloColapsar = "";
     noMostrarTarifas: boolean = false;
     noMostrarHorario: boolean = false;
+    modalRefLightbox: BsModalRef;
+
     constructor(
         public modalRef: BsModalRef,
         private anuncioService: AnuncioService,
-        private parameter: ParameterService,
-        private router: Router
+        private modalService: BsModalService
     ) {
     }
     ngOnInit() {
@@ -50,5 +53,16 @@ export class ModalDetalleAnuncio implements OnInit {
     }
     closeModal() {
         this.modalRef.hide();
+    }
+
+    openModalLightbox(imagesDetalleGaleria) {
+        this.modalRefLightbox = this.modalService.show(ModalLightboxComponent, {
+            class: 'modal-md modal-dialog-centered',
+            initialState: {
+                data: {
+                    imagesDetalleGaleria: imagesDetalleGaleria
+                }
+            }
+        });
     }
 }

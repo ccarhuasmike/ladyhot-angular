@@ -5,7 +5,9 @@ import { HomeService } from "../../../shared/services/anuncio/home.services";
 
 import { ModalDetalleAnuncio } from '../modalDetalleAnuncio/modalDetalleAnuncio.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
 declare var $: any;
+
 @Component({
   selector: 'app-home',
   templateUrl: "./index.component.html",
@@ -46,10 +48,10 @@ export class IndexComponent implements OnInit {
 
   }
   TruncamientoMultiline() {
-    /*Truncamiento de texto multilínea en tamaño de ventana*/    
+    /*Truncamiento de texto multilínea en tamaño de ventana*/
     $(document).ready(() => {
-    
-      
+
+
       // var p = $(' .descripcion');
       // var ks = $('#dash').height();
       // while ($(p).outerHeight() > ks) {
@@ -84,14 +86,15 @@ export class IndexComponent implements OnInit {
   }
   ngOnInit() {
     this.getLisAnuncios();
-
-
   }
+
   openModalDetalleAnuncio(id: number) {
     this.modalRef = this.modalService.show(ModalDetalleAnuncio, {
+      animated: true,
+      //backdrop: 'static',
       class: 'modal-lg',
       initialState: {
-        title: 'Actualizar Anuncio Demo',       
+        title: 'Actualizar Anuncio Demo',
         data: {
           id: id
         }

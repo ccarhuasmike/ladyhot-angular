@@ -21,8 +21,7 @@ import { PasarelaPagoModule } from './view/pasarela-pago/pasarela-pago.module';
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent,
-    
+    NotFoundComponent,    
     //IndexComponent
   ],
   imports: [

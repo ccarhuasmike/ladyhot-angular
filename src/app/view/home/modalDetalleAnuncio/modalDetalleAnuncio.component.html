@@ -279,14 +279,17 @@
                                     <p class="h3 text-dark font-weight-bold text-left">
                                         {{detalleDelAnuncio.txt_imagen_galeria.split(';').length  }} Fotos
                                     </p>
-                                    <div class="row">
-                                        <div [className]="detalleDelAnuncio.txt_imagen_galeria.split(';').length==1?'d-flex justify-content-center':'col-lg-6 col-md-6 col-sm-12 mt-1'"
-                                            *ngFor="let item of detalleDelAnuncio.txt_imagen_galeria.split(';'); let i = index">
+                                    <div class="row" data-toggle="modal" data-target="#exampleModal">
+                                        <div [className]="detalleDelAnuncio.txt_imagen_galeria.split(';').length==1?'d-flex justify-content-center lightbox-images':'col-lg-6 col-md-6 col-sm-12 mt-1 lightbox-images'"
+                                            *ngFor="let item of detalleDelAnuncio.txt_imagen_galeria.split(';'); let i = index"
+                                            (click)="openModalLightbox(detalleDelAnuncio.txt_imagen_galeria)">
                                             <img [className]="detalleDelAnuncio.txt_imagen_galeria.split(';').length==1?'w-100 w-sm-50 h-100 img-thumbnail':'w-100 h-100 img-thumbnail'"
-                                                src="{{item.trim()}}" data-id="2"
-                                                alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}} - Kinesióloga en Los Olivos">
+                                                src="{{item.trim()}}"
+                                                alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}} - Kinesi&oacute;loga en Los Olivos"
+                                                data-target="#carouselExample">
                                         </div>
                                     </div>
+
                                 </div>
                                 <div *ngIf="!detalleDelAnuncio.txt_imagen_galeria"
                                     class="d-flex justify-content-center">

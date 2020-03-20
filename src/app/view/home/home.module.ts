@@ -11,6 +11,7 @@ import { ModalModule } from 'ngx-bootstrap';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalLightboxComponent } from './modal-lightbox/modal-lightbox.component';
 
 @NgModule({
     imports: [
@@ -27,9 +28,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
         HeaderComponent,
         FilterComponent,
         headerfilter,
-        ModalDetalleAnuncio],
+        ModalDetalleAnuncio,
+        ModalLightboxComponent],
+    exports: [IndexComponent],
+    bootstrap: [IndexComponent],
     entryComponents: [
-        ModalDetalleAnuncio
+        ModalDetalleAnuncio,
+        ModalLightboxComponent
     ]
 })
 export class HomeModule { }

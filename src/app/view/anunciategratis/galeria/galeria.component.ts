@@ -175,4 +175,7 @@ export class GaleriaComponent implements OnInit {
     btnAtras() {
         this.router.navigate(['anunciategratis/servicios']);
     }
+    btnFinalizar() {
+        this.router.navigate(['../home']);    
+    }
 }

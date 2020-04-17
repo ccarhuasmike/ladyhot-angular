@@ -26,7 +26,7 @@
                                         <span>{{detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
                                         <span></span><span></span><br />
                                         <span>{{detalleDelAnuncio.txt_nombre_ficha }}</span>
-                                        <span> | {{detalleDelAnuncio.txt_descripcion_edad }} años</span>
+                                        <span> | {{detalleDelAnuncio.tx_edad }} años</span>
                                         <span *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora"> | S/.
                                             {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora}}</span>
                                         <span></span><br /><span>29/06/2019 12:00
@@ -50,7 +50,9 @@
                                                     class="fab fa-whatsapp mr-1"></i>
                                                 <span class="font-weight-bold">WhatsApp</span></a>
                                         </div>
-                                        <div class="row mt-1">
+
+
+                                        <!-- <div class="row mt-1">
                                             <div class="col-4 cursor-pointer" data-target="#compartir"
                                                 data-toggle="collapse">
                                                 <i class='fa fa-share-alt text-secondary'></i>
@@ -59,7 +61,7 @@
                                             <div class="col-4 cursor-pointer">
                                                 <i class='fa fa-star text-primary'></i>
                                                 <span class="small ml-1 text-secondary">Favoritos</span>
-                                            </div>
+                                            </div> -->
                                             <!--<div class="col-4 cursor-pointer">
                                                 <i class='far fa-hand-pointer text-danger'></i>
                                                 <span class="small ml-1 text-secondary">Denunciar</span>
@@ -85,7 +87,7 @@
                                                     <i class="fab fa-twitter fa-2x"></i>
                                                 </a>
                                             </div> -->
-                                        </div>
+                                        <!-- </div> -->
                                     </div>
                                 </div>
                             </div>

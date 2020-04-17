@@ -36,11 +36,12 @@ export class ModalDetalleAnuncio implements OnInit {
                     res.Data["tx_descripcion_extra_horario"] = res.Data["tx_descripcion_extra_horario"].replace(/(\n)+\n+|\t+/g, ";").split("\n");
                 }
                 this.detalleDelAnuncio = res.Data;
-                this.noMostrarTarifas = (this.detalleDelAnuncio.dbl_costo_x_tiempo_30min == 0 || this.detalleDelAnuncio.dbl_costo_x_tiempo_45min == 0
-                    || this.detalleDelAnuncio.dbl_costo_x_tiempo_1hora == 0 || this.detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media == 0
-                    || this.detalleDelAnuncio.dbl_costo_x_tiempo_2hora == 0 || this.detalleDelAnuncio.dbl_costo_x_tiempo_3hora == 0
-                    || this.detalleDelAnuncio.dbl_costo_x_tiempo_salidas == 0
-                    || this.detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche == 0 || this.detalleDelAnuncio.dbl_costo_x_viaje == 0
+                debugger;
+                this.noMostrarTarifas = (this.detalleDelAnuncio.dbl_costo_x_tiempo_30min != 0 || this.detalleDelAnuncio.dbl_costo_x_tiempo_45min != 0
+                    || this.detalleDelAnuncio.dbl_costo_x_tiempo_1hora != 0 || this.detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media != 0
+                    || this.detalleDelAnuncio.dbl_costo_x_tiempo_2hora != 0 || this.detalleDelAnuncio.dbl_costo_x_tiempo_3hora != 0
+                    || this.detalleDelAnuncio.dbl_costo_x_tiempo_salidas != 0
+                    || this.detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche != 0 || this.detalleDelAnuncio.dbl_costo_x_viaje != 0
                     || this.detalleDelAnuncio.txt_forma_pago == null);
                 this.noMostrarHorario = (this.detalleDelAnuncio.tx_descripcion_extra_horario == "" && this.detalleDelAnuncio.fl_atencion_24horas == 0);
                 let dataSubirAutomatico = {

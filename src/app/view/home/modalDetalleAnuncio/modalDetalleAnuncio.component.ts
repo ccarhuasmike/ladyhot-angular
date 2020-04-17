@@ -28,8 +28,7 @@ export class ModalDetalleAnuncio implements OnInit {
     ngOnInit() {
         this.anuncioService.ObtenerDetalleAnucionXId(this["data"]["id"]).subscribe(
             (res: ClientResponse) => {
-
-                debugger;
+                
                 if (res.Data["txt_presentacion"] != "") {
                     res.Data["txt_presentacion"] = res.Data["txt_presentacion"].replace(/(\n)+\n+|\t+/g, ";");
                 }

@@ -322,7 +322,7 @@
                     </div> -->
 
                     <div class="col-12"
-                        *ngIf="detalleDelAnuncio.tx_descripcion_servicios_ofrece && detalleDelAnuncio.tx_descripcion_extra_servicio">
+                        *ngIf="detalleDelAnuncio.tx_descripcion_servicios_ofrece">
                         <div class="card w-100">
                             <div class="card-body bg-white">
                                 <p class="h3 text-dark font-weight-bold text-left">
@@ -335,7 +335,7 @@
                                             {{item.trim()}}
                                         </a>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-12" *ngIf="detalleDelAnuncio.tx_descripcion_extra_servicio">
                                         <div class="text-secondary h5 text-capitalize">
                                             <span>{{detalleDelAnuncio.tx_descripcion_extra_servicio}}</span>
                                         </div>

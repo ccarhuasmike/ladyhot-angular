@@ -434,18 +434,29 @@ label {
 
 @media only screen and (min-width: 1170px) {
     .cd-filter-trigger {
-        width: auto;
+        /* width: auto;
         left: 2%;
         text-indent: 0;
         color: #9a9a9a;
-        text-transform: uppercase;
-        /* font-size: 1.3rem; */
+        text-transform: uppercase;        
         font-weight: 700;
         padding-left: 24px;
         background-position: left center;
         -webkit-transition: color 0.3s;
         -moz-transition: color 0.3s;
-        transition: color 0.3s;
+        transition: color 0.3s; */
+
+    width: auto;
+    background: #f35b3f;
+    color: white !important;
+    text-indent: 0;    
+    text-transform: uppercase;
+    font-weight: 700;
+    padding-right: 30px;
+    padding-left: 24px;
+    background-position: left center;
+    transition: color .3s;
+    
     }
     .no-touch .cd-filter-trigger:hover {
         color: #f35b3f;

@@ -763,9 +763,9 @@ label {
 
 @media only screen and (min-width: 1201px) {
     .masonry {
-        -moz-column-count: 7;
-        -webkit-column-count: 7;
-        column-count:7;
+        -moz-column-count: 6;
+        -webkit-column-count: 6;
+        column-count:6;
     }
 }
 .w-10 {

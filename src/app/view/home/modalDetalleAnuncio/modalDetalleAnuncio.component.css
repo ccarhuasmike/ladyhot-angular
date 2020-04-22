@@ -1436,7 +1436,13 @@ input:checked+.slider:before {
   }
 }
 @media (max-width: 576px){
-	.col-sm-12{
+	/*.col-sm-12{
 		pointer-events:none;
-	}	
+	}*/	
+	.lightbox-images{
+		pointer-events:none;
+	}
+}
+.cursor-imagen-detalle{
+	cursor:pointer;
 }

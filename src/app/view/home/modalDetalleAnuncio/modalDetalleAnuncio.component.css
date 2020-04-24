@@ -40,6 +40,12 @@
   font-size: 24px !important;  
 }
 
+.text-a {
+
+	font-size: 22px !important;  
+	font-family: Arial;
+  }
+
 
 /*ESTILOS BOOTSTRAP*/
 .btn {

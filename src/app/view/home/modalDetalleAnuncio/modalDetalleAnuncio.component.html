@@ -103,7 +103,7 @@
                                 <!-- <p class="h5 text-dark text-left">
                                     {{detalleDelAnuncio.txt_presentacion | replace: '/(\n)+\n+|\t+/g': ';'}}</p> -->
                                 <p class="h5 text-error text-left text-danger">No olvides mencionarme que viste mi
-                                    anuncio en <a class="text-error font-weight-bold text-danger" href="">LadyHot</a>.
+                                    anuncio en <a class="text-error font-weight-bold text-danger text-a" href="">LadyHot</a>.
                                 </p>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                     <!-- d-lg-flex -->
                     <div class="row col-12 mx-auto">
                         <div
-                            [className]="(noMostrarTarifas && noMostrarHorario)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12'">
+                            [className]="((!noMostrarTarifas && !noMostrarFormaPago) && !noMostrarHorario)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12'" *ngIf="noDatosGenerales">
                             <div class="card-body bg-white">
                                 <h1 class="h5 text-dark font-weight-bold text-left">
                                     Datos Generales
@@ -139,9 +139,9 @@
                             </div>
                         </div>
 
-                        <div class="card col-lg-6 col-sm-12" *ngIf="noMostrarTarifas">
+                        <div [className]="(!noDatosGenerales && !noMostrarHorario) ?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12'" *ngIf="noMostrarTarifas || noMostrarFormaPago">
                             <div class="card-body bg-white">
-                                <h1 class="h5 text-dark font-weight-bold text-left">
+                                <h1 class="h5 text-dark font-weight-bold text-left" *ngIf="noMostrarTarifas">
                                     Tarifas
                                 </h1>
                                 <div class="clearfix text-secondary h6"
@@ -190,7 +190,7 @@
                                     <span class="float-right">S/. {{detalleDelAnuncio.dbl_costo_x_viaje}}</span>
                                 </div>
                                 <div class="clearfix text-secondary h6"
-                                    *ngIf="detalleDelAnuncio.txt_forma_pago">
+                                    *ngIf="noMostrarFormaPago">
                                     <h1 class="h5 text-dark font-weight-bold text-left float-left w-100">Forma de Pago</h1>
                                     <div class="col-12 mt-2 p-0">
                                         <a *ngFor="let item of detalleDelAnuncio.txt_forma_pago.split(';'); let i = index"
@@ -202,14 +202,14 @@
                             </div>
                         </div>
 
-                        <div *ngIf="detalleDelAnuncio.tx_descripcion_extra_horario !=='' || detalleDelAnuncio.fl_atencion_24horas !==0 "
-                            [className]="'card col-lg-12 col-sm-12'">
+                        <div *ngIf="noMostrarHorario"
+                            [className]="((noMostrarTarifas || noMostrarFormaPago) && noDatosGenerales) ?'card col-lg-12 col-sm-12':(((!noMostrarTarifas && !noMostrarFormaPago) && !noDatosGenerales)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12')">
                             <div class="card-body bg-white">
                                 <h1 class="h5 text-dark font-weight-bold text-left">
                                     Horario
                                 </h1>
                                 <div class="clearfix text-secondary h6"
-                                    *ngIf="detalleDelAnuncio.tx_descripcion_extra_horario || detalleDelAnuncio.tx_fl_atencion_24horas">
+                                    *ngIf="noMostrarHorario">
                                     <span class="float-left">{{detalleDelAnuncio.tx_descripcion_extra_horario}}</span>  
                                     <br>                         
                                     <span class="float-left">{{detalleDelAnuncio.tx_fl_atencion_24horas}}</span>
@@ -235,8 +235,7 @@
                     </div>
 
                     <div class="col-12"
-                        *ngIf="detalleDelAnuncio.tx_color_cabello || detalleDelAnuncio.tx_color_ojos || detalleDelAnuncio.tx_estatura 
-                        || detalleDelAnuncio.txt_medidas_busto_cintura_cadera">
+                        *ngIf="noMostrarApariencia">
                         <div class="card w-100">
                             <div class="card-body bg-white">
                                 <h1 class="h5 text-dark font-weight-bold text-left">

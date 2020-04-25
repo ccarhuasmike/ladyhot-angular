@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductoService } from 'src/app/shared/services/producto/producto.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalPasarelaPagoComponent } from '../../pasarela-pago/modal-pasarela-pago/pasarela-pago.component';
-import { PasarelaPagoService } from 'src/app/shared/services/pasarela-pago/pasarelapago.service';
+import { PasarelaPagoService } from 'src/app/shared/services/pasarelapago/pasarelapago.service';
 import { environment } from 'src/environments/environment';
 
 declare var $: any;

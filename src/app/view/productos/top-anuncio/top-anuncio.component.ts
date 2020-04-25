@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PasarelaPagoService } from 'src/app/shared/services/pasarela-pago/pasarelapago.service';
+import { PasarelaPagoService } from 'src/app/shared/services/pasarelapago/pasarelapago.service';
 import { environment } from 'src/environments/environment';
 import { ProductoService } from 'src/app/shared/services/producto/producto.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';

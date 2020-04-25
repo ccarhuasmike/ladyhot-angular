@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ConfigService } from "../Utilitarios/config.service";
-import { HttpErrorHandler, HandleError, } from '../../../throwError/http-error-handler.service';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ClientResponse } from '../../../Models/ClientResponseModels';
@@ -17,19 +16,16 @@ const httpOptions = {
 export class HomeService {
     filter: any = {};
     _baseUrl: string = '';
-    list: any = [];
-    private handleError: HandleError;
+    list: any = [];    
     constructor(
-        private configService: ConfigService,
-        httpErrorHandler: HttpErrorHandler,
+        private configService: ConfigService,        
         private httpClient: HttpClient
     ) {
-        this.handleError = httpErrorHandler.createHandleError('HeroesService');
         this._baseUrl = configService.getWebApiURL();
     }
     getAnuncio(): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/ListarAnuncio', {}, httpOptions).pipe(
-            catchError(this.handleError('getAnuncio'))
+            //catchError(null)
         );
     }
 

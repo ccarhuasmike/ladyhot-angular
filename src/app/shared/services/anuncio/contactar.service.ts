@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RequestOptions, Headers, Http } from '@angular/http';
 import { ConfigService } from '../Utilitarios/config.service';
-import { HandleError, HttpErrorHandler } from 'src/app/throwError/http-error-handler.service';
 import { Bean_mail } from 'src/app/Models/Bean_mail';
 import { Observable } from 'rxjs';
 import { ClientResponseResult, ClientResponse } from 'src/app/Models/ClientResponseModels';
@@ -15,17 +14,14 @@ const options = new RequestOptions({
 
 @Injectable()
 export class ContactarService {
-
     _baseUrl: string = '';
-    private handleError: HandleError;
+
 
     constructor(
         private http: Http,
-        private configService: ConfigService,
-        httpErrorHandler: HttpErrorHandler
+        private configService: ConfigService       
     ) {
-        this._baseUrl = configService.getWebApiURL();
-        this.handleError = httpErrorHandler.createHandleError('HeroesService');
+        this._baseUrl = configService.getWebApiURL();       
     }
 
     EnviarMail(beanMail: Bean_mail): Observable<ClientResponseResult<ClientResponse>> {
@@ -34,7 +30,8 @@ export class ContactarService {
             map(res => {
                 peginatedResult.result = res.json();
                 return peginatedResult;
-            }), catchError(this.handleError('EnviarMail'))
+            })//, 
+            //catchError(null)
         );
     }
 }

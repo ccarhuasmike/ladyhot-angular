@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ModalPasarelaPagoComponent } from '../modal-pasarela-pago/pasarela-pago.component';
-import { PasarelaPagoService } from 'src/app/shared/services/pasarela-pago/pasarela-pago';
+import { PasarelaPagoService } from 'src/app/shared/services/pasarela-pago/pasarelapago.service';
 import { environment } from 'src/environments/environment';
 
 @Component({

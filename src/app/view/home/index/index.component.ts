@@ -2,11 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ClientResponse } from '../../../Models/ClientResponseModels';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { HomeService } from "../../../shared/services/anuncio/home.services";
-
 import { ModalDetalleAnuncio } from '../modalDetalleAnuncio/modalDetalleAnuncio.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-
-declare var $: any;
 
 @Component({
   selector: 'app-home',
@@ -15,7 +12,6 @@ declare var $: any;
   encapsulation: ViewEncapsulation.None
 })
 export class IndexComponent implements OnInit {
-
   modalRef: BsModalRef;
 
   public masonryOptions: NgxMasonryOptions = {
@@ -38,45 +34,26 @@ export class IndexComponent implements OnInit {
     this.EntidadFiltro = event.entidad;
     this.getLisAnuncios(true, event.entidad);
   }
-
   onScrollDown() {
     this.limit += 15;
-    this.masonryImages = this.list.slice(0, this.limit);
-    this.TruncamientoMultiline();
+    this.masonryImages = this.list.slice(0, this.limit);    
   }
   onScrollUp() {
-
   }
-  TruncamientoMultiline() {
-    /*Truncamiento de texto multilínea en tamaño de ventana*/
-    $(document).ready(() => {
-
-
-      // var p = $(' .descripcion');
-      // var ks = $('#dash').height();
-      // while ($(p).outerHeight() > ks) {
-      //   $(p).text(function (index, text) {
-      //     return text.replace(/\W*\s(\S)*$/, '...');
-      //   });
-      // }
-    });
-  }
+  
   getLisAnuncios(filtrer: boolean = false, entidadFiltro: any = {}) {
-
     if (filtrer) {
       this.masonryImages = this.list.filter(function (e) {
         return e.txt_nombre_ficha.toLowerCase().indexOf(entidadFiltro.txt_nombre_ficha.toLowerCase()) > -1 ||
           e.txt_lugar_servicio_distrito.indexOf(entidadFiltro.txt_lugar_servicio_distrito) ||
           e.tx_servicios_ofrece.indexOf(entidadFiltro.tx_servicios_ofrece) ||
           e.tx_lugar_atencion.indexOf(entidadFiltro.tx_lugar_atencion)
-      }).slice(0, this.limit);
-      this.TruncamientoMultiline();
+      }).slice(0, this.limit);      
     } else {
       this.homeService.getAnuncio().subscribe(
         (res: ClientResponse) => {
           this.list = JSON.parse(res.DataJson);
-          this.masonryImages = this.list.slice(0, this.limit);
-          this.TruncamientoMultiline();
+          this.masonryImages = this.list.slice(0, this.limit);          
         },
         (error) => {
           console.log(error + "getLisAnuncios");

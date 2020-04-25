@@ -4,31 +4,28 @@ import { catchError } from 'rxjs/operators';
 import { ClientResponse } from '../../../Models/ClientResponseModels';
 import { ConfigService } from "../Utilitarios/config.service";
 import { HttpClient } from '@angular/common/http';
-import { HttpErrorHandler, HandleError } from '../../../throwError/http-error-handler.service';
 //https://stackblitz.com/angular/ooqemvjyqkb?file=src%2Fapp%2Fauth.service.ts
 @Injectable()
 export class ParameterService {
     filter: any = {};
     _baseUrl: string = '';
-    list: any = [];
-    private handleError: HandleError;
+    list: any = [];    
     constructor(
         private httpClient: HttpClient,
         private configService: ConfigService,
-        httpErrorHandler: HttpErrorHandler
-    ) {
-        this.handleError = httpErrorHandler.createHandleError('HeroesService');
+    
+    ) {    
         this._baseUrl = configService.getWebApiURL();
     }
 
     getParameter(): Observable<ClientResponse> {
         return this.httpClient.get<ClientResponse>(this._baseUrl + 'parameter/sel_parameter').pipe(
-            catchError(this.handleError('getParameters'))
+            //catchError(null)
         );
     }
     getParameterFilterHome(): Observable<ClientResponse> {
         return this.httpClient.get<ClientResponse>(this._baseUrl + 'parameter/sel_parameter_filter_home').pipe(
-            catchError(this.handleError('getParameters'))
+            //catchError(null)
         );
     }
     getSerialized<T>(arg: any): T {

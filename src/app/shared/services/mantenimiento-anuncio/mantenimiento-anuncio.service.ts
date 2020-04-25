@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { RequestOptions, Headers, Http } from '@angular/http';
-import { HandleError, HttpErrorHandler } from 'src/app/throwError/http-error-handler.service';
 import { ConfigService } from '../Utilitarios/config.service';
 import { Observable } from 'rxjs';
 import { ClientResponseResult, ClientResponse, Pagination } from 'src/app/Models/ClientResponseModels';
@@ -27,21 +26,19 @@ const httpOptions = {
 @Injectable()
 export class MantenimientoAnuncioService {
     _baseUrl: string = '';
-    private handleError: HandleError;
+    
 
     constructor(
         private http: Http,
         private httpClient: HttpClient,
-        private configService: ConfigService,
-        httpErrorHandler: HttpErrorHandler
+        private configService: ConfigService    
     ) {
-        this._baseUrl = configService.getWebApiURL();
-        this.handleError = httpErrorHandler.createHandleError('HeroesService');
+        this._baseUrl = configService.getWebApiURL();        
     }
 
     ListaPaginado(pagination: Pagination): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Listarpaginado', pagination, httpOptions).pipe(
-            catchError(this.handleError('ListaPaginado'))
+            //catchError(null)
         );
     }
     ListarAnuncioPaginate(anuncio: Tbl_anuncio): Observable<ClientResponseResult<ClientResponse>> {

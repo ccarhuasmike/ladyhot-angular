@@ -5,7 +5,6 @@ import { AnuncioService } from "../../../shared/services/anuncio/anuncio.service
 import { DatosContacto } from "../../../models/modelanuncio";
 import { ParameterService } from "../../../shared/services/anuncio/parameter.service";
 import { ClientResponse } from '../../../Models/ClientResponseModels';
-import { MessageService } from "../../../throwError/message.service";
 
 @Component({
     selector: 'app-datoscontactos-gratis',
@@ -33,8 +32,7 @@ export class DatosContactoComponent implements OnInit {
     DataJsonAnuncio: any;
     constructor(private router: Router,
         private anuncioService: AnuncioService,
-        private parameter: ParameterService,
-        public messageService: MessageService
+        private parameter: ParameterService        
     ) { }
 
     ngOnInit() {
@@ -43,8 +41,6 @@ export class DatosContactoComponent implements OnInit {
             (res: ClientResponse) => {
                 this.listParameter = JSON.parse(res.DataJson);
                 localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
-                this._messageService = this.messageService;
-
             }
         );
         this.anuncioService.segundopaso(false);

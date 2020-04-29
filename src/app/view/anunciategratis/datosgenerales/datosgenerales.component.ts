@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AnuncioService } from "../../../shared/services/anuncio/anuncio.service";
 import { DatosGenerales } from "../../../models/modelanuncio";
 import { ParameterService } from "../../../shared/services/anuncio/parameter.service";
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
     selector: 'app-datosgenerales-gratis',
     templateUrl: './datosgenerales.component.html',
@@ -30,12 +31,11 @@ export class DatosGeneralesComponent implements OnInit {
     constructor(
         private anuncioService: AnuncioService,
         private router: Router,
-        private parameter: ParameterService
-
+        private parameter: ParameterService,
+        private spinner: NgxSpinnerService
     ) { }
 
-    ngOnInit() {
-        debugger;
+    ngOnInit() {        
         this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
         this.anuncioService.segundopaso(true);
@@ -78,7 +78,8 @@ export class DatosGeneralesComponent implements OnInit {
         this.isSubmittedDatosGenerales = true;
         if (!this.fromDatosGenerales.valid)
             return;
-            debugger;
+            
+        this.spinner.show();
         this.DataJsonAnuncio.int_edad = parseInt(this.fromDatosGenerales.value.int_edad);
         this.DataJsonAnuncio.int_pais_origen = parseInt(this.fromDatosGenerales.value.int_pais_origen);
         this.DataJsonAnuncio.int_estudios = parseInt(this.fromDatosGenerales.value.int_estudios);
@@ -90,6 +91,9 @@ export class DatosGeneralesComponent implements OnInit {
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                     this.router.navigate(['anunciategratis/apariencia']);
                 }
+                setTimeout(() => {
+                    this.spinner.hide();
+                  }, 2000);
             }
         );
     }

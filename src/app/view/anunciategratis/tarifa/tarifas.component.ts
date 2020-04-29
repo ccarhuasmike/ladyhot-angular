@@ -3,7 +3,7 @@ import { AnuncioService } from "../../../shared/services/anuncio/anuncio.service
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Tarifas, ModelCarga } from "../../../models/modelanuncio";
-
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
     selector: 'app-tarifas',
     templateUrl: './tarifas.component.html',
@@ -34,8 +34,8 @@ export class TarifasComponent implements OnInit {
     constructor(
         private anuncioService: AnuncioService,
         private router: Router,
-        private frmBuilder: FormBuilder
-
+        private frmBuilder: FormBuilder,
+        private spinner: NgxSpinnerService
     ) { }
 
     ngOnInit() {
@@ -135,6 +135,8 @@ export class TarifasComponent implements OnInit {
         this.isSubmittedTarifas = true;
         if (!this.fromTarifa.valid)
             return;
+
+        this.spinner.show();
         const selectedFormapago = this.fromTarifa.value.ListFormaPago
             .map((v, i) => v ? this.ListFormaPago[i].val_valor : null)
             .filter(v => v !== null);
@@ -158,6 +160,9 @@ export class TarifasComponent implements OnInit {
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                     this.router.navigate(['anunciategratis/servicios']);
                 }
+                setTimeout(() => {
+                    this.spinner.hide();
+                }, 2000);
             }
         );
 
@@ -184,7 +189,7 @@ export class TarifasComponent implements OnInit {
         this.fromTarifa.reset();
     }
 
-    btnAtras(form: any) {        
+    btnAtras(form: any) {
         this.router.navigate(['anunciategratis/apariencia']);
     }
 }

@@ -3,13 +3,13 @@ import { AnuncioService } from "../../../shared/services/anuncio/anuncio.service
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Apariencia } from "../../../models/modelanuncio";
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
     selector: 'app-apariencia',
     templateUrl: './apariencia.component.html',
-    
+
 })
 export class AparienciaComponent implements OnInit {
-
     apariencia: Apariencia;
     fromApariencia: FormGroup;
 
@@ -34,12 +34,13 @@ export class AparienciaComponent implements OnInit {
     constructor(
         private anuncioService: AnuncioService,
         private router: Router,
+        private spinner: NgxSpinnerService
     ) { }
 
     ngOnInit() {
         this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
-        
+
         this.anuncioService.segundopaso(true);
         this.anuncioService.tercerpaso(true);
         this.anuncioService.cuartopaso(false);
@@ -90,6 +91,7 @@ export class AparienciaComponent implements OnInit {
         this.isSubmittedApariencia = true;
         if (!this.fromApariencia.valid)
             return;
+        this.spinner.show();
         this.DataJsonAnuncio.int_color_cabello = parseInt(this.fromApariencia.value.int_color_cabello);
         this.DataJsonAnuncio.int_color_ojos = parseInt(this.fromApariencia.value.int_color_ojos);
         this.DataJsonAnuncio.int_estatura = parseInt(this.fromApariencia.value.int_estatura);
@@ -103,6 +105,9 @@ export class AparienciaComponent implements OnInit {
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                     this.router.navigate(['anunciategratis/tarifa']);
                 }
+                setTimeout(() => {
+                    this.spinner.hide();
+                  }, 2000);
             }
         );
 

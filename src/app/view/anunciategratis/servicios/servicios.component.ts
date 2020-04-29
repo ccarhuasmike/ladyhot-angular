@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnuncioService } from "../../../shared/services/anuncio/anuncio.service";
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
     selector: 'app-servicios',
     templateUrl: './servicios.component.html',
@@ -31,8 +32,8 @@ export class ServiciosComponent implements OnInit {
     constructor(
         private anuncioService: AnuncioService,
         private router: Router,
-        private frmBuilder: FormBuilder
-
+        private frmBuilder: FormBuilder,
+        private spinner: NgxSpinnerService
     ) { }
 
     ngOnInit() {
@@ -152,7 +153,7 @@ export class ServiciosComponent implements OnInit {
         this.isSubmittedTarifas = true;
         if (!this.fromServicios.valid)
             return;
-
+        this.spinner.show();
         const selectedDistrito = this.fromServicios.value.ListDistrito
             .map((v, i) => v ? this.ListDistrito[i].val_valor : null)
             .filter(v => v !== null);
@@ -175,9 +176,12 @@ export class ServiciosComponent implements OnInit {
             (res) => {
                 if (res.Status == "OK") {
                     let DataJsonAnuncio: any = res.Data;
-                    localStorage.setItem('DataAnuncio', DataJsonAnuncio);                    
+                    localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                     this.router.navigate(['anunciategratis/galeria']);
                 }
+                setTimeout(() => {
+                    this.spinner.hide();
+                  }, 2000);
             }
         );
         // userService.Save(this.register.value);

@@ -13,7 +13,7 @@
         <div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5" [infiniteScrollThrottle]="500" (scrolled)="onScrollDown()" (scrolledUp)="onScrollUp()">
             <div class="masonry">
                 <div class="item cursor-pointer" *ngFor="let items of masonryImages" (click)="openModalDetalleAnuncio(items.id)">
-                    <img src="{{items.txt_imagen_prensetancion}}">
+                    <img src="{{items.txt_imagen_prensetancion}}" alt="{{items.txt_nombre_ficha}}">
                     <div class="icons-fichas w-10">
                         <span class="icons-fichas-info text-white line-h-2">
                             <span class="fa fa-info"></span>

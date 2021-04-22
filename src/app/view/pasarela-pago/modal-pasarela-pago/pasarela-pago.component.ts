@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
-import { PasarelaPagoService } from 'src/app/shared/services/pasarela-pago/pasarela-pago';
+import { PasarelaPagoService } from 'src/app/shared/services/pasarelapago/pasarelapago.service';
 import { environment } from 'src/environments/environment';
 import { Subject } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap';

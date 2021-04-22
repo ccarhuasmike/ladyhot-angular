@@ -6,7 +6,6 @@ import { DatosContacto } from "../../../../models/modelanuncio";
 import { ParameterService } from "../../../../shared/services/anuncio/parameter.service";
 import { ClientResponse, ClientResponseResult } from '../../../../Models/ClientResponseModels';
 import { PaginatedResult } from '../../../../Models/Tbl_parameter_detModels';
-import { MessageService } from "../../../../throwError/message.service";
 
 @Component({
     selector: 'app-datoscontactos',
@@ -27,14 +26,12 @@ export class DatosContactoComponent implements OnInit {
     //Registro de Expresiones
     RegEx_mailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
     RegEx_txt_web = "^(http[s]?:\\/\\/){0,1}(www\\.){0,1}[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,5}[\\.]{0,1}$";
-    RegEx_Telefono = "^[679]{1}[0-9]{8}$";
-    _messageService: any;
+    RegEx_Telefono = "^[679]{1}[0-9]{8}$";    
     listParameter: any;
     DataJsonAnuncio: any;
     constructor(private router: Router,
         private anuncioService: AnuncioService,
-        private parameter: ParameterService,
-        public messageService: MessageService
+        private parameter: ParameterService        
     ) { }
 
     ngOnInit() {
@@ -42,8 +39,7 @@ export class DatosContactoComponent implements OnInit {
         this.parameter.getParameter().subscribe(
             (res: ClientResponse) => {
                 this.listParameter = JSON.parse(res.DataJson);
-                localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
-                this._messageService = this.messageService;            
+                localStorage.setItem('listParamter', JSON.stringify(this.listParameter));                     
             }
         );
         this.anuncioService.segundopaso(false);

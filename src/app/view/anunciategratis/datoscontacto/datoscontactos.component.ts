@@ -5,8 +5,7 @@ import { AnuncioService } from "../../../shared/services/anuncio/anuncio.service
 import { DatosContacto } from "../../../models/modelanuncio";
 import { ParameterService } from "../../../shared/services/anuncio/parameter.service";
 import { ClientResponse } from '../../../Models/ClientResponseModels';
-import { MessageService } from "../../../throwError/message.service";
-
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
     selector: 'app-datoscontactos-gratis',
     templateUrl: './datoscontactos.component.html',
@@ -34,7 +33,7 @@ export class DatosContactoComponent implements OnInit {
     constructor(private router: Router,
         private anuncioService: AnuncioService,
         private parameter: ParameterService,
-        public messageService: MessageService
+        private spinner: NgxSpinnerService
     ) { }
 
     ngOnInit() {
@@ -43,8 +42,6 @@ export class DatosContactoComponent implements OnInit {
             (res: ClientResponse) => {
                 this.listParameter = JSON.parse(res.DataJson);
                 localStorage.setItem('listParamter', JSON.stringify(this.listParameter));
-                this._messageService = this.messageService;
-
             }
         );
         this.anuncioService.segundopaso(false);
@@ -83,6 +80,9 @@ export class DatosContactoComponent implements OnInit {
         this.isSubmitted = true;
         if (!this.fromContacto.valid)
             return;
+
+        this.spinner.show();
+
         if (this.DataJsonAnuncio == null) {
             //Registrar Datos
             let entidad: any = {};
@@ -102,6 +102,9 @@ export class DatosContactoComponent implements OnInit {
                     } else {
                         console.log("ejecute Error");
                     }
+                    setTimeout(() => {
+                        this.spinner.hide();
+                      }, 2000);
                 }
             );
         } else {
@@ -118,6 +121,9 @@ export class DatosContactoComponent implements OnInit {
                         localStorage.setItem('DataAnuncio', DataJsonAnuncio);
                         this.router.navigate(['anunciategratis/datos-generales']);
                     }
+                    setTimeout(() => {
+                        this.spinner.hide();
+                      }, 2000);
                 }
             );
         }

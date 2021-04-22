@@ -11,24 +11,26 @@ import { AparienciaComponent } from "./apariencia/apariencia.component"
 import { ServiciosComponent } from "./servicios/servicios.component"
 import { GaleriaComponent } from "./galeria/galeria.component"
 import { TarifasComponent } from "./tarifa/tarifas.component"
- import { SharedCompoentModule } from '../../view/shared/sharedcomponent.module';
+import { SharedCompoentModule } from '../../view/shared/sharedcomponent.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
     imports: [
         CommonModule,
         AnunciateGratisRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        SharedCompoentModule        
+        SharedCompoentModule,
+        NgxSpinnerModule
     ],
     declarations: [
         IndexComponent,
         NavBarTabComponent,
         DatosContactoComponent,
         DatosGeneralesComponent,
-        AparienciaComponent,       
-        ServiciosComponent,     
-        TarifasComponent,   
-        GaleriaComponent,      
+        AparienciaComponent,
+        ServiciosComponent,
+        TarifasComponent,
+        GaleriaComponent,
         //HeaderShared  
         //OnlyNumber
     ],

@@ -14,6 +14,8 @@ label {
     font-weight: bold !important;
     color: #888 !important;
 }
+
+
 /* --------------------------------   
   Main Components   
   -------------------------------- */
@@ -321,6 +323,8 @@ label {
         width: 80%;
     }
 }
+
+
 /* --------------------------------   
   xfilter   
   -------------------------------- */
@@ -418,14 +422,29 @@ label {
     left: 0;
     height: 50px;
     line-height: 50px;
-    width: 60px;
-    /* image replacement */
+    width: 95px;
+    overflow: hidden;
+    color: white;
+    white-space: nowrap;
+    z-index: 3;
+    padding: 0px 12px 0px 12px;
+    background: #f35b3f;
+    /* position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    line-height: 50px;
+    width: 60px;    
     overflow: hidden;
     text-indent: 100%;
     color: transparent;
     white-space: nowrap;
     background: transparent url("../../../../assets/cd-icon-filter.svg") no-repeat center center;
-    z-index: 3;
+    z-index: 3; */
+}
+
+.cd-filter-trigger:hover {
+    color: white;
 }
 
 .cd-filter-trigger.filter-is-visible {
@@ -445,18 +464,16 @@ label {
         -webkit-transition: color 0.3s;
         -moz-transition: color 0.3s;
         transition: color 0.3s; */
-
-    width: auto;
-    background: #f35b3f;
-    color: white !important;
-    text-indent: 0;    
-    text-transform: uppercase;
-    font-weight: 700;
-    padding-right: 30px;
-    padding-left: 24px;
-    background-position: left center;
-    transition: color .3s;
-    
+        width: auto;
+        background: #f35b3f;
+        color: white !important;
+        text-indent: 0;
+        text-transform: uppercase;
+        font-weight: 700;
+        padding-right: 30px;
+        padding-left: 24px;
+        background-position: left center;
+        transition: color .3s;
     }
     .no-touch .cd-filter-trigger:hover {
         color: #f35b3f;
@@ -693,6 +710,7 @@ label {
     margin-bottom: 2px;
 }
 
+
 /* #dash  */
 
 .block-ellipse-descripcion::after {
@@ -718,6 +736,7 @@ label {
     max-height: 7.5em;
     padding-right: 16px;
 }
+
 .btn-small {
     text-decoration: none;
     color: #3375AF;
@@ -765,9 +784,10 @@ label {
     .masonry {
         -moz-column-count: 6;
         -webkit-column-count: 6;
-        column-count:6;
+        column-count: 6;
     }
 }
+
 .w-10 {
     width: 10% !important
 }
@@ -776,8 +796,8 @@ label {
     line-height: 2em
 }
 
-@media only screen and (max-width: 500px) and (min-width: 341px) {  
-    .block-ellipse-descripcion{
-      font-size: 12px !important;
+@media only screen and (max-width: 500px) and (min-width: 341px) {
+    .block-ellipse-descripcion {
+        font-size: 12px !important;
     }
-  }  
+}

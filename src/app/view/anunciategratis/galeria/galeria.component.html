@@ -1,68 +1,80 @@
-  <form>
+<form>
     <h1>Fotos</h1>
     <div class="form-horizontal">
-      <fieldset>
-        <legend style="text-align: left;">Foto Portada</legend>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="form-horizontal">
-              <div class="form-group row">
-                <div class="col-sm-2" *ngFor="let item of ListGaleriaPortada; let i = index">
-                  <div class="Uploadbtn" *ngIf="!item.txt_ruta_virtuales_cortada">
-                    <div id="divfileinput">
-                      <span class="fa fa-camera fa-4x"></span>
-                      <input type="file" class="input-upload" accept="image/*"
-                        (change)="displayPhoto($event,item.id,1)" />
+        <fieldset>
+            <legend style="text-align: left;">Foto Portada</legend>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group row">
+                            <div class="col-sm-2" *ngFor="let item of ListGaleriaPortada; let i = index">
+                                <div class="Uploadbtn" *ngIf="!item.txt_ruta_virtuales_cortada">
+                                    <div id="divfileinput">
+                                        <span class="fa fa-camera fa-4x"></span>
+                                        <input type="file" class="input-upload" accept="image/*" (change)="displayPhoto($event,item.id,1)" />
+                                    </div>
+                                </div>
+                                <div class="displayFoto" *ngIf="item.txt_ruta_virtuales_cortada">
+                                    <img class="img-thumbnail" [src]="item.txt_ruta_virtuales_cortada" />
+                                    <button class="btn btn-primary btn-sm btn-block" (click)="ClickEliminar(item.id,1)">Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="displayFoto" *ngIf="item.txt_ruta_virtuales_cortada">
-                    <img class="img-thumbnail" [src]="item.txt_ruta_virtuales_cortada" />
-                    <button class="btn btn-primary btn-sm btn-block" (click)="ClickEliminar(item.id,1)">Eliminar</button>
-                    <button class="btn btn-primary btn-sm btn-block">Ver Imagen</button>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend style="text-align: left;">Galeria</legend>
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="form-horizontal">
-              <div class="form-group row">
-                <div class="col-sm-2" *ngFor="let item of ListGaleria; let i = index">
-                  <div class="Uploadbtn" *ngIf="!item.txt_ruta_virtuales_cortada">
-                    <div id="divfileinput">
-                      <span class="fa fa-camera fa-4x"></span>
-                      <input type="file" class="input-upload" accept="image/*"
-                        (change)="displayPhoto($event,item.id,2)" />
-
-                    </div>
-                  </div>
-                  <div class="displayFoto" *ngIf="item.txt_ruta_virtuales_cortada">
-                    <img class="img-thumbnail" [src]="item.txt_ruta_virtuales_cortada" />
-                    <button class="btn btn-primary btn-sm btn-block" (click)="ClickEliminar(item.id,2)">Eliminar</button>
-                    <button class="btn btn-primary btn-sm btn-block">Ver Imagen</button>
-                  </div>
-                  <!-- <progressbar [animate]="true" [value]=anuncioService.progress type="primary" [max]="100"><b>{{anuncioService.progress}}
+        </fieldset>
+        <fieldset>
+            <legend style="text-align: left;">Galeria</legend>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group row">
+                            <div class="col-sm-2" *ngFor="let item of ListGaleria; let i = index">
+                                <div class="Uploadbtn" *ngIf="!item.txt_ruta_virtuales_cortada">
+                                    <div id="divfileinput" *ngIf="!mostrarLoading">
+                                        <span class="fa fa-camera fa-4x"></span>
+                                        <input type="file" class="input-upload" accept="image/*" (change)="displayPhoto($event,item.id,2)" />
+                                    </div>
+                                    <div *ngIf="mostrarLoading" class="sk-circle">
+                                        <div class="sk-circle1 sk-child"></div>
+                                        <div class="sk-circle2 sk-child"></div>
+                                        <div class="sk-circle3 sk-child"></div>
+                                        <div class="sk-circle4 sk-child"></div>
+                                        <div class="sk-circle5 sk-child"></div>
+                                        <div class="sk-circle6 sk-child"></div>
+                                        <div class="sk-circle7 sk-child"></div>
+                                        <div class="sk-circle8 sk-child"></div>
+                                        <div class="sk-circle9 sk-child"></div>
+                                        <div class="sk-circle10 sk-child"></div>
+                                        <div class="sk-circle11 sk-child"></div>
+                                        <div class="sk-circle12 sk-child"></div>
+                                    </div>
+                                </div>
+                                <div class="displayFoto" *ngIf="item.txt_ruta_virtuales_cortada">
+                                    <img class="img-thumbnail" [src]="item.txt_ruta_virtuales_cortada" />
+                                    <button class="btn btn-primary btn-sm btn-block" (click)="ClickEliminar(item.id,2)">Eliminar</button>
+                                    <!-- <button class="btn btn-primary btn-sm btn-block">Ver Imagen</button> -->
+                                </div>
+                                <!-- <progressbar [animate]="true" [value]=anuncioService.progress type="primary" [max]="100"><b>{{anuncioService.progress}}
                       / {{100}}</b></progressbar> -->
 
-                </div>
-              </div>
-              <div class="form-group text-center">
-                <button class="btn btn-outline-rounded btn-default" (click)="btnAtras()"> <span style="margin-right:10px;"
-                    class="glyphicon glyphicon-arrow-left"></span> Atras</button>
-                <button class="btn btn-outline-rounded btn-info" (click)="btnFinalizar()"> 
-                  Finalizar <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
-              </div>
-            </div>
-            <!-- <button class="btn btn-outline-rounded btn-default" (click)="btnAtras()"> <span style="margin-right:10px;"
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <button class="btn btn-outline-rounded btn-default" (click)="btnAtras()"> <span style="margin-right:10px;"
+                              class="glyphicon glyphicon-arrow-left"></span> Atras
+                            </button>
+                            <button class="btn btn-outline-rounded btn-info" (click)="btnFinalizar()"> 
+                              Finalizar<span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- <button class="btn btn-outline-rounded btn-default" (click)="btnAtras()"> <span style="margin-right:10px;"
                 class="glyphicon glyphicon-arrow-left"></span>
               Atras</button> -->
-          </div>
-        </div>
-      </fieldset>
+                </div>
+            </div>
+        </fieldset>
     </div>
-  </form>
+</form>

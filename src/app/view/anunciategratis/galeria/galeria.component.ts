@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class GaleriaComponent implements OnInit {
     public ListGaleria: Tbl_galeria_anuncio[] = [];
     public ListGaleriaPortada: Tbl_galeria_anuncio[] = [];
+    mostrarLoading: boolean = false;
     DataJsonAnuncio: any;
     constructor(
         private anuncioService: AnuncioService,
@@ -118,6 +119,7 @@ export class GaleriaComponent implements OnInit {
 
         debugger;
         if (fileInput.target.files && fileInput.target.files[0]) {
+            this.mostrarLoading=true;
             const reader = new FileReader();
             if (fileInput.target.files && fileInput.target.files.length > 0) {
                 let file = fileInput.target.files[0];
@@ -141,6 +143,7 @@ export class GaleriaComponent implements OnInit {
                                             var listGaleria = JSON.parse(res.DataJson)
                                             this.listarGaleria(listGaleria);
                                         }
+                                        this.mostrarLoading=false;
                                     }
                                 );
                             }
@@ -161,6 +164,7 @@ export class GaleriaComponent implements OnInit {
                                             var listGaleria = JSON.parse(res.DataJson)
                                             this.listarGaleria(listGaleria);
                                         }
+                                        this.mostrarLoading=false;
                                     }
                                 );
                             }
@@ -176,6 +180,6 @@ export class GaleriaComponent implements OnInit {
         this.router.navigate(['anunciategratis/servicios']);
     }
     btnFinalizar() {
-        this.router.navigate(['../home']);    
+        this.router.navigate(['../home']);
     }
 }

@@ -23,12 +23,15 @@
                                     <div class="col-lg-6 mt-0 text-left text-secondary h6">
                                         <!--<span>Lima Metropolitana</span>
                                         <span> - </span>-->
-                                        <span>{{detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
-                                        <span></span><span></span><br />
-                                        <span>{{detalleDelAnuncio.txt_nombre_ficha }}</span>
-                                        <span> | {{detalleDelAnuncio.tx_edad }} años</span>
-                                        <span *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora"> | S/.
-                                            {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora}}</span>
+                                        <span class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
+                                        <span class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.int_edad }} años</span>
+                                        <span *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora" class="btn btn-sm bg-info text-white float-left ml-0 m-1">S/. {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora }}</span>
+                                        <!--<span></span><span></span>-->
+                                        <!--<br /><br />
+                                        <span>{{detalleDelAnuncio.txt_nombre_ficha }}</span>-->
+                                        <!--<span> | {{detalleDelAnuncio.int_edad }} años</span>-->
+                                        <!--<span *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora"> | S/.
+                                            {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora}}</span>-->
                                         <!--<span></span><br /><span>29/06/2019 12:00
                                             am</span>-->
                                         <br />
@@ -38,17 +41,19 @@
                                     </div>
 
                                     <div class="col-lg-6">
-                                        <div class="btn-group btn-group-lg btn-group-horizontal">
-                                            <a href='tel:{{detalleDelAnuncio.txt_telefono_1}}'
-                                                class="btn btn-large btn-primary rounded-0">
-                                                <i class="fas fa-phone-alt mr-1"></i>
-                                                <span
-                                                    class="font-weight-bold">{{detalleDelAnuncio.txt_telefono_1}}</span>
-                                            </a>
-                                            <a href="https://api.whatsapp.com/send?phone=51{{detalleDelAnuncio.txt_telefono_1}}&text=Hola {{detalleDelAnuncio.txt_nombre_ficha }}, te he visto en LadyHot y me gustaría quedar contigo."
-                                                class="btn btn-large btn-success rounded-0 ml-1" target="_blank"><i
-                                                    class="fab fa-whatsapp mr-1"></i>
-                                                <span class="font-weight-bold">WhatsApp</span></a>
+                                        <div class="d-flex justify-content-center">
+                                            <div class="btn-group btn-group-lg btn-group-horizontal">
+                                                <a href='tel:{{detalleDelAnuncio.txt_telefono_1}}'
+                                                    class="btn btn-large btn-primary rounded-0">
+                                                    <i class="fas fa-phone-alt mr-1"></i>
+                                                    <span
+                                                        class="font-weight-bold">{{detalleDelAnuncio.txt_telefono_1}}</span>
+                                                </a>
+                                                <a href="https://api.whatsapp.com/send?phone=51{{detalleDelAnuncio.txt_telefono_1}}&text=Hola {{detalleDelAnuncio.txt_nombre_ficha }}, te he visto en LadyHot y me gustaría quedar contigo."
+                                                    class="btn btn-large btn-success rounded-0 ml-1" target="_blank"><i
+                                                        class="fab fa-whatsapp mr-1"></i>
+                                                    <span class="font-weight-bold">WhatsApp</span></a>
+                                            </div>
                                         </div>
 
 
@@ -193,10 +198,10 @@
                                     *ngIf="noMostrarFormaPago">
                                     <h1 class="h5 text-dark font-weight-bold text-left float-left w-100">Forma de Pago</h1>
                                     <div class="col-12 mt-2 p-0">
-                                        <a *ngFor="let item of detalleDelAnuncio.txt_forma_pago.split(';'); let i = index"
+                                        <button type="button" *ngFor="let item of detalleDelAnuncio.txt_forma_pago.split(';'); let i = index"
                                             href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -323,10 +328,10 @@
                                 </h1>
                                 <div class="row">
                                     <div class="col-12 mb-2">
-                                        <a *ngFor="let item of detalleDelAnuncio.tx_descripcion_servicios_ofrece.split(';'); let i = index"
+                                        <button type="button" *ngFor="let item of detalleDelAnuncio.tx_descripcion_servicios_ofrece.split(';'); let i = index"
                                             href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
-                                        </a>
+                                        </button>
                                     </div>
                                     <div class="col-12" *ngIf="detalleDelAnuncio.tx_descripcion_extra_servicio">
                                         <div class="text-secondary h5 text-capitalize">
@@ -346,10 +351,10 @@
                                 </h1>
                                 <div class="row">
                                     <div class="col-12 mb-2">
-                                        <a *ngFor="let item of detalleDelAnuncio.tx_descripcion_lugar_atencion.split(';'); let i = index"
+                                        <button type="button" *ngFor="let item of detalleDelAnuncio.tx_descripcion_lugar_atencion.split(';'); let i = index"
                                             href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -426,10 +431,10 @@
                             <div class="card-body bg-white">
                                 <div class="row">
                                     <div class="col-12 mb-2">
-                                        <a *ngFor="let item of detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';'); let i = index"
+                                        <button type="button" *ngFor="let item of detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';'); let i = index"
                                             href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
-                                        </a>
+                                        </button>
                                         <!--                                         
                                             <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             Interesante

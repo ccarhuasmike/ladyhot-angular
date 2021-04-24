@@ -7,8 +7,9 @@ import { BotonPasarelaPagoComponent } from './view/pasarela-pago/boton-pasarela-
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
+    loadChildren: '../app/view/home/home.module#HomeModule',
+    // redirectTo: '/home',
+    // pathMatch: 'full'
   },
   //PRUEBA - Dante Cc. 
   {
@@ -51,7 +52,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

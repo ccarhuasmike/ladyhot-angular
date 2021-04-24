@@ -335,7 +335,7 @@ export class EditarComponent implements OnInit {
         this.edadCtrl = new FormControl('', [Validators.required]);
         this.paisCtrl = new FormControl('', [Validators.required]);
         this.estudiosCtrl = new FormControl('', [Validators.required]);
-        this.txt_descripcion_generalesCtrl = new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(1000)]);
+        this.txt_descripcion_generalesCtrl = new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(10000)]);
 
         // //Controles Apariencia
         this.cabellosCtrl = new FormControl('', [Validators.required]);

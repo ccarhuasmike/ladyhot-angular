@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "ladyhot": {
+        "gologolos": {
             "root": "",
             "sourceRoot": "src",
             "projectType": "application",
@@ -13,7 +13,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/ladyhot",
+                        "outputPath": "dist/gologolos",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
@@ -23,9 +23,8 @@
                             "src/assets",
                             "src/web.config"         
                         ],
-                        "styles": [
-                            "node_modules/typeface-noto-serif/index.css",
-                            "src/styles.css"
+                        "styles": [                            
+                            "src/styles.css"                            
                         ],
                         "scripts": [
                             "src/assets/js/script.js"
@@ -57,18 +56,18 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "ladyhot:build"
+                        "browserTarget": "gologolos:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "ladyhot:build:production"
+                            "browserTarget": "gologolos:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "ladyhot:build"
+                        "browserTarget": "gologolos:build"
                     }
                 },
                 "test": {
@@ -102,7 +101,7 @@
                 }
             }
         },
-        "ladyhot-e2e": {
+        "gologolos-e2e": {
             "root": "e2e/",
             "projectType": "application",
             "prefix": "",
@@ -111,11 +110,11 @@
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
                         "protractorConfig": "e2e/protractor.conf.js",
-                        "devServerTarget": "ladyhot:serve"
+                        "devServerTarget": "gologolos:serve"
                     },
                     "configurations": {
                         "production": {
-                            "devServerTarget": "ladyhot:serve:production"
+                            "devServerTarget": "gologolos:serve:production"
                         }
                     }
                 },
@@ -131,5 +130,5 @@
             }
         }
     },
-    "defaultProject": "ladyhot"
+    "defaultProject": "gologolos"
 }

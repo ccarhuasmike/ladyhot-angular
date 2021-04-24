@@ -1,6 +1,6 @@
 <div class="modal-header border-0 pb-1 pt-1">
     <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
-        <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
+        <span aria-hidden="true"><i class="fa fa-times"></i></span>
     </button>
 </div>
 <div class="" *ngIf="detalleDelAnuncio">
@@ -11,7 +11,7 @@
                     <div class="col-12 d-block d-sm-none">
                         <div class="card w-100">
                             <img class="img-thumbnail w-100 h-100"
-                                src="{{detalleDelAnuncio.txt_imagen_galeria?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}">
+                                src="{{detalleDelAnuncio.txt_imagen_galeria?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}"  loading="lazy" >
                         </div>
                     </div>
                     <div class="col-12">
@@ -23,9 +23,14 @@
                                     <div class="col-lg-6 mt-0 text-left text-secondary h6">
                                         <!--<span>Lima Metropolitana</span>
                                         <span> - </span>-->
-                                        <span class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
-                                        <span class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.int_edad }} años</span>
-                                        <span *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora" class="btn btn-sm bg-info text-white float-left ml-0 m-1">S/. {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora }}</span>
+                                        <span
+                                            class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
+                                        <span
+                                            class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.int_edad }}
+                                            años</span>
+                                        <span *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora"
+                                            class="btn btn-sm bg-info text-white float-left ml-0 m-1">S/.
+                                            {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora }}</span>
                                         <!--<span></span><span></span>-->
                                         <!--<br /><br />
                                         <span>{{detalleDelAnuncio.txt_nombre_ficha }}</span>-->
@@ -67,11 +72,11 @@
                                                 <i class='fa fa-star text-primary'></i>
                                                 <span class="small ml-1 text-secondary">Favoritos</span>
                                             </div> -->
-                                            <!--<div class="col-4 cursor-pointer">
+                                        <!--<div class="col-4 cursor-pointer">
                                                 <i class='far fa-hand-pointer text-danger'></i>
                                                 <span class="small ml-1 text-secondary">Denunciar</span>
                                             </div>-->
-                                            <!--                                             
+                                        <!--                                             
                                             <div class="col-12">
                                                 <a class="btn btn-success btn-sm" href="javascript:void(0)" role="button">
                                                     <i class="fab fa-whatsapp fa-2x"></i>
@@ -108,15 +113,16 @@
                                 <!-- <p class="h5 text-dark text-left">
                                     {{detalleDelAnuncio.txt_presentacion | replace: '/(\n)+\n+|\t+/g': ';'}}</p> -->
                                 <p class="h5 text-error text-left text-danger">No olvides mencionarme que viste mi
-                                    anuncio en <a class="text-error font-weight-bold text-danger text-a" href="">GoloGolos</a>.
+                                    anuncio en <a class="text-error font-weight-bold text-danger text-a"
+                                        href="">GoloGolos</a>.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <!-- d-lg-flex -->
                     <div class="row col-12 mx-auto">
-                        <div
-                            [className]="((!noMostrarTarifas && !noMostrarFormaPago) && !noMostrarHorario)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12'" *ngIf="noDatosGenerales">
+                        <div [className]="((!noMostrarTarifas && !noMostrarFormaPago) && !noMostrarHorario)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12'"
+                            *ngIf="noDatosGenerales">
                             <div class="card-body bg-white">
                                 <h1 class="h5 text-dark font-weight-bold text-left">
                                     Datos Generales
@@ -144,7 +150,8 @@
                             </div>
                         </div>
 
-                        <div [className]="(!noDatosGenerales && !noMostrarHorario) ?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12'" *ngIf="noMostrarTarifas || noMostrarFormaPago">
+                        <div [className]="(!noDatosGenerales && !noMostrarHorario) ?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12'"
+                            *ngIf="noMostrarTarifas || noMostrarFormaPago">
                             <div class="card-body bg-white">
                                 <h1 class="h5 text-dark font-weight-bold text-left" *ngIf="noMostrarTarifas">
                                     Tarifas
@@ -167,8 +174,8 @@
                                 <div class="clearfix text-secondary h6"
                                     *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media">
                                     <span class="float-left">1 hora y media</span>
-                                    <span
-                                        class="float-right">S/. {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media}}</span>
+                                    <span class="float-right">S/.
+                                        {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media}}</span>
                                 </div>
                                 <div class="clearfix text-secondary h6"
                                     *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_2hora">
@@ -183,22 +190,25 @@
                                 <div class="clearfix text-secondary h6"
                                     *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_salidas">
                                     <span class="float-left">Salidas</span>
-                                    <span class="float-right">S/. {{detalleDelAnuncio.dbl_costo_x_tiempo_salidas}}</span>
+                                    <span class="float-right">S/.
+                                        {{detalleDelAnuncio.dbl_costo_x_tiempo_salidas}}</span>
                                 </div>
                                 <div class="clearfix text-secondary h6"
                                     *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche">
                                     <span class="float-left">Toda la noche</span>
-                                    <span class="float-right">S/. {{detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche}}</span>
+                                    <span class="float-right">S/.
+                                        {{detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche}}</span>
                                 </div>
                                 <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.dbl_costo_x_viaje">
                                     <span class="float-left">Viajes</span>
                                     <span class="float-right">S/. {{detalleDelAnuncio.dbl_costo_x_viaje}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6"
-                                    *ngIf="noMostrarFormaPago">
-                                    <h1 class="h5 text-dark font-weight-bold text-left float-left w-100">Forma de Pago</h1>
+                                <div class="clearfix text-secondary h6" *ngIf="noMostrarFormaPago">
+                                    <h1 class="h5 text-dark font-weight-bold text-left float-left w-100">Forma de Pago
+                                    </h1>
                                     <div class="col-12 mt-2 p-0">
-                                        <button type="button" *ngFor="let item of detalleDelAnuncio.txt_forma_pago.split(';'); let i = index"
+                                        <button type="button"
+                                            *ngFor="let item of detalleDelAnuncio.txt_forma_pago.split(';'); let i = index"
                                             href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
                                         </button>
@@ -213,10 +223,9 @@
                                 <h1 class="h5 text-dark font-weight-bold text-left">
                                     Horario
                                 </h1>
-                                <div class="clearfix text-secondary h6"
-                                    *ngIf="noMostrarHorario">
-                                    <span class="float-left">{{detalleDelAnuncio.tx_descripcion_extra_horario}}</span>  
-                                    <br>                         
+                                <div class="clearfix text-secondary h6" *ngIf="noMostrarHorario">
+                                    <span class="float-left">{{detalleDelAnuncio.tx_descripcion_extra_horario}}</span>
+                                    <br>
                                     <span class="float-left">{{detalleDelAnuncio.tx_fl_atencion_24horas}}</span>
                                 </div>
                                 <!-- <div
@@ -239,8 +248,7 @@
                         </div>
                     </div>
 
-                    <div class="col-12"
-                        *ngIf="noMostrarApariencia">
+                    <div class="col-12" *ngIf="noMostrarApariencia">
                         <div class="card w-100">
                             <div class="card-body bg-white">
                                 <h1 class="h5 text-dark font-weight-bold text-left">
@@ -261,8 +269,8 @@
                                 <div class="clearfix text-secondary h6"
                                     *ngIf="detalleDelAnuncio.txt_medidas_busto_cintura_cadera">
                                     <span class="float-left">Medidas</span>
-                                    <span
-                                        class="float-right">{{detalleDelAnuncio.txt_medidas_busto_cintura_cadera}} cm</span>
+                                    <span class="float-right">{{detalleDelAnuncio.txt_medidas_busto_cintura_cadera}}
+                                        cm</span>
                                 </div>
                                 <div class="text-secondary h5 text-capitalize"
                                     *ngIf="detalleDelAnuncio.txt_descripcion_extra_apariencia">
@@ -287,7 +295,7 @@
                                             <img [className]="detalleDelAnuncio.txt_imagen_galeria.split(';').length==1?'w-100 w-sm-50 h-100 img-thumbnail cursor-imagen-detalle':'w-100 h-100 img-thumbnail cursor-imagen-detalle'"
                                                 src="{{item.trim()}}"
                                                 alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}"
-                                                data-target="#carouselExample" attr.data-slide-to="{{i}}" />
+                                                data-target="#carouselExample" attr.data-slide-to="{{i}}" loading="lazy" />
                                         </div>
                                     </div>
 
@@ -295,7 +303,7 @@
                                 <div *ngIf="!detalleDelAnuncio.txt_imagen_galeria"
                                     class="d-flex justify-content-center">
                                     <img class="w-sm-50 w-100 h-50 img-thumbnail" src="assets/scort_sin_foto.jpg"
-                                        alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}">
+                                        alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}" loading="lazy">
                                 </div>
                             </div>
                         </div>
@@ -320,8 +328,7 @@
                         </div>
                     </div> -->
 
-                    <div class="col-12"
-                        *ngIf="detalleDelAnuncio.tx_descripcion_servicios_ofrece">
+                    <div class="col-12" *ngIf="detalleDelAnuncio.tx_descripcion_servicios_ofrece">
                         <div class="card w-100">
                             <div class="card-body bg-white">
                                 <h1 class="h5 text-dark font-weight-bold text-left">
@@ -329,7 +336,8 @@
                                 </h1>
                                 <div class="row">
                                     <div class="col-12 mb-2">
-                                        <button type="button" *ngFor="let item of detalleDelAnuncio.tx_descripcion_servicios_ofrece.split(';'); let i = index"
+                                        <button type="button"
+                                            *ngFor="let item of detalleDelAnuncio.tx_descripcion_servicios_ofrece.split(';'); let i = index"
                                             href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
                                         </button>
@@ -352,7 +360,8 @@
                                 </h1>
                                 <div class="row">
                                     <div class="col-12 mb-2">
-                                        <button type="button" *ngFor="let item of detalleDelAnuncio.tx_descripcion_lugar_atencion.split(';'); let i = index"
+                                        <button type="button"
+                                            *ngFor="let item of detalleDelAnuncio.tx_descripcion_lugar_atencion.split(';'); let i = index"
                                             href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
                                         </button>
@@ -428,11 +437,13 @@
                     <div class="pl-1 pr-0 row col-12">
                         <div class="card row">
                             <img class="img-fluid w-100"
-                                src="{{detalleDelAnuncio.txt_imagen_galeria?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}">
+                                src="{{detalleDelAnuncio.txt_imagen_galeria?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}"
+                                loading="lazy">
                             <div class="card-body bg-white">
                                 <div class="row">
                                     <div class="col-12 mb-2">
-                                        <button type="button" *ngFor="let item of detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';'); let i = index"
+                                        <button type="button"
+                                            *ngFor="let item of detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';'); let i = index"
                                             href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
                                         </button>

@@ -94,7 +94,7 @@ export class TopAnuncioComponent implements OnInit {
           titulo: dataSubirAutomatico.titulo,
           montoPagar: $('.precio', $(".producto_selected")).text(),
           bodyProductSeleccionado: JSON.stringify(bodyProductSeleccionado),
-          descripcionCargo: 'Cobro para publicitarse en el LadyHot'
+          descripcionCargo: 'Cobro para publicitarse en el GoloGolos'
         }
       }
     });

@@ -26,7 +26,7 @@ export class BotonPasarelaPagoComponent {
                 title: 'Pasarale Pago',
                 data: {
                     montoPagar: this.montoPagar,
-                    descripcionCargo: 'Cobro para publicitarse en el LadyHot'
+                    descripcionCargo: 'Cobro para publicitarse en el GoloGolos'
                 }
             }
         });

@@ -49,7 +49,7 @@
                                                     <span
                                                         class="font-weight-bold">{{detalleDelAnuncio.txt_telefono_1}}</span>
                                                 </a>
-                                                <a href="https://api.whatsapp.com/send?phone=51{{detalleDelAnuncio.txt_telefono_1}}&text=Hola {{detalleDelAnuncio.txt_nombre_ficha }}, te he visto en LadyHot y me gustaría quedar contigo."
+                                                <a href="https://api.whatsapp.com/send?phone=51{{detalleDelAnuncio.txt_telefono_1}}&text=Hola {{detalleDelAnuncio.txt_nombre_ficha }}, te he visto en Gologolos y me gustaría quedar contigo."
                                                     class="btn btn-large btn-success rounded-0 ml-1" target="_blank"><i
                                                         class="fab fa-whatsapp mr-1"></i>
                                                     <span class="font-weight-bold">WhatsApp</span></a>
@@ -108,7 +108,7 @@
                                 <!-- <p class="h5 text-dark text-left">
                                     {{detalleDelAnuncio.txt_presentacion | replace: '/(\n)+\n+|\t+/g': ';'}}</p> -->
                                 <p class="h5 text-error text-left text-danger">No olvides mencionarme que viste mi
-                                    anuncio en <a class="text-error font-weight-bold text-danger text-a" href="">LadyHot</a>.
+                                    anuncio en <a class="text-error font-weight-bold text-danger text-a" href="">GoloGolos</a>.
                                 </p>
                             </div>
                         </div>
@@ -256,13 +256,13 @@
                                 </div>
                                 <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.tx_estatura">
                                     <span class="float-left">Estatura</span>
-                                    <span class="float-right">{{detalleDelAnuncio.tx_estatura}} cm</span>
+                                    <span class="float-right">{{detalleDelAnuncio.tx_estatura}}</span>
                                 </div>
                                 <div class="clearfix text-secondary h6"
                                     *ngIf="detalleDelAnuncio.txt_medidas_busto_cintura_cadera">
                                     <span class="float-left">Medidas</span>
                                     <span
-                                        class="float-right">{{detalleDelAnuncio.txt_medidas_busto_cintura_cadera}}</span>
+                                        class="float-right">{{detalleDelAnuncio.txt_medidas_busto_cintura_cadera}} cm</span>
                                 </div>
                                 <div class="text-secondary h5 text-capitalize"
                                     *ngIf="detalleDelAnuncio.txt_descripcion_extra_apariencia">
@@ -283,10 +283,11 @@
                                         <div [className]="detalleDelAnuncio.txt_imagen_galeria.split(';').length==1?'d-flex justify-content-center lightbox-images':'col-lg-6 col-md-6 col-sm-12 mt-1 lightbox-images'"
                                             *ngFor="let item of detalleDelAnuncio.txt_imagen_galeria.split(';'); let i = index"
                                             (click)="openModalLightbox(detalleDelAnuncio.txt_imagen_galeria)">
+                                            <!-- - Kinesi&oacute;loga en Los Olivos-->
                                             <img [className]="detalleDelAnuncio.txt_imagen_galeria.split(';').length==1?'w-100 w-sm-50 h-100 img-thumbnail cursor-imagen-detalle':'w-100 h-100 img-thumbnail cursor-imagen-detalle'"
                                                 src="{{item.trim()}}"
-                                                alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}} - Kinesi&oacute;loga en Los Olivos"
-                                                data-target="#carouselExample">
+                                                alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}"
+                                                data-target="#carouselExample" attr.data-slide-to="{{i}}" />
                                         </div>
                                     </div>
 

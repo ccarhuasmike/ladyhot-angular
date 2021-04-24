@@ -63,7 +63,6 @@ export class LoginComponent implements OnInit {
         // entidad.tx_pass = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_password);
         this.usuarioService.IniciarSession(entidad).subscribe(
             (res) => {
-                debugger;
                 if (res.Status == "OK") {
                     if (res.Data != null) {
                         localStorage.setItem('DataUsuarioLogeado', JSON.stringify(res.Data));

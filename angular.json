@@ -23,9 +23,8 @@
                             "src/assets",
                             "src/web.config"         
                         ],
-                        "styles": [
-                            "node_modules/typeface-noto-serif/index.css",
-                            "src/styles.css"
+                        "styles": [                            
+                            "src/styles.css"                            
                         ],
                         "scripts": [
                             "src/assets/js/script.js"

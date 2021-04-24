@@ -24,12 +24,10 @@ export class RestablecerPasswordComponent implements OnInit {
         });
     }
     GenerarPassword() {
-        debugger;
         this.isSubmitted = true;
         if (!this.formGenerarPassword.valid)
             return;
         let entidad: any = {};
-        debugger;
         entidad.para = new Array(this.formGenerarPassword.value.txt_emailGenerarPassword);          
         this.seguridadService.ReestablecerContrasnia(entidad).subscribe(
             (res) => {

@@ -21,7 +21,7 @@ export class GaleriaComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        debugger;
+
         this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         this.anuncioService.segundopaso(true);
         this.anuncioService.tercerpaso(true);
@@ -32,7 +32,6 @@ export class GaleriaComponent implements OnInit {
         objeto.id_anuncio = this.DataJsonAnuncio.id;
         this.anuncioService.GetGaleriaXIdAnuncio(objeto).subscribe(
             (res) => {
-                debugger;
                 if (res.Status == "OK") {
                     var listGaleria = JSON.parse(res.DataJson)
                     this.listarGaleria(listGaleria);
@@ -117,7 +116,6 @@ export class GaleriaComponent implements OnInit {
     }
     displayPhoto(fileInput, id: number, IdTipoPresentacion: number) {
 
-        debugger;
         if (fileInput.target.files && fileInput.target.files[0]) {
             this.mostrarLoading=true;
             const reader = new FileReader();
@@ -125,7 +123,6 @@ export class GaleriaComponent implements OnInit {
                 let file = fileInput.target.files[0];
                 reader.onloadend = (e) => {
                     //Actualizamos el objeto del list
-                    debugger;
                     if (IdTipoPresentacion == 1) {
                         this.ListGaleriaPortada.map((todo, i) => {
 

@@ -63,6 +63,7 @@ export class LoginComponent implements OnInit {
         // entidad.tx_pass = this.encriptar('123456$#@$^@1ERF', this.formIngresar.value.txt_password);
         this.usuarioService.IniciarSession(entidad).subscribe(
             (res) => {
+                debugger;
                 if (res.Status == "OK") {
                     if (res.Data != null) {
                         localStorage.setItem('DataUsuarioLogeado', JSON.stringify(res.Data));
@@ -82,7 +83,6 @@ export class LoginComponent implements OnInit {
         if (!this.formGenerarPassword.valid)
             return;
         let entidad: any = {};
-        debugger;
         entidad.para = new Array(this.formGenerarPassword.value.txt_emailGenerarPassword);          
         this.seguridadService.EnvioEmailGenerarContrasenia(entidad).subscribe(
             (res) => {

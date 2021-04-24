@@ -26,12 +26,10 @@ export class EscogerPasswordComponent implements OnInit {
         //http://localhost:4200/seguridad/EscogerPassword/C107A5F9-6B3F-4158-B928-4EDFCC422B90      
         let entidad: any = {};
         entidad.tx_token = this.route.snapshot.params['token'];
-        debugger;
         this.usuarioService.getUsuarioPorToken(entidad).subscribe(
             (res) => {
                 if (res.Status == "OK") {
                     if (res.Data != null) {
-                        debugger;
                         let DataUsuario: any = res.Data;
                         this.IdUsuario = DataUsuario.id;
                     }
@@ -69,20 +67,17 @@ export class EscogerPasswordComponent implements OnInit {
     get f() { return this.formEscogerPassword.controls; }
 
     ClickEscogerPassword() {
-        debugger;
         this.submitted = true;
         // stop here if form is invalid
         if (this.formEscogerPassword.invalid) {
             return;
         }
         console.log(this.formEscogerPassword);
-        debugger;
         let entidad: any = {};
         entidad.tx_pass = this.formEscogerPassword.value.password;      
         entidad.id = this.IdUsuario;
         this.seguridadService.ActualizarPasswordUsuario(entidad).subscribe(
             (res) => {
-                debugger;
                 if (res.Status == "OK") {
                     this.router.navigate(['seguridad/PasswordGuardado']);
                 } else {

@@ -63,7 +63,7 @@ export class DatosContactoComponent implements OnInit {
             txt_telefono_1: this.txt_telefono_1Ctrl,
             txt_telefono_2: this.txt_telefono_2Ctrl
         });
-        debugger;
+
         if (this.DataJsonAnuncio !== null) {
             this.fromContacto.patchValue({
                 txt_nombre_ficha: this.DataJsonAnuncio.txt_nombre_ficha,
@@ -86,7 +86,6 @@ export class DatosContactoComponent implements OnInit {
         if (this.DataJsonAnuncio == null) {
             //Registrar Datos
             let entidad: any = {};
-            debugger;
             entidad.id_usuario = 11;
             entidad.txt_nombre_ficha = this.fromContacto.value.txt_nombre_ficha;
             entidad.txt_telefono_1 = this.fromContacto.value.txt_telefono_1;

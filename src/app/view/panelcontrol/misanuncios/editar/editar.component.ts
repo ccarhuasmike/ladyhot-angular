@@ -111,7 +111,7 @@ export class EditarComponent implements OnInit {
                         this.ListFormaPago = this.listParameter.formapago
                         this.cargarControles();
                         //Validamos el seteo de la forma de pago
-                        debugger;
+
                         if (this.datosAnuncio.DetailleAnuncion.txt_forma_pago != null) {
                             this.setCheboxes(this.ListFormaPago, this.datosAnuncio.DetailleAnuncion.txt_forma_pago, this.controlsFormaPago);
                         } else {
@@ -242,7 +242,6 @@ export class EditarComponent implements OnInit {
         return validator;
     }
     save() {
-        debugger;
         this.isSubmitted = true;
         if (!this.fromGenerales.valid)
             return;

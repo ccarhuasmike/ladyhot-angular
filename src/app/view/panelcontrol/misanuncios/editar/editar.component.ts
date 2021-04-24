@@ -108,6 +108,7 @@ export class EditarComponent implements OnInit {
                         this.ListDistrito = this.listParameter.distritro;
                         this.ListLugarAtencion = this.listParameter.lugaratencion;
                         this.ListTipoServicio = this.listParameter.servicio_ofrece;
+                        debugger;
                         this.ListFormaPago = this.listParameter.formapago
                         this.cargarControles();
                         //Validamos el seteo de la forma de pago

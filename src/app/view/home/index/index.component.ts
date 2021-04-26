@@ -4,6 +4,8 @@ import { NgxMasonryOptions } from 'ngx-masonry';
 import { HomeService } from "../../../shared/services/anuncio/home.services";
 import { ModalDetalleAnuncio } from '../modalDetalleAnuncio/modalDetalleAnuncio.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
+import { Location } from "@angular/common";
 
 @Component({
   selector: 'app-home',
@@ -13,6 +15,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class IndexComponent implements OnInit {
   modalRef: BsModalRef;
+  schema: {};
 
   public masonryOptions: NgxMasonryOptions = {
     transitionDuration: '2.0s',
@@ -26,8 +29,14 @@ export class IndexComponent implements OnInit {
   limit = 16;
   constructor(
     private homeService: HomeService,
-    private modalService: BsModalService
-  ) { }
+    private modalService: BsModalService,
+    private router: Router,
+    private location: Location
+  ) {
+    //
+    console.log(this.router);
+    console.log(this.location);
+   }
 
   FiltrarDatos(event): void {
     this.limit = 15;
@@ -78,5 +87,7 @@ export class IndexComponent implements OnInit {
       }
     });
   }
+
+
 }
 

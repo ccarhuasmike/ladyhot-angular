@@ -26,7 +26,7 @@
                                         <span
                                             class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
                                         <span
-                                            class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.int_edad }}
+                                            class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.tx_edad }}
                                             años</span>
                                         <span *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora"
                                             class="btn btn-sm bg-info text-white float-left ml-0 m-1">S/.
@@ -50,13 +50,13 @@
                                             <div class="btn-group btn-group-lg btn-group-horizontal">
                                                 <a href='tel:{{detalleDelAnuncio.txt_telefono_1}}'
                                                     class="btn btn-large btn-primary rounded-0">
-                                                    <i class="fas fa-phone-alt mr-1"></i>
+                                                    <i class="fa fa-phone mr-1"></i>
                                                     <span
                                                         class="font-weight-bold">{{detalleDelAnuncio.txt_telefono_1}}</span>
                                                 </a>
                                                 <a href="https://api.whatsapp.com/send?phone=51{{detalleDelAnuncio.txt_telefono_1}}&text=Hola {{detalleDelAnuncio.txt_nombre_ficha }}, te he visto en Gologolos y me gustaría quedar contigo."
                                                     class="btn btn-large btn-success rounded-0 ml-1" target="_blank"><i
-                                                        class="fab fa-whatsapp mr-1"></i>
+                                                        class="fa fa-whatsapp mr-1"></i>
                                                     <span class="font-weight-bold">WhatsApp</span></a>
                                             </div>
                                         </div>
@@ -208,7 +208,7 @@
                                     </h1>
                                     <div class="col-12 mt-2 p-0">
                                         <button type="button"
-                                            *ngFor="let item of detalleDelAnuncio.txt_forma_pago.split(';'); let i = index"
+                                            *ngFor="let item of detalleDelAnuncio.txt_forma_pago_desc.split(';'); let i = index"
                                             href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
                                         </button>

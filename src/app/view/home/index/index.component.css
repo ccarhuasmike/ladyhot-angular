@@ -713,7 +713,7 @@ label {
 
 /* #dash  */
 
-.block-ellipse-descripcion::after {
+/* .block-ellipse-descripcion::after {
     content: "...";
     position: absolute;
     right: 0;
@@ -722,7 +722,7 @@ label {
     background: inherit;
     margin-right: 0.1rem;
     text-align: right;
-}
+} */
 
 .block-ellipse-descripcion {
     padding: 3px 5px;

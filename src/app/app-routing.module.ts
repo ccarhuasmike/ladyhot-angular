@@ -30,12 +30,10 @@ const routes: Routes = [
   {
     path: 'seguridad',
     loadChildren: '../app/view/seguridad/seguridad.module#SeguridadModule'
-<<<<<<< HEAD
   },  
   {
     path: 'not-found',
     component: NotFoundComponent
-=======
   },
   {
     path: 'kinesiologas/:id',
@@ -45,7 +43,6 @@ const routes: Routes = [
     path: 'not-found',
     redirectTo: ''
     //component: NotFoundComponent
->>>>>>> a9c15376af33655882823e5459059566832f7c12
   },
   {
     path: '**',

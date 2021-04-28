@@ -8,7 +8,7 @@ import { NotFoundComponent } from '../app/view/not-found/not-found.component';
 import { CoreModule } from '../app/view/core/core.module';
 import { SharedModule } from './shared/shared.module';
 //import { PasarelaPagoModule } from './view/pasarela-pago/pasarela-pago.module';
-import { ModalLightboxComponent } from './view/home/modal-lightbox/modal-lightbox.component';
+//import { ModalLightboxComponent } from './view/home/modal-lightbox/modal-lightbox.component';
 //import { SharedCompoentModule } from './view/shared/sharedcomponent.module';
 // import { NgxMasonryModule } from 'ngx-masonry';
 // import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -22,7 +22,7 @@ import { ModalLightboxComponent } from './view/home/modal-lightbox/modal-lightbo
   declarations: [
     AppComponent,
     NotFoundComponent,
-    ModalLightboxComponent
+    //ModalLightboxComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +49,7 @@ import { ModalLightboxComponent } from './view/home/modal-lightbox/modal-lightbo
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
-    ModalLightboxComponent
+    //ModalLightboxComponent
 ]
 })
 export class AppModule { }

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { AnuncioService } from 'src/app/shared/services/service.module';
 import { ClientResponse } from 'src/app/Models/ClientResponseModels'
 import { BsModalRef, BsModalService } from "ngx-bootstrap";
-import { ModalLightboxComponent } from "../../home/modal-lightbox/modal-lightbox.component";
+//import { ModalLightboxComponent } from "../../home/modal-lightbox/modal-lightbox.component";
 import { Router } from "@angular/router";
 
 @Component({
@@ -55,14 +55,14 @@ export class DetalleAnuncioComponent implements OnInit{
     }
 
     openModalLightbox(imagesDetalleGaleria) {
-        this.modalRefLightbox = this.modalService.show(ModalLightboxComponent, {
-            class: 'modal-md modal-dialog-centered second',
-            initialState: {
-                data: {
-                    imagesDetalleGaleria: imagesDetalleGaleria
-                }
-            }
-        });
-        document.getElementsByClassName('second')[0].parentElement.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        // this.modalRefLightbox = this.modalService.show(ModalLightboxComponent, {
+        //     class: 'modal-md modal-dialog-centered second',
+        //     initialState: {
+        //         data: {
+        //             imagesDetalleGaleria: imagesDetalleGaleria
+        //         }
+        //     }
+        // });
+        // document.getElementsByClassName('second')[0].parentElement.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
     }
 }

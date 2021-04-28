@@ -4,6 +4,8 @@ import { HomeRoutingModule } from './home-routing.module';
 import { IndexComponent } from './index/index.component';
 import { HeaderComponent } from './header/header.component';
 import { FilterComponent } from './filter/filer.component';
+import { headerfilter } from './headerfilter/headerfilter.component';
+
 import { ModalDetalleAnuncio } from './modalDetalleAnuncio/modalDetalleAnuncio.component';
 
 import { ModalModule } from 'ngx-bootstrap';
@@ -26,6 +28,7 @@ import { NgxJsonLdModule } from 'ngx-json-ld';
     ],
     declarations: [
         IndexComponent,
+        headerfilter,
         HeaderComponent,
         FilterComponent,
         ModalDetalleAnuncio,

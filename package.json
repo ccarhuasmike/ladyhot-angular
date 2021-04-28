@@ -5,6 +5,8 @@
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build",
+        "sme": "./node_modules/.bin/source-map-explorer",
+        "source-map-explorer": "source-map-explorer dist/your-angular-app-name/**/*.js",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e"

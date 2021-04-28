@@ -24,6 +24,7 @@ export class HomeService {
         this._baseUrl = configService.getWebApiURL();
     }
     getAnuncio(): Observable<ClientResponse> {
+        
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/ListarAnuncio', {}, httpOptions).pipe(
             //catchError(null)
         );

@@ -24,6 +24,7 @@ export class ParameterService {
         );
     }
     getParameterFilterHome(): Observable<ClientResponse> {
+        
         return this.httpClient.get<ClientResponse>(this._baseUrl + 'parameter/sel_parameter_filter_home').pipe(
             //catchError(null)
         );

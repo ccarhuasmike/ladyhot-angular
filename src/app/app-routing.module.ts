@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { NotFoundComponent } from "../app/view/not-found/not-found.component";
-import { BotonPasarelaPagoComponent } from './view/pasarela-pago/boton-pasarela-pago/boton-pasarela-pago.component';
+
 
 ///
 const routes: Routes = [
@@ -10,12 +10,7 @@ const routes: Routes = [
     loadChildren: '../app/view/home/home.module#HomeModule',
     // redirectTo: '/home',
     // pathMatch: 'full'
-  },
-  //PRUEBA - Dante Cc. 
-  {
-    path: 'pasarela',
-    component: BotonPasarelaPagoComponent
-  },
+  },  
   //PRUEBA - Dante Cc. 
   {
     path: 'home',
@@ -36,10 +31,6 @@ const routes: Routes = [
   {
     path: 'seguridad',
     loadChildren: '../app/view/seguridad/seguridad.module#SeguridadModule'
-  },
-  {
-    path: 'productos',
-    loadChildren: '../app/view/productos/productos.module#ProductosModule'
   },
   {
     path: 'kinesiologas/:id',

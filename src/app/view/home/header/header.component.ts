@@ -10,6 +10,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     $(document).ready(() => {
+      
       $('#cd-tab-filter li').click(function (event) {
         //mobile version - detect click event on filters tab
         var filter_tab_placeholder = $('.cd-tab-filter .placeholder a'),

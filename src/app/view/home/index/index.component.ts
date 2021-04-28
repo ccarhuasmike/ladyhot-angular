@@ -4,8 +4,6 @@ import { NgxMasonryOptions } from 'ngx-masonry';
 import { HomeService } from "../../../shared/services/anuncio/home.services";
 import { ModalDetalleAnuncio } from '../modalDetalleAnuncio/modalDetalleAnuncio.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { Router } from '@angular/router';
-import { Location } from "@angular/common";
 import { SeoService } from 'src/app/shared/services/seo/seo.service';
 
 @Component({
@@ -31,13 +29,8 @@ export class IndexComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private modalService: BsModalService,
-    //private router: Router,
-    //private location: Location,
     private seoService: SeoService
   ) {
-    //console.log(this.router);
-    //console.log(this.location);
-    //console.log(window.history.state);
    }
 
   FiltrarDatos(event): void {
@@ -53,6 +46,7 @@ export class IndexComponent implements OnInit {
   }
   
   getLisAnuncios(filtrer: boolean = false, entidadFiltro: any = {}) {
+    
     if (filtrer) {
       this.masonryImages = this.list.filter(function (e) {
         return e.txt_nombre_ficha.toLowerCase().indexOf(entidadFiltro.txt_nombre_ficha.toLowerCase()) > -1 ||
@@ -64,6 +58,7 @@ export class IndexComponent implements OnInit {
     } else {
       this.homeService.getAnuncio().subscribe(
         (res: ClientResponse) => {
+          
           this.list = JSON.parse(res.DataJson);
           this.masonryImages = this.list.slice(0, this.limit); 
           this.schema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0,10));         
@@ -76,9 +71,6 @@ export class IndexComponent implements OnInit {
   }
   ngOnInit() {
     this.getLisAnuncios();
-    //this.router.routerState.snapshot.subscribe(params => console.log('queryParams', params['id']));
-    //this.router.routerState.root.queryParams.subscribe(
-      //params => console.log('queryParams', params['id']));
   }
 
   ngAfterContentInit(){
@@ -102,6 +94,4 @@ export class IndexComponent implements OnInit {
       }
     });
   }
-
-
 }

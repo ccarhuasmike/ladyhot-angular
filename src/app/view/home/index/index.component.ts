@@ -51,6 +51,7 @@ export class IndexComponent implements OnInit {
   }
   
   getLisAnuncios(filtrer: boolean = false, entidadFiltro: any = {}) {
+    
     if (filtrer) {
       this.masonryImages = this.list.filter(function (e) {
         return e.txt_nombre_ficha.toLowerCase().indexOf(entidadFiltro.txt_nombre_ficha.toLowerCase()) > -1 ||
@@ -61,6 +62,7 @@ export class IndexComponent implements OnInit {
     } else {
       this.homeService.getAnuncio().subscribe(
         (res: ClientResponse) => {
+          
           this.list = JSON.parse(res.DataJson);
           this.masonryImages = this.list.slice(0, this.limit);          
         },

@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from '../app/view/not-found/not-found.component';
 import { CoreModule } from '../app/view/core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { PasarelaPagoModule } from './view/pasarela-pago/pasarela-pago.module';
+//import { PasarelaPagoModule } from './view/pasarela-pago/pasarela-pago.module';
 //import { SharedCompoentModule } from './view/shared/sharedcomponent.module';
 // import { IndexComponent } from "../app/view/home/index/index.component";
 // import { NgxMasonryModule } from 'ngx-masonry';
@@ -33,7 +33,7 @@ import { PasarelaPagoModule } from './view/pasarela-pago/pasarela-pago.module';
     SharedModule,
     //SharedCompoentModule,
     //PRUEBA - Dante Cc. 
-    PasarelaPagoModule
+    //PasarelaPagoModule
     //PRUEBA - Dante Cc. 
     // NgxMasonryModule,
     // InfiniteScrollModule

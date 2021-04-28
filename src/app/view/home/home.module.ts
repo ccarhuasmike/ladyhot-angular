@@ -29,7 +29,8 @@ import { ModalLightboxComponent } from './modal-lightbox/modal-lightbox.componen
         FilterComponent,
         headerfilter,
         ModalDetalleAnuncio,
-        ModalLightboxComponent],
+        ModalLightboxComponent
+    ],
     exports: [IndexComponent],
     bootstrap: [IndexComponent],
     entryComponents: [

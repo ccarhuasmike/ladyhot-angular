@@ -42,12 +42,18 @@ const routes: Routes = [
     loadChildren: '../app/view/productos/productos.module#ProductosModule'
   },
   {
+    path: 'kinesiologas/:id',
+    loadChildren: '../app/view/redireccionar-anuncio/redireccionar-anuncio.module#RedireccionarAnuncioModule',
+  },
+  {
     path: 'not-found',
-    component: NotFoundComponent
+    redirectTo: ''
+    //component: NotFoundComponent
   },
   {
     path: '**',
-    redirectTo: 'not-found'
+    redirectTo: ''
+    //redirectTo: 'not-found'
   }
 ];
 

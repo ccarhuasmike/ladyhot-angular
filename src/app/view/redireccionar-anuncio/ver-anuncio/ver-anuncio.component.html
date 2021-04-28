@@ -1,0 +1,18 @@
+<header class="cd-header">
+    <h1 style="
+    background: url('../../../../assets/banner_cat7.png');
+    font-size: 61px;
+    font-weight: 500;
+    font-family: cursive;
+    ">GOLOGOLOS</h1>
+</header>
+<main class="cd-main-content">
+    <app-header></app-header>
+    <section class="cd-gallery">
+        <div class="search-results d-flex justify-content-center" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5" [infiniteScrollThrottle]="500">
+            <div class="contenedor col-md-7">
+                <detalle-anuncio [idAnuncio]="idAnuncio"></detalle-anuncio>
+            </div>
+        </div>
+    </section>
+</main>

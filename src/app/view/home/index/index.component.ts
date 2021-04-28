@@ -4,6 +4,9 @@ import { NgxMasonryOptions } from 'ngx-masonry';
 import { HomeService } from "../../../shared/services/anuncio/home.services";
 import { ModalDetalleAnuncio } from '../modalDetalleAnuncio/modalDetalleAnuncio.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Router } from '@angular/router';
+import { Location } from "@angular/common";
+import { SeoService } from 'src/app/shared/services/seo/seo.service';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +16,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class IndexComponent implements OnInit {
   modalRef: BsModalRef;
+  schema: {};
 
   public masonryOptions: NgxMasonryOptions = {
     transitionDuration: '2.0s',
@@ -26,8 +30,15 @@ export class IndexComponent implements OnInit {
   limit = 16;
   constructor(
     private homeService: HomeService,
-    private modalService: BsModalService
-  ) { }
+    private modalService: BsModalService,
+    //private router: Router,
+    //private location: Location,
+    private seoService: SeoService
+  ) {
+    //console.log(this.router);
+    //console.log(this.location);
+    //console.log(window.history.state);
+   }
 
   FiltrarDatos(event): void {
     this.limit = 15;
@@ -48,12 +59,14 @@ export class IndexComponent implements OnInit {
           e.txt_lugar_servicio_distrito.indexOf(entidadFiltro.txt_lugar_servicio_distrito) ||
           e.tx_servicios_ofrece.indexOf(entidadFiltro.tx_servicios_ofrece) ||
           e.tx_lugar_atencion.indexOf(entidadFiltro.tx_lugar_atencion)
-      }).slice(0, this.limit);      
+      }).slice(0, this.limit);
+      this.schema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0,10));
     } else {
       this.homeService.getAnuncio().subscribe(
         (res: ClientResponse) => {
           this.list = JSON.parse(res.DataJson);
-          this.masonryImages = this.list.slice(0, this.limit);          
+          this.masonryImages = this.list.slice(0, this.limit); 
+          this.schema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0,10));         
         },
         (error) => {
           console.log(error + "getLisAnuncios");
@@ -63,6 +76,17 @@ export class IndexComponent implements OnInit {
   }
   ngOnInit() {
     this.getLisAnuncios();
+    //this.router.routerState.snapshot.subscribe(params => console.log('queryParams', params['id']));
+    //this.router.routerState.root.queryParams.subscribe(
+      //params => console.log('queryParams', params['id']));
+  }
+
+  ngAfterContentInit(){
+    if(sessionStorage.getItem("idAnuncio") != null){
+      let id= parseInt(sessionStorage.getItem("idAnuncio"));
+      sessionStorage.removeItem("idAnuncio");
+      this.openModalDetalleAnuncio(id);
+    }
   }
 
   openModalDetalleAnuncio(id: number) {
@@ -78,5 +102,6 @@ export class IndexComponent implements OnInit {
       }
     });
   }
-}
 
+
+}

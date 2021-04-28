@@ -12,6 +12,7 @@ import { UsuarioService } from './usuario/usuario.service';
 import { MantenimientoAnuncioService } from './mantenimiento-anuncio/mantenimiento-anuncio.service';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SeoService } from './seo/seo.service';
 // import { LoaderInterceptor } from '../../shared/services/loader/loader.interceptor';
 
 
@@ -30,7 +31,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
         ContactarService,
         SeguridadService,
         UsuarioService,
-        MantenimientoAnuncioService        
+        MantenimientoAnuncioService,
+        SeoService        
     ]
 })
 export class ServicesModule { }

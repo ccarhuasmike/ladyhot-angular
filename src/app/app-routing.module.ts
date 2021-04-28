@@ -30,14 +30,27 @@ const routes: Routes = [
   {
     path: 'seguridad',
     loadChildren: '../app/view/seguridad/seguridad.module#SeguridadModule'
+<<<<<<< HEAD
   },  
   {
     path: 'not-found',
     component: NotFoundComponent
+=======
+  },
+  {
+    path: 'kinesiologas/:id',
+    loadChildren: '../app/view/redireccionar-anuncio/redireccionar-anuncio.module#RedireccionarAnuncioModule',
+  },
+  {
+    path: 'not-found',
+    redirectTo: ''
+    //component: NotFoundComponent
+>>>>>>> a9c15376af33655882823e5459059566832f7c12
   },
   {
     path: '**',
-    redirectTo: 'not-found'
+    redirectTo: ''
+    //redirectTo: 'not-found'
   }
 ];
 

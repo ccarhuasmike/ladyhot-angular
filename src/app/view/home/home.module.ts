@@ -4,7 +4,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { IndexComponent } from './index/index.component';
 import { HeaderComponent } from './header/header.component';
 import { FilterComponent } from './filter/filer.component';
-import { ModalDetalleAnuncio } from './modalDetalleAnuncio/modalDetalleAnuncio.component';
+import { ModalDetalleAnuncio } from './modal-detalle-anuncio/modal-detalle-anuncio.component';
 
 import { ModalModule } from 'ngx-bootstrap';
 import { NgxMasonryModule } from 'ngx-masonry';

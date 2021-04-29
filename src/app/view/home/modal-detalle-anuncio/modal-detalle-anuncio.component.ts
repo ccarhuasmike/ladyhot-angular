@@ -8,8 +8,8 @@ declare var $: any;
 
 @Component({
     selector: 'app-modal-detalle-anuncio',
-    templateUrl: './modalDetalleAnuncio.component.html',
-    styleUrls: ['./modalDetalleAnuncio.component.css']
+    templateUrl: './modal-detalle-anuncio.component.html',
+    styleUrls: ['./modal-detalle-anuncio.component.css']
 })
 export class ModalDetalleAnuncio implements OnInit {
     detalleDelAnuncio: any;

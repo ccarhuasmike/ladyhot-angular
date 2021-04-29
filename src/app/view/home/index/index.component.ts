@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ClientResponse } from '../../../Models/ClientResponseModels';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { HomeService } from "../../../shared/services/anuncio/home.services";
-import { ModalDetalleAnuncio } from '../modalDetalleAnuncio/modalDetalleAnuncio.component';
+import { ModalDetalleAnuncio } from '../modal-detalle-anuncio/modal-detalle-anuncio.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { SeoService } from 'src/app/shared/services/seo/seo.service';
 

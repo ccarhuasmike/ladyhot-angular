@@ -18,13 +18,13 @@ export class DetalleAnuncioComponent implements OnInit{
     noMostrarFormaPago: boolean = false;
     noMostrarHorario: boolean = false;
     noMostrarApariencia: boolean = false;
-    modalRefLightbox: BsModalRef;
+    //modalRefLightbox: BsModalRef;
 
     @Input() idAnuncio: string;
 
     constructor(
         private anuncioService: AnuncioService,
-        private modalService: BsModalService,
+        //private modalService: BsModalService,
         private router: Router
     ){}
 
@@ -54,15 +54,15 @@ export class DetalleAnuncioComponent implements OnInit{
             });
     }
 
-    openModalLightbox(imagesDetalleGaleria) {
-        this.modalRefLightbox = this.modalService.show(ModalLightboxComponent, {
-            class: 'modal-md modal-dialog-centered second',
-            initialState: {
-                data: {
-                    imagesDetalleGaleria: imagesDetalleGaleria
-                }
-            }
-        });
-        document.getElementsByClassName('second')[0].parentElement.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-    }
+    //openModalLightbox(imagesDetalleGaleria) {
+    //    this.modalRefLightbox = this.modalService.show(ModalLightboxComponent, {
+    //        class: 'modal-md modal-dialog-centered second',
+    //        initialState: {
+    //            data: {
+    //                imagesDetalleGaleria: imagesDetalleGaleria
+    //            }
+    //        }
+    //    });
+    //    document.getElementsByClassName('second')[0].parentElement.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    //}
 }

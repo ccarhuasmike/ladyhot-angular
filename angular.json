@@ -21,14 +21,12 @@
                         "assets": [
                             "src/favicon.ico",
                             "src/assets",
-                            "src/web.config"         
+                            "src/web.config"
                         ],
-                        "styles": [                            
-                            "src/styles.css"                            
+                        "styles": [
+                            "src/styles.css"
                         ],
-                        "scripts": [
-                            "src/assets/js/script.js"
-                        ]
+                        "scripts": []
                     },
                     "configurations": {
                         "production": {

@@ -1,37 +1,30 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" *ngIf="!_router.url.includes('panelcontrol')">
-  <a class="navbar-brand" href="#">Fixed Logo navbar</a>
-  <button (click)="toggleCollapse()" class="navbar-toggler" type="button" data-toggle="collapse"
-    data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="#">Fixed Logo navbar</a>
+    <button (click)="toggleCollapse()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="fa fa-bars fa-lg"></span>
   </button>
-  <div class="collapse navbar-collapse" [class.show]="show">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/">Inicio</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Publicidad</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="anuncio">Anunciate Ya</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="panelcontrol">Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="login">Login</a>
-      </li>
+    <div class="collapse navbar-collapse" [class.show]="show">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/">Inicio</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Publicidad</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="anuncio">Anunciate Ya</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="panelcontrol">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="login">Login</a>
+            </li>
 
-      <li class="
+            <li class="
           nav-item">
-        <a class="nav-link" href="#">Contactar</a>
-      </li>
-    </ul>
-    <!-- <form class="form-inline mt-2 mt-md-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> -->
-  </div>
-
-
+                <a class="nav-link" href="#">Contactar</a>
+            </li>
+        </ul>
+    </div>
 </nav>

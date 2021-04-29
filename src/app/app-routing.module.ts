@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { NotFoundComponent } from "../app/view/not-found/not-found.component";
 
-
 ///
 const routes: Routes = [
   {
@@ -31,6 +30,10 @@ const routes: Routes = [
   {
     path: 'seguridad',
     loadChildren: '../app/view/seguridad/seguridad.module#SeguridadModule'
+  },  
+  {
+    path: 'not-found',
+    component: NotFoundComponent
   },
   {
     path: 'kinesiologas/:id',

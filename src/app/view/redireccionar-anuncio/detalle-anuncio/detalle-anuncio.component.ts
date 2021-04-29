@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { AnuncioService } from 'src/app/shared/services/service.module';
 import { ClientResponse } from 'src/app/Models/ClientResponseModels'
 import { BsModalRef, BsModalService } from "ngx-bootstrap";
-import { ModalLightboxComponent } from "../../home/modal-lightbox/modal-lightbox.component";
+//import { ModalLightboxComponent } from "../../home/modal-lightbox/modal-lightbox.component";
 import { Router } from "@angular/router";
 
 @Component({

@@ -7,22 +7,10 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from '../app/view/not-found/not-found.component';
 import { CoreModule } from '../app/view/core/core.module';
 import { SharedModule } from './shared/shared.module';
-//import { PasarelaPagoModule } from './view/pasarela-pago/pasarela-pago.module';
-//import { ModalLightboxComponent } from './view/home/modal-lightbox/modal-lightbox.component';
-//import { SharedCompoentModule } from './view/shared/sharedcomponent.module';
-// import { NgxMasonryModule } from 'ngx-masonry';
-// import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-// import { DatosContactoComponent } from "./view/panelcontrol/anuncio/datoscontacto/datoscontactos.component";
-// import { DatosGeneralesComponent } from "./view/panelcontrol/anuncio/datosgenerales/datosgenerales.component";
-// import { AparienciaComponent } from "./view/panelcontrol/anuncio/apariencia/apariencia.component";
-// import { TarifasComponent } from "./view/panelcontrol/anuncio/tarifa/tarifas.component";
-// import { ServiciosComponent } from "./view/panelcontrol/anuncio/servicios/servicios.component";
-// import { GaleriaComponent } from "./view/panelcontrol/anuncio/galeria/galeria.component";
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent,
-    //ModalLightboxComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -30,22 +18,9 @@ import { SharedModule } from './shared/shared.module';
     HttpModule,
     HttpClientModule,
     CoreModule,
-    SharedModule,
-    //SharedCompoentModule,
-    //PRUEBA - Dante Cc. 
-    //PasarelaPagoModule
-    //PRUEBA - Dante Cc. 
-    // NgxMasonryModule,
-    // InfiniteScrollModule
+    SharedModule    
   ],
-  // entryComponents: [
-  //   DatosContactoComponent,
-  //   DatosGeneralesComponent,
-  //   AparienciaComponent,
-  //   TarifasComponent,
-  //   ServiciosComponent,    
-  //   GaleriaComponent        
-  // ],
+  
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [
@@ -53,4 +28,3 @@ import { SharedModule } from './shared/shared.module';
 ]
 })
 export class AppModule { }
-

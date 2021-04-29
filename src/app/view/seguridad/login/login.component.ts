@@ -36,9 +36,7 @@ export class LoginComponent implements OnInit {
         this.txt_emailCtrl = new FormControl('', [Validators.required]);
         this.txt_passwordCtrl = new FormControl('', [Validators.required]);
 
-        //this.txt_emailGenerarPasswordCtrl = new FormControl('ccarhuas.mike@gmail.com', [Validators.required]);        
-            
-        this.formLogin = new FormGroup({
+        this.txt_emailGenerarPasswordCtrl = new FormControl('ccarhuas.mike@gmail.com', [Validators.required]);        this.formLogin = new FormGroup({
             txt_email: this.txt_emailCtrl,
             txt_password: this.txt_passwordCtrl
         });

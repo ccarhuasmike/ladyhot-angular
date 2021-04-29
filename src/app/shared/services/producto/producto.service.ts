@@ -3,8 +3,6 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { ConfigService } from '../Utilitarios/config.service';
 import { Observable } from 'rxjs';
 import { ClientResponse } from 'src/app/Models/ClientResponseModels';
-import { catchError } from 'rxjs/operators';
-
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
@@ -25,14 +23,10 @@ export class ProductoService {
   }
 
   getListarProductosSubirAutomatico(tipoSubirAutomatico: number): Observable<ClientResponse> {
-    return this.httpClient.get<ClientResponse>(this._baseUrl + 'producto/ListarProductos/' + tipoSubirAutomatico).pipe(
-      //catchError(null)
-    );
+    return this.httpClient.get<ClientResponse>(this._baseUrl + 'producto/ListarProductos/' + tipoSubirAutomatico).pipe();
   }
 
   cargarHorariosSubida(): Observable<ClientResponse> {
-    return this.httpClient.get<ClientResponse>(this._baseUrl + 'producto/ObtenerHorariosSubida/').pipe(
-      //catchError(null)
-    );
+    return this.httpClient.get<ClientResponse>(this._baseUrl + 'producto/ObtenerHorariosSubida/').pipe();
   }
 }

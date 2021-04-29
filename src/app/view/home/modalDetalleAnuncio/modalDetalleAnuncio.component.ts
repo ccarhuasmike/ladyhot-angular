@@ -31,7 +31,6 @@ export class ModalDetalleAnuncio implements OnInit {
     ngOnInit() {
         this.anuncioService.ObtenerDetalleAnucionXId(this["data"]["id"]).subscribe(
             (res: ClientResponse) => {
-                
                 if (res.Data["txt_presentacion"] != "") {
                     res.Data["txt_presentacion"] = res.Data["txt_presentacion"].replace(/(\n)+\n+|\t+/g, ";");
                 }
@@ -47,7 +46,7 @@ export class ModalDetalleAnuncio implements OnInit {
                     || this.detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche != 0 || this.detalleDelAnuncio.dbl_costo_x_viaje != 0);
                 this.noMostrarFormaPago = (this.detalleDelAnuncio.txt_forma_pago != null);
                 this.noMostrarHorario = (this.detalleDelAnuncio.tx_descripcion_extra_horario != "" || this.detalleDelAnuncio.fl_atencion_24horas != 0);
-                this.noMostrarApariencia = (this.detalleDelAnuncio.tx_color_cabello != "" || this.detalleDelAnuncio.tx_color_ojos != "" || this.detalleDelAnuncio.tx_estatura != "" 
+                this.noMostrarApariencia = (this.detalleDelAnuncio.tx_color_cabello != "" || this.detalleDelAnuncio.tx_color_ojos != "" || this.detalleDelAnuncio.tx_estatura != ""
                     || this.detalleDelAnuncio.txt_medidas_busto_cintura_cadera != "");
                 let dataSubirAutomatico = {
                     titulo: this.detalleDelAnuncio.txt_nombre_ficha,

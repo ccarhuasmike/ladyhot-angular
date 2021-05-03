@@ -279,10 +279,10 @@ label {
     display: inline-block;
 }
 
-.cd-gallery img {
+/*.cd-gallery img {
     display: block;
     width: 100%;
-}
+}*/
 
 .cd-gallery .cd-fail-message {
     display: none;

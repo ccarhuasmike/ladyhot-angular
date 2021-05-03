@@ -1,14 +1,16 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, ViewEncapsulation } from "@angular/core";
 import { AnuncioService } from 'src/app/shared/services/service.module';
 import { ClientResponse } from 'src/app/Models/ClientResponseModels'
-import { BsModalRef, BsModalService } from "ngx-bootstrap";
-//import { ModalLightboxComponent } from "../../home/modal-lightbox/modal-lightbox.component";
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from "@angular/router";
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { LightboxComponent } from '../../lightbox/lightbox.component';
 
 @Component({
     selector: 'detalle-anuncio',
     templateUrl: './detalle-anuncio.component.html',
     styleUrls: ['./detalle-anuncio.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class DetalleAnuncioComponent implements OnInit{
     
@@ -18,18 +20,30 @@ export class DetalleAnuncioComponent implements OnInit{
     noMostrarFormaPago: boolean = false;
     noMostrarHorario: boolean = false;
     noMostrarApariencia: boolean = false;
-    //modalRefLightbox: BsModalRef;
+    mostrarBotonCloseModal: boolean = false;
+    modalRefLightbox: BsModalRef;
+    slideIndex = 0;
+    imagenes: [];
 
     @Input() idAnuncio: string;
 
     constructor(
         private anuncioService: AnuncioService,
-        //private modalService: BsModalService,
-        private router: Router
+        private domSanitizer: DomSanitizer,
+        private router: Router,
+        private modalService: BsModalService,
+        private modalRef: BsModalRef
     ){}
 
     ngOnInit() {
-        this.anuncioService.ObtenerDetalleAnucionXId(this.idAnuncio).subscribe(
+        let id;
+        if(this["data"] != null){
+            id = this["data"]["id"];
+            this.mostrarBotonCloseModal = this["data"]["mostrarBotonCloseModal"];
+        }
+        else if(this.idAnuncio != null)
+            id = this.idAnuncio;
+        this.anuncioService.ObtenerDetalleAnucionXId(id).subscribe(
             (res: ClientResponse) => {
                 if(res.Data != null){
                     if (res.Data["txt_presentacion"] != "") {
@@ -49,20 +63,36 @@ export class DetalleAnuncioComponent implements OnInit{
                     this.noMostrarHorario = (this.detalleDelAnuncio.tx_descripcion_extra_horario != "" || this.detalleDelAnuncio.fl_atencion_24horas != 0);
                     this.noMostrarApariencia = (this.detalleDelAnuncio.tx_color_cabello != "" || this.detalleDelAnuncio.tx_color_ojos != "" || this.detalleDelAnuncio.tx_estatura != "" 
                         || this.detalleDelAnuncio.txt_medidas_busto_cintura_cadera != "");
+
+                    this.imagenes = this.detalleDelAnuncio.txt_imagen_galeria.split(';').map((item, index) => {
+                        return {
+                            id:index+1,
+                            url:this.domSanitizer.bypassSecurityTrustUrl(item),
+                        }
+                    });
                 }else
                     this.router.navigate(['']);
             });
     }
 
-    //openModalLightbox(imagesDetalleGaleria) {
-    //    this.modalRefLightbox = this.modalService.show(ModalLightboxComponent, {
-    //        class: 'modal-md modal-dialog-centered second',
-    //        initialState: {
-    //            data: {
-    //                imagesDetalleGaleria: imagesDetalleGaleria
-    //            }
-    //        }
-    //    });
-    //    document.getElementsByClassName('second')[0].parentElement.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-    //}
+    openLightbox() {
+        this.modalRefLightbox = this.modalService.show(LightboxComponent, {
+            animated: true,
+            class: 'modal-lg modal-lightbox',
+            initialState: {
+                data: {
+                    imagenes: this.imagenes,
+                    slideIndex: this.slideIndex
+                }
+            }
+          });
+    }
+
+    currentSlide(n) {
+        this.slideIndex = n;
+    }
+
+    closeModal() {
+        this.modalRef.hide();
+    }
 }

@@ -1,3 +1,8 @@
+<div class="modal-header border-0 pb-1 pt-1" *ngIf="mostrarBotonCloseModal">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true"><i class="fa fa-times"></i></span>
+    </button>
+</div>
 <div class="" *ngIf="detalleDelAnuncio">
     <div class="pl-1 pr-1">
         <div class="row">
@@ -6,10 +11,10 @@
                     <div class="col-12 d-block d-sm-none">
                         <div class="card w-100">
                             <img class="img-thumbnail w-100 h-100"
-                                src="{{detalleDelAnuncio.txt_imagen_galeria?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}"  loading="lazy" >
+                                src="{{imagenes.length > 0?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}"
+                                loading="lazy">
                         </div>
                     </div>
-
                     <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body bg-white card-body-title">
@@ -27,6 +32,18 @@
                                         <span *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora"
                                             class="btn btn-sm bg-info text-white float-left ml-0 m-1">S/.
                                             {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora }}</span>
+                                        <!--<span></span><span></span>-->
+                                        <!--<br /><br />
+                                        <span>{{detalleDelAnuncio.txt_nombre_ficha }}</span>-->
+                                        <!--<span> | {{detalleDelAnuncio.int_edad }} años</span>-->
+                                        <!--<span *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora"> | S/.
+                                            {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora}}</span>-->
+                                        <!--<span></span><br /><span>29/06/2019 12:00
+                                            am</span>-->
+                                        <br />
+                                        <!--<a *ngIf="detalleDelAnuncio.txt_web" href="{{detalleDelAnuncio.txt_web}}"
+                                            class="text-muted font-weight-bold" target="_blank"><span>Visita mi
+                                                página</span></a>-->
                                     </div>
 
                                     <div class="col-lg-6">
@@ -35,12 +52,15 @@
                                                 <a href='tel:{{detalleDelAnuncio.txt_telefono_1}}'
                                                     class="btn btn-large btn-primary rounded-0">
                                                     <i class="fa fa-phone mr-1"></i>
+
                                                     <span
                                                         class="font-weight-bold">{{detalleDelAnuncio.txt_telefono_1}}</span>
                                                 </a>
                                                 <a href="https://api.whatsapp.com/send?phone=51{{detalleDelAnuncio.txt_telefono_1}}&text=Hola {{detalleDelAnuncio.txt_nombre_ficha }}, te he visto en Gologolos y me gustaría quedar contigo."
-                                                    class="btn btn-large btn-success rounded-0 ml-1" target="_blank"><i
-                                                        class="fa fa-whatsapp mr-1"></i>
+                                                    class="btn  btn-large btn-success rounded-0 ml-1" target="_blank">
+                                                    <!-- <i  class="fa fa-whatsapp mr-1"></i> -->
+                                                    <img src="../../../../assets/compartir-whatsapp-logo.svg" alt="Whatsapp" title="Whatsapp" height="22" width="22" style="margin-top: -4px;
+                                                    margin-right: 3px;">
                                                     <span class="font-weight-bold">WhatsApp</span></a>
                                             </div>
                                         </div>
@@ -267,31 +287,51 @@
                     <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body bg-white">
-                                <div *ngIf="detalleDelAnuncio.txt_imagen_galeria">
+                                <div *ngIf="imagenes.length > 0">
                                     <p class="h3 text-dark font-weight-bold text-left">
-                                        {{detalleDelAnuncio.txt_imagen_galeria.split(';').length  }} Fotos
+                                        {{imagenes.length  }} Fotos
                                     </p>
-                                    <div class="row" data-toggle="modal" data-target="#exampleModal">
-                                        <div [className]="detalleDelAnuncio.txt_imagen_galeria.split(';').length==1?'d-flex justify-content-center lightbox-images':'col-lg-6 col-md-6 col-sm-12 mt-1 lightbox-images'"
-                                            *ngFor="let item of detalleDelAnuncio.txt_imagen_galeria.split(';'); let i = index"
-                                            (click)="openModalLightbox(detalleDelAnuncio.txt_imagen_galeria)">
-                                            <!-- - Kinesi&oacute;loga en Los Olivos-->
-                                            <img [className]="detalleDelAnuncio.txt_imagen_galeria.split(';').length==1?'w-100 w-sm-50 h-100 img-thumbnail cursor-imagen-detalle':'w-100 h-100 img-thumbnail cursor-imagen-detalle'"
-                                                src="{{item.trim()}}"
+                                    <div class="row">
+                                        <div [className]="imagenes.length==1?'d-flex justify-content-center lightbox-images':'col-lg-6 col-md-6 col-sm-12 mt-1 lightbox-images'"
+                                            *ngFor="let item of imagenes; let i = index"
+                                            >
+                                            <img [className]="imagenes.length==1?'w-100 w-sm-50 h-100 img-thumbnail cursor-imagen-detalle hover-shadow cursor image-lightbox':'w-100 h-100 img-thumbnail cursor-imagen-detalle hover-shadow cursor image-lightbox'"
+                                                [src]="item.url"
+                                                (click)="currentSlide(i+1);openLightbox()"
                                                 alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}"
-                                                data-target="#carouselExample" attr.data-slide-to="{{i}}" loading="lazy" />
+                                                 />
                                         </div>
                                     </div>
 
                                 </div>
-                                <div *ngIf="!detalleDelAnuncio.txt_imagen_galeria"
+                                <div *ngIf="imagenes.length == 0"
                                     class="d-flex justify-content-center">
                                     <img class="w-sm-50 w-100 h-50 img-thumbnail" src="assets/scort_sin_foto.jpg"
-                                        alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}" loading="lazy">
+                                        alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}"
+                                        loading="lazy">
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!--                     
+                    <div class="col-12">
+                        <div class="card w-100">
+                            <div class="card-body bg-white">
+                                <p class="h3 text-dark font-weight-bold text-left">
+                                    Sobre mí
+                                </p>
+                                <div class="row">
+                                    <div class="col-12 mb-2">
+                                        <a *ngFor="let item of detalleDelAnuncio.tx_descripcion_servicios_ofrece.split(';'); let i = index"
+                                            href="#" class="btn btn-sm bg-dark text-white float-left m-1">
+                                            {{item.trim()}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
 
                     <div class="col-12" *ngIf="detalleDelAnuncio.tx_descripcion_servicios_ofrece">
                         <div class="card w-100">
@@ -402,7 +442,7 @@
                     <div class="pl-1 pr-0 row col-12">
                         <div class="card row">
                             <img class="img-fluid w-100"
-                                src="{{detalleDelAnuncio.txt_imagen_galeria?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}"
+                                src="{{imagenes.length > 0?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}"
                                 loading="lazy">
                             <div class="card-body bg-white">
                                 <div class="row">

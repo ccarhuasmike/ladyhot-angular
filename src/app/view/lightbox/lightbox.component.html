@@ -1,0 +1,21 @@
+<div id="imgModal" class="slide-modal">
+    <span class="close-ligthbox cursor" (click)="closeLightbox()">&times;</span>
+    <div class="container">
+        <div class="col-12 d-flex justify-content-center">
+            <div class="img-slides col-6" *ngFor="let image of imagenes; let i = index">
+                <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+               <img [src]="image.url" class="w-100"/>
+               <a class="next" (click)="plusSlides(1)">&#10095;</a>
+            </div>
+            
+        </div>
+       <div class="col-12 d-flex justify-content-center">
+            <div class="d-flex col-6">
+                <div class="image-column" *ngFor="let image of imagenes; let i = index">
+                <img class="images img-ligthbox hover-shadow cursor" (click)="currentSlide(i+1)"
+                [src]="image.url" />
+                </div>
+            </div>
+       </div>
+    </div>
+</div>

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { StepService } from "./step.service";
-import { Tbl_anuncio } from '../../../Models/Tbl_anuncioModels';
-import { ClientResponse } from '../../../Models/ClientResponseModels';
-import { Tbl_galeria_anuncio } from "../../../Models/Tbl_galeria_anuncioModels";
+import { Tbl_anuncio } from '../../../models/Tbl_anuncioModels';
+import { ClientResponse } from '../../../models/ClientResponseModels';
+import { Tbl_galeria_anuncio } from "../../../models/Tbl_galeria_anuncioModels";
 import { ConfigService } from "../Utilitarios/config.service";
 import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';

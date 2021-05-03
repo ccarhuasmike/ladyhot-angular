@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { IndexComponent } from './index/index.component';
-import { ModalDetalleAnuncio } from './modal-detalle-anuncio/modal-detalle-anuncio.component';
-import { ModalModule } from 'ngx-bootstrap';
 import { NgxMasonryModule } from 'ngx-masonry';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxJsonLdModule } from 'ngx-json-ld';
+import { ImageService } from 'src/app/shared/services/Utilitarios/image.service';
+import { ReusableModule } from '../reusable/reusable.module';
 
 @NgModule({
     imports: [
@@ -17,18 +17,17 @@ import { NgxJsonLdModule } from 'ngx-json-ld';
         InfiniteScrollModule,
         FormsModule,
         ReactiveFormsModule,
-        ModalModule.forRoot(),
         // Register module
-        NgxJsonLdModule
+        NgxJsonLdModule,
+        ReusableModule
     ],
     declarations: [
         IndexComponent,        
-        ModalDetalleAnuncio,
-        ],
+    ],
     exports: [IndexComponent],
     bootstrap: [IndexComponent],
-    entryComponents: [
-        ModalDetalleAnuncio
-    ]
+    providers: [
+        ImageService        
+    ],
 })
 export class HomeModule { }

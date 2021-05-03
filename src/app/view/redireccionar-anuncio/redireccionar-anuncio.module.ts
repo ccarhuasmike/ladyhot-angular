@@ -3,10 +3,12 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { NgxMasonryModule } from "ngx-masonry";
-import { DetalleAnuncioComponent } from "./detalle-anuncio/detalle-anuncio.component";
-import { HeaderComponent } from "./header/header.component";
+//import { HeaderComponent } from "./header/header.component";
 import { RedireccionarAnuncioRoutingModule } from "./redireccionar-anuncio-routing.module";
 import { VerAnuncioComponent } from './ver-anuncio/ver-anuncio.component';
+import { BsModalRef } from 'ngx-bootstrap';
+import { ImageService } from "src/app/shared/services/Utilitarios/image.service";
+import { ReusableModule } from "../reusable/reusable.module";
 
 @NgModule({
     imports: [
@@ -15,14 +17,18 @@ import { VerAnuncioComponent } from './ver-anuncio/ver-anuncio.component';
         RedireccionarAnuncioRoutingModule,
         NgxMasonryModule,
         InfiniteScrollModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        ReusableModule
     ],
     declarations: [
         VerAnuncioComponent,
-        HeaderComponent,
-        DetalleAnuncioComponent
+        //HeaderComponent,
     ],
     exports: [VerAnuncioComponent],
     bootstrap: [VerAnuncioComponent],
+    providers: [
+        ImageService,
+        BsModalRef
+    ]
 })
 export class RedireccionarAnuncioModule { }

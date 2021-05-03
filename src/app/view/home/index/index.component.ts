@@ -2,11 +2,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ClientResponse } from '../../../Models/ClientResponseModels';
 import { NgxMasonryOptions } from 'ngx-masonry';
 import { HomeService } from "../../../shared/services/anuncio/home.services";
-import { ModalDetalleAnuncio } from '../modal-detalle-anuncio/modal-detalle-anuncio.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { SeoService } from 'src/app/shared/services/seo/seo.service';
 import { ParameterService } from "../../../shared/services/anuncio/parameter.service";
 import { FormGroup, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
+import { DetalleAnuncioComponent } from '../../redireccionar-anuncio/detalle-anuncio/detalle-anuncio.component';
 
 @Component({
   selector: 'app-home',
@@ -151,8 +151,7 @@ export class IndexComponent implements OnInit {
     this.status = !this.status; 
   }
   onCloseClick() {
-    this.status = !this.status; 
-    //cdClose();
+    this.status = !this.status;
   }
 
 
@@ -189,22 +188,17 @@ export class IndexComponent implements OnInit {
     this.cargarControlFiltros();
     this.getLisAnuncios();
   }
-  ngAfterContentInit() {
-    if (sessionStorage.getItem("idAnuncio") != null) {
-      let id = parseInt(sessionStorage.getItem("idAnuncio"));
-      sessionStorage.removeItem("idAnuncio");
-      this.openModalDetalleAnuncio(id);
-    }
-  }
+
   openModalDetalleAnuncio(id: number) {
-    this.modalRef = this.modalService.show(ModalDetalleAnuncio, {
+    this.modalRef = this.modalService.show(DetalleAnuncioComponent, {
       animated: true,
       //backdrop: 'static',
       class: 'modal-lg',
       initialState: {
-        title: 'Actualizar Anuncio Demo',
+        title: '',
         data: {
-          id: id
+          id: id,
+          mostrarBotonCloseModal: true
         }
       }
     });

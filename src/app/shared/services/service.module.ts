@@ -32,7 +32,7 @@ import { SeoService } from './seo/seo.service';
         SeguridadService,
         UsuarioService,
         MantenimientoAnuncioService,
-        SeoService        
+        SeoService
     ]
 })
 export class ServicesModule { }

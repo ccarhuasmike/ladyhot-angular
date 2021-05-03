@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { ConfigService } from '../Utilitarios/config.service';
 import { Observable } from 'rxjs';
-import { ClientResponse } from 'src/app/Models/ClientResponseModels';
+import { ClientResponse } from 'src/app/models/ClientResponseModels';
 import { catchError } from 'rxjs/operators';
 
 const httpOptions = {

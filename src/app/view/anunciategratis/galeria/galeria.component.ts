@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnuncioService } from "../../../shared/services/anuncio/anuncio.service";
-import { Tbl_galeria_anuncio } from "../../../Models/Tbl_galeria_anuncioModels";
+import { Tbl_galeria_anuncio } from "../../../models/Tbl_galeria_anuncioModels";
 import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-galeria',

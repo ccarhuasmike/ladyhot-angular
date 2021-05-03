@@ -4,7 +4,6 @@ import { ConfigService } from '../Utilitarios/config.service';
 import { Observable } from 'rxjs';
 import { BeanChargeViewModel } from '../../../Models/BeanChargeViewModel';
 import { BeanCharge } from 'src/app/Models/BeanCharge';
-import { catchError } from 'rxjs/operators';
 import { ClientResponse } from 'src/app/Models/ClientResponseModels';
 
 const httpOptions = {
@@ -28,14 +27,10 @@ export class PasarelaPagoService {
     }
 
     CrearCargo(beanCharge: BeanCharge): Observable<BeanChargeViewModel> {
-        return this.httpClient.post<BeanChargeViewModel>(this._baseUrl + 'anuncio/CrearCargo', JSON.stringify(beanCharge), httpOptions).pipe(
-            //catchError(null)
-        );
+        return this.httpClient.post<BeanChargeViewModel>(this._baseUrl + 'anuncio/CrearCargo', JSON.stringify(beanCharge), httpOptions).pipe();
     }
     
     obtenerLlavePublica(): Observable<ClientResponse> {
-        return this.httpClient.get<ClientResponse>(this._baseUrl + 'anuncio/ObtenerLlavePublica', httpOptions).pipe(
-            //catchError(null)
-        );
+        return this.httpClient.get<ClientResponse>(this._baseUrl + 'anuncio/ObtenerLlavePublica', httpOptions).pipe();
     }
 }

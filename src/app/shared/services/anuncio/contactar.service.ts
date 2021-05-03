@@ -30,8 +30,6 @@ export class ContactarService {
             map(res => {
                 peginatedResult.result = res.json();
                 return peginatedResult;
-            })//, 
-            //catchError(null)
-        );
+            }));
     }
 }

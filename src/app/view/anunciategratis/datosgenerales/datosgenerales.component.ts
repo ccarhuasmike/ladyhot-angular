@@ -77,9 +77,7 @@ export class DatosGeneralesComponent implements OnInit {
     saveDatosGenerales() {
         this.isSubmittedDatosGenerales = true;
         if (!this.fromDatosGenerales.valid)
-            return;
-            
-        this.spinner.show();
+            return;this.spinner.show();
         this.DataJsonAnuncio.int_edad = parseInt(this.fromDatosGenerales.value.int_edad);
         this.DataJsonAnuncio.int_pais_origen = parseInt(this.fromDatosGenerales.value.int_pais_origen);
         this.DataJsonAnuncio.int_estudios = parseInt(this.fromDatosGenerales.value.int_estudios);

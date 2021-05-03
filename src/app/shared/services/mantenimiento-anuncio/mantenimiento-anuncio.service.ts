@@ -6,7 +6,6 @@ import { ClientResponseResult, ClientResponse, Pagination } from 'src/app/Models
 import { map } from 'rxjs/operators';
 import { Tbl_anuncio } from 'src/app/Models/Tbl_anuncioModels';
 import { HttpHeaders } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 const options = new RequestOptions({
@@ -37,9 +36,7 @@ export class MantenimientoAnuncioService {
     }
 
     ListaPaginado(pagination: Pagination): Observable<ClientResponse> {
-        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Listarpaginado', pagination, httpOptions).pipe(
-            //catchError(null)
-        );
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Listarpaginado', pagination, httpOptions).pipe();
     }
     ListarAnuncioPaginate(anuncio: Tbl_anuncio): Observable<ClientResponseResult<ClientResponse>> {
         var peginatedResult: ClientResponseResult<ClientResponse> = new ClientResponseResult<ClientResponse>();

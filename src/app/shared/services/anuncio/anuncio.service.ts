@@ -4,7 +4,6 @@ import { Tbl_anuncio } from '../../../models/Tbl_anuncioModels';
 import { ClientResponse } from '../../../models/ClientResponseModels';
 import { Tbl_galeria_anuncio } from "../../../models/Tbl_galeria_anuncioModels";
 import { ConfigService } from "../Utilitarios/config.service";
-import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -32,92 +31,62 @@ export class AnuncioService {
     }
 
     SavePrimerPaso(anuncio: Tbl_anuncio): Observable<ClientResponse> {
-        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Primeropaso', anuncio, httpOptions).pipe(
-            //catchError(null)
-        );
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Primeropaso', anuncio, httpOptions).pipe();
     }
     ///https://stackblitz.com/angular/ooqemvjyqkb?file=src%2Fapp%2Fheroes%2Fheroes.service.ts
     SavePrimerPaso1(anuncio: Tbl_anuncio): Observable<ClientResponse> {
-        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Primeropaso', JSON.stringify(anuncio), httpOptions).pipe(
-            //catchError(null)
-        );
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Primeropaso', JSON.stringify(anuncio), httpOptions).pipe();
     }
 
     UpdateSavePrimerPaso(anuncio: Tbl_anuncio): Observable<ClientResponse> {
-        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/ActualizarPrimerpaso', JSON.stringify(anuncio), httpOptions).pipe(
-            //catchError(null)
-        );
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/ActualizarPrimerpaso', JSON.stringify(anuncio), httpOptions).pipe();
     }
     SaveSegundoPaso(anuncio: Tbl_anuncio): Observable<ClientResponse> {
-        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Segundopaso', JSON.stringify(anuncio), httpOptions).pipe(
-            //catchError(null)
-        );
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Segundopaso', JSON.stringify(anuncio), httpOptions).pipe();
     }
 
     SaveTerceroPaso(anuncio: Tbl_anuncio): Observable<ClientResponse> {
-        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Tercerpaso', JSON.stringify(anuncio), httpOptions).pipe(
-            //catchError(null)
-        );
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Tercerpaso', JSON.stringify(anuncio), httpOptions).pipe();
     }
     SaveCuartoPaso(anuncio: Tbl_anuncio): Observable<ClientResponse> {
-        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Cuartopaso', JSON.stringify(anuncio), httpOptions).pipe(
-            //catchError(null)
-        );
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Cuartopaso', JSON.stringify(anuncio), httpOptions).pipe();
     }
     SaveQuintoPaso(anuncio: Tbl_anuncio): Observable<ClientResponse> {
-        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Quintopaso', JSON.stringify(anuncio), httpOptions).pipe(
-            //catchError(null)
-        );
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/Quintopaso', JSON.stringify(anuncio), httpOptions).pipe();
     }
 
     /*Galeria*/
     SaveGaleria(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/InsertGaleria', galeria, httpOptions)
-            .pipe(
-                //catchError(null)
-            );
+            .pipe();
     }
     GetGaleriaXIdAnuncio(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/GetGeleriaXIdAnuncio', galeria, httpOptions)
-            .pipe(
-                //catchError(null)
-            );
+            .pipe();
     }
     EliminarGaleriaXId(galeria: Tbl_galeria_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'galeria/EliminarFoto', galeria, httpOptions)
-            .pipe(
-                //catchError(null)
-            );
+            .pipe();
     }
 
     Saveactualizartodo(anuncio: Tbl_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/ActualizarTodo', anuncio, httpOptions)
-            .pipe(
-                //catchError(null)
-            );
+            .pipe();
     }
     getListarMisAnuncios(anuncio: Tbl_anuncio): Observable<ClientResponse> {
-        return this.httpClient.post<ClientResponse>(this._baseUrl + 'misanuncios/ListarMisAnuncioPorUsuario', anuncio, httpOptions).pipe(
-            //catchError(null)
-        );
+        return this.httpClient.post<ClientResponse>(this._baseUrl + 'misanuncios/ListarMisAnuncioPorUsuario', anuncio, httpOptions).pipe();
     }
 
     getAnuncioPorId(id: String): Observable<ClientResponse> {
-        return this.httpClient.get<ClientResponse>(this._baseUrl + 'anuncio/GetAnucionXId/' + id).pipe(
-            //catchError(null)
-        );
+        return this.httpClient.get<ClientResponse>(this._baseUrl + 'anuncio/GetAnucionXId/' + id).pipe();
     }
     ObtenerDetalleAnucionXId(id: String): Observable<ClientResponse> {
-        return this.httpClient.get<ClientResponse>(this._baseUrl + 'anuncio/ObtenerDetalleAnucionXId/' + id).pipe(
-            //catchError(null)
-        );
+        return this.httpClient.get<ClientResponse>(this._baseUrl + 'anuncio/ObtenerDetalleAnucionXId/' + id).pipe();
     }
 
     darBajaMiAnuncio(anuncio: Tbl_anuncio): Observable<ClientResponse> {
         return this.httpClient.post<ClientResponse>(this._baseUrl + 'anuncio/DarBajarAnuncio/', anuncio, httpOptions)
-            .pipe(
-                //catchError(null)
-            );
+            .pipe();
     }
 
     segundopaso(flag: boolean) {

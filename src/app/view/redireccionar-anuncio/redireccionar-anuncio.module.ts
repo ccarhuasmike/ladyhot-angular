@@ -9,6 +9,7 @@ import { VerAnuncioComponent } from './ver-anuncio/ver-anuncio.component';
 import { BsModalRef } from 'ngx-bootstrap';
 import { ImageService } from "src/app/shared/services/Utilitarios/image.service";
 import { ReusableModule } from "../reusable/reusable.module";
+import { HeaderReusableModule } from "../reusable/header-reusable.module";
 
 @NgModule({
     imports: [
@@ -18,7 +19,8 @@ import { ReusableModule } from "../reusable/reusable.module";
         NgxMasonryModule,
         InfiniteScrollModule,
         ReactiveFormsModule,
-        ReusableModule
+        ReusableModule,
+        HeaderReusableModule
     ],
     declarations: [
         VerAnuncioComponent,

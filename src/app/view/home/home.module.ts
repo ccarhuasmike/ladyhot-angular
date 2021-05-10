@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxJsonLdModule } from 'ngx-json-ld';
 import { ImageService } from 'src/app/shared/services/Utilitarios/image.service';
 import { ReusableModule } from '../reusable/reusable.module';
+import { HeaderReusableModule } from '../reusable/header-reusable.module';
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import { ReusableModule } from '../reusable/reusable.module';
         ReactiveFormsModule,
         // Register module
         NgxJsonLdModule,
-        ReusableModule
+        ReusableModule,
+        HeaderReusableModule
     ],
     declarations: [
         IndexComponent,        

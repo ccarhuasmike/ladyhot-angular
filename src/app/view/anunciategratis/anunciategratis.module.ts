@@ -13,6 +13,7 @@ import { GaleriaComponent } from "./galeria/galeria.component"
 import { TarifasComponent } from "./tarifa/tarifas.component"
 import { SharedCompoentModule } from '../../view/shared/sharedcomponent.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { HeaderReusableModule } from '../reusable/header-reusable.module';
 @NgModule({
     imports: [
         CommonModule,
@@ -20,7 +21,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
         FormsModule,
         ReactiveFormsModule,
         SharedCompoentModule,
-        NgxSpinnerModule
+        NgxSpinnerModule,
+        HeaderReusableModule
     ],
     declarations: [
         IndexComponent,

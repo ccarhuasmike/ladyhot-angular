@@ -4,7 +4,7 @@ import { ClientResponse } from 'src/app/Models/ClientResponseModels'
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from "@angular/router";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { LightboxComponent } from '../../lightbox/lightbox.component';
+import { LightboxComponent } from '../lightbox/lightbox.component';
 
 @Component({
     selector: 'detalle-anuncio',

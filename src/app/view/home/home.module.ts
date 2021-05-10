@@ -7,8 +7,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxJsonLdModule } from 'ngx-json-ld';
 import { ImageService } from 'src/app/shared/services/Utilitarios/image.service';
-import { ReusableModule } from '../reusable/reusable.module';
-import { HeaderReusableModule } from '../reusable/header-reusable.module';
+import { DetalleAnuncioReusableModule } from '../modulos-reusable/detalle-anuncio-reusable.module';
+import { HeaderReusableModule } from '../modulos-reusable/header-reusable.module';
 
 @NgModule({
     imports: [
@@ -20,7 +20,7 @@ import { HeaderReusableModule } from '../reusable/header-reusable.module';
         ReactiveFormsModule,
         // Register module
         NgxJsonLdModule,
-        ReusableModule,
+        DetalleAnuncioReusableModule,
         HeaderReusableModule
     ],
     declarations: [

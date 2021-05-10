@@ -6,7 +6,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { SeoService } from 'src/app/shared/services/seo/seo.service';
 import { ParameterService } from "../../../shared/services/anuncio/parameter.service";
 import { FormGroup, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
-import { DetalleAnuncioComponent } from '../../redireccionar-anuncio/detalle-anuncio/detalle-anuncio.component';
+import { DetalleAnuncioComponent } from '../../componentes-reusable/detalle-anuncio/detalle-anuncio.component';
 
 @Component({
   selector: 'app-home',

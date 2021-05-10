@@ -8,8 +8,8 @@ import { RedireccionarAnuncioRoutingModule } from "./redireccionar-anuncio-routi
 import { VerAnuncioComponent } from './ver-anuncio/ver-anuncio.component';
 import { BsModalRef } from 'ngx-bootstrap';
 import { ImageService } from "src/app/shared/services/Utilitarios/image.service";
-import { ReusableModule } from "../reusable/reusable.module";
-import { HeaderReusableModule } from "../reusable/header-reusable.module";
+import { DetalleAnuncioReusableModule } from "../modulos-reusable/detalle-anuncio-reusable.module";
+import { HeaderReusableModule } from "../modulos-reusable/header-reusable.module";
 
 @NgModule({
     imports: [
@@ -19,12 +19,11 @@ import { HeaderReusableModule } from "../reusable/header-reusable.module";
         NgxMasonryModule,
         InfiniteScrollModule,
         ReactiveFormsModule,
-        ReusableModule,
+        DetalleAnuncioReusableModule,
         HeaderReusableModule
     ],
     declarations: [
-        VerAnuncioComponent,
-        //HeaderComponent,
+        VerAnuncioComponent
     ],
     exports: [VerAnuncioComponent],
     bootstrap: [VerAnuncioComponent],

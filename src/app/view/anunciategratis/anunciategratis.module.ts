@@ -13,7 +13,7 @@ import { GaleriaComponent } from "./galeria/galeria.component"
 import { TarifasComponent } from "./tarifa/tarifas.component"
 import { SharedCompoentModule } from '../../view/shared/sharedcomponent.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { HeaderReusableModule } from '../reusable/header-reusable.module';
+import { HeaderReusableModule } from '../modulos-reusable/header-reusable.module';
 @NgModule({
     imports: [
         CommonModule,

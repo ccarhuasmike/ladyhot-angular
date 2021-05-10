@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ModalModule } from "ngx-bootstrap";
-import { LightboxComponent } from "../lightbox/lightbox.component";
-import { DetalleAnuncioComponent } from "../redireccionar-anuncio/detalle-anuncio/detalle-anuncio.component";
+import { LightboxComponent } from "../componentes-reusable/lightbox/lightbox.component";
+import { DetalleAnuncioComponent } from "../componentes-reusable/detalle-anuncio/detalle-anuncio.component";
 
 @NgModule({
     imports: [CommonModule, ModalModule.forRoot()],
@@ -13,5 +13,5 @@ import { DetalleAnuncioComponent } from "../redireccionar-anuncio/detalle-anunci
         LightboxComponent
     ],
   })
-  export class ReusableModule {
+  export class DetalleAnuncioReusableModule {
   }

@@ -17,6 +17,7 @@ import { DetalleAnuncioComponent } from '../../componentes-reusable/detalle-anun
 export class IndexComponent implements OnInit {
   modalRef: BsModalRef;
   schema: {};
+  public status: boolean = false;
   public masonryOptions: NgxMasonryOptions = {
     transitionDuration: '2.0s',
     gutter: 5

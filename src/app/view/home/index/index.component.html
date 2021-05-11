@@ -23,7 +23,7 @@
         <div class="cd-fail-message">No results found</div>
     </section>
 
-    <app-filtro></app-filtro>
+    <app-filtro (EnviarFiltro)="RecepcionarFiltro($event)"></app-filtro>
 
     <!-- <app-filter (PasameElPueblo)="FiltrarDatos($event)"></app-filter> -->
 

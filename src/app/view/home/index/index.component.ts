@@ -35,14 +35,7 @@ export class IndexComponent implements OnInit {
   ) {
   }
 
-  getCheboxerSeleccionado(ListSeleccionado: any): string {
-    let selecionado: string = "";
-    for (let index = 0; index < ListSeleccionado.length; index++) {
-      selecionado += ListSeleccionado[index] + ",";
-    }
-    selecionado = selecionado.substring(0, selecionado.length - 1);
-    return selecionado;
-  }
+
 
   onScrollDown() {
     this.limit += 15;
@@ -77,6 +70,9 @@ export class IndexComponent implements OnInit {
     this.getLisAnuncios();
   }
 
+  RecepcionarFiltro(event): void {    
+    this.getLisAnuncios(true, event.entidad);
+  }
   openModalDetalleAnuncio(id: number) {
     this.modalRef = this.modalService.show(DetalleAnuncioComponent, {
       animated: true,

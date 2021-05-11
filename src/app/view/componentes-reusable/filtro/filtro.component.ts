@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output ,EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { ParameterService } from "../../../shared/services/anuncio/parameter.service";
 import { ClientResponse } from '../../../Models/ClientResponseModels';
@@ -11,8 +11,8 @@ import { ClientResponse } from '../../../Models/ClientResponseModels';
 })
 export class FiltroComponent implements OnInit {
   
+  @Output() EnviarFiltro = new EventEmitter();
   public status: boolean = false;
-
   /*Variables de Filtros */
   fromGenerales: FormGroup;
   ListDistrito: any = [];
@@ -113,7 +113,30 @@ export class FiltroComponent implements OnInit {
   }
 
   save() {
-    
+    const selectedDistrito = this.fromGenerales.value.ListDistrito
+      .map((v, i) => v ? this.ListDistrito[i].val_valor : null)
+      .filter(v => v !== null);
+    const selectedLugarAtencion = this.fromGenerales.value.ListLugarAtencion
+      .map((v, i) => v ? this.ListLugarAtencion[i].val_valor : null)
+      .filter(v => v !== null);
+    const selectedTipoServicio = this.fromGenerales.value.ListTipoServicio
+      .map((v, i) => v ? this.ListTipoServicio[i].val_valor : null)
+      .filter(v => v !== null);
+    this.entidad.txt_nombre_ficha = this.fromGenerales.value.txt_nombre_ficha;
+    this.entidad.txt_lugar_servicio_distrito = this.getCheboxerSeleccionado(selectedDistrito);
+    this.entidad.tx_lugar_atencion = this.getCheboxerSeleccionado(selectedLugarAtencion);
+    this.entidad.tx_servicios_ofrece = this.getCheboxerSeleccionado(selectedTipoServicio);
+
+    this.EnviarFiltro.emit({ entidad:this.entidad });
+
+  }
+  getCheboxerSeleccionado(ListSeleccionado: any): string {
+    let selecionado: string = "";
+    for (let index = 0; index < ListSeleccionado.length; index++) {
+      selecionado += ListSeleccionado[index] + ",";
+    }
+    selecionado = selecionado.substring(0, selecionado.length - 1);
+    return selecionado;
   }
   /*FiltrarDatos(event): void {
     const selectedDistrito = this.fromGenerales.value.ListDistrito

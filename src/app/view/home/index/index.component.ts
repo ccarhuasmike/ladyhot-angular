@@ -15,8 +15,7 @@ import { SEOFacebookService } from 'src/app/shared/services/seofacebook/seofaceb
 })
 export class IndexComponent implements OnInit {
   modalRef: BsModalRef;
-  myHtml: string = '';
-  schema: {};
+  listSchemas = [];
   public status: boolean = false;
   @ViewChild('resultadomasonry') resultadomasonry: ElementRef;
   public masonryOptions: NgxMasonryOptions = {
@@ -77,14 +76,15 @@ export class IndexComponent implements OnInit {
           e.tx_servicios_ofrece.indexOf(entidadFiltro.tx_servicios_ofrece) ||
           e.tx_lugar_atencion.indexOf(entidadFiltro.tx_lugar_atencion)
       }).slice(0, this.limit);
-      this.schema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
+      let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
+      this.listSchemas.push(shema);
     } else {
       this.homeService.getAnuncio().subscribe(
         (res: ClientResponse) => {
           this.list = JSON.parse(res.DataJson);
           this.masonryImages = this.list.slice(0, this.limit);
-          this.generarItemAnuncio(this.masonryImages);
-          this.schema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
+          let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
+          this.listSchemas.push(shema);
         },
         (error) => {
           console.log(error + "getLisAnuncios");

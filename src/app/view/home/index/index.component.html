@@ -35,4 +35,4 @@
 
 
 </main>
-<ngx-json-ld [json]="schema"></ngx-json-ld>
+<ngx-json-ld *ngFor="let item of listSchemas" [json]="item"></ngx-json-ld>

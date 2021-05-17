@@ -10,9 +10,9 @@ import { ContactarService } from './anuncio/contactar.service';
 import { SeguridadService } from './seguridad/seguridad.service';
 import { UsuarioService } from './usuario/usuario.service';
 import { MantenimientoAnuncioService } from './mantenimiento-anuncio/mantenimiento-anuncio.service';
-
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SeoService } from './seo/seo.service';
+import { SEOFacebookService } from './seofacebook/seofacebook.service';
 // import { LoaderInterceptor } from '../../shared/services/loader/loader.interceptor';
 
 
@@ -32,7 +32,8 @@ import { SeoService } from './seo/seo.service';
         SeguridadService,
         UsuarioService,
         MantenimientoAnuncioService,
-        SeoService
+        SeoService,
+        SEOFacebookService
     ]
 })
 export class ServicesModule { }

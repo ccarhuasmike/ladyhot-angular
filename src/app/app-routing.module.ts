@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { NotFoundComponent } from "../app/view/not-found/not-found.component";
-
+import { environment } from '../environments/environment';
 ///
 const routes: Routes = [
   {
@@ -9,7 +9,7 @@ const routes: Routes = [
     loadChildren: '../app/view/home/home.module#HomeModule',
     // redirectTo: '/home',
     // pathMatch: 'full'
-  },  
+  },
   //PRUEBA - Dante Cc. 
   {
     path: 'home',
@@ -30,13 +30,14 @@ const routes: Routes = [
   {
     path: 'seguridad',
     loadChildren: '../app/view/seguridad/seguridad.module#SeguridadModule'
-  },  
-  {
-    path: 'not-found',
-    component: NotFoundComponent
   },
+  // {
+  //   path: 'not-found',
+  //   component: NotFoundComponent
+  // },
   {
-    path: 'kinesiologas/:id',
+    path: 'kinesiologas/:provincia/:distrito/:descripcion',
+    //path: 'kinesiologas/:id',
     loadChildren: '../app/view/redireccionar-anuncio/redireccionar-anuncio.module#RedireccionarAnuncioModule',
   },
   {
@@ -52,7 +53,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: false })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

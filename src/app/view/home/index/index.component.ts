@@ -64,11 +64,8 @@ export class IndexComponent implements OnInit {
     this.generarItemAnuncio(this.masonryImages);
   }
   onScrollUp() {
-
   }
-
   getLisAnuncios(filtrer: boolean = false, entidadFiltro: any = {}) {
-
     if (filtrer) {
       this.masonryImages = this.list.filter(function (e) {
         return e.txt_nombre_ficha.toLowerCase().indexOf(entidadFiltro.txt_nombre_ficha.toLowerCase()) > -1 ||
@@ -76,6 +73,7 @@ export class IndexComponent implements OnInit {
           e.tx_servicios_ofrece.indexOf(entidadFiltro.tx_servicios_ofrece) ||
           e.tx_lugar_atencion.indexOf(entidadFiltro.tx_lugar_atencion)
       }).slice(0, this.limit);
+      this.generarItemAnuncio(this.masonryImages);
       let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
       this.listSchemas.push(shema);
     } else {
@@ -83,6 +81,7 @@ export class IndexComponent implements OnInit {
         (res: ClientResponse) => {
           this.list = JSON.parse(res.DataJson);
           this.masonryImages = this.list.slice(0, this.limit);
+          this.generarItemAnuncio(this.masonryImages);
           let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
           this.listSchemas.push(shema);
         },
@@ -117,7 +116,9 @@ export class IndexComponent implements OnInit {
 
   }
   generarItemAnuncio(list): void {
+    
     list.forEach(element => {
+      debugger;
       // var html1 = `
       //   <div class ='item cursor-pointer'>
       //     <img src="${element.txt_imagen_prensetancion}" alt="${element.txt_nombre_ficha}" style="width: 100%; height: 400px;">              

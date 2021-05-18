@@ -48,15 +48,10 @@ export class DetalleAnuncioComponent implements OnInit {
         }
         else if (this.idAnuncio != null) {
             id = this.idAnuncio;
-            this.seoFacebookService.updateTitle("Kinesiólogas en Perú | Gologolos");
-            this.seoFacebookService.updateContentTitle("Kinesiólogas en Perú | Gologolos");
-            this.seoFacebookService.updateDescripcion("Encuentra mejores scorts y putas disponibles para pasar el rato, disfrutas de momentos agradables con putas venezolanas, peruanas, colombiandas y ecuatorianas.");
         }
 
         this.anuncioService.ObtenerDetalleAnucionXId(id).subscribe(
             (res: ClientResponse) => {
-
-
                 if (res.Data != null) {
                     if (res.Data["txt_presentacion"] != "") {
                         res.Data["txt_presentacion"] = res.Data["txt_presentacion"].replace(/(\n)+\n+|\t+/g, ";");
@@ -65,14 +60,19 @@ export class DetalleAnuncioComponent implements OnInit {
                         res.Data["tx_descripcion_extra_horario"] = res.Data["tx_descripcion_extra_horario"].replace(/(\n)+\n+|\t+/g, ";").split("\n");
                     }
                     this.detalleDelAnuncio = res.Data;
-
-                    this.seoFacebookService.updateCanonicalUrl("https://gologolos.com/#/kinesiologas/" + id);
+                    this.seoFacebookService.updateCanonicalUrl(this.router.url);
                     this.seoFacebookService.updateOgUrl("https://gologolos.com/#/kinesiologas/" + id);
                     this.seoFacebookService.updateOgType("article");
                     this.seoFacebookService.updateOgTitle(this.detalleDelAnuncio.txt_nombre_ficha + " " + +this.detalleDelAnuncio.txt_telefono_1)
                     this.seoFacebookService.updateOgDescription(this.detalleDelAnuncio.txt_presentacion.split(';')[0]);
-                    this.seoFacebookService.updateOgImage(this.detalleDelAnuncio.txt_imagen_prensetancion)
+                    this.seoFacebookService.updateOgImage(this.detalleDelAnuncio.txt_imagen_prensetancion);
 
+                    if (id !== 0) {
+                        this.seoFacebookService.updateTitle(this.detalleDelAnuncio.txt_nombre_ficha + " " + +this.detalleDelAnuncio.txt_telefono_1+" | Gologolos");
+                        this.seoFacebookService.updateContentTitle(this.detalleDelAnuncio.txt_nombre_ficha + " " + +this.detalleDelAnuncio.txt_telefono_1+" | Gologolos");
+                        this.seoFacebookService.updateDescripcion(this.detalleDelAnuncio.txt_presentacion.split(';')[0]);    
+                    }
+                  
 
                     this.noDatosGenerales = (this.detalleDelAnuncio.txt_descripcion_edad != "" || this.detalleDelAnuncio.tx_pais_origen != "" || this.detalleDelAnuncio.tx_estudio != "");
                     this.noMostrarTarifas = (this.detalleDelAnuncio.dbl_costo_x_tiempo_30min != 0 || this.detalleDelAnuncio.dbl_costo_x_tiempo_45min != 0

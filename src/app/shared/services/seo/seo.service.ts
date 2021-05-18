@@ -9,6 +9,7 @@ export class SeoService {
   constructor(private location: Location) { }
 
   generarJsonSchemaMovie(anuncios: any){
+    
     let esquemaProducto: any;
     let itemsProducto: Array<any> = [];
     let hostname= this.location["_platformStrategy"]._platformLocation.location.origin;
@@ -59,6 +60,8 @@ export class SeoService {
       "@type": "ItemList",
       "itemListElement": itemsProducto
     };
+    console.log(JSON.stringify(esquemaProducto) );
+
     return esquemaProducto;
   }
 }

@@ -3,8 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  stripeKey: ''//Llave publica
+  production: false,  
+  stripeKey: '',//Llave publica
+  localhost: 'http://localhost:4200/'
 };
 // export class environment {
 //   public static production: boolean = false;

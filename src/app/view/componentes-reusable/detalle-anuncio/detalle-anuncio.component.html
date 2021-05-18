@@ -10,9 +10,7 @@
                 <div class="row">
                     <div class="col-12 d-block d-sm-none">
                         <div class="card w-100">
-                            <img class="img-thumbnail w-100 h-100"
-                                src="{{imagenes.length > 0?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}"
-                                loading="lazy">
+                            <img class="img-thumbnail w-100 h-100" src="{{imagenes.length > 0?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}" loading="lazy">
                         </div>
                     </div>
                     <div class="col-12">
@@ -24,13 +22,10 @@
                                     <div class="col-lg-6 mt-0 text-left text-secondary h6">
                                         <!--<span>Lima Metropolitana</span>
                                         <span> - </span>-->
-                                        <span
-                                            class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
-                                        <span
-                                            class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.tx_edad }}
+                                        <span class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
+                                        <span class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.tx_edad }}
                                             años</span>
-                                        <span *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora"
-                                            class="btn btn-sm bg-info text-white float-left ml-0 m-1">S/.
+                                        <span *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora" class="btn btn-sm bg-info text-white float-left ml-0 m-1">S/.
                                             {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora }}</span>
                                         <!--<span></span><span></span>-->
                                         <!--<br /><br />
@@ -49,15 +44,12 @@
                                     <div class="col-lg-6">
                                         <div class="d-flex justify-content-center">
                                             <div class="btn-group btn-group-lg btn-group-horizontal">
-                                                <a href='tel:{{detalleDelAnuncio.txt_telefono_1}}'
-                                                    class="btn btn-large btn-primary rounded-0">
+                                                <a href='tel:{{detalleDelAnuncio.txt_telefono_1}}' class="btn btn-large btn-primary rounded-0">
                                                     <i class="fa fa-phone mr-1"></i>
 
-                                                    <span
-                                                        class="font-weight-bold">{{detalleDelAnuncio.txt_telefono_1}}</span>
+                                                    <span class="font-weight-bold">{{detalleDelAnuncio.txt_telefono_1}}</span>
                                                 </a>
-                                                <a href="https://api.whatsapp.com/send?phone=51{{detalleDelAnuncio.txt_telefono_1}}&text=Hola {{detalleDelAnuncio.txt_nombre_ficha }}, te he visto en Gologolos y me gustaría quedar contigo."
-                                                    class="btn  btn-large btn-success rounded-0 ml-1" target="_blank">
+                                                <a href="https://api.whatsapp.com/send?phone=51{{detalleDelAnuncio.txt_telefono_1}}&text=Hola {{detalleDelAnuncio.txt_nombre_ficha }}, te he visto en Gologolos y me gustaría quedar contigo." class="btn  btn-large btn-success rounded-0 ml-1" target="_blank">
                                                     <!-- <i  class="fa fa-whatsapp mr-1"></i> -->
                                                     <img src="../../../../assets/compartir-whatsapp-logo.svg" alt="Whatsapp" title="Whatsapp" height="22" width="22" style="margin-top: -4px;
                                                     margin-right: 3px;">
@@ -111,26 +103,22 @@
                     <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body bg-white card-body-presentacion">
-                                <p class="h5 text-dark text-left"
-                                    *ngFor="let item of detalleDelAnuncio.txt_presentacion.split(';'); let i = index">
+                                <p class="h5 text-dark text-left" *ngFor="let item of detalleDelAnuncio.txt_presentacion.split(';'); let i = index">
                                     {{item.trim()}}</p>
                                 <!-- <p class="h5 text-dark text-left">
                                     {{detalleDelAnuncio.txt_presentacion | replace: '/(\n)+\n+|\t+/g': ';'}}</p> -->
-                                <p class="h5 text-error text-left text-danger">No olvides mencionarme que viste mi
-                                    anuncio en <a class="text-error font-weight-bold text-danger text-a"
-                                        href="">GoloGolos</a>.
+                                <p class="h5 text-error text-left text-danger">No olvides mencionarme que viste mi anuncio en <a class="text-error font-weight-bold text-danger text-a" href="">GoloGolos</a>.
                                 </p>
                             </div>
                         </div>
                     </div>
                     <!-- d-lg-flex -->
                     <div class="row col-12 mx-auto">
-                        <div [className]="((!noMostrarTarifas && !noMostrarFormaPago) && !noMostrarHorario)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12'"
-                            *ngIf="noDatosGenerales">
+                        <div [className]="((!noMostrarTarifas && !noMostrarFormaPago) && !noMostrarHorario)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12'" *ngIf="noDatosGenerales">
                             <div class="card-body bg-white">
-                                <h1 class="h5 text-dark font-weight-bold text-left">
+                                <h2 class="h5 text-dark font-weight-bold text-left">
                                     Datos Generales
-                                </h1>
+                                </h2>
                                 <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.txt_descripcion_edad">
                                     <span class="float-left">Edad</span>
                                     <span class="float-right">{{detalleDelAnuncio.txt_descripcion_edad}}</span>
@@ -154,51 +142,42 @@
                             </div>
                         </div>
 
-                        <div [className]="(!noDatosGenerales && !noMostrarHorario) ?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12'"
-                            *ngIf="noMostrarTarifas || noMostrarFormaPago">
+                        <div [className]="(!noDatosGenerales && !noMostrarHorario) ?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12'" *ngIf="noMostrarTarifas || noMostrarFormaPago">
                             <div class="card-body bg-white">
-                                <h1 class="h5 text-dark font-weight-bold text-left" *ngIf="noMostrarTarifas">
+                                <h2 class="h5 text-dark font-weight-bold text-left" *ngIf="noMostrarTarifas">
                                     Tarifas
-                                </h1>
-                                <div class="clearfix text-secondary h6"
-                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_30min">
+                                </h2>
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_30min">
                                     <span class="float-left">30 Minutos</span>
                                     <span class="float-right">S/. {{detalleDelAnuncio.dbl_costo_x_tiempo_30min}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6"
-                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_45min">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_45min">
                                     <span class="float-left">45 Minutos</span>
                                     <span class="float-right">S/. {{detalleDelAnuncio.dbl_costo_x_tiempo_45min}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6"
-                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora">
                                     <span class="float-left">1 hora</span>
                                     <span class="float-right">S/. {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6"
-                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media">
                                     <span class="float-left">1 hora y media</span>
                                     <span class="float-right">S/.
                                         {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6"
-                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_2hora">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_2hora">
                                     <span class="float-left">2 hora</span>
                                     <span class="float-right">S/. {{detalleDelAnuncio.dbl_costo_x_tiempo_2hora}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6"
-                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_3hora">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_3hora">
                                     <span class="float-left">3 hora</span>
                                     <span class="float-right">S/. {{detalleDelAnuncio.dbl_costo_x_tiempo_3hora}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6"
-                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_salidas">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_salidas">
                                     <span class="float-left">Salidas</span>
                                     <span class="float-right">S/.
                                         {{detalleDelAnuncio.dbl_costo_x_tiempo_salidas}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6"
-                                    *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche">
                                     <span class="float-left">Toda la noche</span>
                                     <span class="float-right">S/.
                                         {{detalleDelAnuncio.dbl_costo_x_tiempo_toda_noche}}</span>
@@ -208,12 +187,10 @@
                                     <span class="float-right">S/. {{detalleDelAnuncio.dbl_costo_x_viaje}}</span>
                                 </div>
                                 <div class="clearfix text-secondary h6" *ngIf="noMostrarFormaPago">
-                                    <h1 class="h5 text-dark font-weight-bold text-left float-left w-100">Forma de Pago
-                                    </h1>
+                                    <h2 class="h5 text-dark font-weight-bold text-left float-left w-100">Forma de Pago
+                                    </h2>
                                     <div class="col-12 mt-2 p-0">
-                                        <button type="button"
-                                            *ngFor="let item of detalleDelAnuncio.txt_forma_pago_desc.split(';'); let i = index"
-                                            href="#" class="btn btn-sm bg-dark text-white float-left m-1">
+                                        <button type="button" *ngFor="let item of detalleDelAnuncio.txt_forma_pago_desc.split(';'); let i = index" href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
                                         </button>
                                     </div>
@@ -221,12 +198,11 @@
                             </div>
                         </div>
 
-                        <div *ngIf="noMostrarHorario"
-                            [className]="((noMostrarTarifas || noMostrarFormaPago) && noDatosGenerales) ?'card col-lg-12 col-sm-12':(((!noMostrarTarifas && !noMostrarFormaPago) && !noDatosGenerales)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12')">
+                        <div *ngIf="noMostrarHorario" [className]="((noMostrarTarifas || noMostrarFormaPago) && noDatosGenerales) ?'card col-lg-12 col-sm-12':(((!noMostrarTarifas && !noMostrarFormaPago) && !noDatosGenerales)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12')">
                             <div class="card-body bg-white">
-                                <h1 class="h5 text-dark font-weight-bold text-left">
+                                <h2 class="h5 text-dark font-weight-bold text-left">
                                     Horario
-                                </h1>
+                                </h2>
                                 <div class="clearfix text-secondary h6" *ngIf="noMostrarHorario">
                                     <span class="float-left">{{detalleDelAnuncio.tx_descripcion_extra_horario}}</span>
                                     <br>
@@ -255,9 +231,9 @@
                     <div class="col-12" *ngIf="noMostrarApariencia">
                         <div class="card w-100">
                             <div class="card-body bg-white">
-                                <h1 class="h5 text-dark font-weight-bold text-left">
+                                <h2 class="h5 text-dark font-weight-bold text-left">
                                     Apariencia
-                                </h1>
+                                </h2>
                                 <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.tx_color_cabello">
                                     <span class="float-left">Color de Cabello</span>
                                     <span class="float-right">{{detalleDelAnuncio.tx_color_cabello}}</span>
@@ -270,14 +246,12 @@
                                     <span class="float-left">Estatura</span>
                                     <span class="float-right">{{detalleDelAnuncio.tx_estatura}}</span>
                                 </div>
-                                <div class="clearfix text-secondary h6"
-                                    *ngIf="detalleDelAnuncio.txt_medidas_busto_cintura_cadera">
+                                <div class="clearfix text-secondary h6" *ngIf="detalleDelAnuncio.txt_medidas_busto_cintura_cadera">
                                     <span class="float-left">Medidas</span>
                                     <span class="float-right">{{detalleDelAnuncio.txt_medidas_busto_cintura_cadera}}
                                         cm</span>
                                 </div>
-                                <div class="text-secondary h5 text-capitalize"
-                                    *ngIf="detalleDelAnuncio.txt_descripcion_extra_apariencia">
+                                <div class="text-secondary h5 text-capitalize" *ngIf="detalleDelAnuncio.txt_descripcion_extra_apariencia">
                                     <span>{{detalleDelAnuncio.txt_descripcion_extra_apariencia}}</span>
                                 </div>
                             </div>
@@ -289,26 +263,18 @@
                             <div class="card-body bg-white">
                                 <div *ngIf="imagenes.length > 0">
                                     <p class="h3 text-dark font-weight-bold text-left">
-                                        {{imagenes.length  }} Fotos
+                                        {{imagenes.length }} Fotos
                                     </p>
                                     <div class="row">
-                                        <div [className]="imagenes.length==1?'d-flex justify-content-center lightbox-images':'col-lg-6 col-md-6 col-sm-12 mt-1 lightbox-images'"
-                                            *ngFor="let item of imagenes; let i = index"
-                                            >
-                                            <img [className]="imagenes.length==1?'w-100 w-sm-50 h-100 img-thumbnail cursor-imagen-detalle hover-shadow cursor image-lightbox':'w-100 h-100 img-thumbnail cursor-imagen-detalle hover-shadow cursor image-lightbox'"
-                                                [src]="item.url"
-                                                (click)="currentSlide(i+1);openLightbox()"
-                                                alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}"
-                                                 />
+                                        <div [className]="imagenes.length==1?'d-flex justify-content-center lightbox-images':'col-lg-6 col-md-6 col-sm-12 mt-1 lightbox-images'" *ngFor="let item of imagenes; let i = index">
+                                            <img [className]="imagenes.length==1?'w-100 w-sm-50 h-100 img-thumbnail cursor-imagen-detalle hover-shadow cursor image-lightbox':'w-100 h-100 img-thumbnail cursor-imagen-detalle hover-shadow cursor image-lightbox'" [src]="item.url" (click)="currentSlide(i+1);openLightbox()"
+                                                alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}" />
                                         </div>
                                     </div>
 
                                 </div>
-                                <div *ngIf="imagenes.length == 0"
-                                    class="d-flex justify-content-center">
-                                    <img class="w-sm-50 w-100 h-50 img-thumbnail" src="assets/scort_sin_foto.jpg"
-                                        alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}"
-                                        loading="lazy">
+                                <div *ngIf="imagenes.length == 0" class="d-flex justify-content-center">
+                                    <img class="w-sm-50 w-100 h-50 img-thumbnail" src="assets/scort_sin_foto.jpg" alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}" loading="lazy">
                                 </div>
                             </div>
                         </div>
@@ -336,14 +302,12 @@
                     <div class="col-12" *ngIf="detalleDelAnuncio.tx_descripcion_servicios_ofrece">
                         <div class="card w-100">
                             <div class="card-body bg-white">
-                                <h1 class="h5 text-dark font-weight-bold text-left">
+                                <h2 class="h5 text-dark font-weight-bold text-left">
                                     Mis servicios
-                                </h1>
+                                </h2>
                                 <div class="row">
                                     <div class="col-12 mb-2">
-                                        <button type="button"
-                                            *ngFor="let item of detalleDelAnuncio.tx_descripcion_servicios_ofrece.split(';'); let i = index"
-                                            href="#" class="btn btn-sm bg-dark text-white float-left m-1">
+                                        <button type="button" *ngFor="let item of detalleDelAnuncio.tx_descripcion_servicios_ofrece.split(';'); let i = index" href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
                                         </button>
                                     </div>
@@ -360,14 +324,12 @@
                     <div class="col-12" *ngIf="detalleDelAnuncio.tx_descripcion_lugar_atencion">
                         <div class="card w-100">
                             <div class="card-body bg-white">
-                                <h1 class="h5 text-dark font-weight-bold text-left">
+                                <h2 class="h5 text-dark font-weight-bold text-left">
                                     Lugar del encuentro
-                                </h1>
+                                </h2>
                                 <div class="row">
                                     <div class="col-12 mb-2">
-                                        <button type="button"
-                                            *ngFor="let item of detalleDelAnuncio.tx_descripcion_lugar_atencion.split(';'); let i = index"
-                                            href="#" class="btn btn-sm bg-dark text-white float-left m-1">
+                                        <button type="button" *ngFor="let item of detalleDelAnuncio.tx_descripcion_lugar_atencion.split(';'); let i = index" href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
                                         </button>
                                     </div>
@@ -441,15 +403,11 @@
                 <div class="">
                     <div class="pl-1 pr-0 row col-12">
                         <div class="card row">
-                            <img class="img-fluid w-100"
-                                src="{{imagenes.length > 0?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}"
-                                loading="lazy">
+                            <img class="img-fluid w-100" src="{{imagenes.length > 0?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}" loading="lazy">
                             <div class="card-body bg-white">
                                 <div class="row">
                                     <div class="col-12 mb-2">
-                                        <button type="button"
-                                            *ngFor="let item of detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';'); let i = index"
-                                            href="#" class="btn btn-sm bg-dark text-white float-left m-1">
+                                        <button type="button" *ngFor="let item of detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';'); let i = index" href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
                                         </button>
                                         <!--                                         

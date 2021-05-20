@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AnuncioService } from "../../../shared/services/anuncio/anuncio.service";
+import { UbigeoService } from "../../../shared/services/ubigeo/ubigeo.service";
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -12,6 +13,8 @@ export class ServiciosComponent implements OnInit {
 
     result: any = null;
 
+    ListDepartamento: any = [];
+    ListProvincia: any = [];
     ListDistrito: any = [];
     ListLugarAtencion: any = [];
     ListTipoServicio: any = [];
@@ -25,19 +28,74 @@ export class ServiciosComponent implements OnInit {
     txtalgosobredispCtrl: FormControl;
     txt_descripcion_serviciosCtrl: FormControl;
 
+    txt_DondeQuieresAnunciarteCtrl: FormControl;
+    departamentoCtrl: FormControl;
+    provinciaCtrl: FormControl;
+
     fromServicios: FormGroup;
     //servicios: Servicios;
     DataJsonAnuncio: any;
-
+    controldistritos = new FormArray([]);
     constructor(
         private anuncioService: AnuncioService,
+        private ubigeoService: UbigeoService,
         private router: Router,
         private frmBuilder: FormBuilder,
         private spinner: NgxSpinnerService
     ) { }
 
+    onChangeProvincia(IdProv) {
+        if (IdProv != '') {
+            this.ubigeoService.getDistrito(parseInt(IdProv)).subscribe(
+                (res) => {                   
+                    this.ListDistrito = res;
+                    this.ListDistrito.forEach(element => {
+                        element.flag = false; 
+                        /*Agregamos control checkbox */
+                        var control = new FormControl(false, Validators.required);
+                        this.controldistritos.push(control);
+                    });            
+                    var controlArray = this.fromServicios.controls.ListDistrito as FormArray;
+                    this.controlsDist = controlArray.controls;
+                    controlArray.setValidators(this.minSelectedCheckboxes(1));
+                }
+            );
+        } else {
+            /*Limpiar el contrl de distrito */
+            this.ListDistrito = [];
+            var controlArray = this.fromServicios.controls.ListDistrito as FormArray;
+            controlArray.controls = [];
+        }
+
+    }
+
+    onChangeDertamento(IdDep) {
+        if (IdDep != '') {
+            this.ubigeoService.getProvincia(parseInt(IdDep)).subscribe(
+                (res) => {
+                    this.ListProvincia = res;
+                }
+            );
+        } else {
+            /*Limpiar el contrl de provincia */
+            this.ListProvincia = [];
+            this.ListDistrito = [];
+            var controlArray = this.fromServicios.controls.ListDistrito as FormArray;
+            controlArray.controls = [];
+        }
+
+    }
+    getDepartamento() {
+        this.ubigeoService.getDepartamento().subscribe(
+            (res) => {
+                this.ListDepartamento = res;
+            }
+        );
+    }
     ngOnInit() {
+        this.getDepartamento();
         this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
+        this.ListProvincia = JSON.parse(localStorage.getItem('DataProvincia'));
         let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
         this.anuncioService.segundopaso(true);
         this.anuncioService.tercerpaso(true);
@@ -45,25 +103,20 @@ export class ServiciosComponent implements OnInit {
         this.anuncioService.quintopaso(true);
         this.anuncioService.sextopaso(false);
 
-        this.ListDistrito = listaParamter.distritro;//this.anuncioService.getListDistrito();
+        //this.ListDistrito = listaParamter.distritro;//this.anuncioService.getListDistrito();
         this.ListLugarAtencion = listaParamter.lugaratencion;// this.anuncioService.getListLugarAtencion();
         this.ListTipoServicio = listaParamter.servicio_ofrece;//this.anuncioService.getListTipoServicio();//listaParamter.servicio_ofrece;
-
+       
         this.controlsDist = this.ListDistrito.map(c => new FormControl(false));
         this.controlsLugar = this.ListLugarAtencion.map(c => new FormControl(false));
         this.controlsTipServ = this.ListTipoServicio.map(c => new FormControl(false));
         this.flagatiende24horasCtrl = new FormControl('', []);
         this.txtalgosobredispCtrl = new FormControl('', [Validators.maxLength(450)]);
         this.txt_descripcion_serviciosCtrl = new FormControl('', [Validators.maxLength(450)]);
-
-        //Validamos el seteo del distrito
-
-        if (this.DataJsonAnuncio.txt_lugar_servicio_distrito != null) {
-            this.setCheboxes(this.ListDistrito, this.DataJsonAnuncio.txt_lugar_servicio_distrito, this.controlsDist);
-        } else {
-            this.controlsDist[0].setValue(true);
-            this.ListDistrito[0].flag = true;
-        }
+        this.txt_DondeQuieresAnunciarteCtrl = new FormControl('', [Validators.maxLength(80)]);
+        this.departamentoCtrl = new FormControl('', [Validators.required]);
+        this.provinciaCtrl = new FormControl('', [Validators.required]);
+       
         //Validamos el seteo el lugar de atencion
         if (this.DataJsonAnuncio.tx_lugar_atencion != null) {
             this.setCheboxes(this.ListLugarAtencion, this.DataJsonAnuncio.tx_lugar_atencion, this.controlsLugar);
@@ -78,23 +131,54 @@ export class ServiciosComponent implements OnInit {
             this.controlsTipServ[0].setValue(true);
             this.ListTipoServicio[0].flag = true;
         }
-        this.fromServicios = this.frmBuilder.group({
-            ListDistrito: new FormArray(this.controlsDist, this.minSelectedCheckboxes(1)),
+        // var s = new FormArray(this.controlsDist, this.minSelectedCheckboxes(1));
+        // var d = new FormArray(this.controlsDist);
+        this.fromServicios = this.frmBuilder.group({            
+            ListDistrito: this.controldistritos,
             ListLugarAtencion: new FormArray(this.controlsLugar, this.minSelectedCheckboxes(1)),
             ListTipoServicio: new FormArray(this.controlsTipServ, this.minSelectedCheckboxes(1)),
             flagatiende24hora: this.flagatiende24horasCtrl,
             algosobredisponibilidad: this.txtalgosobredispCtrl,
-            txt_descripcion_servicios: this.txt_descripcion_serviciosCtrl
+            txt_descripcion_servicios: this.txt_descripcion_serviciosCtrl,
+            departamento: this.departamentoCtrl,
+            provincia: this.provinciaCtrl,
         });
 
-        if (this.DataJsonAnuncio !== null) {
-            this.fromServicios.patchValue({
+        if (this.DataJsonAnuncio !== null) {            
+            this.ListDistrito = JSON.parse(localStorage.getItem('DataDistrito'));          
+            this.ListDistrito.forEach(element => {
+                element.flag = false; 
+                /*Agregamos control checkbox */
+                var control = new FormControl(false, Validators.required);
+                this.controldistritos.push(control);
+            });            
+            var controlArray = this.fromServicios.controls.ListDistrito as FormArray;
+            this.controlsDist = controlArray.controls;
+            controlArray.setValidators(this.minSelectedCheckboxes(1));
+            //Validamos el seteo del distrito
+            if (this.DataJsonAnuncio.txt_lugar_servicio_distrito != null && this.DataJsonAnuncio.txt_lugar_servicio_distrito != "") {
+                this.setCheboxesDistrito(this.ListDistrito, this.DataJsonAnuncio.txt_lugar_servicio_distrito, this.controlsDist);
+            }
+            this.fromServicios.patchValue({                
                 algosobredisponibilidad: this.DataJsonAnuncio.tx_descripcion_extra_horario,
                 txt_descripcion_servicios: this.DataJsonAnuncio.tx_descripcion_extra_servicio,
+                departamento: this.DataJsonAnuncio.int_departamento == 0 ? "" : this.DataJsonAnuncio.int_departamento,//this.DataJsonAnuncio.int_departamento,
+                provincia: this.DataJsonAnuncio.int_provincia == 0 ? "" : this.DataJsonAnuncio.int_provincia //this.DataJsonAnuncio.int_provincia,
             });
         }
     }
-
+    
+    setCheboxesDistrito(listCargados: any, listSeleccionado: string, controls: any) {
+        let arraSeleccionado: any[] = listSeleccionado.split(",");
+        for (let index = 0; index < arraSeleccionado.length; index++) {
+            for (let index1 = 0; index1 < listCargados.length; index1++) {
+                if (arraSeleccionado[index] == listCargados[index1].IdDist) {
+                    listCargados[index1].flag = true;
+                    controls[index1].setValue(true);
+                }
+            }
+        }
+    }
     setCheboxes(listCargados: any, listSeleccionado: string, controls: any) {
         let arraSeleccionado: any[] = listSeleccionado.split(",");
         for (let index = 0; index < arraSeleccionado.length; index++) {
@@ -119,8 +203,8 @@ export class ServiciosComponent implements OnInit {
     }
 
     onChangeDistrito(val_valor: number, isChecked: boolean) {
-
-        let index = this.ListDistrito.findIndex(x => x.val_valor === val_valor);
+       
+        let index = this.ListDistrito.findIndex(x => x.IdDist === val_valor);
         if (isChecked) {
             this.ListDistrito[index].flag = isChecked;
         } else {
@@ -154,8 +238,9 @@ export class ServiciosComponent implements OnInit {
         if (!this.fromServicios.valid)
             return;
         this.spinner.show();
+       debugger;
         const selectedDistrito = this.fromServicios.value.ListDistrito
-            .map((v, i) => v ? this.ListDistrito[i].val_valor : null)
+            .map((v, i) => v ? this.ListDistrito[i].IdDist : null)
             .filter(v => v !== null);
 
         const selectedLugarAtencion = this.fromServicios.value.ListLugarAtencion
@@ -164,7 +249,7 @@ export class ServiciosComponent implements OnInit {
         const selectedTipoServicio = this.fromServicios.value.ListTipoServicio
             .map((v, i) => v ? this.ListTipoServicio[i].val_valor : null)
             .filter(v => v !== null);
-
+       
         this.DataJsonAnuncio.txt_lugar_servicio_distrito = this.getCheboxerSeleccionado(selectedDistrito);
         //this.DataJsonAnuncio.fl_atencion_24horas = this.getCheboxerSeleccionado(selectedFormapago);
         this.DataJsonAnuncio.tx_descripcion_extra_horario = this.fromServicios.value.algosobredisponibilidad;
@@ -172,16 +257,25 @@ export class ServiciosComponent implements OnInit {
         this.DataJsonAnuncio.tx_servicios_ofrece = this.getCheboxerSeleccionado(selectedTipoServicio);
         this.DataJsonAnuncio.tx_descripcion_extra_servicio = this.fromServicios.value.txt_descripcion_servicios;
 
+        this.DataJsonAnuncio.tx_descripcion_extra_horario = this.fromServicios.value.algosobredisponibilidad;
+        this.DataJsonAnuncio.tx_descripcion_extra_horario = this.fromServicios.value.algosobredisponibilidad;
+
+        this.DataJsonAnuncio.int_departamento = this.fromServicios.value.departamento;
+        this.DataJsonAnuncio.int_provincia = this.fromServicios.value.provincia;
+
+
         this.anuncioService.SaveQuintoPaso(this.DataJsonAnuncio).subscribe(
             (res) => {
                 if (res.Status == "OK") {
                     let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
+                    localStorage.setItem('DataProvincia', JSON.stringify(JSON.parse(res.DataJson).provincia));
+                    localStorage.setItem('DataDistrito', JSON.stringify(JSON.parse(res.DataJson).distrito));
                     this.router.navigate(['anunciategratis/galeria']);
                 }
                 setTimeout(() => {
                     this.spinner.hide();
-                  }, 2000);
+                }, 2000);
             }
         );
         // userService.Save(this.register.value);

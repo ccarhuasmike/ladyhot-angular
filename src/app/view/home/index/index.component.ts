@@ -118,7 +118,7 @@ export class IndexComponent implements OnInit {
   generarItemAnuncio(list): void {
     
     list.forEach(element => {
-      debugger;
+      
       // var html1 = `
       //   <div class ='item cursor-pointer'>
       //     <img src="${element.txt_imagen_prensetancion}" alt="${element.txt_nombre_ficha}" style="width: 100%; height: 400px;">              

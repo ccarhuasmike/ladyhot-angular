@@ -20,7 +20,7 @@ export class DatosGeneralesComponent implements OnInit {
     //Datos Generales
     edadCtrl: FormControl;
     tituloCtrl: FormControl;
-    // paisCtrl: FormControl;
+     paisCtrl: FormControl;
     // estudiosCtrl: FormControl;
     txt_descripcion_generalesCtrl: FormControl;
 
@@ -51,7 +51,7 @@ export class DatosGeneralesComponent implements OnInit {
         //Controles Datos Generales
         this.edadCtrl = new FormControl('', [Validators.required]);
         this.tituloCtrl = new FormControl('', [Validators.required, Validators.minLength(15), Validators.maxLength(200)]);        
-        // this.paisCtrl = new FormControl('', [Validators.required]);
+         this.paisCtrl = new FormControl('', [Validators.required]);
         // this.estudiosCtrl = new FormControl('', [Validators.required]);
         this.txt_descripcion_generalesCtrl = new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(100000)]);
 
@@ -59,7 +59,7 @@ export class DatosGeneralesComponent implements OnInit {
         this.fromDatosGenerales = new FormGroup({
             int_edad: this.edadCtrl,
             txt_titulo: this.tituloCtrl,
-            // int_pais_origen: this.paisCtrl,
+            int_pais_origen: this.paisCtrl,
             // int_estudios: this.estudiosCtrl,
             txt_presentacion: this.txt_descripcion_generalesCtrl
         });
@@ -85,7 +85,7 @@ export class DatosGeneralesComponent implements OnInit {
         if (!this.fromDatosGenerales.valid)
             return;this.spinner.show();
         this.DataJsonAnuncio.int_edad = parseInt(this.fromDatosGenerales.value.int_edad);
-        //this.DataJsonAnuncio.int_pais_origen = parseInt(this.fromDatosGenerales.value.int_pais_origen);
+        this.DataJsonAnuncio.int_pais_origen = parseInt(this.fromDatosGenerales.value.int_pais_origen);
         this.DataJsonAnuncio.txt_titulo = this.fromDatosGenerales.value.txt_titulo;        
         //this.DataJsonAnuncio.int_estudios = parseInt(this.fromDatosGenerales.value.int_estudios);
         this.DataJsonAnuncio.txt_presentacion = this.fromDatosGenerales.value.txt_presentacion;

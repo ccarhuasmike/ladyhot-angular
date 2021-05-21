@@ -139,7 +139,6 @@ export class EditarComponent implements OnInit {
     getDepartamento() {
         this.ubigeoService.getDepartamento().subscribe(
             (res) => {
-                
                 this.ListDepartamento = res;
             }
         );

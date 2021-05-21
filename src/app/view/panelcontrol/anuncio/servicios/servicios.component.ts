@@ -111,6 +111,7 @@ export class ServiciosComponent implements OnInit {
         this.flagatiende24horasCtrl = new FormControl('', []);
         this.txtalgosobredispCtrl = new FormControl('', [Validators.maxLength(450)]);
         this.txt_descripcion_serviciosCtrl = new FormControl('', [Validators.maxLength(450)]);
+        this.txt_DondeQuieresAnunciarteCtrl = new FormControl('', [Validators.maxLength(80)]);
         this.departamentoCtrl = new FormControl('', [Validators.required]);
         this.provinciaCtrl = new FormControl('', [Validators.required]);
         //Validamos el seteo del distrito

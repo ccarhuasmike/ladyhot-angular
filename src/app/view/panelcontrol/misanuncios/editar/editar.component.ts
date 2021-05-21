@@ -337,7 +337,7 @@ export class EditarComponent implements OnInit {
             .filter(v => v !== null);
 
         const selectedDistrito = this.fromGenerales.value.ListDistrito
-            .map((v, i) => v ? this.ListDistrito[i].val_valor : null)
+            .map((v, i) => v ? this.ListDistrito[i].IdDist : null)
             .filter(v => v !== null);
 
         const selectedLugarAtencion = this.fromGenerales.value.ListLugarAtencion
@@ -358,7 +358,7 @@ export class EditarComponent implements OnInit {
         entidad.int_pais_origen = parseInt(this.fromGenerales.value.int_pais_origen);
         //entidad.int_estudios = parseInt(this.fromGenerales.value.int_estudios);
 
-
+        debugger;
         entidad.txt_titulo = this.fromGenerales.value.txt_titulo;
         entidad.txt_presentacion = this.fromGenerales.value.txt_presentacion;
         entidad.int_color_cabello = parseInt(this.fromGenerales.value.int_color_cabello);
@@ -426,7 +426,7 @@ export class EditarComponent implements OnInit {
         this.edadCtrl = new FormControl('', [Validators.required]);
         this.paisCtrl = new FormControl('', [Validators.required]);
         //this.estudiosCtrl = new FormControl('', [Validators.required]);
-        this.tituloCtrl = new FormControl('', [Validators.required]);
+        this.tituloCtrl = new FormControl('', [Validators.required, Validators.minLength(15), Validators.maxLength(200)]);  
 
         this.txt_descripcion_generalesCtrl = new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(10000)]);
 

@@ -23,7 +23,7 @@ export class EditarComponent implements OnInit {
     txt_emailCtrl: FormControl;
     txt_webCtrl: FormControl;
     txt_telefono_1Ctrl: FormControl;
-    txt_telefono_2Ctrl: FormControl;
+    //txt_telefono_2Ctrl: FormControl;
     //Datos Generales
     edadCtrl: FormControl;
     paisCtrl: FormControl;
@@ -96,7 +96,7 @@ export class EditarComponent implements OnInit {
         private configService: ConfigService) {
         this._baseUrl = configService.getWebApiURL();
     }
-    onChangeProvincia(IdProv) {        
+    onChangeProvincia(IdProv) {
         if (IdProv != '') {
             this.ubigeoService.getDistrito(parseInt(IdProv)).subscribe(
                 (res) => {
@@ -158,116 +158,119 @@ export class EditarComponent implements OnInit {
         //this.getDepartamento();
         this.anuncioService.getAnuncioPorId(this.route.params["value"]["id"]).subscribe(
             (res: ClientResponse) => {
-                
+                debugger;
                 this.datosAnuncio = res.Data;
                 this.ListDepartamento = this.datosAnuncio.departamento;
                 this.ListProvincia = this.datosAnuncio.provincia;
                 this.ListDistrito = this.datosAnuncio.distrito;
-                this.parameter.getParameter().subscribe(
-                    (res: ClientResponse) => {
-                        this.listParameter = JSON.parse(res.DataJson); // aqui se obtiene los paramter de la base de datos                
-                        this.ListEdad = this.listParameter.edad;//this.anuncioService.getListEdad();
-                        this.ListPais = this.listParameter.pais;//this.anuncioService.getListPais();
-                        this.ListEstudios = this.listParameter.estudios;//this.anuncioService.getListEstudios();
-                        this.ListCabellos = this.listParameter.color_cabello;
-                        this.ListOjos = this.listParameter.color_ojos;
-                        this.ListEstatura = this.listParameter.estatura;
-                        this.ListPeso = this.listParameter.peso;
-                        //this.ListDistrito = this.listParameter.distritro;
-                        this.ListLugarAtencion = this.listParameter.lugaratencion;
-                        this.ListTipoServicio = this.listParameter.servicio_ofrece;
-                        this.ListFormaPago = this.listParameter.formapago
-                        this.cargarControles();
 
-                        this.ListDistrito.forEach(element => {
-                            element.flag = false; 
-                            /*Agregamos control checkbox */
-                            var control = new FormControl(false, Validators.required);
-                            this.controldistritos.push(control);
-                        });            
-                        var controlArray = this.fromGenerales.controls.ListDistrito as FormArray;
-                        this.controlsDist = controlArray.controls;
-                        controlArray.setValidators(this.minSelectedCheckboxes(1));
-                        //Validamos el seteo del distrito
-                        if (this.datosAnuncio.DetailleAnuncion.txt_lugar_servicio_distrito != null && this.datosAnuncio.DetailleAnuncion.txt_lugar_servicio_distrito != "") {
-                            this.setCheboxesDistrito(this.ListDistrito, this.datosAnuncio.DetailleAnuncion.txt_lugar_servicio_distrito, this.controlsDist);
-                        }
+                this.listParameter = JSON.parse(res.DataJson); // aqui se obtiene los paramter de la base de datos                
+                this.ListEdad = this.listParameter.edad;//this.anuncioService.getListEdad();
+                this.ListPais = this.listParameter.pais;//this.anuncioService.getListPais();
+                this.ListEstudios = this.listParameter.estudios;//this.anuncioService.getListEstudios();
+                this.ListCabellos = this.listParameter.color_cabello;
+                this.ListOjos = this.listParameter.color_ojos;
+                this.ListEstatura = this.listParameter.estatura;
+                this.ListPeso = this.listParameter.peso;
+                //this.ListDistrito = this.listParameter.distritro;
+                this.ListLugarAtencion = this.listParameter.lugaratencion;
+                this.ListTipoServicio = this.listParameter.servicio_ofrece;
+                this.ListFormaPago = this.listParameter.formapago
+                this.cargarControles();
 
-                        //Validamos el seteo de la forma de pago
-                        if (this.datosAnuncio.DetailleAnuncion.txt_forma_pago != null) {
-                            this.setCheboxes(this.ListFormaPago, this.datosAnuncio.DetailleAnuncion.txt_forma_pago, this.controlsFormaPago);
-                        } else {
-                            this.controlsFormaPago[0].setValue(true);
-                            this.ListFormaPago[0].flag = true;
-                        }
-                        //Validamos el seteo del distrito, lugar atencion, servicios
-                        if (this.datosAnuncio.DetailleAnuncion.txt_lugar_servicio_distrito != null) {
-                            this.setCheboxes(this.ListDistrito, this.datosAnuncio.DetailleAnuncion.txt_lugar_servicio_distrito, this.controlsDist);
-                        } else {
-                            this.controlsDist[0].setValue(true);
-                            this.ListDistrito[0].flag = true;
-                        }
-                        //Validamos el seteo el lugar de atencion
-                        if (this.datosAnuncio.DetailleAnuncion.tx_lugar_atencion != null) {
-                            this.setCheboxes(this.ListLugarAtencion, this.datosAnuncio.DetailleAnuncion.tx_lugar_atencion, this.controlsLugar);
-                        } else {
-                            this.controlsLugar[0].setValue(true);
-                            this.ListLugarAtencion[0].flag = true;
-                        }
-                        //Validamos el seteo el tipo del servicios
-                        if (this.datosAnuncio.DetailleAnuncion.tx_servicios_ofrece != null) {
-                            this.setCheboxes(this.ListTipoServicio, this.datosAnuncio.DetailleAnuncion.tx_servicios_ofrece, this.controlsTipServ);
-                        } else {
-                            this.controlsTipServ[0].setValue(true);
-                            this.ListTipoServicio[0].flag = true;
-                        }
-                        debugger;
-                        this.fromGenerales.patchValue({
-                            //Datos de Contacto
-                            txt_nombre_ficha: this.datosAnuncio.DetailleAnuncion.txt_nombre_ficha,
-                            txt_telefono_1: this.datosAnuncio.DetailleAnuncion.txt_telefono_1,
-                            txt_telefono_2: this.datosAnuncio.DetailleAnuncion.txt_telefono_2,
-                            txt_email: this.datosAnuncio.DetailleAnuncion.txt_email,
-                            txt_web: this.datosAnuncio.DetailleAnuncion.txt_web,
-                            //Datos Generales
-                            int_edad: this.datosAnuncio.DetailleAnuncion.int_edad == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_edad,
-                            int_pais_origen: this.datosAnuncio.DetailleAnuncion.int_pais_origen == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_pais_origen,
-                            //int_estudios: this.datosAnuncio.DetailleAnuncion.int_estudios == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_estudios,
-                            txt_titulo: this.datosAnuncio.DetailleAnuncion.txt_titulo,
-                            txt_presentacion: this.datosAnuncio.DetailleAnuncion.txt_presentacion,
-                            //Datos Apariencia
-                            int_color_cabello: this.datosAnuncio.DetailleAnuncion.int_color_cabello == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_color_cabello,
-                            int_color_ojos: this.datosAnuncio.DetailleAnuncion.int_color_ojos == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_color_ojos,
-                            int_estatura: this.datosAnuncio.DetailleAnuncion.int_estatura == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_estatura,
-                            int_peso: this.datosAnuncio.DetailleAnuncion.int_peso == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_peso,
-                            busto: this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera == null ? "" : this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera.split("-")[0],
-                            cintura: this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera == null ? "" : this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera.split("-")[1],
-                            cadera: this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera == null ? "" : this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera.split("-")[2],
-                            txt_descripcion_extra_apariencia: this.datosAnuncio.DetailleAnuncion.txt_descripcion_extra_apariencia,
-                            //Datos Tarifas
-                            dbl_costo_x_tiempo_30min: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_30min,
-                            dbl_costo_x_tiempo_45min: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_45min,
-                            dbl_costo_x_tiempo_1hora: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_1hora,
-                            dbl_costo_x_tiempo_1hora_media: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_1hora_media,
-                            dbl_costo_x_tiempo_2hora: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_2hora,
-                            dbl_costo_x_tiempo_3hora: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_3hora,
-                            dbl_costo_x_tiempo_salidas: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_salidas,
-                            dbl_costo_x_tiempo_toda_noche: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_toda_noche,
-                            dbl_costo_x_viaje: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_viaje,
-                            txt_descripcion_extra_tarifa: this.datosAnuncio.DetailleAnuncion.txt_descripcion_extra_tarifa,
-                            //Datos Servicios
-                            departamento: this.datosAnuncio.DetailleAnuncion.int_departamento == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_departamento,//this.DataJsonAnuncio.int_departamento,
-                            provincia: this.datosAnuncio.DetailleAnuncion.int_provincia == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_provincia, //this.DataJsonAnuncio.int_provincia,
-                            tx_descripcion_extra_horario: this.datosAnuncio.DetailleAnuncion.tx_descripcion_extra_horario,
-                            tx_descripcion_extra_servicio: this.datosAnuncio.DetailleAnuncion.tx_descripcion_extra_servicio,
-                        });
-                    }
-                );
+                this.ListDistrito.forEach(element => {
+                    element.flag = false;
+                    /*Agregamos control checkbox */
+                    var control = new FormControl(false, Validators.required);
+                    this.controldistritos.push(control);
+                });
+                var controlArray = this.fromGenerales.controls.ListDistrito as FormArray;
+                this.controlsDist = controlArray.controls;
+                controlArray.setValidators(this.minSelectedCheckboxes(1));
+                //Validamos el seteo del distrito
+                if (this.datosAnuncio.DetailleAnuncion.txt_lugar_servicio_distrito != null && this.datosAnuncio.DetailleAnuncion.txt_lugar_servicio_distrito != "") {
+                    this.setCheboxesDistrito(this.ListDistrito, this.datosAnuncio.DetailleAnuncion.txt_lugar_servicio_distrito, this.controlsDist);
+                }
+
+                //Validamos el seteo de la forma de pago
+                if (this.datosAnuncio.DetailleAnuncion.txt_forma_pago != null) {
+                    this.setCheboxes(this.ListFormaPago, this.datosAnuncio.DetailleAnuncion.txt_forma_pago, this.controlsFormaPago);
+                } else {
+                    this.controlsFormaPago[0].setValue(true);
+                    this.ListFormaPago[0].flag = true;
+                }
+                //Validamos el seteo del distrito, lugar atencion, servicios
+                if (this.datosAnuncio.DetailleAnuncion.txt_lugar_servicio_distrito != null) {
+                    this.setCheboxes(this.ListDistrito, this.datosAnuncio.DetailleAnuncion.txt_lugar_servicio_distrito, this.controlsDist);
+                } else {
+                    this.controlsDist[0].setValue(true);
+                    this.ListDistrito[0].flag = true;
+                }
+                //Validamos el seteo el lugar de atencion
+                if (this.datosAnuncio.DetailleAnuncion.tx_lugar_atencion != null) {
+                    this.setCheboxes(this.ListLugarAtencion, this.datosAnuncio.DetailleAnuncion.tx_lugar_atencion, this.controlsLugar);
+                } else {
+                    this.controlsLugar[0].setValue(true);
+                    this.ListLugarAtencion[0].flag = true;
+                }
+                //Validamos el seteo el tipo del servicios
+                if (this.datosAnuncio.DetailleAnuncion.tx_servicios_ofrece != null) {
+                    this.setCheboxes(this.ListTipoServicio, this.datosAnuncio.DetailleAnuncion.tx_servicios_ofrece, this.controlsTipServ);
+                } else {
+                    this.controlsTipServ[0].setValue(true);
+                    this.ListTipoServicio[0].flag = true;
+                }
+                debugger;
+                this.fromGenerales.patchValue({
+                    //Datos de Contacto
+                    txt_nombre_ficha: this.datosAnuncio.DetailleAnuncion.txt_nombre_ficha,
+                    txt_telefono_1: this.datosAnuncio.DetailleAnuncion.txt_telefono_1,
+                    //txt_telefono_2: this.datosAnuncio.DetailleAnuncion.txt_telefono_2,
+                    txt_email: this.datosAnuncio.DetailleAnuncion.txt_email,
+                    txt_web: this.datosAnuncio.DetailleAnuncion.txt_web,
+                    //Datos Generales
+                    int_edad: this.datosAnuncio.DetailleAnuncion.int_edad == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_edad,
+                    int_pais_origen: this.datosAnuncio.DetailleAnuncion.int_pais_origen == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_pais_origen,
+                    //int_estudios: this.datosAnuncio.DetailleAnuncion.int_estudios == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_estudios,
+                    txt_titulo: this.datosAnuncio.DetailleAnuncion.txt_titulo,
+                    txt_presentacion: this.datosAnuncio.DetailleAnuncion.txt_presentacion,
+                    //Datos Apariencia
+                    int_color_cabello: this.datosAnuncio.DetailleAnuncion.int_color_cabello == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_color_cabello,
+                    int_color_ojos: this.datosAnuncio.DetailleAnuncion.int_color_ojos == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_color_ojos,
+                    int_estatura: this.datosAnuncio.DetailleAnuncion.int_estatura == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_estatura,
+                    int_peso: this.datosAnuncio.DetailleAnuncion.int_peso == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_peso,
+                    busto: this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera == null ? "" : this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera.split("-")[0],
+                    cintura: this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera == null ? "" : this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera.split("-")[1],
+                    cadera: this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera == null ? "" : this.datosAnuncio.DetailleAnuncion.txt_medidas_busto_cintura_cadera.split("-")[2],
+                    txt_descripcion_extra_apariencia: this.datosAnuncio.DetailleAnuncion.txt_descripcion_extra_apariencia,
+                    //Datos Tarifas
+                    dbl_costo_x_tiempo_30min: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_30min,
+                    dbl_costo_x_tiempo_45min: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_45min,
+                    dbl_costo_x_tiempo_1hora: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_1hora,
+                    dbl_costo_x_tiempo_1hora_media: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_1hora_media,
+                    dbl_costo_x_tiempo_2hora: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_2hora,
+                    dbl_costo_x_tiempo_3hora: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_3hora,
+                    dbl_costo_x_tiempo_salidas: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_salidas,
+                    dbl_costo_x_tiempo_toda_noche: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_tiempo_toda_noche,
+                    dbl_costo_x_viaje: this.datosAnuncio.DetailleAnuncion.dbl_costo_x_viaje,
+                    txt_descripcion_extra_tarifa: this.datosAnuncio.DetailleAnuncion.txt_descripcion_extra_tarifa,
+                    //Datos Servicios
+                    departamento: this.datosAnuncio.DetailleAnuncion.int_departamento == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_departamento,//this.DataJsonAnuncio.int_departamento,
+                    provincia: this.datosAnuncio.DetailleAnuncion.int_provincia == 0 ? "" : this.datosAnuncio.DetailleAnuncion.int_provincia, //this.DataJsonAnuncio.int_provincia,
+                    tx_descripcion_extra_horario: this.datosAnuncio.DetailleAnuncion.tx_descripcion_extra_horario,
+                    tx_descripcion_extra_servicio: this.datosAnuncio.DetailleAnuncion.tx_descripcion_extra_servicio,
+                });
+                // this.parameter.getParameter().subscribe(
+                //     (res: ClientResponse) => {
+                //         debugger;
+
+                //     }
+                // );
             });
     }
 
     onChangeDistrito(val_valor: number, isChecked: boolean) {
-        
+
         let index = this.ListDistrito.findIndex(x => x.IdDist === val_valor);
         if (isChecked) {
             this.ListDistrito[index].flag = isChecked;
@@ -350,7 +353,7 @@ export class EditarComponent implements OnInit {
         entidad.id = parseInt(this.route.params["value"]["id"]);
         entidad.txt_nombre_ficha = this.fromGenerales.value.txt_nombre_ficha;
         entidad.txt_telefono_1 = this.fromGenerales.value.txt_telefono_1;
-        entidad.txt_telefono_2 = this.fromGenerales.value.txt_telefono_2;
+        //entidad.txt_telefono_2 = this.fromGenerales.value.txt_telefono_2;
         entidad.txt_email = this.fromGenerales.value.txt_email;
         entidad.txt_web = this.fromGenerales.value.txt_web;
         entidad.int_edad = parseInt(this.fromGenerales.value.int_edad);
@@ -417,7 +420,7 @@ export class EditarComponent implements OnInit {
         //Controles Datos de Contacto
         this.txt_nombre_fichaCtrl = new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]);
         this.txt_telefono_1Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
-        this.txt_telefono_2Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
+        //this.txt_telefono_2Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
         this.txt_emailCtrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_mailPattern)]);
         this.txt_webCtrl = new FormControl('', [Validators.pattern(this.RegEx_txt_web)]);
 
@@ -425,7 +428,7 @@ export class EditarComponent implements OnInit {
         this.edadCtrl = new FormControl('', [Validators.required]);
         this.paisCtrl = new FormControl('', [Validators.required]);
         //this.estudiosCtrl = new FormControl('', [Validators.required]);
-        this.tituloCtrl = new FormControl('', [Validators.required, Validators.minLength(15), Validators.maxLength(200)]);  
+        this.tituloCtrl = new FormControl('', [Validators.required, Validators.minLength(15), Validators.maxLength(200)]);
 
         this.txt_descripcion_generalesCtrl = new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(10000)]);
 
@@ -465,7 +468,7 @@ export class EditarComponent implements OnInit {
         this.fromGenerales = new FormGroup({
             txt_nombre_ficha: this.txt_nombre_fichaCtrl,
             txt_telefono_1: this.txt_telefono_1Ctrl,
-            txt_telefono_2: this.txt_telefono_2Ctrl,
+            //txt_telefono_2: this.txt_telefono_2Ctrl,
             txt_email: this.txt_emailCtrl,
             txt_web: this.txt_webCtrl,
             int_edad: this.edadCtrl,

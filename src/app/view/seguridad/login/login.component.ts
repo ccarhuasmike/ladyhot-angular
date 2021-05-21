@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
      * @function ingresar -> funcion que realiza el logueo
      */
     login() {
+        
         this.isSubmitted = true;
         if (!this.formLogin.valid)
             return;

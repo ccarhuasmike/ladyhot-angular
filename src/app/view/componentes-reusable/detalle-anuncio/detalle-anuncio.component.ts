@@ -52,6 +52,7 @@ export class DetalleAnuncioComponent implements OnInit {
 
         this.anuncioService.ObtenerDetalleAnucionXId(id).subscribe(
             (res: ClientResponse) => {
+                
                 if (res.Data != null) {
                     if (res.Data["txt_presentacion"] != "") {
                         res.Data["txt_presentacion"] = res.Data["txt_presentacion"].replace(/(\n)+\n+|\t+/g, ";");
@@ -66,14 +67,11 @@ export class DetalleAnuncioComponent implements OnInit {
                     this.seoFacebookService.updateOgTitle(this.detalleDelAnuncio.txt_nombre_ficha + " " + +this.detalleDelAnuncio.txt_telefono_1)
                     this.seoFacebookService.updateOgDescription(this.detalleDelAnuncio.txt_presentacion.split(';')[0]);
                     this.seoFacebookService.updateOgImage(this.detalleDelAnuncio.txt_imagen_prensetancion);
-
                     if (id !== 0) {
-                        this.seoFacebookService.updateTitle(this.detalleDelAnuncio.txt_nombre_ficha + " " + +this.detalleDelAnuncio.txt_telefono_1+" | Gologolos");
-                        this.seoFacebookService.updateContentTitle(this.detalleDelAnuncio.txt_nombre_ficha + " " + +this.detalleDelAnuncio.txt_telefono_1+" | Gologolos");
-                        this.seoFacebookService.updateDescripcion(this.detalleDelAnuncio.txt_presentacion.split(';')[0]);    
+                        this.seoFacebookService.updateTitle(this.detalleDelAnuncio.txt_titulo + " | Gologolos");
+                        this.seoFacebookService.updateContentTitle(this.detalleDelAnuncio.txt_nombre_ficha + " " + +this.detalleDelAnuncio.txt_telefono_1 + " | Gologolos");
+                        this.seoFacebookService.updateDescripcion(this.detalleDelAnuncio.txt_presentacion.split(';')[0]);
                     }
-                  
-
                     this.noDatosGenerales = (this.detalleDelAnuncio.txt_descripcion_edad != "" || this.detalleDelAnuncio.tx_pais_origen != "" || this.detalleDelAnuncio.tx_estudio != "");
                     this.noMostrarTarifas = (this.detalleDelAnuncio.dbl_costo_x_tiempo_30min != 0 || this.detalleDelAnuncio.dbl_costo_x_tiempo_45min != 0
                         || this.detalleDelAnuncio.dbl_costo_x_tiempo_1hora != 0 || this.detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media != 0

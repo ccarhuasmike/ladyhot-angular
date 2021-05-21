@@ -238,7 +238,7 @@ export class ServiciosComponent implements OnInit {
         if (!this.fromServicios.valid)
             return;
         this.spinner.show();
-       debugger;
+       
         const selectedDistrito = this.fromServicios.value.ListDistrito
             .map((v, i) => v ? this.ListDistrito[i].IdDist : null)
             .filter(v => v !== null);

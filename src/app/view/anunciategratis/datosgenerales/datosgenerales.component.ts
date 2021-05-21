@@ -81,6 +81,7 @@ export class DatosGeneralesComponent implements OnInit {
         this.router.navigate(['anunciategratis/datos-contacto']);
     }
     saveDatosGenerales() {
+        
         this.isSubmittedDatosGenerales = true;
         if (!this.fromDatosGenerales.valid)
             return;this.spinner.show();

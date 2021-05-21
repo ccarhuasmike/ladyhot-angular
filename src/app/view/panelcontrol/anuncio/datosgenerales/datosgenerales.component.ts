@@ -20,7 +20,9 @@ export class DatosGeneralesComponent implements OnInit {
     //Datos Generales
     edadCtrl: FormControl;
     paisCtrl: FormControl;
-    estudiosCtrl: FormControl;
+    //estudiosCtrl: FormControl;
+    tituloCtrl: FormControl;
+          
     txt_descripcion_generalesCtrl: FormControl;
 
 
@@ -49,21 +51,24 @@ export class DatosGeneralesComponent implements OnInit {
         //Controles Datos Generales
         this.edadCtrl = new FormControl('', [Validators.required]);
         this.paisCtrl = new FormControl('', [Validators.required]);
-        this.estudiosCtrl = new FormControl('', [Validators.required]);
+        //this.estudiosCtrl = new FormControl('', [Validators.required]);
+        this.tituloCtrl = new FormControl('', [Validators.required, Validators.minLength(15), Validators.maxLength(200)]); 
         this.txt_descripcion_generalesCtrl = new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(500)]);
 
 
         this.fromDatosGenerales = new FormGroup({
             int_edad: this.edadCtrl,
             int_pais_origen: this.paisCtrl,
-            int_estudios: this.estudiosCtrl,
+            txt_titulo: this.tituloCtrl,
+            //int_estudios: this.estudiosCtrl,
             txt_presentacion: this.txt_descripcion_generalesCtrl
         });
         if (this.DataJsonAnuncio !== null) {
             this.fromDatosGenerales.patchValue({
                 int_edad: this.DataJsonAnuncio.int_edad == 0 ? "" : this.DataJsonAnuncio.int_edad,
                 int_pais_origen: this.DataJsonAnuncio.int_pais_origen == 0 ? "" : this.DataJsonAnuncio.int_pais_origen,
-                int_estudios: this.DataJsonAnuncio.int_estudios == 0 ? "" : this.DataJsonAnuncio.int_estudios,
+                //int_estudios: this.DataJsonAnuncio.int_estudios == 0 ? "" : this.DataJsonAnuncio.int_estudios,
+                txt_titulo: this.DataJsonAnuncio.txt_titulo,
                 txt_presentacion: this.DataJsonAnuncio.txt_presentacion
             });
         }
@@ -80,7 +85,8 @@ export class DatosGeneralesComponent implements OnInit {
             return;
         this.DataJsonAnuncio.int_edad = parseInt(this.fromDatosGenerales.value.int_edad);
         this.DataJsonAnuncio.int_pais_origen = parseInt(this.fromDatosGenerales.value.int_pais_origen);
-        this.DataJsonAnuncio.int_estudios = parseInt(this.fromDatosGenerales.value.int_estudios);
+        //this.DataJsonAnuncio.int_estudios = parseInt(this.fromDatosGenerales.value.int_estudios);
+        this.DataJsonAnuncio.txt_titulo = this.fromDatosGenerales.value.txt_titulo;        
         this.DataJsonAnuncio.txt_presentacion = this.fromDatosGenerales.value.txt_presentacion;
         this.anuncioService.SaveSegundoPaso(this.DataJsonAnuncio).subscribe(
             (res) => {

@@ -1,114 +1,142 @@
 <form [formGroup]='fromServicios' (ngSubmit)='saveServicios()' novalidate>
-  <div class="form-horizontal">
-    <div class="form-group row">
-      <label class="col-sm-3 control-label text-right ">Distrito</label>
-      <div class="col-sm-5">
-        <div class="categorias-anuncio">
-          <div class="tc_valores">
-            <label formArrayName="ListDistrito" *ngFor="let order of fromServicios.controls.ListDistrito['controls']; let i = index"
-              [ngClass]="{'checked': ListDistrito[i].flag, '': ListDistrito[i].flag}" class="categoria " [for]="'check_distrito_'+ListDistrito[i].val_valor">
-              <input type="checkbox" class="chk_categoria" (change)="onChangeDistrito(ListDistrito[i].val_valor, $event.target.checked)"
-                [id]="'check_distrito_'+ListDistrito[i].val_valor" [formControlName]="i" />
-              {{ListDistrito[i].tx_descripcion}}
-            </label>
-          </div>
-          <div *ngIf="fromServicios.controls.ListDistrito.invalid" class="text-danger">
-            Por favor seleccione por lo menos un distrito
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <p class="form-control-static">elige los distrito donde ofreces tus servicios</p>
-      </div>
-    </div>
+    <div class="form-horizontal">
 
-    <div class="form-group row">
-      <label class="col-sm-3 control-label text-right ">Atiendes las 24hs?</label>
-      <div class="col-sm-5" id="check_distrito">
-        <div class="checkbox">
-          <label>
+        <div class="form-group row">
+            <label class="col-sm-3 control-label text-sm-left text-md-right " for="txt_DondeQuieresAnunciarte">¿Dónde quieres anunciarte?</label>
+            <div class="col-sm-5">
+                <input class="form-control form-control-sm" type="text" id="txt_DondeQuieresAnunciarte" [formControl]="txt_DondeQuieresAnunciarteCtrl" required placeholder="Lima, Arequipa, Lince...">
+            </div>
+            <div class="col-sm-4">
+                <p class="form-control-static">Busca fácilmente tu ciudad o barrio</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="cbo_pais">Departamento</label>
+            <div class="col-sm-5">
+                <select class="form-control form-control-sm" [formControl]="departamentoCtrl" required (change)="onChangeDertamento($event.target.value)">
+        <option value="">--Seleccione--</option>
+        <option *ngFor="let data of ListDepartamento" value={{data.IdDepa}}>
+          {{data.Departamento}}
+        </option>
+      </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="cbo_estudios">Población</label>
+            <div class="col-sm-5">
+                <select class="form-control form-control-sm" [formControl]="provinciaCtrl" required (change)="onChangeProvincia($event.target.value)">
+        <option value="">--Seleccione--</option>
+        <option *ngFor="let data of ListProvincia" value={{data.IdProv}}>
+          {{data.Provincia}}
+        </option>
+      </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 control-label text-right ">Salidas a los Distritos de.</label>
+            <div class="col-sm-5">
+                <div class="categorias-anuncio">
+                    <div class="tc_valores">
+                        <label formArrayName="ListDistrito" *ngFor="let order of fromServicios.controls.ListDistrito['controls']; let i = index" [ngClass]="{'checked': ListDistrito[i].flag, '': ListDistrito[i].flag}" class="categoria " [for]="'check_distrito_'+ListDistrito[i].IdDist">
+          <input type="checkbox" class="chk_categoria" (change)="onChangeDistrito(ListDistrito[i].IdDist, $event.target.checked)"
+            [id]="'check_distrito_'+ListDistrito[i].IdDist" [formControlName]="i" />
+          {{ListDistrito[i].Distrito}}
+        </label>
+                    </div>
+                    <div *ngIf="fromServicios.controls.ListDistrito.invalid" class="text-danger">
+                        Por favor seleccione por lo menos un distrito
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <p class="form-control-static">elige los distrito donde ofreces tus servicios</p>
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group row">
+            <label class="col-sm-3 control-label text-right ">Atiendes las 24hs?</label>
+            <div class="col-sm-5" id="check_distrito">
+                <div class="checkbox">
+                    <label>
             <input type="checkbox" value="0" id="chk_24horas">
           </label>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="form-group row">
-      <label class="col-sm-3 control-label text-right " for="txt_descripcion_tarifa">Algo sobre tu
+        <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="txt_descripcion_tarifa">Algo sobre tu
         disponibilidad</label>
-      <div class="col-sm-5">
-        <textarea class="form-control form-control-sm" id="txt_descripcion_tarifa" [formControl]="txtalgosobredispCtrl"
-          rows="6" placeholder=""></textarea>
-      </div>
-      <div class="col-sm-4">
-        <p class="form-control-static">¿Quieres hacer una aclaración sobre tus días y horarios?</p>
-      </div>
-    </div>
+            <div class="col-sm-5">
+                <textarea class="form-control form-control-sm" id="txt_descripcion_tarifa" [formControl]="txtalgosobredispCtrl" rows="6" placeholder=""></textarea>
+            </div>
+            <div class="col-sm-4">
+                <p class="form-control-static">¿Quieres hacer una aclaración sobre tus días y horarios?</p>
+            </div>
+        </div>
 
 
-    <div class="form-group row">
-      <label class="col-sm-3 control-label text-right ">Lugar</label>
-      <div class="col-sm-5">
-        <div class="categorias-anuncio">
-          <div class="tc_valores">
-            <label *ngFor="let order of fromServicios.controls.ListLugarAtencion['controls']; let i = index"
-              formArrayName="ListLugarAtencion" [ngClass]="{'checked': ListLugarAtencion[i].flag, '': ListLugarAtencion[i].flag}"
-              class="categoria " [for]="'check_lugarAtencion_'+ListLugarAtencion[i].val_valor">
+        <div class="form-group row">
+            <label class="col-sm-3 control-label text-right ">Lugar</label>
+            <div class="col-sm-5">
+                <div class="categorias-anuncio">
+                    <div class="tc_valores">
+                        <label *ngFor="let order of fromServicios.controls.ListLugarAtencion['controls']; let i = index" formArrayName="ListLugarAtencion" [ngClass]="{'checked': ListLugarAtencion[i].flag, '': ListLugarAtencion[i].flag}" class="categoria " [for]="'check_lugarAtencion_'+ListLugarAtencion[i].val_valor">
               <input type="checkbox" class="chk_categoria" [id]="'check_lugarAtencion_'+ListLugarAtencion[i].val_valor"
                 (change)="onChangeLugarAtencion(ListLugarAtencion[i].val_valor, $event.target.checked)"
                 [formControlName]="i" />
               {{ListLugarAtencion[i].tx_descripcion}}
             </label>
-          </div>
-          <div *ngIf="fromServicios.controls.ListLugarAtencion.invalid" class="text-danger">
-            Por favor seleccione por lo menos un lugar de Atención
-          </div>
+                    </div>
+                    <div *ngIf="fromServicios.controls.ListLugarAtencion.invalid" class="text-danger">
+                        Por favor seleccione por lo menos un lugar de Atención
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <p class="form-control-static">¿dónde atiendes a tus clientes?</p>
+            </div>
         </div>
-      </div>
-      <div class="col-sm-4">
-        <p class="form-control-static">¿dónde atiendes a tus clientes?</p>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 control-label text-right ">Servicios</label>
-      <div class="col-sm-5" id="check_servicio_ofrece">
-        <div class="categorias-anuncio">
-          <div class="tc_valores">
-            <label *ngFor="let order of fromServicios.controls.ListTipoServicio['controls']; let i = index"
-              formArrayName="ListTipoServicio" [ngClass]="{'checked': ListTipoServicio[i].flag, '': ListTipoServicio[i].flag}"
-              class="categoria " [for]="'check_tiposervicios_'+ListTipoServicio[i].val_valor">
+        <div class="form-group row">
+            <label class="col-sm-3 control-label text-right ">Servicios</label>
+            <div class="col-sm-5" id="check_servicio_ofrece">
+                <div class="categorias-anuncio">
+                    <div class="tc_valores">
+                        <label *ngFor="let order of fromServicios.controls.ListTipoServicio['controls']; let i = index" formArrayName="ListTipoServicio" [ngClass]="{'checked': ListTipoServicio[i].flag, '': ListTipoServicio[i].flag}" class="categoria " [for]="'check_tiposervicios_'+ListTipoServicio[i].val_valor">
               <input type="checkbox" class="chk_categoria" [id]="'check_tiposervicios_'+ListTipoServicio[i].val_valor"
                 (change)="onChangeTipoServicio(ListTipoServicio[i].val_valor, $event.target.checked)" [formControlName]="i" />
               {{ListTipoServicio[i].tx_descripcion}}</label>
-          </div>
-          <div *ngIf="fromServicios.controls.ListTipoServicio.invalid" class="text-danger">
-            Por favor seleccione por lo menos un tipo de servicio
-          </div>
+                    </div>
+                    <div *ngIf="fromServicios.controls.ListTipoServicio.invalid" class="text-danger">
+                        Por favor seleccione por lo menos un tipo de servicio
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <p class="form-control-static">¿Qué servicios ofreces? (Estén o no incluidos en tu tarifa estándar)</p>
+            </div>
         </div>
-      </div>
-      <div class="col-sm-4">
-        <p class="form-control-static">¿Qué servicios ofreces? (Estén o no incluidos en tu tarifa estándar)</p>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 control-label text-right " for="tx_descripcion_extra_servicio">Descripción</label>
-      <div class="col-sm-5">
-        <textarea class="form-control form-control-sm" [formControl]="txt_descripcion_serviciosCtrl" id="tx_descripcion_extra_servicio"
-          rows="6" placeholder=""></textarea>
-      </div>
-      <div class="col-sm-4">
-        <p class="form-control-static">¿Quieres hacer una aclaración o explicarte mejor?</p>
-      </div>
-    </div>
-    <div class="form-group text-center">
-      <button class="btn btn-outline-rounded btn-default" (click)="btnAtras(fromServicios)"> <span style="margin-right:10px;"
+        <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="tx_descripcion_extra_servicio">Descripción</label>
+            <div class="col-sm-5">
+                <textarea class="form-control form-control-sm" [formControl]="txt_descripcion_serviciosCtrl" id="tx_descripcion_extra_servicio" rows="6" placeholder=""></textarea>
+            </div>
+            <div class="col-sm-4">
+                <p class="form-control-static">¿Quieres hacer una aclaración o explicarte mejor?</p>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <button class="btn btn-outline-rounded btn-default" (click)="btnAtras(fromServicios)"> <span style="margin-right:10px;"
           class="glyphicon glyphicon-arrow-left"></span> Atras</button>
 
-      <button class="btn btn-outline-rounded btn-info">
+            <button class="btn btn-outline-rounded btn-info">
         Siguiente <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
-    </div>
+        </div>
 
-  </div>
+    </div>
 
 
 </form>

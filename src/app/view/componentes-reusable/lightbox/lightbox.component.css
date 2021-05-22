@@ -35,7 +35,8 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: #000000;
+    /*background-color: #000000;*/
+    background-color: #000000b8;
   }
   
   /*.slide-modal-content {

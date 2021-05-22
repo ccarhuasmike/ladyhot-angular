@@ -3,19 +3,19 @@
         <span aria-hidden="true"><i class="fa fa-times"></i></span>
     </button>
 </div>-->
-<div class="position-sticky fixed-top p-0">
-    <button type="button" class="d-block d-xl-none close pull-right" aria-label="Close" (click)="closeModal()">
+<div class="position-sticky fixed-top p-0 d-flex justify-content-end">
+    <button type="button" class="d-block d-xl-none pull-right position-absolute icon-cerrar" (click)="closeModal()">
         <span aria-hidden="true"><i class="fa fa-times"></i></span>
     </button>
 </div>
-<div class="modal-body p-0">
+<div class="modal-body pt-xs-0 pb-xs-0 pl-xs-0 pr-xs-0 container-detalle">
     <div class="pl-1 pr-1" *ngIf="detalleDelAnuncio">
         <div class="row">
             <div class="col-lg-8 col-sm-12">
                 <div class="row">
                     <div class="col-12 d-block d-sm-none">
                         <div class="card w-100">
-                            <img class="img-thumbnail w-100 h-100" src="{{imagenes.length > 0?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}" loading="lazy">
+                            <img class="img-thumbnail w-100 h-100 p-xs-0" src="{{imagenes.length > 0?detalleDelAnuncio.txt_imagen_prensetancion:'assets/scort_sin_foto.jpg'}}" loading="lazy">
                         </div>
                     </div>
                     <div class="col-12">
@@ -66,7 +66,7 @@
                     </div>
                     <!-- d-lg-flex -->
                     <div class="row col-12 mx-auto">
-                        <div [className]="((!noMostrarTarifas && !noMostrarFormaPago) && !noMostrarHorario)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12'" *ngIf="noDatosGenerales">
+                        <div [className]="((!noMostrarTarifas && !noMostrarFormaPago) && !noMostrarHorario)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12 p-0'" *ngIf="noDatosGenerales">
                             <div class="card-body bg-white">
                                 <h2 class="h5 text-dark font-weight-bold text-left">
                                     Datos Generales
@@ -94,7 +94,7 @@
                             </div>
                         </div>
     
-                        <div [className]="(!noDatosGenerales && !noMostrarHorario) ?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12'" *ngIf="noMostrarTarifas || noMostrarFormaPago">
+                        <div [className]="(!noDatosGenerales && !noMostrarHorario) ?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12 p-0'" *ngIf="noMostrarTarifas || noMostrarFormaPago">
                             <div class="card-body bg-white">
                                 <h2 class="h5 text-dark font-weight-bold text-left" *ngIf="noMostrarTarifas">
                                     Tarifas
@@ -150,7 +150,7 @@
                             </div>
                         </div>
     
-                        <div *ngIf="noMostrarHorario" [className]="((noMostrarTarifas || noMostrarFormaPago) && noDatosGenerales) ?'card col-lg-12 col-sm-12':(((!noMostrarTarifas && !noMostrarFormaPago) && !noDatosGenerales)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12')">
+                        <div *ngIf="noMostrarHorario" [className]="((noMostrarTarifas || noMostrarFormaPago) && noDatosGenerales) ?'card col-lg-12 col-sm-12':(((!noMostrarTarifas && !noMostrarFormaPago) && !noDatosGenerales)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12 p-0')">
                             <div class="card-body bg-white">
                                 <h2 class="h5 text-dark font-weight-bold text-left">
                                     Horario
@@ -212,14 +212,14 @@
     
                     <div class="col-12">
                         <div class="card w-100">
-                            <div class="card-body bg-white">
+                            <div class="card-body bg-white pt-0 p-xs-0">
                                 <div *ngIf="imagenes.length > 0">
-                                    <p class="h3 text-dark font-weight-bold text-left">
+                                    <h2 class="pl-xs-4 m-0 text-dark font-weight-bold text-left size-h2">
                                         {{imagenes.length }} Fotos
-                                    </p>
-                                    <div class="row">
-                                        <div [className]="imagenes.length==1?'d-flex justify-content-center lightbox-images':'col-lg-6 col-md-6 col-sm-12 mt-1 lightbox-images'" *ngFor="let item of imagenes; let i = index">
-                                            <img [className]="imagenes.length==1?'w-100 w-sm-50 h-100 img-thumbnail cursor-imagen-detalle hover-shadow cursor image-lightbox':'w-100 h-100 img-thumbnail cursor-imagen-detalle hover-shadow cursor image-lightbox'" [src]="item.url" (click)="currentSlide(i+1);openLightbox()"
+                                    </h2>
+                                    <div class="masonry-detalle-anuncio">
+                                        <div [className]="imagenes.length==1?'d-flex justify-content-center lightbox-images':'mt-1 lightbox-images p-xs-0'" *ngFor="let item of imagenes; let i = index">
+                                            <img [className]="imagenes.length==1?'w-100 w-sm-50 img-thumbnail cursor-imagen-detalle hover-shadow cursor image-lightbox':'w-100 img-thumbnail cursor-imagen-detalle hover-shadow cursor image-lightbox'" [src]="item.url" (click)="currentSlide(i+1);openLightbox()"
                                                 alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}" />
                                         </div>
                                     </div>
@@ -426,12 +426,12 @@
     <div class="btn-group btn-group-lg btn-group-horizontal d-block m-0">
         <a href='tel:{{detalleDelAnuncio.txt_telefono_1}}' class="btn btn-large btn-primary rounded-0">
             <i class="fa fa-phone mr-1"></i>
-
-            <span class="font-weight-bold">{{detalleDelAnuncio.txt_telefono_1}}</span>
+            <span class="font-weight-bold d-none-xs">{{detalleDelAnuncio.txt_telefono_1}}</span>
+            <span class="font-weight-bold display-none d-inline-block-xs">Llamar</span>
         </a>
         <a href="https://api.whatsapp.com/send?phone=51{{detalleDelAnuncio.txt_telefono_1}}&text=Hola {{detalleDelAnuncio.txt_nombre_ficha }}, te he visto en Gologolos y me gustaría quedar contigo." class="btn  btn-large btn-success rounded-0 ml-1" target="_blank">
             <img src="../../../../assets/compartir-whatsapp-logo.svg" alt="Whatsapp" title="Whatsapp" height="22" width="22" style="margin-top: -4px;
             margin-right: 3px;">
-            <span class="font-weight-bold">WhatsApp</span></a>
+            <span class="font-weight-bold d-none-xs">WhatsApp</span></a>
     </div>
 </div>

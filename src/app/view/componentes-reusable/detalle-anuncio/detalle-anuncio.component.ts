@@ -60,8 +60,7 @@ export class DetalleAnuncioComponent implements OnInit {
                     if (res.Data["tx_descripcion_extra_horario"] != "") {
                         res.Data["tx_descripcion_extra_horario"] = res.Data["tx_descripcion_extra_horario"].replace(/(\n)+\n+|\t+/g, ";").split("\n");
                     }
-                    this.detalleDelAnuncio = res.Data;
-                    debugger;                    
+                    this.detalleDelAnuncio = res.Data;           
                     this.seoFacebookService.updateCanonicalUrl(this.router.url);
                     this.seoFacebookService.updateOgUrl("https://gologolos.com/kinesiologas/" + this.detalleDelAnuncio.txt_departamento + "/" + this.detalleDelAnuncio.txt_distrito + "/" + id);
                     this.seoFacebookService.updateOgType("article");

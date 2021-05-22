@@ -1,10 +1,15 @@
-<div class="modal-header border-0 pb-1 pt-1" *ngIf="mostrarBotonCloseModal">
-    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+<!--<div class="modal-header border-0 pb-1 pt-1" *ngIf="mostrarBotonCloseModal">
+    <button type="button" class="d-block d-xl-none close pull-right" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true"><i class="fa fa-times"></i></span>
+    </button>
+</div>-->
+<div class="position-sticky fixed-top p-0">
+    <button type="button" class="d-block d-xl-none close pull-right" aria-label="Close" (click)="closeModal()">
         <span aria-hidden="true"><i class="fa fa-times"></i></span>
     </button>
 </div>
-<div class="" *ngIf="detalleDelAnuncio">
-    <div class="pl-1 pr-1">
+<div class="modal-body p-0">
+    <div class="pl-1 pr-1" *ngIf="detalleDelAnuncio">
         <div class="row">
             <div class="col-lg-8 col-sm-12">
                 <div class="row">
@@ -19,7 +24,7 @@
                                 <h1 class="h4 text-dark font-weight-bold text-left">
                                     {{detalleDelAnuncio.txt_nombre_ficha }} {{detalleDelAnuncio.txt_telefono_1 }}</h1>
                                 <div class="row">
-                                    <div class="col-lg-6 mt-0 text-left text-secondary h6">
+                                    <div class="col-lg-12 mt-0 text-left text-secondary h6">
                                         <!--<span>Lima Metropolitana</span>
                                         <span> - </span>-->
                                         <span class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
@@ -40,66 +45,13 @@
                                             class="text-muted font-weight-bold" target="_blank"><span>Visita mi
                                                 página</span></a>-->
                                     </div>
+    
 
-                                    <div class="col-lg-6">
-                                        <div class="d-flex justify-content-center">
-                                            <div class="btn-group btn-group-lg btn-group-horizontal">
-                                                <a href='tel:{{detalleDelAnuncio.txt_telefono_1}}' class="btn btn-large btn-primary rounded-0">
-                                                    <i class="fa fa-phone mr-1"></i>
-
-                                                    <span class="font-weight-bold">{{detalleDelAnuncio.txt_telefono_1}}</span>
-                                                </a>
-                                                <a href="https://api.whatsapp.com/send?phone=51{{detalleDelAnuncio.txt_telefono_1}}&text=Hola {{detalleDelAnuncio.txt_nombre_ficha }}, te he visto en Gologolos y me gustaría quedar contigo." class="btn  btn-large btn-success rounded-0 ml-1" target="_blank">
-                                                    <!-- <i  class="fa fa-whatsapp mr-1"></i> -->
-                                                    <img src="../../../../assets/compartir-whatsapp-logo.svg" alt="Whatsapp" title="Whatsapp" height="22" width="22" style="margin-top: -4px;
-                                                    margin-right: 3px;">
-                                                    <span class="font-weight-bold">WhatsApp</span></a>
-                                            </div>
-                                        </div>
-
-
-                                        <!-- <div class="row mt-1">
-                                            <div class="col-4 cursor-pointer" data-target="#compartir"
-                                                data-toggle="collapse">
-                                                <i class='fa fa-share-alt text-secondary'></i>
-                                                <span class="small ml-1 text-secondary">Compartir</span>
-                                            </div>
-                                            <div class="col-4 cursor-pointer">
-                                                <i class='fa fa-star text-primary'></i>
-                                                <span class="small ml-1 text-secondary">Favoritos</span>
-                                            </div> -->
-                                        <!--<div class="col-4 cursor-pointer">
-                                                <i class='far fa-hand-pointer text-danger'></i>
-                                                <span class="small ml-1 text-secondary">Denunciar</span>
-                                            </div>-->
-                                        <!--                                             
-                                            <div class="col-12">
-                                                <a class="btn btn-success btn-sm" href="javascript:void(0)" role="button">
-                                                    <i class="fab fa-whatsapp fa-2x"></i>
-                                                </a>
-                                                <a class="btn btn-primary btn-sm" href="https://t.me/share/url?url={url}" role="button">
-                                                    <i class="fab fa-telegram-plane fa-2x"></i>
-                                                </a>
-                                                <a class="btn btn-success btn-sm" href="https://lineit.line.me/share/ui?url={url}" role="button">
-                                                    <i class="fab fa-line fa-2x"></i>
-                                                </a>
-                                                <a class="btn btn-primary btn-sm" href="https://www.facebook.com/sharer.php?u={url}" role="button">
-                                                    <i class="fab fa-facebook-f fa-2x"></i>
-                                                </a>
-                                                <a class="btn btn-danger btn-sm" href="https://plus.google.com/share?url={url}" role="button">
-                                                    <i class="fab fa-google-plus-square fa-2x"></i>
-                                                </a>
-                                                <a class="btn btn-primary btn-sm" href="https://twitter.com/intent/tweet?url={url}" role="button">
-                                                    <i class="fab fa-twitter fa-2x"></i>
-                                                </a>
-                                            </div> -->
-                                        <!-- </div> -->
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+    
                     <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body bg-white card-body-presentacion">
@@ -141,7 +93,7 @@
                                 </div> -->
                             </div>
                         </div>
-
+    
                         <div [className]="(!noDatosGenerales && !noMostrarHorario) ?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12'" *ngIf="noMostrarTarifas || noMostrarFormaPago">
                             <div class="card-body bg-white">
                                 <h2 class="h5 text-dark font-weight-bold text-left" *ngIf="noMostrarTarifas">
@@ -197,7 +149,7 @@
                                 </div>
                             </div>
                         </div>
-
+    
                         <div *ngIf="noMostrarHorario" [className]="((noMostrarTarifas || noMostrarFormaPago) && noDatosGenerales) ?'card col-lg-12 col-sm-12':(((!noMostrarTarifas && !noMostrarFormaPago) && !noDatosGenerales)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12')">
                             <div class="card-body bg-white">
                                 <h2 class="h5 text-dark font-weight-bold text-left">
@@ -227,7 +179,7 @@
                             </div>
                         </div>
                     </div>
-
+    
                     <div class="col-12" *ngIf="noMostrarApariencia">
                         <div class="card w-100">
                             <div class="card-body bg-white">
@@ -257,7 +209,7 @@
                             </div>
                         </div>
                     </div>
-
+    
                     <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body bg-white">
@@ -271,7 +223,7 @@
                                                 alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}" />
                                         </div>
                                     </div>
-
+    
                                 </div>
                                 <div *ngIf="imagenes.length == 0" class="d-flex justify-content-center">
                                     <img class="w-sm-50 w-100 h-50 img-thumbnail" src="assets/scort_sin_foto.jpg" alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}" loading="lazy">
@@ -279,7 +231,7 @@
                             </div>
                         </div>
                     </div>
-
+    
                     <!--                     
                     <div class="col-12">
                         <div class="card w-100">
@@ -298,7 +250,7 @@
                             </div>
                         </div>
                     </div> -->
-
+    
                     <div class="col-12" *ngIf="detalleDelAnuncio.tx_descripcion_servicios_ofrece">
                         <div class="card w-100">
                             <div class="card-body bg-white">
@@ -320,7 +272,7 @@
                             </div>
                         </div>
                     </div>
-
+    
                     <div class="col-12" *ngIf="detalleDelAnuncio.tx_descripcion_lugar_atencion">
                         <div class="card w-100">
                             <div class="card-body bg-white">
@@ -337,7 +289,7 @@
                             </div>
                         </div>
                     </div>
-
+    
                     <!--<div class="col-12">
                         <div class="card w-100">
                             <div class="card-body bg-white">
@@ -375,7 +327,7 @@
                                             class="col-5 offset-1 btn btn-danger font-weight-bold">Top
                                             Anuncios</a>
                                     </div>
-
+    
                                     <div class="col-12">
                                         <button type="button" class="col-6 btn btn-danger font-weight-bold">Subir
                                             GRATIS</button>
@@ -425,7 +377,7 @@
                             </div>
                         </div>
                     </div>
-
+    
                     <!--<div class="pl-1 pr-0 row col-12 mt-3">
                         <div class="card row">
                             <div class="card-body bg-white">
@@ -443,7 +395,7 @@
                                             class="col-5 offset-1 btn btn-danger font-weight-bold">Top
                                             Anuncios</a>
                                     </div>
-
+    
                                     <div class="col-12">
                                         <button type="button" class="col-6 btn btn-danger font-weight-bold">Subir
                                             GRATIS</button>
@@ -468,5 +420,18 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="d-flex justify-content-start col-12 position-sticky fixed-bottom p-0 bg-light" *ngIf="detalleDelAnuncio">
+    <div class="btn-group btn-group-lg btn-group-horizontal d-block m-0">
+        <a href='tel:{{detalleDelAnuncio.txt_telefono_1}}' class="btn btn-large btn-primary rounded-0">
+            <i class="fa fa-phone mr-1"></i>
+
+            <span class="font-weight-bold">{{detalleDelAnuncio.txt_telefono_1}}</span>
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=51{{detalleDelAnuncio.txt_telefono_1}}&text=Hola {{detalleDelAnuncio.txt_nombre_ficha }}, te he visto en Gologolos y me gustaría quedar contigo." class="btn  btn-large btn-success rounded-0 ml-1" target="_blank">
+            <img src="../../../../assets/compartir-whatsapp-logo.svg" alt="Whatsapp" title="Whatsapp" height="22" width="22" style="margin-top: -4px;
+            margin-right: 3px;">
+            <span class="font-weight-bold">WhatsApp</span></a>
     </div>
 </div>

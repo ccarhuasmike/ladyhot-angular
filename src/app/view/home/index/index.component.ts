@@ -197,7 +197,7 @@ export class IndexComponent implements OnInit {
     this.modalRef = modalService.show(DetalleAnuncioComponent, {
       animated: true,
       //backdrop: 'static',
-      class: 'modal-lg',
+      class: 'modal-lg mt-lg-0 mb-lg-0 m-xs-0',
       initialState: {
         title: '',
         data: {

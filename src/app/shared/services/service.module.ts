@@ -6,6 +6,7 @@ import { HeaderService } from './header/header.services';
 import { ConfigService } from './Utilitarios/config.service';
 import { HomeService } from './anuncio/home.services';
 import { ParameterService } from './anuncio/parameter.service';
+import { UbigeoService } from './ubigeo/ubigeo.service';
 import { ContactarService } from './anuncio/contactar.service';
 import { SeguridadService } from './seguridad/seguridad.service';
 import { UsuarioService } from './usuario/usuario.service';
@@ -29,6 +30,7 @@ import { SEOFacebookService } from './seofacebook/seofacebook.service';
         ConfigService,      
         ParameterService,
         ContactarService,
+        UbigeoService,
         SeguridadService,
         UsuarioService,
         MantenimientoAnuncioService,
@@ -42,5 +44,6 @@ export {
     HeaderService,
     StepService,
     HomeService,
+    UbigeoService,
     ParameterService
 }

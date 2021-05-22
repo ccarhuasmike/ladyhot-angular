@@ -22,7 +22,7 @@ export class DatosContactoComponent implements OnInit {
     txt_emailCtrl: FormControl;
     txt_webCtrl: FormControl;
     txt_telefono_1Ctrl: FormControl;
-    txt_telefono_2Ctrl: FormControl;
+    //txt_telefono_2Ctrl: FormControl;
     //Registro de Expresiones
     RegEx_mailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
     RegEx_txt_web = "^(http[s]?:\\/\\/){0,1}(www\\.){0,1}[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,5}[\\.]{0,1}$";
@@ -52,14 +52,14 @@ export class DatosContactoComponent implements OnInit {
         this.txt_emailCtrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_mailPattern)]);
         this.txt_webCtrl = new FormControl('', [Validators.pattern(this.RegEx_txt_web)]);
         this.txt_telefono_1Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
-        this.txt_telefono_2Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
+        //this.txt_telefono_2Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
 
         this.fromContacto = new FormGroup({
             txt_nombre_ficha: this.txt_nombre_fichaCtrl,
             txt_email: this.txt_emailCtrl,
             txt_web: this.txt_webCtrl,
             txt_telefono_1: this.txt_telefono_1Ctrl,
-            txt_telefono_2: this.txt_telefono_2Ctrl
+            //txt_telefono_2: this.txt_telefono_2Ctrl
         });
         if (this.DataJsonAnuncio !== null) {
             this.fromContacto.patchValue({
@@ -67,7 +67,7 @@ export class DatosContactoComponent implements OnInit {
                 txt_email: this.DataJsonAnuncio.txt_email,
                 txt_web: this.DataJsonAnuncio.txt_web,
                 txt_telefono_1: this.DataJsonAnuncio.txt_telefono_1,
-                txt_telefono_2: this.DataJsonAnuncio.txt_telefono_2
+                //txt_telefono_2: this.DataJsonAnuncio.txt_telefono_2
             });
         }
     }
@@ -84,7 +84,7 @@ export class DatosContactoComponent implements OnInit {
             entidad.id_usuario = 11;
             entidad.txt_nombre_ficha = this.fromContacto.value.txt_nombre_ficha;
             entidad.txt_telefono_1 = this.fromContacto.value.txt_telefono_1;
-            entidad.txt_telefono_2 = this.fromContacto.value.txt_telefono_2;
+            //entidad.txt_telefono_2 = this.fromContacto.value.txt_telefono_2;
             entidad.txt_email = this.fromContacto.value.txt_email;
             entidad.txt_web = this.fromContacto.value.txt_web;
             this.anuncioService.SavePrimerPaso(entidad).subscribe(

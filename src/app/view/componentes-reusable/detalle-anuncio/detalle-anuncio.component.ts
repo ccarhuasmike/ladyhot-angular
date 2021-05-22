@@ -52,6 +52,7 @@ export class DetalleAnuncioComponent implements OnInit {
 
         this.anuncioService.ObtenerDetalleAnucionXId(id).subscribe(
             (res: ClientResponse) => {
+
                 if (res.Data != null) {
                     if (res.Data["txt_presentacion"] != "") {
                         res.Data["txt_presentacion"] = res.Data["txt_presentacion"].replace(/(\n)+\n+|\t+/g, ";");
@@ -60,20 +61,19 @@ export class DetalleAnuncioComponent implements OnInit {
                         res.Data["tx_descripcion_extra_horario"] = res.Data["tx_descripcion_extra_horario"].replace(/(\n)+\n+|\t+/g, ";").split("\n");
                     }
                     this.detalleDelAnuncio = res.Data;
+                    debugger;                    
                     this.seoFacebookService.updateCanonicalUrl(this.router.url);
-                    this.seoFacebookService.updateOgUrl("https://gologolos.com/#/kinesiologas/" + id);
+                    this.seoFacebookService.updateOgUrl("https://gologolos.com/kinesiologas/" + this.detalleDelAnuncio.txt_departamento + "/" + this.detalleDelAnuncio.txt_distrito + "/" + id);
                     this.seoFacebookService.updateOgType("article");
                     this.seoFacebookService.updateOgTitle(this.detalleDelAnuncio.txt_nombre_ficha + " " + +this.detalleDelAnuncio.txt_telefono_1)
                     this.seoFacebookService.updateOgDescription(this.detalleDelAnuncio.txt_presentacion.split(';')[0]);
                     this.seoFacebookService.updateOgImage(this.detalleDelAnuncio.txt_imagen_prensetancion);
 
                     if (id !== 0) {
-                        this.seoFacebookService.updateTitle(this.detalleDelAnuncio.txt_nombre_ficha + " " + +this.detalleDelAnuncio.txt_telefono_1+" | Gologolos");
-                        this.seoFacebookService.updateContentTitle(this.detalleDelAnuncio.txt_nombre_ficha + " " + +this.detalleDelAnuncio.txt_telefono_1+" | Gologolos");
-                        this.seoFacebookService.updateDescripcion(this.detalleDelAnuncio.txt_presentacion.split(';')[0]);    
+                        this.seoFacebookService.updateTitle(this.detalleDelAnuncio.txt_titulo + " | Gologolos");
+                        this.seoFacebookService.updateContentTitle(this.detalleDelAnuncio.txt_nombre_ficha + " " + +this.detalleDelAnuncio.txt_telefono_1 + " | Gologolos");
+                        this.seoFacebookService.updateDescripcion(this.detalleDelAnuncio.txt_presentacion.split(';')[0]);
                     }
-                  
-
                     this.noDatosGenerales = (this.detalleDelAnuncio.txt_descripcion_edad != "" || this.detalleDelAnuncio.tx_pais_origen != "" || this.detalleDelAnuncio.tx_estudio != "");
                     this.noMostrarTarifas = (this.detalleDelAnuncio.dbl_costo_x_tiempo_30min != 0 || this.detalleDelAnuncio.dbl_costo_x_tiempo_45min != 0
                         || this.detalleDelAnuncio.dbl_costo_x_tiempo_1hora != 0 || this.detalleDelAnuncio.dbl_costo_x_tiempo_1hora_media != 0
@@ -91,21 +91,6 @@ export class DetalleAnuncioComponent implements OnInit {
                             url: this.domSanitizer.bypassSecurityTrustUrl(item),
                         }
                     });
-
-                    /*
-                        <meta property="og:url"                content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
-                        <meta property="og:type"               content="article" />
-                        <meta property="og:title"              content="When Great Minds Don’t Think Alike" />
-                        <meta property="og:description"        content="How much does culture influence creative thinking?" />
-                        <meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
-
-                        updateOgUrl
-                        updateOgType
-                        updateOgTitle
-                        updateOgDescription
-                        updateOgImage
-                    */
-
                 } else
                     this.router.navigate(['']);
             });
@@ -129,6 +114,9 @@ export class DetalleAnuncioComponent implements OnInit {
     }
 
     closeModal() {
+        this.seoFacebookService.updateTitle("Kinesiólogas en Perú | Gologolos");
+        this.seoFacebookService.updateContentTitle("Kinesiólogas en Perú | Gologolos");
+        this.seoFacebookService.updateDescripcion("Encuentra mejores scorts y putas disponibles para pasar el rato, disfrutas de momentos agradables con putas venezolanas, peruanas, colombiandas y ecuatorianas.");
         this.modalRef.hide();
     }
 }

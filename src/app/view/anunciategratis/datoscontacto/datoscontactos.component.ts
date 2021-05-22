@@ -22,7 +22,7 @@ export class DatosContactoComponent implements OnInit {
     txt_emailCtrl: FormControl;
     txt_webCtrl: FormControl;
     txt_telefono_1Ctrl: FormControl;
-    txt_telefono_2Ctrl: FormControl;
+    //txt_telefono_2Ctrl: FormControl;
     //Registro de Expresiones
     RegEx_mailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
     RegEx_txt_web =  /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;//"^(http[s]?:\\/\\/){0,1}(www\\.){0,1}[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,5}[\\.]{0,1}$";
@@ -54,14 +54,14 @@ export class DatosContactoComponent implements OnInit {
         this.txt_emailCtrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_mailPattern)]);
         this.txt_webCtrl = new FormControl('', [Validators.pattern(this.RegEx_txt_web)]);
         this.txt_telefono_1Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
-        this.txt_telefono_2Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
+        // this.txt_telefono_2Ctrl = new FormControl('', [Validators.required, Validators.pattern(this.RegEx_Telefono)]);
 
         this.fromContacto = new FormGroup({
             txt_nombre_ficha: this.txt_nombre_fichaCtrl,
             txt_email: this.txt_emailCtrl,
             txt_web: this.txt_webCtrl,
             txt_telefono_1: this.txt_telefono_1Ctrl,
-            txt_telefono_2: this.txt_telefono_2Ctrl
+            //txt_telefono_2: this.txt_telefono_2Ctrl
         });
 
         if (this.DataJsonAnuncio !== null) {
@@ -82,7 +82,7 @@ export class DatosContactoComponent implements OnInit {
             return;
 
         this.spinner.show();
-
+        
         if (this.DataJsonAnuncio == null) {
             //Registrar Datos
             let entidad: any = {};

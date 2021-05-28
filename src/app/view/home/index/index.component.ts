@@ -71,7 +71,14 @@ export class IndexComponent implements OnInit {
         return e.txt_nombre_ficha.toLowerCase().indexOf(entidadFiltro.txt_nombre_ficha.toLowerCase()) > -1 ||
           e.txt_lugar_servicio_distrito.indexOf(entidadFiltro.txt_lugar_servicio_distrito) ||
           e.tx_servicios_ofrece.indexOf(entidadFiltro.tx_servicios_ofrece) ||
-          e.tx_lugar_atencion.indexOf(entidadFiltro.tx_lugar_atencion)
+          e.tx_lugar_atencion.indexOf(entidadFiltro.tx_lugar_atencion) ||
+          e.int_pais_origen.indexOf(entidadFiltro.cbo_pais_ficha) /*||
+          e.tx_lugar_atencion.indexOf(entidadFiltro.cbo_edad_min_ficha) ||
+          e.tx_lugar_atencion.indexOf(entidadFiltro.cbo_edad_max_ficha) ||
+          e.tx_lugar_atencion.indexOf(entidadFiltro.cbo_pelo_ficha) ||
+          e.tx_lugar_atencion.indexOf(entidadFiltro.cbo_ojos_ficha) ||
+          e.tx_lugar_atencion.indexOf(entidadFiltro.cbo_estatura_ficha) ||
+          e.tx_lugar_atencion.indexOf(entidadFiltro.cbo_peso_ficha)*/
       }).slice(0, this.limit);
       this.generarItemAnuncio(this.masonryImages);
       let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
@@ -79,6 +86,7 @@ export class IndexComponent implements OnInit {
     } else {
       this.homeService.getAnuncio().subscribe(
         (res: ClientResponse) => {
+          debugger
           this.list = JSON.parse(res.DataJson);
           this.masonryImages = this.list.slice(0, this.limit);
           this.generarItemAnuncio(this.masonryImages);

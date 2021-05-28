@@ -92,7 +92,7 @@ label {
 }
 @media only screen and (min-width: 1170px) {
     .cd-filter {
-        width: 20%;
+        width: 40%;
     }
     .cd-filter form {
         padding: 70px 10%;
@@ -381,4 +381,20 @@ label {
 }
 .cursor{
     cursor: pointer;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .position-fixed-xs{
+        position: fixed!important;
+    }
+    .w-100-xs{width: 100%!important;}
+    .overflow-xs{
+        overflow-y: scroll;
+        top: 0;
+        bottom: 0;
+    }
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .w-40-sm{width: 40%!important;}
 }

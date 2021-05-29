@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { activeStep } from '../../../models/modelanuncio';
-import { debug } from 'util';
+
 @Injectable()
 export class StepService {
     porcentajeInicial = 16.33;

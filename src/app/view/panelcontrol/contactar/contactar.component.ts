@@ -59,7 +59,7 @@ export class ContactarComponent implements OnInit {
     this.contactarService.EnviarMail(entidad).subscribe(
       (res) => {
         console.log(res);
-        if (res.result.Status == "OK") {
+        if (res.Status == "OK") {
           this.formContactar.reset();
           alert("correo enviado");
           //this.router.navigate(['DashboardAnuncion/nuevoanuncio/datos-generales']);

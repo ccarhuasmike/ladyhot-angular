@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ConfigService } from "../Utilitarios/config.service";
-import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ClientResponse } from '../../../Models/ClientResponseModels';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 const httpOptions = {
     headers: new HttpHeaders({

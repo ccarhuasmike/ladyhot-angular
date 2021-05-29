@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { ClientResponse } from '../../../Models/ClientResponseModels';
 import { NgxMasonryOptions } from 'ngx-masonry';
-import { HomeService } from "../../../shared/services/anuncio/home.services";
+import { HomeService } from "../../../shared/services/anuncio/home.service";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { SeoService } from 'src/app/shared/services/seo/seo.service';
 import { ParameterService } from "../../../shared/services/anuncio/parameter.service";

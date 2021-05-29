@@ -6,30 +6,30 @@ import { environment } from '../environments/environment';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: '../app/view/home/home.module#HomeModule',
+    loadChildren: () => import('../app/view/home/home.module#HomeModule').then(m => m.LazyModule),
     // redirectTo: '/home',
     // pathMatch: 'full'
   },
   //PRUEBA - Dante Cc. 
   {
     path: 'home',
-    loadChildren: '../app/view/home/home.module#HomeModule',
+    loadChildren: () => import('../app/view/home/home.module#HomeModule').then(m => m.LazyModule),
   },
   {
     path: 'about',
-    loadChildren: '../app/view/about/about.module#AboutModule'
+    loadChildren: () => import('../app/view/about/about.module#AboutModule').then(m => m.LazyModule)
   },
   {
     path: 'panelcontrol',
-    loadChildren: '../app/view/panelcontrol/panelcontrol.module#PanelControlModule'
+    loadChildren: () => import('../app/view/panelcontrol/panelcontrol.module#PanelControlModule').then(m => m.LazyModule)
   },
   {
     path: 'anunciategratis',
-    loadChildren: '../app/view/anunciategratis/anunciategratis.module#AnunciateGratisModule'
+    loadChildren: () => import('../app/view/anunciategratis/anunciategratis.module#AnunciateGratisModule').then(m => m.LazyModule)
   },
   {
     path: 'seguridad',
-    loadChildren: '../app/view/seguridad/seguridad.module#SeguridadModule'
+    loadChildren: () => import('../app/view/seguridad/seguridad.module#SeguridadModule').then(m => m.LazyModule)
   },
   // {
   //   path: 'not-found',
@@ -38,7 +38,7 @@ const routes: Routes = [
   {
     path: 'kinesiologas/:provincia/:distrito/:descripcion',
     //path: 'kinesiologas/:id',
-    loadChildren: '../app/view/redireccionar-anuncio/redireccionar-anuncio.module#RedireccionarAnuncioModule',
+    loadChildren: () => import('../app/view/redireccionar-anuncio/redireccionar-anuncio.module#RedireccionarAnuncioModule').then(m => m.LazyModule)
   },
   {
     path: 'not-found',

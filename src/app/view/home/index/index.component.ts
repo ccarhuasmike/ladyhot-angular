@@ -17,7 +17,7 @@ export class IndexComponent implements OnInit {
   modalRef: BsModalRef;
   listSchemas = [];
   public status: boolean = false;
-  @ViewChild('resultadomasonry') resultadomasonry: ElementRef;
+  @ViewChild('resultadomasonry', {static: false}) resultadomasonry: ElementRef;
   public masonryOptions: NgxMasonryOptions = {
     transitionDuration: '2.0s',
     gutter: 5

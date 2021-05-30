@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewEncapsulation, Output ,EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output ,EventEmitter, PLATFORM_ID, Inject } from '@angular/core';
 import { FormGroup, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { ParameterService } from "../../../shared/services/anuncio/parameter.service";
 import { ClientResponse } from '../../../Models/ClientResponseModels';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-filtro',
@@ -45,45 +46,48 @@ export class FiltroComponent implements OnInit {
   ListFormaPago: any = [];
 
   constructor(
-    private parameter: ParameterService
+    private parameter: ParameterService,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {
   }
 
   ngOnInit() {
     this.cargarControlFiltros();
-    (function(){
-      let btnBuscarFiltro = document.getElementById('btnBuscarFiltro');
-      let btnCloseFiltro = document.getElementById('btnCloseFiltro');
-      let body = document.getElementsByTagName('body')[0];
-      var mediaqueryList = window.matchMedia("(max-width: 600px)");
-      mediaqueryList.addListener(handleTabletChange);
-      btnBuscarFiltro.onclick= function(){
-        handleTabletChange(mediaqueryList);
-      }
-      btnCloseFiltro.onclick= function(){
-        handleTabletChange(mediaqueryList);
-      }
-      function handleTabletChange(e) {
-        // Check if the media query is true
-        if (e.matches) {
-          // Then log the following message to the console
-          console.log('Media Query Matched!')
-          estiloComponentFiltro();
-        }else{
-          body.style.overflow = '';
-          btnBuscarFiltro.style.display = '';
+    if (isPlatformBrowser(this.platformId)) {
+      (function(){
+        let btnBuscarFiltro = document.getElementById('btnBuscarFiltro');
+        let btnCloseFiltro = document.getElementById('btnCloseFiltro');
+        let body = document.getElementsByTagName('body')[0];
+        var mediaqueryList = window.matchMedia("(max-width: 600px)");
+        mediaqueryList.addListener(handleTabletChange);
+        btnBuscarFiltro.onclick= function(){
+          handleTabletChange(mediaqueryList);
         }
-      }
-      function estiloComponentFiltro(){
-        if(document.getElementById('chkBuscar')['checked']){
-          body.style.overflow = 'hidden';
-          btnBuscarFiltro.style.display = 'none';
-        }else{
-          body.style.overflow = '';
-          btnBuscarFiltro.style.display = '';
+        btnCloseFiltro.onclick= function(){
+          handleTabletChange(mediaqueryList);
         }
-      }
-    })();
+        function handleTabletChange(e) {
+          // Check if the media query is true
+          if (e.matches) {
+            // Then log the following message to the console
+            console.log('Media Query Matched!')
+            estiloComponentFiltro();
+          }else{
+            body.style.overflow = '';
+            btnBuscarFiltro.style.display = '';
+          }
+        }
+        function estiloComponentFiltro(){
+          if(document.getElementById('chkBuscar')['checked']){
+            body.style.overflow = 'hidden';
+            btnBuscarFiltro.style.display = 'none';
+          }else{
+            body.style.overflow = '';
+            btnBuscarFiltro.style.display = '';
+          }
+        }
+      })();
+    }
   }
 
   cargarControlFiltros() {

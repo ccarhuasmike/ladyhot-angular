@@ -8,7 +8,7 @@ export class SEOFacebookService {
 
     private meta: Meta,
     private titleService: Title,
-    @Inject(DOCUMENT) private dom) { }
+    @Inject(DOCUMENT) private dom: Document) { }
 
   /*
       <meta property="og:url"                content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />

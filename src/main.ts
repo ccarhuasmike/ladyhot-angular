@@ -6,8 +6,10 @@ import { enableDebugTools } from '@angular/platform-browser';
 if (environment.production) {
   enableProdMode();
 }
-platformBrowserDynamic().bootstrapModule(AppModule).then(module => {
+document.addEventListener('DOMContentLoaded', () => {
+  platformBrowserDynamic().bootstrapModule(AppModule).then(module => {
   let applicationRef = module.injector.get(ApplicationRef);
   let appComponent = applicationRef.components[0];
   enableDebugTools(appComponent);
 }).catch(err => console.error(err));
+});

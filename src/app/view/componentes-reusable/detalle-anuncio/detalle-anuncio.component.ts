@@ -96,7 +96,6 @@ export class DetalleAnuncioComponent implements OnInit {
     }
 
     openLightbox() {
-        console.log('openLightbox');
         let configuracion = {
             animated: true,
             class: 'modal-lg modal-lightbox',

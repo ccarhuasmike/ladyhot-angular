@@ -13,7 +13,7 @@ import { SharedModule } from './shared/shared.module';
     NotFoundComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'gologolos' }),
     AppRoutingModule,
     //HttpModule,
     HttpClientModule,

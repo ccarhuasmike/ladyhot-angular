@@ -17,9 +17,9 @@ export class IndexComponent implements OnInit {
   modalRef: BsModalRef;
   listSchemas = [];
   public status: boolean = false;
-  @ViewChild('resultadomasonry') resultadomasonry: ElementRef;
+  @ViewChild('resultadomasonry', {static: false}) resultadomasonry: ElementRef;
   public masonryOptions: NgxMasonryOptions = {
-    transitionDuration: '2.0s',
+    //transitionDuration: '2.0s',
     gutter: 5
   };
   list: any;
@@ -81,8 +81,9 @@ export class IndexComponent implements OnInit {
           e.tx_lugar_atencion.indexOf(entidadFiltro.cbo_peso_ficha)*/
       }).slice(0, this.limit);
       this.generarItemAnuncio(this.masonryImages);
-      let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
-      this.listSchemas.push(shema);
+      //SCHEMA MOVIE
+      //let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
+      //this.listSchemas.push(shema);
     } else {
       this.homeService.getAnuncio().subscribe(
         (res: ClientResponse) => {
@@ -90,8 +91,9 @@ export class IndexComponent implements OnInit {
           this.list = JSON.parse(res.DataJson);
           this.masonryImages = this.list.slice(0, this.limit);
           this.generarItemAnuncio(this.masonryImages);
-          let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
-          this.listSchemas.push(shema);
+          //SCHEMA MOVIE
+          //let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
+          //this.listSchemas.push(shema);
         },
         (error) => {
           console.log(error + "getLisAnuncios");

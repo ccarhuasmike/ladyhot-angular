@@ -3,7 +3,6 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { NgxMasonryModule } from "ngx-masonry";
-//import { HeaderComponent } from "./header/header.component";
 import { RedireccionarAnuncioRoutingModule } from "./redireccionar-anuncio-routing.module";
 import { VerAnuncioComponent } from './ver-anuncio/ver-anuncio.component';
 import { BsModalRef } from 'ngx-bootstrap/modal';

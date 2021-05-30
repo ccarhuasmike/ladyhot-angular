@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { ParameterService, AnuncioService } from 'src/app/shared/services/service.module';
 import { ClientResponse } from 'src/app/Models/ClientResponseModels';
-import { PaginatedResult } from 'src/app/Models/Tbl_parameter_detModels';
-
-//import { NgbActiveModal } from 'ngx-bootstrap/ng-bootstrap';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({

@@ -96,16 +96,16 @@ export class DetalleAnuncioComponent implements OnInit {
     }
 
     openLightbox() {
-        this.modalRefLightbox = this.modalService.show(LightboxComponent, {
+        debugger;
+        let configuracion = {
             animated: true,
             class: 'modal-lg modal-lightbox',
             initialState: {
-                data: {
-                    imagenes: this.imagenes,
-                    slideIndex: this.slideIndex
-                }
+                imagenes: this.imagenes,
+                slideIndex: this.slideIndex
             }
-        });
+        };
+        this.modalRefLightbox = this.modalService.show(LightboxComponent, configuracion);
     }
 
     currentSlide(n) {

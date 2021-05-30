@@ -2,34 +2,35 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { NotFoundComponent } from "../app/view/not-found/not-found.component";
 import { environment } from '../environments/environment';
-///
+//
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('../app/view/home/home.module#HomeModule').then(m => m.LazyModule),
+    //loadChildren: () => import('../app/view/home/home.module').then(m => m.HomeModule)
+    loadChildren: '../app/view/home/home.module#HomeModule'
+    //loadChildren: () => import('../app/view/home/home.module#HomeModule').then(m => m.HomeModule),
     // redirectTo: '/home',
     // pathMatch: 'full'
   },
-  //PRUEBA - Dante Cc. 
   {
     path: 'home',
-    loadChildren: () => import('../app/view/home/home.module#HomeModule').then(m => m.LazyModule),
+    loadChildren: '../app/view/home/home.module#HomeModule'
   },
   {
     path: 'about',
-    loadChildren: () => import('../app/view/about/about.module#AboutModule').then(m => m.LazyModule)
+    loadChildren: '../app/view/about/about.module#AboutModule'
   },
   {
     path: 'panelcontrol',
-    loadChildren: () => import('../app/view/panelcontrol/panelcontrol.module#PanelControlModule').then(m => m.LazyModule)
+    loadChildren: '../app/view/panelcontrol/panelcontrol.module#PanelControlModule'
   },
   {
     path: 'anunciategratis',
-    loadChildren: () => import('../app/view/anunciategratis/anunciategratis.module#AnunciateGratisModule').then(m => m.LazyModule)
+    loadChildren: '../app/view/anunciategratis/anunciategratis.module#AnunciateGratisModule'
   },
   {
     path: 'seguridad',
-    loadChildren: () => import('../app/view/seguridad/seguridad.module#SeguridadModule').then(m => m.LazyModule)
+    loadChildren: '../app/view/seguridad/seguridad.module#SeguridadModule'
   },
   // {
   //   path: 'not-found',
@@ -38,7 +39,7 @@ const routes: Routes = [
   {
     path: 'kinesiologas/:provincia/:distrito/:descripcion',
     //path: 'kinesiologas/:id',
-    loadChildren: () => import('../app/view/redireccionar-anuncio/redireccionar-anuncio.module#RedireccionarAnuncioModule').then(m => m.LazyModule)
+    loadChildren: '../app/view/redireccionar-anuncio/redireccionar-anuncio.module#RedireccionarAnuncioModule'
   },
   {
     path: 'not-found',
@@ -53,7 +54,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: false })],
+  imports: [RouterModule.forRoot(routes, { useHash: false, relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

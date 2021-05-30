@@ -6,7 +6,7 @@ import { NgxMasonryModule } from "ngx-masonry";
 //import { HeaderComponent } from "./header/header.component";
 import { RedireccionarAnuncioRoutingModule } from "./redireccionar-anuncio-routing.module";
 import { VerAnuncioComponent } from './ver-anuncio/ver-anuncio.component';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ImageService } from "src/app/shared/services/Utilitarios/image.service";
 import { DetalleAnuncioReusableModule } from "../modulos-reusable/detalle-anuncio-reusable.module";
 import { HeaderReusableModule } from "../modulos-reusable/header-reusable.module";

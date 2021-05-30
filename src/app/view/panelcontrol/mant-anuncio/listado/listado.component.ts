@@ -57,15 +57,14 @@ export class ListadoComponent implements OnInit {
     }   
 
     modalEditar(id: string) {
-        this.modalRef = this.modalService.show(ModalActualizaAnuncio, {
-            class: 'modal-lg' ,
+        let configuracion = {
+            animated: true,
+            class: 'modal-lg',
             initialState: {
-                title: 'Actualizar Anuncio Demo',
-                data: {
-                    id: id
-                }
+                id: id
             }
-        });
+        };
+        this.modalRef = this.modalService.show(ModalActualizaAnuncio, configuracion);
     }
 
     darBaja(modalConfirmacion: TemplateRef<any>, codigo) {

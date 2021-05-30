@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 
 @Injectable()
 export class SEOFacebookService {

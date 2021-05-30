@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AnunciateGratisRoutingModule } from './anunciategratis-routing.module';
-import { OnlyNumber } from '../../directivas/onlynumber.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IndexComponent } from './index/indexcomponent';
 import { NavBarTabComponent } from "./navbar-tab/navbar-tab.component"
@@ -32,9 +31,7 @@ import { HeaderReusableModule } from '../modulos-reusable/header-reusable.module
         AparienciaComponent,
         ServiciosComponent,
         TarifasComponent,
-        GaleriaComponent,
-        //HeaderShared  
-        //OnlyNumber
+        GaleriaComponent
     ],
     exports: [
     ]

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { BsModalRef } from "ngx-bootstrap";
+import { BsModalRef } from "ngx-bootstrap/modal";
 import { ImageService } from "src/app/shared/services/Utilitarios/image.service";
 
 @Component({
@@ -20,6 +20,7 @@ import { ImageService } from "src/app/shared/services/Utilitarios/image.service"
     }
 
     ngOnInit(): void {
+        debugger;
         this.imagenes = this["data"]["imagenes"];
         this.slideIndex = this["data"]["slideIndex"];
         this.loadImages(this.imagenes);

@@ -20,9 +20,6 @@ import { ImageService } from "src/app/shared/services/Utilitarios/image.service"
     }
 
     ngOnInit(): void {
-        debugger;
-        this.imagenes = this["data"]["imagenes"];
-        this.slideIndex = this["data"]["slideIndex"];
         this.loadImages(this.imagenes);
     }
 

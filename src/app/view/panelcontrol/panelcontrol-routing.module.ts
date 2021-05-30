@@ -9,11 +9,11 @@ const routes: Routes = [
         children: [
             {
                 path: 'misanuncios',
-                loadChildren: '../../../app/view/panelcontrol/misanuncios/misanuncio.module#MisAnuncioModule'
+                loadChildren: () => import('../../../app/view/panelcontrol/misanuncios/misanuncio.module').then(m => m.MisAnuncioModule)
             },
             {
                 path: 'nuevoanuncio',
-                loadChildren: '../../../app/view/panelcontrol/anuncio/anuncio.module#AnuncioModule'
+                loadChildren: () => import('../../../app/view/panelcontrol/anuncio/anuncio.module').then(m => m.AnuncioModule)
             },
             {
                 path: 'contactar',
@@ -21,7 +21,7 @@ const routes: Routes = [
             },
             {
                 path: 'mantanuncio',
-                loadChildren: '../../../app/view/panelcontrol/mant-anuncio/mant-anuncio.module#MantAnuncioModule'
+                loadChildren: () => import('../../../app/view/panelcontrol/mant-anuncio/mant-anuncio.module').then(m => m.MantAnuncioModule)
             }
         ]
     }

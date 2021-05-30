@@ -6,31 +6,31 @@ import { environment } from '../environments/environment';
 const routes: Routes = [
   {
     path: '',
-    //loadChildren: () => import('../app/view/home/home.module').then(m => m.HomeModule)
-    loadChildren: '../app/view/home/home.module#HomeModule'
+    loadChildren: () => import('../app/view/home/home.module').then(m => m.HomeModule)
+    //loadChildren: '../app/view/home/home.module#HomeModule'
     //loadChildren: () => import('../app/view/home/home.module#HomeModule').then(m => m.HomeModule),
     // redirectTo: '/home',
     // pathMatch: 'full'
   },
   {
     path: 'home',
-    loadChildren: '../app/view/home/home.module#HomeModule'
+    loadChildren: () => import('../app/view/home/home.module').then(m => m.HomeModule)
   },
   {
     path: 'about',
-    loadChildren: '../app/view/about/about.module#AboutModule'
+    loadChildren: () => import('../app/view/about/about.module').then(m => m.AboutModule)
   },
   {
     path: 'panelcontrol',
-    loadChildren: '../app/view/panelcontrol/panelcontrol.module#PanelControlModule'
+    loadChildren: () => import('../app/view/panelcontrol/panelcontrol.module').then(m => m.PanelControlModule)
   },
   {
     path: 'anunciategratis',
-    loadChildren: '../app/view/anunciategratis/anunciategratis.module#AnunciateGratisModule'
+    loadChildren: () => import('../app/view/anunciategratis/anunciategratis.module').then(m => m.AnunciateGratisModule)
   },
   {
     path: 'seguridad',
-    loadChildren: '../app/view/seguridad/seguridad.module#SeguridadModule'
+    loadChildren: () => import('../app/view/seguridad/seguridad.module').then(m => m.SeguridadModule)
   },
   // {
   //   path: 'not-found',
@@ -39,7 +39,7 @@ const routes: Routes = [
   {
     path: 'kinesiologas/:provincia/:distrito/:descripcion',
     //path: 'kinesiologas/:id',
-    loadChildren: '../app/view/redireccionar-anuncio/redireccionar-anuncio.module#RedireccionarAnuncioModule'
+    loadChildren: () => import('../app/view/redireccionar-anuncio/redireccionar-anuncio.module').then(m => m.RedireccionarAnuncioModule)
   },
   {
     path: 'not-found',

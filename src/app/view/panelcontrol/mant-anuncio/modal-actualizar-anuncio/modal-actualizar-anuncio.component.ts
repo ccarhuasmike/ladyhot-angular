@@ -85,7 +85,6 @@ export class ModalActualizaAnuncio implements OnInit {
     }
 
     ngOnInit() {
-        this.id = this["data"]["id"];
         this.anuncioService.getAnuncioPorId(this.id).subscribe(
             (res: ClientResponse) => {
                 this.datosAnuncio = res.DataJson;

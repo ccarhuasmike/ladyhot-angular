@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { NotFoundComponent } from '../app/view/not-found/not-found.component';
 import { CoreModule } from '../app/view/core/core.module';
 import { SharedModule } from './shared/shared.module';
+// import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,10 +19,13 @@ import { SharedModule } from './shared/shared.module';
     //HttpModule,
     HttpClientModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    //ModuleMapLoaderModule
   ],
   
-  providers: [],
+  providers: [
+    // provideModuleMap(LAZY_MODULE_MAP) 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

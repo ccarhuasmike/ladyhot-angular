@@ -1,0 +1,5 @@
+Sitemap: https://www.gologolos.com/sitemap.xml
+User-agent: *
+Disallow: /seguridad
+Disallow: /panelcontrol
+Disallow: /anunciategratis

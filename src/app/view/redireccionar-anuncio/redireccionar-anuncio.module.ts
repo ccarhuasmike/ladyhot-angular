@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
-import { NgxMasonryModule } from "ngx-masonry";
+// import { NgxMasonryModule } from "ngx-masonry";
 import { RedireccionarAnuncioRoutingModule } from "./redireccionar-anuncio-routing.module";
 import { VerAnuncioComponent } from './ver-anuncio/ver-anuncio.component';
 import { BsModalRef } from 'ngx-bootstrap/modal';
@@ -15,7 +15,7 @@ import { HeaderReusableModule } from "../modulos-reusable/header-reusable.module
         CommonModule,
         FormsModule,
         RedireccionarAnuncioRoutingModule,
-        NgxMasonryModule,
+        //NgxMasonryModule,
         InfiniteScrollModule,
         ReactiveFormsModule,
         DetalleAnuncioReusableModule,

@@ -4,35 +4,10 @@
     <section class="cd-gallery" [ngClass]="status ? 'filter-is-visible' : ''">
         <div class="search-results" infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5" [infiniteScrollThrottle]="500" (scrolled)="onScrollDown()" (scrolledUp)="onScrollUp()" [scrollWindow]="true">
             <div class="masonry" #resultadomasonry>
-                <!-- <div class="masonry" [innerHTML]="myHtml"> -->
-
-                <!-- <div class="item cursor-pointer" *ngFor="let items of masonryImages" (click)="openModalDetalleAnuncio(items.id)"> -->
-
-                <!--
-                <div class="item cursor-pointer" *ngFor="let items of masonryImages" (click)="openModalDetalleAnuncio(items.id)">
-                    <img src="{{items.txt_imagen_prensetancion}}" alt="{{items.txt_nombre_ficha}}" style="width: 100%; height: 400px;">
-                    <div class="icons-fichas w-10">
-                        <span class="icons-fichas-info text-white line-h-2">
-                            <span class="fa fa-info"></span>
-                        </span>
-                    </div>
-                    <a href="#" class="btn-small">{{items.txt_nombre_ficha}}</a>
-                    <a href="#" class="btn-small">{{items.tx_pais_origen}}</a>
-                    <a href="#" class="btn-small"> {{items.int_edad}} Años</a>
-                    <p class="block-ellipse-descripcion">
-                        {{items.txt_presentacion}}
-                    </p>
-                </div>-->
             </div>
         </div>
         <div class="cd-fail-message">No results found</div>
     </section>
-
     <app-filtro (EnviarFiltro)="RecepcionarFiltro($event)"></app-filtro>
-
-    <!-- <app-filter (PasameElPueblo)="FiltrarDatos($event)"></app-filter> -->
-
-
-
 </main>
 <ngx-json-ld *ngFor="let item of listSchemas" [json]="item"></ngx-json-ld>

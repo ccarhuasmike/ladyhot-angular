@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { IndexComponent } from './index/index.component';
-import { NgxMasonryModule } from 'ngx-masonry';
+// import { NgxMasonryModule } from 'ngx-masonry';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxJsonLdModule } from 'ngx-json-ld';
@@ -14,7 +14,7 @@ import { HeaderReusableModule } from '../modulos-reusable/header-reusable.module
     imports: [
         CommonModule,
         HomeRoutingModule,
-        NgxMasonryModule,
+        //NgxMasonryModule,
         InfiniteScrollModule,
         FormsModule,
         ReactiveFormsModule,

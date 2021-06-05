@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { ClientResponse } from '../../../Models/ClientResponseModels';
-import { NgxMasonryOptions } from 'ngx-masonry';
 import { HomeService } from "../../../shared/services/anuncio/home.service";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { SeoService } from 'src/app/shared/services/seo/seo.service';
@@ -17,16 +16,11 @@ export class IndexComponent implements OnInit {
   modalRef: BsModalRef;
   listSchemas = [];
   public status: boolean = false;
-  @ViewChild('resultadomasonry', {static: false}) resultadomasonry: ElementRef;
-  public masonryOptions: NgxMasonryOptions = {
-    //transitionDuration: '2.0s',
-    gutter: 5
-  };
+  @ViewChild('resultadomasonry', {static: false}) resultadomasonry: ElementRef;  
   list: any;
   public title = 'autobot';
   masonryImages: any;
   limit = 16;
-
   constructor(
     private homeService: HomeService,
     private modalService: BsModalService,
@@ -35,15 +29,9 @@ export class IndexComponent implements OnInit {
     private renderer: Renderer2,
     private seoFacebookService: SEOFacebookService
   ) {
-
-
     /*Revisar este link 
     https://www.ngdevelop.tech/dynamically-add-title-and-meta-tags-on-route-change-in-angular/ 
     https://www.positronx.io/angular-seo-set-dynamic-page-title-meta-tags-in-universal-app/
-    */
-
-    /*
-    Encuentra Kinesiólogas y putas de lujo en peru con fotos verificadas y vídeos. Profesionales del sexo en Lima, Ven, Valencia y demás provincias.
     */
     this.seoFacebookService.updateTitle("Kinesiólogas en Perú | Gologolos");
     this.seoFacebookService.updateContentTitle("Kinesiólogas en Perú | Gologolos");    
@@ -58,7 +46,6 @@ export class IndexComponent implements OnInit {
     this.seoFacebookService.updateOgImage("https://www.record.com.mx/sites/default/files/galerias/2017/05/11/chica_110517.jpg")
   }
   onScrollDown() {
-
     this.limit += 15;
     this.masonryImages = this.list.slice(this.limit - 15, this.limit);
     this.generarItemAnuncio(this.masonryImages);
@@ -167,15 +154,7 @@ export class IndexComponent implements OnInit {
       diviconos_span.appendChild(diviconos_span_span);
 
       divitem.appendChild(diviconos);
-
-      /*
-      <div class="icons-fichas w-10">
-          <span class="icons-fichas-info text-white line-h-2">
-              <span class="fa fa-info"></span>
-          </span>
-      </div>
-      */
-
+      
       const primer_a = this.renderer.createElement('a');
       primer_a.className = "btn-small";
       primer_a.innerHTML = element.txt_nombre_ficha;

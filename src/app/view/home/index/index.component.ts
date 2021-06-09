@@ -7,6 +7,7 @@ import { SeoService } from 'src/app/shared/services/seo/seo.service';
 import { ParameterService } from "../../../shared/services/anuncio/parameter.service";
 import { DetalleAnuncioComponent } from '../../componentes-reusable/detalle-anuncio/detalle-anuncio.component';
 import { SEOFacebookService } from 'src/app/shared/services/seofacebook/seofacebook.service';
+import { ConfigService } from 'src/app/shared/services/Utilitarios/config.service';
 @Component({
   selector: 'app-home',
   templateUrl: "./index.component.html",
@@ -33,7 +34,8 @@ export class IndexComponent implements OnInit {
     private seoService: SeoService,
     private parameter: ParameterService,
     private renderer: Renderer2,
-    private seoFacebookService: SEOFacebookService
+    private seoFacebookService: SEOFacebookService,
+    private configService: ConfigService
   ) {
 
 
@@ -48,8 +50,8 @@ export class IndexComponent implements OnInit {
     this.seoFacebookService.updateTitle("Kinesiólogas en Perú | Gologolos");
     this.seoFacebookService.updateContentTitle("Kinesiólogas en Perú | Gologolos");    
     this.seoFacebookService.updateDescripcion("Encuentra mejores scorts y putas disponibles para pasar el rato, disfrutas de momentos agradables con putas venezolanas, peruanas, colombiandas y ecuatorianas.");
-    this.seoFacebookService.updateCanonicalUrl("https://gologolos.com/#/");
-    this.seoFacebookService.updateOgUrl("https://gologolos.com/#/");
+    this.seoFacebookService.updateCanonicalUrl("https://gologolos.com");
+    this.seoFacebookService.updateOgUrl("https://gologolos.com");
     this.seoFacebookService.updateOgType("article");
     this.seoFacebookService.updateOgTitle("Gologolos")
     this.seoFacebookService.updateOgDescription("Bienvenidos a Gologolos, guía de señoritas en Peruanas, Venezolanas, Colombianas, Ecuatorias y en toda SudAmerica" +
@@ -82,18 +84,17 @@ export class IndexComponent implements OnInit {
       }).slice(0, this.limit);
       this.generarItemAnuncio(this.masonryImages);
       //SCHEMA MOVIE
-      //let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
-      //this.listSchemas.push(shema);
+      let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
+      this.listSchemas.push(shema);
     } else {
       this.homeService.getAnuncio().subscribe(
         (res: ClientResponse) => {
-          debugger
           this.list = JSON.parse(res.DataJson);
           this.masonryImages = this.list.slice(0, this.limit);
           this.generarItemAnuncio(this.masonryImages);
           //SCHEMA MOVIE
-          //let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
-          //this.listSchemas.push(shema);
+          let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
+          this.listSchemas.push(shema);
         },
         (error) => {
           console.log(error + "getLisAnuncios");
@@ -126,7 +127,6 @@ export class IndexComponent implements OnInit {
 
   }
   generarItemAnuncio(list): void {
-    
     list.forEach(element => {
       // var html1 = `
       //   <div class ='item cursor-pointer'>
@@ -148,12 +148,16 @@ export class IndexComponent implements OnInit {
 
       const divitem = this.renderer.createElement('div');
       divitem.className = "item cursor-pointer";
-      divitem.addEventListener('click', this.openModalDetalleAnuncio.bind(this, element.id, this.modalService));
+      //divitem.addEventListener('click', this.openModalDetalleAnuncio.bind(this, element.id, this.modalService));
+
+      const divContenedor = this.renderer.createElement('div');
+      divContenedor.addEventListener('click', this.openModalDetalleAnuncio.bind(this, element.id, this.modalService));
 
       const img = this.renderer.createElement('img');
       img.src = element.txt_imagen_prensetancion;
       img.alt = element.txt_nombre_ficha;
-      divitem.appendChild(img);
+      divContenedor.appendChild(img);
+      //divitem.appendChild(img);
 
       const diviconos = this.renderer.createElement('div');
       diviconos.className = "icons-fichas w-10";
@@ -166,7 +170,8 @@ export class IndexComponent implements OnInit {
       diviconos_span_span.className = "fa fa-info";
       diviconos_span.appendChild(diviconos_span_span);
 
-      divitem.appendChild(diviconos);
+      divContenedor.appendChild(diviconos);
+      //divitem.appendChild(diviconos);
 
       /*
       <div class="icons-fichas w-10">
@@ -179,22 +184,36 @@ export class IndexComponent implements OnInit {
       const primer_a = this.renderer.createElement('a');
       primer_a.className = "btn-small";
       primer_a.innerHTML = element.txt_nombre_ficha;
-      divitem.appendChild(primer_a);
+      divContenedor.appendChild(primer_a);
 
       const segundo_a = this.renderer.createElement('a');
       segundo_a.className = "btn-small";
       segundo_a.innerHTML = element.tx_pais_origen;
-      divitem.appendChild(segundo_a);
+      divContenedor.appendChild(segundo_a);
 
       const tercero_a = this.renderer.createElement('a');
       tercero_a.className = "btn-small";
       tercero_a.innerHTML = element.int_edad + " Años";
-      divitem.appendChild(tercero_a);
+      divContenedor.appendChild(tercero_a);
 
       const parrafodescripcion = this.renderer.createElement('p');
-      parrafodescripcion.className = "block-ellipse-descripcion";
+      parrafodescripcion.className = "block-ellipse-descripcion mb-0";
       parrafodescripcion.innerHTML = element.txt_presentacion;
-      divitem.appendChild(parrafodescripcion);
+      divContenedor.appendChild(parrafodescripcion);
+
+      const btnNuevaVentana = this.renderer.createElement('a');
+      btnNuevaVentana.title = "Abrir en una pestaña nueva.";
+      btnNuevaVentana.target = '_blank';
+      let titulo = element.txt_titulo.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+      titulo = titulo.replaceAll(' ','-');
+      let departamento = element.departamento.replaceAll(' ','-');
+      let provincia = element.provincia.replaceAll(' ','-');
+      btnNuevaVentana.href = this.configService.getWebDomainURL()+'kinesiologas/'+departamento+'/'+provincia+'/'+titulo+'-'+element.id;
+      btnNuevaVentana.className = "btn btn-sm m-0 p-0 float-right";
+      btnNuevaVentana.innerHTML = '<i class="fa fa-external-link"></i>';
+
+      divitem.appendChild(divContenedor);
+      divitem.appendChild(btnNuevaVentana);
 
       this.renderer.appendChild(this.resultadomasonry.nativeElement, divitem)
     });

@@ -158,7 +158,7 @@ export class EditarComponent implements OnInit {
         //this.getDepartamento();
         this.anuncioService.getAnuncioPorId(this.route.params["value"]["id"]).subscribe(
             (res: ClientResponse) => {
-                debugger;
+                ;
                 this.datosAnuncio = res.Data;
                 this.ListDepartamento = this.datosAnuncio.departamento;
                 this.ListProvincia = this.datosAnuncio.provincia;
@@ -220,7 +220,7 @@ export class EditarComponent implements OnInit {
                     this.controlsTipServ[0].setValue(true);
                     this.ListTipoServicio[0].flag = true;
                 }
-                debugger;
+                ;
                 this.fromGenerales.patchValue({
                     //Datos de Contacto
                     txt_nombre_ficha: this.datosAnuncio.DetailleAnuncion.txt_nombre_ficha,
@@ -262,7 +262,7 @@ export class EditarComponent implements OnInit {
                 });
                 // this.parameter.getParameter().subscribe(
                 //     (res: ClientResponse) => {
-                //         debugger;
+                //         ;
 
                 //     }
                 // );
@@ -360,7 +360,7 @@ export class EditarComponent implements OnInit {
         entidad.int_pais_origen = parseInt(this.fromGenerales.value.int_pais_origen);
         //entidad.int_estudios = parseInt(this.fromGenerales.value.int_estudios);
 
-        debugger;
+        ;
         entidad.txt_titulo = this.fromGenerales.value.txt_titulo;
         entidad.txt_presentacion = this.fromGenerales.value.txt_presentacion;
         entidad.int_color_cabello = parseInt(this.fromGenerales.value.int_color_cabello);

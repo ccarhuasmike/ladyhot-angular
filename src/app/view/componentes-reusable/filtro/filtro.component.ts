@@ -69,8 +69,7 @@ export class FiltroComponent implements OnInit {
         function handleTabletChange(e) {
           // Check if the media query is true
           if (e.matches) {
-            // Then log the following message to the console
-            console.log('Media Query Matched!')
+            // Then log the following message to the console            
             estiloComponentFiltro();
           }else{
             body.style.overflow = '';

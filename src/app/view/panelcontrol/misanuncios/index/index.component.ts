@@ -24,7 +24,7 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
+    ;
     let DataUsuarioLogeado: any = JSON.parse(localStorage.getItem('DataUsuarioLogeado')); //Se Obtiene los datos del usuario logeado
     let entidad: any = {};
     entidad.id_usuario = DataUsuarioLogeado.id;

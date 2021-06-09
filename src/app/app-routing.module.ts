@@ -12,11 +12,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('../app/view/home/home.module').then(m => m.HomeModule)
-  },
-  {
-    path: 'about',
-    loadChildren: () => import('../app/view/about/about.module').then(m => m.AboutModule)
-  },
+  },  
   {
     path: 'panelcontrol',
     loadChildren: () => import('../app/view/panelcontrol/panelcontrol.module').then(m => m.PanelControlModule)

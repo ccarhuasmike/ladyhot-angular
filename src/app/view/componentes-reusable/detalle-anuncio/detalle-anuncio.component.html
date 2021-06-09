@@ -1,8 +1,3 @@
-<!--<div class="modal-header border-0 pb-1 pt-1" *ngIf="mostrarBotonCloseModal">
-    <button type="button" class="d-block d-xl-none close pull-right" aria-label="Close" (click)="closeModal()">
-        <span aria-hidden="true"><i class="fa fa-times"></i></span>
-    </button>
-</div>-->
 <div class="position-sticky fixed-top p-0 d-flex justify-content-end">
     <button type="button" class="d-block d-xl-none pull-right position-absolute icon-cerrar" (click)="closeModal()">
         <span aria-hidden="true"><i class="fa fa-times"></i></span>
@@ -25,46 +20,28 @@
                                     {{detalleDelAnuncio.txt_nombre_ficha }} {{detalleDelAnuncio.txt_telefono_1 }}, {{detalleDelAnuncio.txt_titulo}}</h1>
                                 <div class="row">
                                     <div class="col-lg-12 mt-0 text-left text-secondary h6">
-                                        <!--<span>Lima Metropolitana</span>
-                                        <span> - </span>-->
                                         <span class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';')[0] }}</span>
                                         <span class="btn btn-sm bg-info text-white float-left ml-0 m-1">{{detalleDelAnuncio.tx_edad }}
                                             años</span>
                                         <span *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora" class="btn btn-sm bg-info text-white float-left ml-0 m-1">S/.
                                             {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora }}</span>
-                                        <!--<span></span><span></span>-->
-                                        <!--<br /><br />
-                                        <span>{{detalleDelAnuncio.txt_nombre_ficha }}</span>-->
-                                        <!--<span> | {{detalleDelAnuncio.int_edad }} años</span>-->
-                                        <!--<span *ngIf="detalleDelAnuncio.dbl_costo_x_tiempo_1hora"> | S/.
-                                            {{detalleDelAnuncio.dbl_costo_x_tiempo_1hora}}</span>-->
-                                        <!--<span></span><br /><span>29/06/2019 12:00
-                                            am</span>-->
                                         <br />
-                                        <!--<a *ngIf="detalleDelAnuncio.txt_web" href="{{detalleDelAnuncio.txt_web}}"
-                                            class="text-muted font-weight-bold" target="_blank"><span>Visita mi
-                                                página</span></a>-->
                                     </div>
-    
-
                                 </div>
                             </div>
                         </div>
                     </div>
-    
+
                     <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body bg-white card-body-presentacion">
                                 <p class="h5 text-dark text-left" *ngFor="let item of detalleDelAnuncio.txt_presentacion.split(';'); let i = index">
                                     {{item.trim()}}</p>
-                                <!-- <p class="h5 text-dark text-left">
-                                    {{detalleDelAnuncio.txt_presentacion | replace: '/(\n)+\n+|\t+/g': ';'}}</p> -->
                                 <p class="h5 text-error text-left text-danger">No olvides mencionarme que viste mi anuncio en <a class="text-error font-weight-bold text-danger text-a" href="">GoloGolos</a>.
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <!-- d-lg-flex -->
                     <div class="row col-12 mx-auto">
                         <div [className]="((!noMostrarTarifas && !noMostrarFormaPago) && !noMostrarHorario)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12 p-0'" *ngIf="noDatosGenerales">
                             <div class="card-body bg-white">
@@ -83,17 +60,8 @@
                                     <span class="float-left">Estudios</span>
                                     <span class="float-right">{{detalleDelAnuncio.tx_estudio}}</span>
                                 </div>
-                                <!--     
-                                    <p class="h3 text-dark font-weight-bold text-left">
-                                        Horario
-                                    </p>                           
-                                    <div class="clearfix">
-                                    <span class="float-left">Lunes a Domingo</span>
-                                    <span class="float-right">11:00 am - 8:00 pm</span>
-                                </div> -->
                             </div>
                         </div>
-    
                         <div [className]="(!noDatosGenerales && !noMostrarHorario) ?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12 p-0'" *ngIf="noMostrarTarifas || noMostrarFormaPago">
                             <div class="card-body bg-white">
                                 <h2 class="h5 text-dark font-weight-bold text-left" *ngIf="noMostrarTarifas">
@@ -149,7 +117,7 @@
                                 </div>
                             </div>
                         </div>
-    
+
                         <div *ngIf="noMostrarHorario" [className]="((noMostrarTarifas || noMostrarFormaPago) && noDatosGenerales) ?'card col-lg-12 col-sm-12':(((!noMostrarTarifas && !noMostrarFormaPago) && !noDatosGenerales)?'card col-lg-12 col-sm-12':'card col-lg-6 col-sm-12 p-0')">
                             <div class="card-body bg-white">
                                 <h2 class="h5 text-dark font-weight-bold text-left">
@@ -160,26 +128,9 @@
                                     <br>
                                     <span class="float-left">{{detalleDelAnuncio.tx_fl_atencion_24horas}}</span>
                                 </div>
-                                <!-- <div
-                                    *ngIf="!detalleDelAnuncio.fl_atencion_24horas && !detalleDelAnuncio.tx_fl_atencion_24horas">
-                                    <div class="clearfix text-secondary h6"
-                                        *ngFor="let item of detalleDelAnuncio.tx_descripcion_extra_horario; let i = index">                                        
-                                        <span class="float-left">{{item.trim().split(';')[0]}}</span>
-                                        <span class="float-right">{{item.trim().split(';')[1]}}</span>                                        
-                                    </div>
-                                </div> -->
-                                <!--     
-                                            <p class="h3 text-dark font-weight-bold text-left">
-                                                Horario
-                                            </p>                           
-                                            <div class="clearfix">
-                                            <span class="float-left">Lunes a Domingo</span>
-                                            <span class="float-right">11:00 am - 8:00 pm</span>
-                                        </div> -->
                             </div>
                         </div>
                     </div>
-    
                     <div class="col-12" *ngIf="noMostrarApariencia">
                         <div class="card w-100">
                             <div class="card-body bg-white">
@@ -209,7 +160,7 @@
                             </div>
                         </div>
                     </div>
-    
+
                     <div class="col-12">
                         <div class="card w-100">
                             <div class="card-body bg-white pt-0 p-xs-0">
@@ -223,7 +174,7 @@
                                                 alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}" />
                                         </div>
                                     </div>
-    
+
                                 </div>
                                 <div *ngIf="imagenes.length == 0" class="d-flex justify-content-center">
                                     <img class="w-sm-50 w-100 h-50 img-thumbnail" src="assets/scort_sin_foto.jpg" alt="{{detalleDelAnuncio.txt_nombre_ficha}} {{detalleDelAnuncio.txt_telefono_1}}" loading="lazy">
@@ -231,26 +182,6 @@
                             </div>
                         </div>
                     </div>
-    
-                    <!--                     
-                    <div class="col-12">
-                        <div class="card w-100">
-                            <div class="card-body bg-white">
-                                <p class="h3 text-dark font-weight-bold text-left">
-                                    Sobre mí
-                                </p>
-                                <div class="row">
-                                    <div class="col-12 mb-2">
-                                        <a *ngFor="let item of detalleDelAnuncio.tx_descripcion_servicios_ofrece.split(';'); let i = index"
-                                            href="#" class="btn btn-sm bg-dark text-white float-left m-1">
-                                            {{item.trim()}}
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-    
                     <div class="col-12" *ngIf="detalleDelAnuncio.tx_descripcion_servicios_ofrece">
                         <div class="card w-100">
                             <div class="card-body bg-white">
@@ -272,7 +203,6 @@
                             </div>
                         </div>
                     </div>
-    
                     <div class="col-12" *ngIf="detalleDelAnuncio.tx_descripcion_lugar_atencion">
                         <div class="card w-100">
                             <div class="card-body bg-white">
@@ -289,66 +219,6 @@
                             </div>
                         </div>
                     </div>
-    
-                    <!--<div class="col-12">
-                        <div class="card w-100">
-                            <div class="card-body bg-white">
-                                <p class="h3 text-dark font-weight-bold text-left">
-                                    <i class="fa fa-hand-pointer-o"></i> Denunciar anuncio
-                                </p>
-                                <p class="h6 text-dark text-left">Infórmanos sobre posibles incidencias en
-                                    el anuncio de esta
-                                    kinesióloga.</p>
-                                <button type="button" class="btn btn-primary float-left font-weight-bold">Mostrar
-                                    formulario</button>
-                            </div>
-                        </div>
-                    </div>-->
-                    <div class="col-12 d-block d-sm-none">
-                        <!--                        
-                         <div class="card w-100">
-                            <img class="img-thumbnail" src="{{detalleDelAnuncio.txt_imagen_prensetancion }}">
-                            <div class="card-body bg-white">
-                            </div>
-                        </div> -->
-                        <!--<div class="card">
-                            <div class="card-body bg-white">
-                                <p class="h6 text-dark font-weight-bold text-left">
-                                    Haz m&aacute;s visible tu anuncio
-                                </p>
-                                <div class="row">
-                                    <div class="col-12 mb-2">
-                                        ['/productos/subir-automatico']
-                                        <a [routerLink]="" type="button"
-                                            class="col-6 btn btn-danger font-weight-bold">Subir
-                                            autom&aacute;tico</a>
-                                        ['/productos/top-anuncio']
-                                        <a [routerLink]="" type="button"
-                                            class="col-5 offset-1 btn btn-danger font-weight-bold">Top
-                                            Anuncios</a>
-                                    </div>
-    
-                                    <div class="col-12">
-                                        <button type="button" class="col-6 btn btn-danger font-weight-bold">Subir
-                                            GRATIS</button>
-                                        <button type="button"
-                                            class="col-5 offset-1 btn btn-danger font-weight-bold">Certificar
-                                            fotos</button>
-                                    </div>
-                                </div>
-                                <p class="h6 text-dark font-weight-bold text-left mt-3">
-                                    Gestiona tu anuncio
-                                </p>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <button routerLink="../panelcontrol" (click)="closeModal()" type="button"
-                                            class="w-100 btn btn-danger font-weight-bold"><i class="fa fa-key mr-1"
-                                                aria-hidden="true"></i>Panel de control</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
-                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-sm-12 d-none d-lg-block">
@@ -362,61 +232,11 @@
                                         <button type="button" *ngFor="let item of detalleDelAnuncio.txt_descripcion_lugar_servicio_distrito.split(';'); let i = index" href="#" class="btn btn-sm bg-dark text-white float-left m-1">
                                             {{item.trim()}}
                                         </button>
-                                        <!--                                         
-                                            <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
-                                            Interesante
-                                        </a>
-                                        <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
-                                            Todos los juegos
-                                        </a>
-                                        <a href="#" class="btn btn-sm bg-dark text-white float-left m-1">
-                                            Todos los juegos
-                                        </a> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-    
-                    <!--<div class="pl-1 pr-0 row col-12 mt-3">
-                        <div class="card row">
-                            <div class="card-body bg-white">
-                                <p class="h6 text-dark font-weight-bold text-left">
-                                    Haz m&aacute;s visible tu anuncio
-                                </p>
-                                <div class="row">
-                                    <div class="col-12 mb-2">
-                                        ['/productos/subir-automatico']
-                                        <a [routerLink]="" type="button"
-                                            class="col-6 btn btn-danger font-weight-bold">Subir
-                                            autom&aacute;tico</a>
-                                        ['/productos/top-anuncio']
-                                        <a [routerLink]="" type="button"
-                                            class="col-5 offset-1 btn btn-danger font-weight-bold">Top
-                                            Anuncios</a>
-                                    </div>
-    
-                                    <div class="col-12">
-                                        <button type="button" class="col-6 btn btn-danger font-weight-bold">Subir
-                                            GRATIS</button>
-                                        <button type="button"
-                                            class="col-5 offset-1 btn btn-danger font-weight-bold">Certificar
-                                            fotos</button>
-                                    </div>
-                                </div>
-                                <p class="h6 text-dark font-weight-bold text-left mt-3">
-                                    Gestiona tu anuncio
-                                </p>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <button routerLink="../panelcontrol" (click)="closeModal()" type="button"
-                                            class="w-100 btn btn-danger font-weight-bold"><i class="fa fa-key mr-1"
-                                                aria-hidden="true"></i>Panel de control</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>-->
                 </div>
             </div>
         </div>

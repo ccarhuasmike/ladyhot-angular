@@ -6,7 +6,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from "@angular/router";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { LightboxComponent } from '../lightbox/lightbox.component';
-
 @Component({
     selector: 'detalle-anuncio',
     templateUrl: './detalle-anuncio.component.html',
@@ -14,7 +13,6 @@ import { LightboxComponent } from '../lightbox/lightbox.component';
     encapsulation: ViewEncapsulation.None
 })
 export class DetalleAnuncioComponent implements OnInit {
-
     detalleDelAnuncio: any;
     noDatosGenerales: boolean = false;
     noMostrarTarifas: boolean = false;
@@ -25,9 +23,7 @@ export class DetalleAnuncioComponent implements OnInit {
     modalRefLightbox: BsModalRef;
     slideIndex = 0;
     imagenes: [];
-
     @Input() idAnuncio: string;
-
     constructor(
         private anuncioService: AnuncioService,
         private domSanitizer: DomSanitizer,
@@ -38,8 +34,6 @@ export class DetalleAnuncioComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        //http://localhost:4200/#/kinesiologas/lima-metropolitana/los-olivos/rica-ecuatoriana-blanquita-de-buen-trato-id-2200
-        //https://www.ganatan.com/tutorials/search-engine-optimization-with-angular
         let id;
         if (this["data"] != null) {
             //Este funcionar cuando el formulario se abrira desde un modal
@@ -60,7 +54,7 @@ export class DetalleAnuncioComponent implements OnInit {
                     if (res.Data["tx_descripcion_extra_horario"] != "") {
                         res.Data["tx_descripcion_extra_horario"] = res.Data["tx_descripcion_extra_horario"].replace(/(\n)+\n+|\t+/g, ";").split("\n");
                     }
-                    this.detalleDelAnuncio = res.Data;           
+                    this.detalleDelAnuncio = res.Data;
                     this.seoFacebookService.updateCanonicalUrl(this.router.url);
                     this.seoFacebookService.updateOgUrl("https://gologolos.com/kinesiologas/" + this.detalleDelAnuncio.txt_departamento + "/" + this.detalleDelAnuncio.txt_distrito + "/" + id);
                     this.seoFacebookService.updateOgType("article");
@@ -106,11 +100,9 @@ export class DetalleAnuncioComponent implements OnInit {
         };
         this.modalRefLightbox = this.modalService.show(LightboxComponent, configuracion);
     }
-
     currentSlide(n) {
         this.slideIndex = n;
     }
-
     closeModal() {
         this.seoFacebookService.updateTitle("Kinesiólogas en Perú | Gologolos");
         this.seoFacebookService.updateContentTitle("Kinesiólogas en Perú | Gologolos");

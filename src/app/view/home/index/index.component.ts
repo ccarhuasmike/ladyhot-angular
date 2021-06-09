@@ -59,13 +59,7 @@ export class IndexComponent implements OnInit {
           e.txt_lugar_servicio_distrito.indexOf(entidadFiltro.txt_lugar_servicio_distrito) ||
           e.tx_servicios_ofrece.indexOf(entidadFiltro.tx_servicios_ofrece) ||
           e.tx_lugar_atencion.indexOf(entidadFiltro.tx_lugar_atencion) ||
-          e.int_pais_origen.indexOf(entidadFiltro.cbo_pais_ficha) /*||
-          e.tx_lugar_atencion.indexOf(entidadFiltro.cbo_edad_min_ficha) ||
-          e.tx_lugar_atencion.indexOf(entidadFiltro.cbo_edad_max_ficha) ||
-          e.tx_lugar_atencion.indexOf(entidadFiltro.cbo_pelo_ficha) ||
-          e.tx_lugar_atencion.indexOf(entidadFiltro.cbo_ojos_ficha) ||
-          e.tx_lugar_atencion.indexOf(entidadFiltro.cbo_estatura_ficha) ||
-          e.tx_lugar_atencion.indexOf(entidadFiltro.cbo_peso_ficha)*/
+          e.int_pais_origen.indexOf(entidadFiltro.cbo_pais_ficha) 
       }).slice(0, this.limit);
       this.generarItemAnuncio(this.masonryImages);
       //SCHEMA MOVIE
@@ -74,7 +68,7 @@ export class IndexComponent implements OnInit {
     } else {
       this.homeService.getAnuncio().subscribe(
         (res: ClientResponse) => {
-          debugger
+          
           this.list = JSON.parse(res.DataJson);
           this.masonryImages = this.list.slice(0, this.limit);
           this.generarItemAnuncio(this.masonryImages);
@@ -89,31 +83,9 @@ export class IndexComponent implements OnInit {
     }
   }
   ngOnInit() {
-    this.getLisAnuncios();
-    //https://developers.facebook.com/tools/debug
-    //https://developers.facebook.com/docs/sharing/webmasters
-    /*
-    <meta property="og:url" content="https://gologolos.com/#/" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="Gologolos" />
-    <meta property="og:description" content="Bienvenidos a Gologolos, guía de señoritas en Peruanas, Venezolanas, Colombianas, Ecuatorias y en toda SudAmerica.
-    Nuestro objetivo como siempre es garantizar un experiencia al usuario de alta calidad donde todo el contenido esté trabajado al detalle y satisfacer así a los paladares más exquisitos.
-    Tratamos de mantener nuestro prestigio día a día para seguir siendo un portal referencia de anuncios de acompañantes de lujo." />
-    <meta property="og:image" content="https://www.record.com.mx/sites/default/files/galerias/2017/05/11/chica_110517.jpg" />
-    */
-    // this.seoFacebookService.updateCanonicalUrl("https://gologolos.com/#/");
-    // this.seoFacebookService.updateOgUrl("https://gologolos.com/#/");
-    // this.seoFacebookService.updateOgType("article");
-    // this.seoFacebookService.updateOgTitle("Gologolos")
-    // this.seoFacebookService.updateOgDescription("Bienvenidos a Gologolos, guía de señoritas en Peruanas, Venezolanas, Colombianas, Ecuatorias y en toda SudAmerica" +
-    //   "Nuestro objetivo como siempre es garantizar un experiencia al usuario de alta calidad donde todo el contenido esté trabajado al detalle y satisfacer así a los paladares más exquisitos" +
-    //   "Tratamos de mantener nuestro prestigio día a día para seguir siendo un portal referencia de anuncios de acompañantes de lujo.");
-    // this.seoFacebookService.updateOgImage("https://www.record.com.mx/sites/default/files/galerias/2017/05/11/chica_110517.jpg")
-
-
+    this.getLisAnuncios();    
   }
-  generarItemAnuncio(list): void {
-    
+  generarItemAnuncio(list): void {    
     list.forEach(element => {
       // var html1 = `
       //   <div class ='item cursor-pointer'>
@@ -132,11 +104,10 @@ export class IndexComponent implements OnInit {
       // </div>`;
       // 
       // this.myHtml = this.myHtml + html1;
-
       const divitem = this.renderer.createElement('div');
       divitem.className = "item cursor-pointer";
       divitem.addEventListener('click', this.openModalDetalleAnuncio.bind(this, element.id, this.modalService));
-
+      
       const img = this.renderer.createElement('img');
       img.src = element.txt_imagen_prensetancion;
       img.alt = element.txt_nombre_ficha;

@@ -9,10 +9,10 @@ import { StepService } from "../../../shared/services/anuncio/step.service";
 export class NavBarTabComponent implements OnInit {
     constructor(public step: StepService
     ) {
-        console.log(this.step);
+        
     }
 
     ngOnInit() {
-        console.log(this.step);
+        
     }
 }

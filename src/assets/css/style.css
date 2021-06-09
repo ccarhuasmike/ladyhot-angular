@@ -728,7 +728,9 @@ only screen and (min-resolution:2dppx) {
 .fa-phone:before {
     content: "\f095";
 }
-
+.fa-external-link:before {
+    content: "\f08e";
+}
 .fa-remove:before,
 .fa-close:before,
 .fa-times:before {

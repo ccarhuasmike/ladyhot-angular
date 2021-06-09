@@ -1,52 +1,43 @@
 import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
+import { ConfigService } from '../Utilitarios/config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SeoService {
 
-  constructor(private location: Location) { }
+  constructor(private location: Location,
+    private configService: ConfigService) { }
 
   generarJsonSchemaMovie(anuncios: any){
     
     let esquemaProducto: any;
     let itemsProducto: Array<any> = [];
-    let hostname= this.location["_platformStrategy"]._platformLocation.location.origin;
+    //let hostname= this.location["_platformStrategy"]._platformLocation.location.origin;
     if(anuncios != null){
       let itemProducto: any;
       let index = 1;
       anuncios.map((item)=>{
+        let titulo = item.txt_titulo.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+        titulo = titulo.replaceAll(' ','-');
+        let departamento = item.departamento.replaceAll(' ','-');
+        let provincia = item.provincia.replaceAll(' ','-');
           itemProducto = {
             "@type": "ListItem",
             "position": index,
             "item": {
               "@type": "Movie",
-              "url": hostname+"/kinesiologas/"+item["id"],
-              "name": item["txt_nombre_ficha"],
+              "url": this.configService.getWebDomainURL()+"kinesiologas/"+departamento+"/"+provincia+"/"+titulo+"-"+item["id"],
+              "name": item["txt_nombre_ficha"]+' '+ item["txt_telefono_1"]+', '+item["txt_titulo"],
               "image": item["txt_imagen_prensetancion"],
-              "dateCreated": "2018-10-05",
               "director": {
                   "@type": "Person",
                   "name": item["txt_nombre_ficha"]
                 },
-              "review": {
-                "@type": "Review",
-                "reviewRating": {
-                  "@type": "Rating",
-                  "ratingValue": "5"
-                },
-                "author": {
-                  "@type": "Person",
-                  "name": "GoloGolos"
-                },
-                "reviewBody": item["txt_presentacion"]
-                },
-                "aggregateRating": {
-                  "@type": "AggregateRating",
-                  "ratingValue": "90",
-                  "bestRating": "100",
-                  "ratingCount": "19141"
+                "countryOfOrigin": {
+                  "@type": "Country",
+                  "name": item["tx_pais_origen"]
                 }
               }
             };
@@ -60,8 +51,6 @@ export class SeoService {
       "@type": "ItemList",
       "itemListElement": itemsProducto
     };
-    console.log(JSON.stringify(esquemaProducto) );
-
     return esquemaProducto;
   }
 }

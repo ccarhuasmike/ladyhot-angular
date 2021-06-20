@@ -1,0 +1,21 @@
+<div class="cd-tab-filter-wrapper">
+    <div class="cd-tab-filter" id="cd-tab-filter" [ngClass]="status ? 'filter-is-visible' : ''">
+        <ul class="cd-filters">
+            <li class="placeholder">
+                <a data-type="all" href="javascript:void(0)">Todos</a>
+            </li>
+            <li class="filter">
+                <!--<a class="selected" href="/home" data-type="all">Home</a>-->
+                <a [routerLink]="['/home']" [ngClass]="[selectedHome]">
+                    Home
+                </a>
+            </li>
+            <li class="filter">
+                <a [routerLink]="['/anunciategratis']" [ngClass]="[selectedAnuncioGratis]">
+                    Anúnciate GRATIS
+                </a>
+                <!--<a routerLink="../anunciategratis" data-type="color-1">Anúnciate GRATIS</a>-->
+            </li>
+        </ul>
+    </div>
+</div>

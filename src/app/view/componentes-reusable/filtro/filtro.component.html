@@ -1,0 +1,172 @@
+<!--============================================================-->
+<!--==========================Filtros===========================-->
+<!--============================================================-->
+<div class="cd-filter position-fixed-xs w-100-xs overflow-xs w-40-sm" [ngClass]="status ? 'filter-is-visible' : ''">
+   <form *ngIf="fromGenerales" [formGroup]='fromGenerales' (ngSubmit)='save()'>
+   <div class="cd-filter-block">
+      <div class="block-buttons">
+         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type='submit' class="btn btn-secondary">Aplicar</button>
+            <button type="button" class="btn btn-secondary" (click)="Limpiar()">Limpiar</button>
+         </div>
+      </div>
+   </div>
+   <div class="cd-filter-block">
+      <h4>Buscar</h4>
+      <div class="cd-filter-content">
+         <input type="search" class="form-control form-control form-control-sm" [formControl]="txt_nombre_fichaCtrl" placeholder="Ingrese filtro de busqueda">
+      </div>
+   </div>
+   <div class="form-row">
+      <div class="cd-filter-block col-12 m-0">
+         <h4 class="text-primary font-weight-bold m-0">Datos Generales</h4>
+      </div>
+      <div class="form-group col-md-4">
+         <label for="cboPais">Pais</label>
+         <select class="form-control" id="cboPais" [formControl]="cboPais_fichaCtrl">
+            <option value="">--Todos--</option>
+            <option *ngFor="let data of ListPais" value={{data.val_valor}}>
+               {{data.tx_descripcion}}
+            </option>
+         </select>
+      </div>
+      <div class="form-group col-md-4">
+         <label for="cboEdadMin">Edad Min</label>
+         <select class="form-control" id="cboEdadMin" [formControl]="cboEdadMin_fichaCtrl">
+            <option value="">--Todos--</option>
+            <option *ngFor="let data of ListEdad" value={{data.val_valor}}>
+               {{data.tx_descripcion}}
+            </option>
+         </select>
+      </div>
+      <div class="form-group col-md-4">
+         <label for="cboEdadMax">Edad Max</label>
+         <select class="form-control" id="cboEdadMax" [formControl]="cboEdadMax_fichaCtrl">
+            <option value="">--Todos--</option>
+            <option *ngFor="let data of ListEdad" value={{data.val_valor}}>
+               {{data.tx_descripcion}}
+            </option>
+         </select>
+      </div>
+      <div class="col-12">
+         <label for="cboEdadMax">Lugar Atenci&oacute;n</label>
+         <div class="cd-filter-block">
+            <ul class="cd-filter-content cd-filters list">
+               <div class="categorias-anuncio">
+                  <div class="tc_valores">
+                     <label *ngFor="let order of fromGenerales.controls.ListLugarAtencion['controls']; let i = index" formArrayName="ListLugarAtencion" [ngClass]="{'checked': ListLugarAtencion[i].flag, '': ListLugarAtencion[i].flag}" class="categoria " [for]="'check_lugaratencion_'+ListLugarAtencion[i].val_valor">
+                     <input type="checkbox" class="chk_categoria"
+                     [id]="'check_lugaratencion_'+ListLugarAtencion[i].val_valor"
+                     (change)="onChangeLugarAtencion(ListLugarAtencion[i].val_valor, $event.target.checked)"
+                     [formControlName]="i" />
+                     {{ListLugarAtencion[i].tx_descripcion}}</label>
+                  </div>
+                  <div *ngIf="fromGenerales.controls.ListLugarAtencion.invalid" class="text-danger text-xs-left text-sm-left">
+                     Por favor seleccione por lo menos un lugar de atenci&oacute;n
+                  </div>
+               </div>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="form-row">
+      <div class="cd-filter-block col-12 m-0">
+         <h4 class="text-primary font-weight-bold m-0">Apariencia</h4>
+      </div>
+      <div class="form-group col-md-4">
+         <label for="cboPelo">Pelo</label>
+         <select class="form-control" id="cboPelo" [formControl]="cboPelo_fichaCtrl">
+            <option value="">--Todos--</option>
+            <option *ngFor="let data of ListCabellos" value={{data.val_valor}}>
+               {{data.tx_descripcion}}
+            </option>
+         </select>
+      </div>
+      <div class="form-group col-md-4">
+         <label for="cboOjos">Ojos</label>
+         <select class="form-control" id="cboOjos" [formControl]="cboOjos_fichaCtrl">
+            <option value="">--Todos--</option>
+            <option *ngFor="let data of ListOjos" value={{data.val_valor}}>
+               {{data.tx_descripcion}}
+            </option>
+         </select>
+      </div>
+      <div class="form-group col-md-4">
+         <label for="cboEstatura">Estatura</label>
+         <select class="form-control" id="cboEstatura" [formControl]="cboEstatura_fichaCtrl">
+            <option value="">--Todos--</option>
+            <option *ngFor="let data of ListEstatura" value={{data.val_valor}}>
+               {{data.tx_descripcion}}
+            </option>
+         </select>
+      </div>
+      <div class="form-group col-md-4">
+         <label for="cboPeso">Peso</label>
+         <select class="form-control" id="cboPeso" [formControl]="cboPeso_fichaCtrl">
+            <option value="">--Todos--</option>
+            <option *ngFor="let data of ListPeso" value={{data.val_valor}}>
+               {{data.tx_descripcion}}
+            </option>
+         </select>
+      </div>
+   </div>
+   <div class="form-row">
+      <div class="cd-filter-block col-12 m-0">
+         <h4 class="text-primary font-weight-bold m-0">Tarifa</h4>
+      </div>
+      <div class="col-12">
+         <label for="cboEdadMax">Forma de pago</label>
+         <div class="cd-filter-block">
+            <ul class="cd-filter-content cd-filters list">
+               <div class="categorias-anuncio">
+                  <div class="tc_valores">
+                     <label *ngFor="let order of fromGenerales.controls.ListFormaPago['controls']; let i = index" formArrayName="ListFormaPago" [ngClass]="{'checked': ListFormaPago[i].flag, '': ListFormaPago[i].flag}" class="categoria " [for]="'check_formpago_'+ListFormaPago[i].val_valor">
+                     <input type="checkbox" class="chk_categoria"
+                     [id]="'check_formpago_'+ListFormaPago[i].val_valor"
+                     (change)="onChangeFormaPago(ListFormaPago[i].val_valor, $event.target.checked)"
+                     [formControlName]="i" />
+                     {{ListFormaPago[i].tx_descripcion}}</label>
+                  </div>
+                  <div *ngIf="fromGenerales.controls.ListFormaPago.invalid" class="text-danger text-xs-left text-sm-left">
+                     Por favor seleccione por lo menos una forma de pago
+                  </div>
+               </div>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="form-row">
+      <div class="cd-filter-block">
+         <h4 class="text-primary font-weight-bold">Servicios</h4>
+         <ul class="cd-filter-content cd-filters list">
+            <div class="categorias-anuncio">
+               <div class="tc_valores">
+                  <label *ngFor="let order of fromGenerales.controls.ListTipoServicio['controls']; let i = index" formArrayName="ListTipoServicio" [ngClass]="{'checked': ListTipoServicio[i].flag, '': ListTipoServicio[i].flag}" class="categoria " [for]="'check_tiposervicios_'+ListTipoServicio[i].val_valor">
+                  <input type="checkbox" class="chk_categoria"
+                  [id]="'check_tiposervicios_'+ListTipoServicio[i].val_valor"
+                  (change)="onChangeTipoServicio(ListTipoServicio[i].val_valor, $event.target.checked)"
+                  [formControlName]="i" />
+                  {{ListTipoServicio[i].tx_descripcion}}</label>
+               </div>
+               <div *ngIf="fromGenerales.controls.ListTipoServicio.invalid" class="text-danger text-xs-left text-sm-left">
+                  Por favor seleccione por lo menos un tipo de servicio
+               </div>
+            </div>
+         </ul>
+      </div>
+   </div>
+   <div class="cd-filter-block">
+      <div class="block-buttons">
+         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type='submit' class="btn btn-secondary">Aplicar</button>
+            <button type="button" class="btn btn-secondary" (click)="Limpiar()">Limpiar</button>
+         </div>
+      </div>
+   </div>
+   </form>
+   <a id="btnCloseFiltro" href="javascript:void(0)" (click)="onCloseClick()" class="cd-close">Close</a>
+</div>
+<a id="btnBuscarFiltro" (click)="onFilterClick()" class="cd-filter-trigger cursor btnBuscar" [ngClass]="status ? 'filter-is-visible' : ''">
+<span class="fa fa-search" aria-hidden="true"></span> Buscar
+</a>
+<input type="checkbox" style="display: none;" id="chkBuscar"/>

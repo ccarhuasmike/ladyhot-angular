@@ -1,0 +1,290 @@
+<!-- <header class="cd-header">
+    <h1>Kinesiologas, Dama de companias y putas en Peru </h1>
+</header> -->
+
+<header id="header">
+    <nav id="cabecera">
+        <div id="cabecera_sup_buscar" class="cabecera_sup">
+            <div id="div_logo">
+                <a href="/" id="link_home" title="Photokines - Kinesiólogas"><img id="logo" src="../../../../assets/logo_pkpe.png" alt="Photokines - Kinesiólogas"></a>
+                <script type="application/ld+json">
+                    {
+                        "@context": "http://schema.org/",
+                        "@type": "Organization",
+                        "name": "Photokines",
+                        "url": "https://www.photokinesiologas.com",
+                        "logo": "https://cdn.photokinesiologas.com/sl/gfx/2437/logo.png"
+                    }
+                </script>
+            </div>
+            <div id="div_contador_anuncios_fotos_falsas">Eliminadas 25.033 kinesiólogas con fotos falsas.</div>
+        </div>
+        <div id="cabecera_sub_buscar" class="cabecera_sub">
+            <div id="div_busqueda_cabecera">
+                <div id="enlaces_cabecera">
+                    <div class="ver_mas m-ico-after">Ciudades principales</div>
+                    <div><a href="/kinesiologas/lima-metropolitana" title="Kinesiólogas en Lima Metropolitana">Kinesiólogas Lima Metropolitana</a><a href="/kinesiologas/arequipa" title="Kinesiólogas en Arequipa">Kinesiólogas Arequipa</a><a href="/kinesiologas/trujillo"
+                            title="Kinesiólogas en Trujillo">Kinesiólogas Trujillo</a></div>
+                </div>
+                <form id="search-form" autocomplete="off" *ngIf="fromGenerales" [formGroup]='fromGenerales' (ngSubmit)='save()'>
+                    <div id="search-field-location" class="search-field geolocation_off">
+                        <label for="search-location">¿Dónde estás?</label><input type="text" name="search-location" id="search-location" autocomplete="off" value="Los Olivos, Lima Metropolitana" maxlength="50" placeholder="¿Dónde estás?">
+                        <div id="geolocalizado">Cerca de mí</div>
+                        <div id="locate" class="m-ico" title="Cerca de mí">my_location<input id="locate_coordinates" type="hidden" value=""></div>
+                        <div id="search-location-radius" class="select">
+                            <span>+ 0 km
+                                <i class="m-ico" style="position: absolute;top: 9px;">
+                                    expand_more 
+                                </i>
+                            </span>
+
+                            <div id="distancias" class="select-values"><span class="selected">+ 0 km</span><span>+ 1 km</span><span>+ 3 km</span><span>+ 5 km</span><span>+ 10 km</span><span>+ 25 km</span><span>+ 50 km</span></div>
+                        </div>
+                        <div id="suggestions-search-location" class="suggestions" style="display: none;"></div>
+                    </div>
+                    <div id="search-field" class="search-field">
+                        <label for="search">¿Qué buscas?</label>
+                        <input type="text" name="search" [formControl]="txt_nombre_fichaCtrl" id="search" autocomplete="off" value="" maxlength="50" placeholder="¿Qué buscas?" data-placeholdermobile="¿Qué buscas?" class="showplaceholder">
+                        <div id="filters">
+                            <div id="more_filters" (click)="btnMostrarContainerFiltro()">+ Filtros</div>
+                            <div id="navegacion_categorias" [style.display]="ContainerFiltro ? 'block' : 'none'">
+                                <div class="lightbox"></div>
+                                <div class="navegacion_aux_scroll">
+
+
+
+
+                                    <div class="bloque_categorias" id="bloque_categorias_10">
+                                        <div class="descripcion_bloque_categorias">Contenido</div>
+                                        <span class="filtro disponible_on activo_off videos" data-id="con-videos">Con vídeos</span><span class="filtro disponible_on activo_off experiencias" data-id="ratings">Con ratings</span><span class="filtro disponible_on activo_off certificado"
+                                            data-id="fotos-certificadas">Fotos verificadas</span>
+                                    </div>
+                                    <div class="bloque_categorias" id="bloque_categorias_11">
+                                        <div class="descripcion_bloque_categorias">Principales</div>
+                                        <div class="descripcion_grupo_categorias">Precio S/.</div>
+                                        <div class="filtro_combo">
+                                            <!-- <div class="descripcion_grupo_categorias">Tarifa</div> -->
+                                            <div>
+                                                <span>Mín</span>
+                                                <select id="tarifa_ini">
+                                                 <option value="">&nbsp;</option>
+                                                 <option value="63-soles">63</option>
+                                                 <option value="100-soles">100</option>
+                                                 <option value="150-soles">150</option>
+                                                 <option value="200-soles">200</option>
+                                                 <option value="250-soles">250</option>
+                                                 <option value="300-soles">300</option>
+                                                 <option value="350-soles">350</option>
+                                                 <option value="400-soles">400</option>
+                                              </select>
+                                            </div>
+                                            <div>
+                                                <span>Máx</span>
+                                                <select id="tarifa_fin">
+                                                 <option value="">&nbsp;</option>
+                                                 <option value="63-soles">63</option>
+                                                 <option value="100-soles">100</option>
+                                                 <option value="150-soles">150</option>
+                                                 <option value="200-soles">200</option>
+                                                 <option value="250-soles">250</option>
+                                                 <option value="300-soles">300</option>
+                                                 <option value="350-soles">350</option>
+                                                 <option value="400-soles">400</option>
+                                              </select>
+                                            </div>
+                                        </div>
+                                        <span class="filtro disponible_on activo_off" data-id="a1">A1</span><span class="filtro disponible_on activo_off" data-id="baratas">Baratas</span><span class="filtro disponible_on activo_off" data-id="tarjeta-de-credito">Pago con tarjeta</span>
+                                        <div class="descripcion_grupo_categorias">Edad</div>
+                                        <div class="filtro_combo">
+                                            <!-- <div class="descripcion_grupo_categorias">Edad</div> -->
+                                            <div>
+                                                <span>Mín</span>
+                                                <select id="edad_ini">
+                                                 <option value="">&nbsp;</option>
+                                                 <option value="18-años">18</option>
+                                                 <option value="19-años">19</option>
+                                                 <option value="20-años">20</option>
+                                                 <option value="21-años">21</option>
+                                                 <option value="22-años">22</option>
+                                                 <option value="23-años">23</option>
+                                                 <option value="24-años">24</option>
+                                                 <option value="25-años">25</option>
+                                                 <option value="26-años">26</option>
+                                                 <option value="27-años">27</option>
+                                                 <option value="28-años">28</option>
+                                                 <option value="29-años">29</option>
+                                                 <option value="30-años">30</option>
+                                                 <option value="31-años">31</option>
+                                                 <option value="32-años">32</option>
+                                                 <option value="33-años">33</option>
+                                                 <option value="34-años">34</option>
+                                                 <option value="35-años">35</option>
+                                                 <option value="36-años">36</option>
+                                                 <option value="37-años">37</option>
+                                                 <option value="38-años">38</option>
+                                                 <option value="39-años">39</option>
+                                                 <option value="40-años">40</option>
+                                                 <option value="41-años">41</option>
+                                                 <option value="42-años">42</option>
+                                                 <option value="43-años">43</option>
+                                                 <option value="44-años">44</option>
+                                                 <option value="45-años">45</option>
+                                                 <option value="46-años">46</option>
+                                              </select>
+                                            </div>
+                                            <div>
+                                                <span>Máx</span>
+                                                <select id="edad_fin">
+                                                 <option value="">&nbsp;</option>
+                                                 <option value="18-años">18</option>
+                                                 <option value="19-años">19</option>
+                                                 <option value="20-años">20</option>
+                                                 <option value="21-años">21</option>
+                                                 <option value="22-años">22</option>
+                                                 <option value="23-años">23</option>
+                                                 <option value="24-años">24</option>
+                                                 <option value="25-años">25</option>
+                                                 <option value="26-años">26</option>
+                                                 <option value="27-años">27</option>
+                                                 <option value="28-años">28</option>
+                                                 <option value="29-años">29</option>
+                                                 <option value="30-años">30</option>
+                                                 <option value="31-años">31</option>
+                                                 <option value="32-años">32</option>
+                                                 <option value="33-años">33</option>
+                                                 <option value="34-años">34</option>
+                                                 <option value="35-años">35</option>
+                                                 <option value="36-años">36</option>
+                                                 <option value="37-años">37</option>
+                                                 <option value="38-años">38</option>
+                                                 <option value="39-años">39</option>
+                                                 <option value="40-años">40</option>
+                                                 <option value="41-años">41</option>
+                                                 <option value="42-años">42</option>
+                                                 <option value="43-años">43</option>
+                                                 <option value="44-años">44</option>
+                                                 <option value="45-años">45</option>
+                                                 <option value="46-años">46</option>
+                                              </select>
+                                            </div>
+                                        </div>
+                                        <span class="filtro disponible_on activo_off" data-id="jovencitas">Jovencitas</span><span class="filtro disponible_on activo_off" data-id="maduras">Maduras</span>
+                                        <div class="descripcion_grupo_categorias">Tipo de escort</div>
+                                        <span class="filtro disponible_on activo_off" data-id="de-agencia">De agencia</span><span class="filtro disponible_on activo_off" data-id="independientes">Independientes</span>
+                                        <div class="descripcion_grupo_categorias">Atención a</div>
+                                        <span class="filtro disponible_on activo_off" data-id="atencion-a-discapacitados">Discapacitados</span><span class="filtro disponible_on activo_off" data-id="atencion-a-mujeres">Mujeres</span><span class="filtro disponible_on activo_off"
+                                            data-id="atencion-a-parejas">Parejas</span>
+                                        <div class="descripcion_grupo_categorias">Contacto</div>
+                                        <span class="filtro disponible_on activo_off" data-id="whatsapp">Whatsapp</span>
+                                    </div>
+                                    <div class="bloque_categorias" id="bloque_categorias_12">
+                                        <div class="descripcion_bloque_categorias">Apariencia</div>
+                                        <div class="descripcion_grupo_categorias">País</div>
+                                        <select class="filtro activo_off">
+                                           <option></option>
+                                           <option disabled="" value="argentinas">Argentinas</option>
+                                           <option disabled="" value="bolivianas">Bolivianas</option>
+                                           <option value="brasileñas">Brasileñas</option>
+                                           <option value="chilenas">Chilenas</option>
+                                           <option value="colombianas">Colombianas</option>
+                                           <option disabled="" value="costarricenses">Costarricenses</option>
+                                           <option value="cubanas">Cubanas</option>
+                                           <option disabled="" value="dominicanas">Dominicanas</option>
+                                           <option value="ecuatorianas">Ecuatorianas</option>
+                                           <option disabled="" value="guatemaltecas">Guatemaltecas</option>
+                                           <option disabled="" value="hondureñas">Hondureñas</option>
+                                           <option disabled="" value="mexicanas">Mexicanas</option>
+                                           <option disabled="" value="nicaraguenses">Nicaragüenses</option>
+                                           <option disabled="" value="panameñas">Panameñas</option>
+                                           <option disabled="" value="paraguayas">Paraguayas</option>
+                                           <option value="peruanas">Peruanas</option>
+                                           <option disabled="" value="puertorriqueñas">Puertorriqueñas</option>
+                                           <option disabled="" value="salvadoreñas">Salvadoreñas</option>
+                                           <option disabled="" value="uruguayas">Uruguayas</option>
+                                           <option value="venezolanas">Venezolanas</option>
+                                        </select>
+                                        <div class="descripcion_grupo_categorias">Etnia</div>
+                                        <span class="filtro disponible_off activo_off" data-id="andinas">Andinas</span><span class="filtro disponible_on activo_off" data-id="morenas">Morenas</span><span class="filtro disponible_on activo_off" data-id="piel-blanca">Piel blanca</span>
+                                        <span
+                                            class="filtro disponible_on activo_off" data-id="trigueñas">Trigueñas</span>
+                                            <div class="descripcion_grupo_categorias">Pelo</div>
+                                            <span class="filtro disponible_on activo_off" data-id="cabello-negro">Cabello negro</span><span class="filtro disponible_on activo_off" data-id="pelirrojas">Pelirrojas</span><span class="filtro disponible_on activo_off"
+                                                data-id="rubias">Rubias</span>
+                                            <div class="descripcion_grupo_categorias">Estatura</div>
+                                            <span class="filtro disponible_on activo_off" data-id="altas">Altas</span><span class="filtro disponible_on activo_off" data-id="bajitas">Bajitas</span>
+                                            <div class="descripcion_grupo_categorias">Cuerpo</div>
+                                            <span class="filtro disponible_on activo_off" data-id="delgadas">Delgadas</span><span class="filtro disponible_on activo_off" data-id="gorditas">Gorditas</span>
+                                            <div class="descripcion_grupo_categorias">Pecho</div>
+                                            <span class="filtro disponible_on activo_off" data-id="pechos-naturales">Pechos naturales</span><span class="filtro disponible_on activo_off" data-id="tetonas">Tetonas</span>
+                                            <div class="descripcion_grupo_categorias">Pubis</div>
+                                            <span class="filtro disponible_on activo_off" data-id="pubis-depilado">Depiladas</span><span class="filtro disponible_on activo_off" data-id="pubis-sin-depilar">Sin depilar</span>
+                                    </div>
+                                    <div class="bloque_categorias" id="bloque_categorias_13">
+                                        <div class="descripcion_bloque_categorias">Servicios generales</div>
+                                        <span class="filtro disponible_on activo_off" data-id="actriz-porno">Actriz porno</span><span class="filtro disponible_on activo_off" data-id="besos-boca">Besos boca</span><span class="filtro disponible_on activo_off"
+                                            data-id="eyaculacion-cuerpo">Eyaculación cuerpo</span><span class="filtro disponible_on activo_off" data-id="facial">Eyaculación facial</span><span class="filtro disponible_on activo_off" data-id="fantasias-y-roles">Fantasías y disfraces</span>
+                                        <span
+                                            class="filtro disponible_on activo_off" data-id="masajes-eroticos">Masajes eróticos</span><span class="filtro disponible_on activo_off" data-id="sexo-oral-con-condon">Oral con condón</span><span class="filtro disponible_on activo_off" data-id="sexo-oral-hasta-el-final">Oral hasta el final</span>
+                                            <span
+                                                class="filtro disponible_on activo_off" data-id="sexo-oral-natural">Oral natural</span><span class="filtro disponible_on activo_off" data-id="sexo-anal">Sexo anal</span><span class="filtro disponible_on activo_off" data-id="trato-de-novia">Trato de novia</span><span class="filtro disponible_on activo_off"
+                                                    data-id="trios">Trío</span>
+                                    </div>
+                                    <div class="bloque_categorias" id="bloque_categorias_14">
+                                        <div class="descripcion_bloque_categorias">Servicios especiales</div>
+                                        <span class="filtro disponible_on activo_off" data-id="beso-blanco">Beso blanco</span><span class="filtro disponible_on activo_off" data-id="beso-negro">Beso negro</span><span class="filtro disponible_on activo_off"
+                                            data-id="copro">Copro</span><span class="filtro disponible_on activo_off" data-id="fetichismo">Fetichismo</span><span class="filtro disponible_on activo_off" data-id="garganta-profunda">Garganta profunda</span>
+                                        <span
+                                            class="filtro disponible_on activo_off" data-id="lluvia-dorada">Lluvia dorada</span><span class="filtro disponible_on activo_off" data-id="sado-duro">Sado duro</span><span class="filtro disponible_on activo_off" data-id="sado-suave">Sado suave</span><span class="filtro disponible_on activo_off"
+                                                data-id="squirting">Squirting</span><span class="filtro disponible_on activo_off" data-id="strap-on">Strap on</span>
+                                    </div>
+                                    <div class="bloque_categorias" id="bloque_categorias_15">
+                                        <div class="descripcion_bloque_categorias">Lugar</div>
+                                        <span class="filtro disponible_on activo_off" data-id="a-domicilio">A domicilio</span><span class="filtro disponible_on activo_off" data-id="club">Club</span><span class="filtro disponible_on activo_off" data-id="con-departamento">Con departamento</span>
+                                        <span
+                                            class="filtro disponible_on activo_off" data-id="hotel">Hotel / Motel</span><span class="filtro disponible_on activo_off" data-id="cena-romantica">Cena romántica</span><span class="filtro disponible_on activo_off" data-id="club-intercambio">Club intercambio</span>
+                                            <span
+                                                class="filtro disponible_on activo_off" data-id="despedidas-soltero">Despedidas soltero</span><span class="filtro disponible_on activo_off" data-id="disponibles-para-eventos">Eventos y fiestas</span><span class="filtro disponible_on activo_off" data-id="disponibles-para-viajes">Viajes</span>
+                                    </div>
+
+
+
+
+                                </div>
+                                <div class="navegacion_controles">
+                                    <button type='submit' class="boton aplicar "><i class="m-ico">check_circle</i>Filtrar</button>
+                                    <span class="boton eliminar"><i class="m-ico">cancel</i>Borrar</span>
+                                    <span class="boton cerrar" (click)="btnOcultarContainerFiltro()"><i class="m-ico">close</i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="suggestions-search" class="suggestions" style="display: none;"></div>
+                    </div>
+                    <button id="search-submit">
+                        <span class="m-ico ">search</span>
+                        Buscar
+                    </button>
+                    <!-- <div >                        
+                        <input type="submit" value="Buscar">
+                    </div> -->
+                </form>
+            </div>
+            <a id="publicar" class="boton m-ico-before enlace" [routerLink]="['/anunciategratis']">Publicar anuncio gratis</a>
+            <!-- <div id="favoritos" title="Favoritas"><i class="m-ico icono" title="Favoritos"></i><span>0</span></div> -->
+            <!-- <div class="navegacion navegacion_about">
+                <div class="navegacion_titulo m-ico">menu</div>
+                <div class="navegacion_menu">
+                    <div class="bloque bloque_dashboard">
+                        <span class="titulo">Menú</span>
+                        <div class="contenedor">
+                            <div class="grupo"><span class="anuncio_precios item enlace" id="about-precios"><img src="https://cdn.photokinesiologas.com/sl/gfx/2437/precios.png"><span>Precios</span></span><span class="anuncio_publicar item enlace" id="about-publicar"><img src="https://cdn.photokinesiologas.com/sl/gfx/2437/formulario.png"><span>Publicar anuncio</span></span>
+                                <span class="panel_de_control item enlace" id="about-control"><img src="https://cdn.photokinesiologas.com/sl/gfx/2437/panel_de_control.png"><span>Panel de control</span></span>
+                            </div>
+                        </div>
+                        <div class="grupo"><span class="contactar item enlace" id="about-contactar"><img src="https://cdn.photokinesiologas.com/sl/gfx/2437/contactar.png"><span>Contactar</span></span><span class="textos_legales item enlace" id="about-textos-legales"><img src="https://cdn.photokinesiologas.com/sl/gfx/2437/textos_legales.png"><span>Textos Legales</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </nav>
+</header>

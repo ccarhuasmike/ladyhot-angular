@@ -1,0 +1,33 @@
+<div class="f1-steps">
+  <div class="f1-progress">
+    <div class="f1-progress-line" [ngStyle]="{ 'width': this.step.porcentajeIncremental + '%' }"></div>
+  </div>
+  <div class="f1-step" [ngClass]="{'active': this.step.workflow[0].flag, '': this.step.workflow[0].flag}">
+    <div class="f1-step-icon">
+      <h4 style="text-align: center; display: inline-block;">1</h4>
+    </div>
+    <p> Datos de Contacto</p>
+  </div>
+  <div class="f1-step" [ngClass]="{'active': this.step.workflow[1].flag, '': this.step.workflow[1].flag}">
+    <div class="f1-step-icon">
+      <h4 style="text-align: center; display: inline-block;">2</h4>
+    </div>
+    <p>Datos Generales</p>
+  </div>
+  <div class="f1-step" [ngClass]="{'active': this.step.workflow[2].flag, '': this.step.workflow[2].flag}">
+    <div class="f1-step-icon"><h4 style="text-align: center; display: inline-block;">3</h4></div>
+    <p>Apariencia</p>
+  </div>
+  <div class="f1-step" [ngClass]="{'active': this.step.workflow[3].flag, '': this.step.workflow[3].flag}">
+    <div class="f1-step-icon"><h4 style="text-align: center; display: inline-block;">4</h4></div>
+    <p>Tarifas</p>
+  </div>
+  <div class="f1-step" [ngClass]="{'active': this.step.workflow[4].flag, '': this.step.workflow[4].flag}">
+    <div class="f1-step-icon"><h4 style="text-align: center; display: inline-block;">5</h4></div>
+    <p>Servicios</p>
+  </div>
+  <div class="f1-step" [ngClass]="{'active': this.step.workflow[5].flag, '': this.step.workflow[5].flag}">
+    <div class="f1-step-icon"><h4 style="text-align: center; display: inline-block;">6</h4></div>
+    <p>Galeria</p>
+  </div>
+</div>

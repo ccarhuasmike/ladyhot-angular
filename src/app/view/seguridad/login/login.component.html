@@ -1,0 +1,51 @@
+<div id="content">
+    <div class="bloque bloque_login">
+        <h1 class="titulo">Panel de control</h1>
+        <form [formGroup]='formLogin' (ngSubmit)="login()" novalidate class="login_container">
+            <span class="titulo">Ya tengo acceso</span>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <input type="text" name="txt_emailCtrl" formControlName="txt_email"
+                                class="form-control form-control-sm" placeholder="Email" maxlength="50" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <input type="password" name="txt_passwordCtrl" formControlName="txt_password"  class="form-control form-control-sm" required placeholder="Contraseña"
+                        maxlength="50">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <label class="mantener_sesion">
+                        <input type="checkbox" name="mantener"> Recuérdame
+                    </label>
+                    <span class="recordar_password"><a routerLink="../../seguridad/RestablecerPassword">¿Has olvidado tu
+                            contraseña?</a></span>
+                </div>
+            </div>
+            <br>
+            <div class="form-group row">
+                <button class="btn btn-primary btn-block" [disabled]="formLogin.invalid">Entrar en mi panel </button>
+            </div>
+        </form>
+        <form [formGroup]='formGenerarPassword' (ngSubmit)="GenerarPassword()" novalidate class="landing_container">
+            <span class="titulo">Aún no tengo acceso</span>
+            <p class="descripcion">Si ya has publicado un anuncio, pero no has accedido nunca a tu panel de
+                control,
+                indícanos el email del anuncio que deseas gestionar y te enviaremos el enlace para entrar.</p>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <input type="text" class="form-control form-control-sm" [formControl]="txt_emailGenerarPasswordCtrl"
+                        placeholder="Email" maxlength="50">
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="form-group row">
+                <button class="btn btn-primary btn-block" [disabled]="formGenerarPassword.invalid">Enviar
+                    enlace</button>
+            </div>
+        </form>
+    </div>
+</div>

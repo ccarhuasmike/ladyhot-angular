@@ -1,0 +1,56 @@
+<app-header (EnviarFiltro)="RecepcionarFiltro($event)"></app-header>
+<main class="cd-main-content">
+    <!-- <app-navegacion></app-navegacion> -->
+    <!-- <section class="cd-gallery" [ngClass]="status ? 'filter-is-visible' : ''"> -->
+    <div id="cabecera_resultados" class="resultados_width">
+        <div>
+            <h1>Kinesiólogas en Los Olivos (Lima)</h1>
+            <div id="breadcrumbs">
+                <ol itemscope="" itemtype="http://schema.org/BreadcrumbList">
+                    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" href="/" title="Kinesiólogas en Perú"><span itemprop="name">Perú</span></a>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" href="/kinesiologas/lima-metropolitana" title="Kinesiólogas en Lima Metropolitana"><span itemprop="name">Lima Metropolitana</span></a>
+                        <meta itemprop="position" content="2">
+                    </li>
+                    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem"><a itemtype="http://schema.org/Thing" itemprop="item" href="/kinesiologas/lima-metropolitana/los-olivos" title="Kinesiólogas en Los Olivos"><span itemprop="name">Los Olivos</span></a>
+                        <meta itemprop="position" content="3">
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="resultados">
+        <!-- <div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5" [infiniteScrollThrottle]="500" (scrolled)="onScrollDown()" (scrolledUp)="onScrollUp()" [scrollWindow]="true">  -->
+        <!-- <div class="row" infiniteScroll [infiniteScrollDistance]="0" (scrolled)="onScrollDown()"> -->
+        <!-- <div class="search-results" infiniteScroll [infiniteScrollDistance]="10" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()"> -->
+
+        <ngx-masonry [options]="masonryOptions" style="width: 93vw; float: right;" [ordered]="true" (itemsLoaded)="itemsLoaded()">
+            <div ngxMasonryItem *ngFor="let items of masonryImages;index as idx" class="masonry-item">
+                <figure class="content-item">
+                    <img [src]="items.txt_imagen_prensetancion" width="100%" (click)="openModalDetalleAnuncio(items.id)">
+                    <p class="titulo"> {{items.txt_presentacion}}</p>
+                    <div class="content-tag">
+                        <span class="categoria_noclick">{{items.txt_nombre_ficha}}</span>
+                        <span class="categoria_noclick">{{items.tx_pais_origen}}</span>
+                        <span class="categoria_noclick">{{items.int_edad}} Años</span>
+                        <br>
+                        <!-- <span class="categoria_noclick categoria_videos">                        
+                                        <i class="m-ico">play_arrow</i>1                        
+                            </span> -->
+                        <a title="Abrir en una pestaña nueva." (click)="openNewTabDetalleAnuncio(items)" class="btn btn-sm m-0 p-0 float-right">
+                            <i class="fa fa-external-link"></i>
+                        </a>
+                    </div>
+                </figure>
+            </div>
+        </ngx-masonry>
+        <!-- </div> -->
+    </div>
+    <div class="container-buttom">
+        <button *ngIf="limit < 100" (click)="showMoreImages()">Cargar más Kinesiólogas</button>
+    </div>
+    <!-- </section> -->
+
+</main>
+<ngx-json-ld *ngFor="let item of listSchemas" [json]="item"></ngx-json-ld>

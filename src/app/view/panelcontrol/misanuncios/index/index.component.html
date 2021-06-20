@@ -1,0 +1,45 @@
+<div class="container-demo">
+  <div *ngFor="let anuncio of listaMisAnuncios">
+    <div class="container-anuncio">
+      <div class="container-left">
+        <div class="Uploadbtn" *ngIf="!anuncio.txt_imagen_prensetancion">
+          <img class="img-thumbnail" src="assets/profile.png" alt="Forest">
+        </div>
+        <div class="Uploadbtn" *ngIf="anuncio.txt_imagen_prensetancion">
+          <img class="img-thumbnail" [src]="anuncio.txt_imagen_prensetancion" alt="Forest">
+        </div>
+
+      </div>
+      <div class="container-right">
+        <h1 class="parrafo-left" for="tx_descripcion_extra_servicio">{{anuncio.txt_nombre_ficha}}</h1>
+        <p class="parrafo-left" for="tx_descripcion_extra_servicio">Codigo Referencia: {{anuncio.codigo}}</p>
+        <p class="parrafo-left" for="tx_descripcion_extra_servicio">Este anuncio esta: <strong>Pendiente de
+            Pago</strong>
+        </p>
+        <p class="parrafo-left" for="tx_descripcion_extra_servicio">El anuncio ha sido visitado en los últimos días:
+          {{anuncio.int_cant_visto}}
+          veces</p>
+        <p class="parrafo-left" for="tx_descripcion_extra_servicio">Te han mandado a través del formulario de correo:
+          0
+          peticiones de contacto</p>
+
+        <button class="btn btn-primary btn-sm btn-standar" (click)="editarMiAnuncio(anuncio)">Modificar
+          Anuncio</button>
+        <button class="btn btn-primary btn-sm btn-standar" (click)="galeriaMiAnuncio(anuncio)">Fotos
+          del
+          anuncio</button>
+        <button class="btn btn-primary btn-sm btn-standar">Videos
+          del
+          anuncio</button>
+        <button class="btn btn-primary btn-sm btn-standar">Estadisticas
+          completas</button>
+        <button class="btn btn-primary btn-sm btn-standar" (click)="darBajaMiAnuncio(anuncio)">Dar
+          de baja
+          el anuncio</button>
+
+      </div>
+    </div>
+    <br>
+    <div class="divider"></div>
+  </div>
+</div>

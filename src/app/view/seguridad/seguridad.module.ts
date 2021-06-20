@@ -1,0 +1,39 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { LoginComponent } from './login/login.component';
+import { EscogerPasswordComponent } from './escoger-password/escoger-password.component';
+import { PasswordGuardadoComponent } from './password-guardado/password-guardado.component';
+import { RestablecerPasswordComponent } from './restablecer-password/restablecer-password.component';
+import { SendEmailComponent } from './sent-email/sent-email.component';
+import { SendEmailPasswordComponent } from './sent-email-password/sent-email-password.component';
+import { LoginRoutingModule } from './seguridad-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedCompoentModule } from '../../view/shared/sharedcomponent.module';
+import { IndexComponent } from './index/index.component';
+//import { HeaderShared } from "../shared/header/header.component"
+
+@NgModule({
+    imports: [       
+        CommonModule,
+        LoginRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SharedCompoentModule
+        //HeaderShared
+    ],
+    declarations: [
+        IndexComponent,
+        LoginComponent,
+        EscogerPasswordComponent,
+        PasswordGuardadoComponent,
+        RestablecerPasswordComponent,
+        SendEmailComponent,
+        SendEmailPasswordComponent,
+        //HeaderShared
+    ],
+    exports: [
+
+    ]
+})
+
+export class SeguridadModule { }

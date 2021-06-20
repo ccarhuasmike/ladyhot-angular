@@ -1,0 +1,32 @@
+<div class="container-demo">
+  <div class="container-anuncio">
+    <div class="container-left">
+      <!-- <img class="img-thumbnail"
+        src="https://i.pinimg.com/736x/e8/7f/f1/e87ff18fb1ea227b1eab4aa48c99d26d--naruto-sasuke-sakura-naruto-uzumaki.jpg"
+        alt="Forest"> -->
+      <div *ngIf="!txt_imagen_prensetancion">
+        <img class="img-thumbnail" src="assets/profile.png" alt="Forest">
+      </div>
+      <div *ngIf="txt_imagen_prensetancion">
+        <img class="img-thumbnail" [src]="txt_imagen_prensetancion" alt="Forest">
+      </div>
+
+    </div>
+    <div class="container-right">
+      <h1 class="parrafo-left" for="tx_descripcion_extra_servicio">{{nombre}}</h1>
+      <p class="text-left">
+        <strong class="rosa">ANTENCIÓN!</strong>
+        <br>Al proceder a Borrar se eliminarán todas las estadisticas del anuncio así como cualqueir tipo de
+        foto,video
+        existente y relacionado al mismo.
+      </p>
+      <br>
+
+      <div class="pull-left">
+        <button type="button" class="btn btn-secondary  btn-sm" (click)="cancelarMiAnuncio()">Cancelar</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="eliminarMiAnuncio()">Borrar</button>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+</div>

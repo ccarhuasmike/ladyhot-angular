@@ -1,0 +1,98 @@
+<form [formGroup]='fromDatosGenerales' (ngSubmit)='saveDatosGenerales()' novalidate>
+    <div class="form-horizontal">
+
+
+        <!-- <div class="form-group row">
+      <label class="col-sm-3 control-label text-right " for="cbo_estudios">Estudios</label>
+      <div class="col-sm-5">
+        <select class="form-control form-control-sm" [formControl]="estudiosCtrl" required (change)="selectName();">
+          <option value="">--Seleccione--</option>
+          <option *ngFor="let data of ListEstudios" value={{data.val_valor}}>
+            {{data.tx_descripcion}}
+          </option>
+        </select>
+      </div>
+      <div class="col-sm-4">
+        <p class="form-control-static">nivel de estudios realizados</p>
+      </div>
+    </div> -->
+        <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="txt_titulo">Titulo</label>
+            <div class="col-sm-5">
+                <input class="form-control form-control-sm" type="text" required [formControl]="tituloCtrl" placeholder="Ingrese nombre">
+                <div *ngIf="tituloCtrl.invalid && (tituloCtrl.dirty || isSubmittedDatosGenerales)" class="text-danger">
+                    <div *ngIf="tituloCtrl.errors.required">
+                        Se requiere titulo.
+                    </div>
+                    <div *ngIf="tituloCtrl.errors.minlength">
+                        El nombre debe tener al menos 15 caracteres.
+                    </div>
+                    <div *ngIf="tituloCtrl.errors.maxlength">
+                        El nombre no debe exceder los 200 caracteres.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <p class="form-control-static">Titulo del anuncio.</p>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="txt_presentacion">Presentación</label>
+            <div class="col-sm-5">
+                <textarea class="form-control form-control-sm" [formControl]="txt_descripcion_generalesCtrl" required id="txt_presentacion" rows="12" placeholder="Explica un poco más sobre ti, cómo eres, que te gusta, tus aficiones y habilidades...."></textarea>
+                <div *ngIf="txt_descripcion_generalesCtrl.invalid && (txt_descripcion_generalesCtrl.dirty || isSubmittedDatosGenerales)" class="text-danger">
+                    <div *ngIf="txt_descripcion_generalesCtrl.errors.required">
+                        Se requiere Presentación.
+                    </div>
+                    <div *ngIf="txt_descripcion_generalesCtrl.errors.minlength">
+                        El nombre debe tener al menos 50 caracteres.
+                    </div>
+                    <div *ngIf="txt_descripcion_generalesCtrl.errors.maxlength">
+                        El nombre no debe exceder los 2000 caracteres.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <p class="form-control-static">Explica un poco más sobre ti. Aquí puedes presentarte a los futuros clientes, descríbete un poco mejor, explica cómo eres, que te gusta, tus aficiones y habilidades. ¿Porqué deben llamarte? Cualquier otra cosa que creas es importante,
+                    esta es tu oportunidad!</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="cbo_pais">País de origen</label>
+            <div class="col-sm-5">
+                <select class="form-control form-control-sm" [formControl]="paisCtrl" required (change)="selectName();">
+        <option value="">--Seleccione--</option>
+        <option *ngFor="let data of ListPais" value={{data.val_valor}}>
+          {{data.tx_descripcion}}
+        </option>
+      </select>
+            </div>
+            <div class="col-sm-4">
+                <p class="form-control-static">¿dónde te has criado?</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 control-label text-right " for="cbo_edad">Edad</label>
+            <div class="col-sm-5">
+                <select class="form-control form-control-sm" [formControl]="edadCtrl" required (change)="selectName();">
+        <option value="">--Seleccione--</option>
+        <option *ngFor="let data of ListEdad" value={{data.val_valor}}>
+          {{data.tx_descripcion}}
+        </option>
+      </select>
+            </div>
+            <div class="col-sm-4">
+                <p class="form-control-static">elige tu edad</p>
+            </div>
+        </div>
+        <div class="form-group text-center">
+            <button class="btn btn-outline-rounded btn-default" (click)="btnAtras(fromDatosGenerales)"> <span
+          style="margin-right:10px;" class="glyphicon glyphicon-arrow-left"></span> Atras</button>
+
+            <button class="btn btn-outline-rounded btn-info">
+        Siguiente <span style="margin-left:10px;" class="glyphicon glyphicon-arrow-right"></span></button>
+        </div>
+    </div>
+    <!-- <button type='submit' class='btn btn-primary'>Save</button> -->
+</form>

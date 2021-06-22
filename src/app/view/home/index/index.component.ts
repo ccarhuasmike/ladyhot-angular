@@ -100,6 +100,7 @@ export class IndexComponent implements OnInit {
   }
  
   openNewTabDetalleAnuncio(element: any): void {
+    debugger;
     let titulo = element.txt_titulo.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
     titulo = titulo.replaceAll(' ', '-');
     let departamento = element.departamento.replaceAll(' ', '-');

@@ -8,8 +8,8 @@ export class ConfigService {
         //this._webApi = "http://localhost:7044/api/";        
         //this._webApi = "http://danteccarhuas-002-site2.ftempurl.com/api/";
         this._webApi = "https://webapigologolos.gologolos.com/api/";
-        this._webDomain = "https://www.gologolos.com/";
-        //this._webDomain = "http://localhost:4200/";
+        //this._webDomain = "https://www.gologolos.com/";
+        this._webDomain = "http://localhost:4200/";
     }
     getWebApiURL() {
         return this._webApi;

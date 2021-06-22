@@ -28,7 +28,8 @@
                 </div>
                 <form id="search-form" autocomplete="off" *ngIf="fromGenerales" [formGroup]='fromGenerales' (ngSubmit)='save()'>
                     <div id="search-field-location" class="search-field geolocation_off">
-                        <label for="search-location">¿Dónde estás?</label><input type="text" name="search-location" id="search-location" autocomplete="off" value="Los Olivos, Lima Metropolitana" maxlength="50" placeholder="¿Dónde estás?">
+                        <label for="search-location">¿Dónde estás?</label>
+                        <input type="text" name="search-location" id="search-location" autocomplete="off" value="Los Olivos, Lima Metropolitana" maxlength="50" placeholder="¿Dónde estás?">
                         <div id="geolocalizado">Cerca de mí</div>
                         <div id="locate" class="m-ico" title="Cerca de mí">my_location<input id="locate_coordinates" type="hidden" value=""></div>
                         <div id="search-location-radius" class="select">
@@ -205,45 +206,43 @@
                                         </select>
                                         <div class="descripcion_grupo_categorias">Etnia</div>
                                         <span class="filtro disponible_off activo_off" data-id="andinas">Andinas</span><span class="filtro disponible_on activo_off" data-id="morenas">Morenas</span><span class="filtro disponible_on activo_off" data-id="piel-blanca">Piel blanca</span>
-                                        <span
-                                            class="filtro disponible_on activo_off" data-id="trigueñas">Trigueñas</span>
-                                            <div class="descripcion_grupo_categorias">Pelo</div>
-                                            <span class="filtro disponible_on activo_off" data-id="cabello-negro">Cabello negro</span><span class="filtro disponible_on activo_off" data-id="pelirrojas">Pelirrojas</span><span class="filtro disponible_on activo_off"
-                                                data-id="rubias">Rubias</span>
-                                            <div class="descripcion_grupo_categorias">Estatura</div>
-                                            <span class="filtro disponible_on activo_off" data-id="altas">Altas</span><span class="filtro disponible_on activo_off" data-id="bajitas">Bajitas</span>
-                                            <div class="descripcion_grupo_categorias">Cuerpo</div>
-                                            <span class="filtro disponible_on activo_off" data-id="delgadas">Delgadas</span><span class="filtro disponible_on activo_off" data-id="gorditas">Gorditas</span>
-                                            <div class="descripcion_grupo_categorias">Pecho</div>
-                                            <span class="filtro disponible_on activo_off" data-id="pechos-naturales">Pechos naturales</span><span class="filtro disponible_on activo_off" data-id="tetonas">Tetonas</span>
-                                            <div class="descripcion_grupo_categorias">Pubis</div>
-                                            <span class="filtro disponible_on activo_off" data-id="pubis-depilado">Depiladas</span><span class="filtro disponible_on activo_off" data-id="pubis-sin-depilar">Sin depilar</span>
+                                        <span class="filtro disponible_on activo_off" data-id="trigueñas">Trigueñas</span>
+                                        <div class="descripcion_grupo_categorias">Pelo</div>
+                                        <span class="filtro disponible_on activo_off" data-id="cabello-negro">Cabello negro</span><span class="filtro disponible_on activo_off" data-id="pelirrojas">Pelirrojas</span><span class="filtro disponible_on activo_off"
+                                            data-id="rubias">Rubias</span>
+                                        <div class="descripcion_grupo_categorias">Estatura</div>
+                                        <span class="filtro disponible_on activo_off" data-id="altas">Altas</span><span class="filtro disponible_on activo_off" data-id="bajitas">Bajitas</span>
+                                        <div class="descripcion_grupo_categorias">Cuerpo</div>
+                                        <span class="filtro disponible_on activo_off" data-id="delgadas">Delgadas</span><span class="filtro disponible_on activo_off" data-id="gorditas">Gorditas</span>
+                                        <div class="descripcion_grupo_categorias">Pecho</div>
+                                        <span class="filtro disponible_on activo_off" data-id="pechos-naturales">Pechos naturales</span><span class="filtro disponible_on activo_off" data-id="tetonas">Tetonas</span>
+                                        <div class="descripcion_grupo_categorias">Pubis</div>
+                                        <span class="filtro disponible_on activo_off" data-id="pubis-depilado">Depiladas</span><span class="filtro disponible_on activo_off" data-id="pubis-sin-depilar">Sin depilar</span>
                                     </div>
                                     <div class="bloque_categorias" id="bloque_categorias_13">
                                         <div class="descripcion_bloque_categorias">Servicios generales</div>
                                         <span class="filtro disponible_on activo_off" data-id="actriz-porno">Actriz porno</span><span class="filtro disponible_on activo_off" data-id="besos-boca">Besos boca</span><span class="filtro disponible_on activo_off"
                                             data-id="eyaculacion-cuerpo">Eyaculación cuerpo</span><span class="filtro disponible_on activo_off" data-id="facial">Eyaculación facial</span><span class="filtro disponible_on activo_off" data-id="fantasias-y-roles">Fantasías y disfraces</span>
-                                        <span
-                                            class="filtro disponible_on activo_off" data-id="masajes-eroticos">Masajes eróticos</span><span class="filtro disponible_on activo_off" data-id="sexo-oral-con-condon">Oral con condón</span><span class="filtro disponible_on activo_off" data-id="sexo-oral-hasta-el-final">Oral hasta el final</span>
-                                            <span
-                                                class="filtro disponible_on activo_off" data-id="sexo-oral-natural">Oral natural</span><span class="filtro disponible_on activo_off" data-id="sexo-anal">Sexo anal</span><span class="filtro disponible_on activo_off" data-id="trato-de-novia">Trato de novia</span><span class="filtro disponible_on activo_off"
-                                                    data-id="trios">Trío</span>
+                                        <span class="filtro disponible_on activo_off" data-id="masajes-eroticos">Masajes eróticos</span><span class="filtro disponible_on activo_off" data-id="sexo-oral-con-condon">Oral con condón</span><span class="filtro disponible_on activo_off"
+                                            data-id="sexo-oral-hasta-el-final">Oral hasta el final</span>
+                                        <span class="filtro disponible_on activo_off" data-id="sexo-oral-natural">Oral natural</span><span class="filtro disponible_on activo_off" data-id="sexo-anal">Sexo anal</span><span class="filtro disponible_on activo_off"
+                                            data-id="trato-de-novia">Trato de novia</span><span class="filtro disponible_on activo_off" data-id="trios">Trío</span>
                                     </div>
                                     <div class="bloque_categorias" id="bloque_categorias_14">
                                         <div class="descripcion_bloque_categorias">Servicios especiales</div>
                                         <span class="filtro disponible_on activo_off" data-id="beso-blanco">Beso blanco</span><span class="filtro disponible_on activo_off" data-id="beso-negro">Beso negro</span><span class="filtro disponible_on activo_off"
                                             data-id="copro">Copro</span><span class="filtro disponible_on activo_off" data-id="fetichismo">Fetichismo</span><span class="filtro disponible_on activo_off" data-id="garganta-profunda">Garganta profunda</span>
-                                        <span
-                                            class="filtro disponible_on activo_off" data-id="lluvia-dorada">Lluvia dorada</span><span class="filtro disponible_on activo_off" data-id="sado-duro">Sado duro</span><span class="filtro disponible_on activo_off" data-id="sado-suave">Sado suave</span><span class="filtro disponible_on activo_off"
-                                                data-id="squirting">Squirting</span><span class="filtro disponible_on activo_off" data-id="strap-on">Strap on</span>
+                                        <span class="filtro disponible_on activo_off" data-id="lluvia-dorada">Lluvia dorada</span><span class="filtro disponible_on activo_off" data-id="sado-duro">Sado duro</span><span class="filtro disponible_on activo_off"
+                                            data-id="sado-suave">Sado suave</span><span class="filtro disponible_on activo_off" data-id="squirting">Squirting</span><span class="filtro disponible_on activo_off" data-id="strap-on">Strap on</span>
                                     </div>
                                     <div class="bloque_categorias" id="bloque_categorias_15">
                                         <div class="descripcion_bloque_categorias">Lugar</div>
                                         <span class="filtro disponible_on activo_off" data-id="a-domicilio">A domicilio</span><span class="filtro disponible_on activo_off" data-id="club">Club</span><span class="filtro disponible_on activo_off" data-id="con-departamento">Con departamento</span>
+                                        <span class="filtro disponible_on activo_off" data-id="hotel">Hotel / Motel</span><span class="filtro disponible_on activo_off" data-id="cena-romantica">Cena romántica</span><span class="filtro disponible_on activo_off"
+                                            data-id="club-intercambio">Club intercambio</span>
+                                        <span class="filtro disponible_on activo_off" data-id="despedidas-soltero">Despedidas soltero</span><span class="filtro disponible_on activo_off" data-id="disponibles-para-eventos">Eventos y fiestas</span>
                                         <span
-                                            class="filtro disponible_on activo_off" data-id="hotel">Hotel / Motel</span><span class="filtro disponible_on activo_off" data-id="cena-romantica">Cena romántica</span><span class="filtro disponible_on activo_off" data-id="club-intercambio">Club intercambio</span>
-                                            <span
-                                                class="filtro disponible_on activo_off" data-id="despedidas-soltero">Despedidas soltero</span><span class="filtro disponible_on activo_off" data-id="disponibles-para-eventos">Eventos y fiestas</span><span class="filtro disponible_on activo_off" data-id="disponibles-para-viajes">Viajes</span>
+                                            class="filtro disponible_on activo_off" data-id="disponibles-para-viajes">Viajes</span>
                                     </div>
 
 

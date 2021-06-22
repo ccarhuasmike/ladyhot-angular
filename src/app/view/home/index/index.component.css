@@ -3,6 +3,11 @@
     overflow-y: scroll;
 }
 
+.masonryOptionsContainer {
+    width: 93vw;
+    float: right;
+}
+
 .container-buttom {
     width: 100%;
     padding: 10px;
@@ -235,5 +240,9 @@
 @media screen and (max-width: 415px) {
     .masonry-item {
         width: 100%;
+        padding: 12px;
+    }
+    .masonryOptionsContainer {
+        width: 100vw;
     }
 }

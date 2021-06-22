@@ -632,7 +632,7 @@ html.form_login #content #ficha_edicion textarea,
     margin: 0 12px;
 }
 
-#cabecera_sub_buscar>div * {
+#navegacion_categorias>div * {
     line-height: normal;
 }
 

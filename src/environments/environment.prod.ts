@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
   stripeKey: '',//Llave publica
-  localhost:  'https://gologolos.com/',
+  webApi :"https://webapigologolos.gologolos.com/api/",
+  webDomain : "https://www.gologolos.com/"
 };

@@ -36,15 +36,17 @@ export class DetalleAnuncioComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        debugger;
         let id;
-        if (this["data"] != null) {
-            //Este funcionar cuando el formulario se abrira desde un modal
-            id = this["data"]["id"];
-            this.mostrarBotonCloseModal = this["data"]["mostrarBotonCloseModal"];
-        }
-        else if (this.idAnuncio != null) {
+        if (this.idAnuncio != null) {
             id = this.idAnuncio;
-        }
+        }else{
+            if (this["data"] != null) {
+                //Este funcionar cuando el formulario se abrira desde un modal
+                id = this["data"]["id"];
+                this.mostrarBotonCloseModal = this["data"]["mostrarBotonCloseModal"];
+            }   
+        }       
 
         this.anuncioService.ObtenerDetalleAnucionXId(id).subscribe(
             (res: ClientResponse) => {

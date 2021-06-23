@@ -12,8 +12,8 @@ export class VerAnuncioComponent implements OnInit {
     idAnuncio:string;
 
     constructor(private location: Location){
-        
-        let id = /[0-9]+/g.exec(this.location.path()).toString();
+        debugger;
+        let id = this.location.path().split("-")[this.location.path().split("-").length - 1] ;///[0-9]+/g.exec(this.location.path()).toString();
         this.idAnuncio = id;
     }
 

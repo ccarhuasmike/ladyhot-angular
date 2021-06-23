@@ -25,10 +25,10 @@
         <!-- <div class="row" infiniteScroll [infiniteScrollDistance]="0" (scrolled)="onScrollDown()"> -->
         <!-- <div class="search-results" infiniteScroll [infiniteScrollDistance]="10" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()"> -->
 
-        <ngx-masonry [options]="masonryOptions" style="width: 93vw; float: right;" [ordered]="true" (itemsLoaded)="itemsLoaded()">
+        <ngx-masonry [options]="masonryOptions" class="masonryOptionsContainer" [ordered]="true" (itemsLoaded)="itemsLoaded()">
             <div ngxMasonryItem *ngFor="let items of masonryImages;index as idx" class="masonry-item">
                 <figure class="content-item">
-                    <img [src]="items.txt_imagen_prensetancion" width="100%" (click)="openModalDetalleAnuncio(items.id)">
+                    <img [src]="items.txt_imagen_prensetancion" (click)="openModalDetalleAnuncio(items.id)">
                     <p class="titulo"> {{items.txt_presentacion}}</p>
                     <div class="content-tag">
                         <span class="categoria_noclick">{{items.txt_nombre_ficha}}</span>

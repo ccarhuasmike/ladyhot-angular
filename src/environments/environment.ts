@@ -5,7 +5,8 @@
 export const environment = {
   production: false,  
   stripeKey: '',//Llave publica
-  localhost: 'http://localhost:4200/'
+  webApi :"https://webapigologolos.gologolos.com/api/",
+  webDomain : "https://www.gologolos.com/"
 };
 // export class environment {
 //   public static production: boolean = false;

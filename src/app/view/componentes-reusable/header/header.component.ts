@@ -2,7 +2,9 @@ import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, PLATFORM_ID
 import { FormGroup, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { ParameterService } from "../../../shared/services/anuncio/parameter.service";
 import { ClientResponse } from '../../../Models/ClientResponseModels';
-import { isPlatformBrowser } from '@angular/common';
+//import { isPlatformBrowser } from '@angular/common';
+import { KeyBindService } from 'src/app/shared/services/Utilitarios/key-bind.service';
+import { merge } from 'rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: "./header.component.html",
@@ -10,11 +12,12 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class HeaderComponent implements OnInit {
   public ContainerFiltro = false;
-
-
   @Output() EnviarFiltro = new EventEmitter();
   public status: boolean = false;
   public nombreFicha : string="";
+  classNameChecked:string = 'activo_on';
+  //documentKeydown = null;
+  metaUpKey$;
   /*Variables de Filtros */
   fromGenerales: FormGroup;
   ListDistrito: any = [];
@@ -49,7 +52,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private parameter: ParameterService,
-    @Inject(PLATFORM_ID) private platformId: any
+    //@Inject(PLATFORM_ID) private platformId: any,
+    private keybind: KeyBindService
   ) { }
 
   ngOnInit() {
@@ -151,32 +155,35 @@ export class HeaderComponent implements OnInit {
       this.ListDistrito[index].flag = isChecked;
     }
   }
-  onChangeLugarAtencion(val_valor: number, isChecked: boolean) {
-
+  onChangeLugarAtencion(val_valor: number, event: any) {
     let index = this.ListLugarAtencion.findIndex(x => x.val_valor === val_valor);
-    if (isChecked) {
-      this.ListLugarAtencion[index].flag = isChecked;
-    } else {
-      this.ListLugarAtencion[index].flag = isChecked;
-    }
+    const hasClass = event.target.classList.contains(this.classNameChecked);
+    this.ListLugarAtencion[index].flag = hasClass;
+    //if (isChecked) {
+    //  this.ListLugarAtencion[index].flag = isChecked;
+    //} else {
+    //  this.ListLugarAtencion[index].flag = isChecked;
+    //}
   }
-  onChangeTipoServicio(val_valor: number, isChecked: boolean) {
-
+  onChangeTipoServicio(val_valor: number, event: any) {
     let index = this.ListTipoServicio.findIndex(x => x.val_valor === val_valor);
-    if (isChecked) {
-      this.ListTipoServicio[index].flag = isChecked;
-    } else {
-      this.ListTipoServicio[index].flag = isChecked;
-    }
+    const hasClass = event.target.classList.contains(this.classNameChecked);
+    this.ListTipoServicio[index].flag = hasClass;
+    //if (isChecked) {
+    //  this.ListTipoServicio[index].flag = isChecked;
+    //} else {
+    //  this.ListTipoServicio[index].flag = isChecked;
+    //}
   }
-  onChangeFormaPago(val_valor: number, isChecked: boolean) {
-
+  onChangeFormaPago(val_valor: number, event: any) {
     let index = this.ListFormaPago.findIndex(x => x.val_valor === val_valor);
-    if (isChecked) {
-      this.ListFormaPago[index].flag = isChecked;
-    } else {
-      this.ListFormaPago[index].flag = isChecked;
-    }
+    const hasClass = event.target.classList.contains(this.classNameChecked);
+    this.ListFormaPago[index].flag = hasClass;
+    //if (isChecked) {
+    //  this.ListFormaPago[index].flag = isChecked;
+    //} else {
+    //  this.ListFormaPago[index].flag = isChecked;
+    //}
   }
   Limpiar() {
     //Implementar logica limpiar controles
@@ -203,32 +210,48 @@ export class HeaderComponent implements OnInit {
       element.flag = false;
     });
   }
+  check(event: any, className: string){
+    const hasClass = event.target.classList.contains(className);
+    if(hasClass) {
+      event.target.classList.remove(className);
+      event.target.classList.add('activo_on');
+      //event.removeClass(event.target, className);
+    } else {
+      event.target.classList.add(className);
+      event.target.classList.remove('activo_on');
+      //event.addClass(event.target, className);
+    }
+  }
   save() {
     // const selectedDistrito = this.fromGenerales.value.ListDistrito
     //   .map((v, i) => v ? this.ListDistrito[i].val_valor : null)
     //   .filter(v => v !== null);
-    // const selectedLugarAtencion = this.fromGenerales.value.ListLugarAtencion
-    //   .map((v, i) => v ? this.ListLugarAtencion[i].val_valor : null)
-    //   .filter(v => v !== null);
-    // const selectedTipoServicio = this.fromGenerales.value.ListTipoServicio
-    //   .map((v, i) => v ? this.ListTipoServicio[i].val_valor : null)
-    //   .filter(v => v !== null);
-    debugger;
-    this.entidad.txt_nombre_ficha = this.fromGenerales.value.txt_nombre_ficha;
+    const selectedFormaPago = this.fromGenerales.value.ListFormaPago
+    .map((v, i) => v ? this.ListFormaPago[i].val_valor : null)
+    .filter(v => v !== null);
+    const selectedLugarAtencion = this.fromGenerales.value.ListLugarAtencion
+    .map((v, i) => v ? this.ListLugarAtencion[i].val_valor : null)
+    .filter(v => v !== null);
+    const selectedTipoServicio = this.fromGenerales.value.ListTipoServicio
+    .map((v, i) => v ? this.ListTipoServicio[i].val_valor : null)
+    .filter(v => v !== null);
+    //this.entidad.txt_nombre_ficha = this.fromGenerales.value.txt_nombre_ficha;
     
     //this.entidad.txt_nombre_ficha = this.nombreFicha;
 
     
-    // this.entidad.txt_lugar_servicio_distrito = this.getCheboxerSeleccionado(selectedDistrito);
-    // this.entidad.tx_lugar_atencion = this.getCheboxerSeleccionado(selectedLugarAtencion);
-    // this.entidad.tx_servicios_ofrece = this.getCheboxerSeleccionado(selectedTipoServicio);
-    // this.entidad.cbo_pais_ficha = this.fromGenerales.value.cboPais_ficha;
-    // this.entidad.cbo_edad_min_ficha = this.fromGenerales.value.cboEdadMin_ficha;
-    // this.entidad.cbo_edad_max_ficha = this.fromGenerales.value.cboEdadMax_ficha;
-    // this.entidad.cbo_pelo_ficha = this.fromGenerales.value.cboPelo_ficha;
-    // this.entidad.cbo_ojos_ficha = this.fromGenerales.value.cboOjos_ficha;
-    // this.entidad.cbo_estatura_ficha = this.fromGenerales.value.cboEstatura_ficha;
-    // this.entidad.cbo_peso_ficha = this.fromGenerales.value.cboPeso_ficha;
+    //this.entidad.txt_lugar_servicio_distrito = this.getCheboxerSeleccionado(selectedDistrito);
+    this.entidad.tx_forma_pago = this.getCheboxerSeleccionado(selectedFormaPago);
+    this.entidad.tx_lugar_atencion = this.getCheboxerSeleccionado(selectedLugarAtencion);
+    this.entidad.tx_servicios_ofrece = this.getCheboxerSeleccionado(selectedTipoServicio);
+    this.entidad.cbo_pais_ficha = this.fromGenerales.value.cboPais_ficha;
+    this.entidad.cbo_edad_min_ficha = this.fromGenerales.value.cboEdadMin_ficha;
+    this.entidad.cbo_edad_max_ficha = this.fromGenerales.value.cboEdadMax_ficha;
+    this.entidad.cbo_pelo_ficha = this.fromGenerales.value.cboPelo_ficha;
+    this.entidad.cbo_ojos_ficha = this.fromGenerales.value.cboOjos_ficha;
+    this.entidad.cbo_estatura_ficha = this.fromGenerales.value.cboEstatura_ficha;
+    this.entidad.cbo_peso_ficha = this.fromGenerales.value.cboPeso_ficha;
+    console.log(this.entidad);
     this.EnviarFiltro.emit({ entidad: this.entidad });
 
   }
@@ -242,8 +265,17 @@ export class HeaderComponent implements OnInit {
   }
   btnMostrarContainerFiltro(): void {
     this.ContainerFiltro = !this.ContainerFiltro;
-    if (this.ContainerFiltro)
+    if (this.ContainerFiltro){
       document.body.style.overflow = "hidden";
+      // Typical use case
+      this.metaUpKey$ = this.keybind
+      .match('ESCAPE', [])
+      .subscribe(() =>{
+        this.btnOcultarContainerFiltro();
+        this.metaUpKey$.unsubscribe();
+      } 
+      );
+    }
     else
       document.body.style.overflow = "auto";
   }

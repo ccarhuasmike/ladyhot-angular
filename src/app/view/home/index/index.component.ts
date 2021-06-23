@@ -110,7 +110,6 @@ export class IndexComponent implements OnInit {
     newTab.opener = null
   }
   RecepcionarFiltro(event): void {
-    debugger;
     this.getLisAnuncios(true, event.entidad);
   }
   openModalDetalleAnuncio(id: number) {

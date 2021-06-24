@@ -226,24 +226,32 @@ export class HeaderComponent implements OnInit {
     // const selectedDistrito = this.fromGenerales.value.ListDistrito
     //   .map((v, i) => v ? this.ListDistrito[i].val_valor : null)
     //   .filter(v => v !== null);
-    const selectedFormaPago = this.fromGenerales.value.ListFormaPago
-    .map((v, i) => v ? this.ListFormaPago[i].val_valor : null)
-    .filter(v => v !== null);
-    const selectedLugarAtencion = this.fromGenerales.value.ListLugarAtencion
-    .map((v, i) => v ? this.ListLugarAtencion[i].val_valor : null)
-    .filter(v => v !== null);
-    const selectedTipoServicio = this.fromGenerales.value.ListTipoServicio
-    .map((v, i) => v ? this.ListTipoServicio[i].val_valor : null)
-    .filter(v => v !== null);
-    //this.entidad.txt_nombre_ficha = this.fromGenerales.value.txt_nombre_ficha;
-    
-    //this.entidad.txt_nombre_ficha = this.nombreFicha;
+    debugger;
+    // const selectedFormaPago = this.fromGenerales.value.ListFormaPago
+    // .map((v, i) => v ? this.ListFormaPago[i].val_valor : null)
+    // .filter(v => v !== null);
+    // const selectedLugarAtencion = this.fromGenerales.value.ListLugarAtencion
+    // .map((v, i) => v ? this.ListLugarAtencion[i].val_valor : null)
+    // .filter(v => v !== null);
+    // const selectedTipoServicio = this.fromGenerales.value.ListTipoServicio
+    // .map((v, i) => v ? this.ListTipoServicio[i].val_valor : null)
+    // .filter(v => v !== null);
 
-    
+    const selectedFormaPago = this.ListFormaPago.filter(x=>{return x.flag ==true}).map(x=>{return x.val_valor}).join(",")
+    const selectedLugarAtencion = this.ListLugarAtencion.filter(x=>{return x.flag ==true}).map(x=>{return x.val_valor}).join(",")
+    const selectedTipoServicio = this.ListTipoServicio.filter(x=>{return x.flag ==true}).map(x=>{return x.val_valor}).join(",")
+
+    //this.ListTipoServicio[index].flag
+
+    //this.entidad.txt_nombre_ficha = this.nombreFicha;    
     //this.entidad.txt_lugar_servicio_distrito = this.getCheboxerSeleccionado(selectedDistrito);
-    this.entidad.tx_forma_pago = this.getCheboxerSeleccionado(selectedFormaPago);
-    this.entidad.tx_lugar_atencion = this.getCheboxerSeleccionado(selectedLugarAtencion);
-    this.entidad.tx_servicios_ofrece = this.getCheboxerSeleccionado(selectedTipoServicio);
+    debugger;
+    // this.entidad.tx_forma_pago = this.getCheboxerSeleccionado(selectedFormaPago);
+    // this.entidad.tx_lugar_atencion = this.getCheboxerSeleccionado(selectedLugarAtencion);
+    // this.entidad.tx_servicios_ofrece = this.getCheboxerSeleccionado(selectedTipoServicio);
+    this.entidad.tx_forma_pago = selectedFormaPago;
+    this.entidad.tx_lugar_atencion = selectedLugarAtencion;
+    this.entidad.tx_servicios_ofrece = selectedTipoServicio;
     this.entidad.cbo_pais_ficha = this.fromGenerales.value.cboPais_ficha;
     this.entidad.cbo_edad_min_ficha = this.fromGenerales.value.cboEdadMin_ficha;
     this.entidad.cbo_edad_max_ficha = this.fromGenerales.value.cboEdadMax_ficha;
@@ -251,7 +259,7 @@ export class HeaderComponent implements OnInit {
     this.entidad.cbo_ojos_ficha = this.fromGenerales.value.cboOjos_ficha;
     this.entidad.cbo_estatura_ficha = this.fromGenerales.value.cboEstatura_ficha;
     this.entidad.cbo_peso_ficha = this.fromGenerales.value.cboPeso_ficha;
-    console.log(this.entidad);
+    this.entidad.txt_nombre_ficha = this.fromGenerales.value.txt_nombre_ficha;    
     this.EnviarFiltro.emit({ entidad: this.entidad });
 
   }

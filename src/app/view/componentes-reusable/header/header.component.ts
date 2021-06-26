@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
   public status: boolean = false;
   public nombreFicha : string="";
   classNameChecked:string = 'activo_on';
-  //documentKeydown = null;
   metaUpKey$;
   /*Variables de Filtros */
   fromGenerales: FormGroup;

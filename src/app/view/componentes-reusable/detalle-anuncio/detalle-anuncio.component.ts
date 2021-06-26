@@ -6,6 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from "@angular/router";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { LightboxComponent } from '../lightbox/lightbox.component';
+import { KeyBindService } from "src/app/shared/services/Utilitarios/key-bind.service";
 @Component({
     selector: 'detalle-anuncio',
     templateUrl: './detalle-anuncio.component.html',
@@ -13,6 +14,7 @@ import { LightboxComponent } from '../lightbox/lightbox.component';
     encapsulation: ViewEncapsulation.None
 })
 export class DetalleAnuncioComponent implements OnInit {
+    metaUpKey$;
     detalleDelAnuncio: any;
     noDatosGenerales: boolean = false;
     noMostrarTarifas: boolean = false;
@@ -32,7 +34,8 @@ export class DetalleAnuncioComponent implements OnInit {
         private router: Router,
         private modalService: BsModalService,
         private modalRef: BsModalRef,
-        private seoFacebookService: SEOFacebookService
+        private seoFacebookService: SEOFacebookService,
+        private keybind: KeyBindService
     ) { }
 
     ngOnInit() {
@@ -91,6 +94,14 @@ export class DetalleAnuncioComponent implements OnInit {
                 } else
                     this.router.navigate(['']);
             });
+        // Typical use case
+      this.metaUpKey$ = this.keybind
+      .match('ESCAPE', [])
+      .subscribe(() =>{
+        this.closeModal();
+        this.metaUpKey$.unsubscribe();
+      } 
+      );
     }
 
     openLightbox() {

@@ -63,12 +63,12 @@ export class IndexComponent implements OnInit {
   getLisAnuncios(filtrer: boolean = false, entidadFiltro: any = {}) {
     if (filtrer) {
       this.masonryImages = this.list.filter(function (e) {
-        return e.txt_nombre_ficha.toLowerCase().indexOf(entidadFiltro.txt_nombre_ficha.toLowerCase()) > -1 
-        //  ||
-        //   e.txt_lugar_servicio_distrito.indexOf(entidadFiltro.txt_lugar_servicio_distrito) ||
-        //   e.tx_servicios_ofrece.indexOf(entidadFiltro.tx_servicios_ofrece) ||
-        //   e.tx_lugar_atencion.indexOf(entidadFiltro.tx_lugar_atencion) ||
-        //   e.int_pais_origen.indexOf(entidadFiltro.cbo_pais_ficha)
+        return 
+          e.txt_nombre_ficha.toLowerCase().indexOf(entidadFiltro.txt_nombre_ficha.toLowerCase()) > -1 ||         
+          //e.txt_lugar_servicio_distrito.indexOf(entidadFiltro.txt_lugar_servicio_distrito) ||
+          e.tx_servicios_ofrece.indexOf(entidadFiltro.tx_servicios_ofrece) > -1||
+          e.tx_lugar_atencion.indexOf(entidadFiltro.tx_lugar_atencion) > -1||
+          e.int_pais_origen.indexOf(entidadFiltro.cbo_pais_ficha)> -1
       }).slice(0, this.limit);      
       //SCHEMA MOVIE
       let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { ClientResponse } from '../../../Models/ClientResponseModels';
+import { ClientResponse, Pagination } from '../../../Models/ClientResponseModels';
 import { HomeService } from "../../../shared/services/anuncio/home.service";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { SeoService } from 'src/app/shared/services/seo/seo.service';
@@ -8,6 +8,7 @@ import { DetalleAnuncioComponent } from '../../componentes-reusable/detalle-anun
 import { SEOFacebookService } from 'src/app/shared/services/seofacebook/seofacebook.service';
 import { ConfigService } from 'src/app/shared/services/Utilitarios/config.service';
 import { NgxMasonryOptions, NgxMasonryComponent } from 'ngx-masonry';
+import { TblAnuncioBusqueda } from 'src/app/Models/TblAnuncioBusqueda';
 @Component({
   selector: 'app-home',
   templateUrl: "./index.component.html",
@@ -17,6 +18,9 @@ import { NgxMasonryOptions, NgxMasonryComponent } from 'ngx-masonry';
 export class IndexComponent implements OnInit {
   modalRef: BsModalRef;
   listSchemas = [];
+  anuncioBusqueda: TblAnuncioBusqueda;
+  paginacion:Pagination;
+  criterioFiltros:any;
   public status: boolean = false;
   @ViewChild('resultadomasonry', { static: false }) resultadomasonry: ElementRef;
 
@@ -28,7 +32,7 @@ export class IndexComponent implements OnInit {
   list: any;
   public title = 'autobot';
   masonryImages: any;
-  limit = 16;
+  //limit = 16;
   constructor(
     private homeService: HomeService,
     private modalService: BsModalService,
@@ -55,13 +59,13 @@ export class IndexComponent implements OnInit {
     this.seoFacebookService.updateOgImage("https://www.record.com.mx/sites/default/files/galerias/2017/05/11/chica_110517.jpg")
   }
   onScrollDown() {
-    this.limit += 15;
-    this.masonryImages = this.list.slice(this.limit - 15, this.limit);    
+    //this.limit += 15;
+    //this.masonryImages = this.list.slice(this.limit - 15, this.limit);    
   }
   onScrollUp() {
   }
   getLisAnuncios(filtrer: boolean = false, entidadFiltro: any = {}) {
-    if (filtrer) {
+    /*if (filtrer) {
       this.masonryImages = this.list.filter(function (e) {
         return 
           e.txt_nombre_ficha.toLowerCase().indexOf(entidadFiltro.txt_nombre_ficha.toLowerCase()) > -1 ||         
@@ -72,35 +76,56 @@ export class IndexComponent implements OnInit {
       }).slice(0, this.limit);      
       //SCHEMA MOVIE
       let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
-      this.listSchemas.push(shema);
-    } else {
-      this.homeService.getAnuncio().subscribe(
+      this.listSchemas.push(shema);*/
+    //} else {
+      this.anuncioBusqueda.edad_min = entidadFiltro.cbo_edad_min_ficha;
+      this.anuncioBusqueda.edad_max = entidadFiltro.cbo_edad_max_ficha;
+      this.anuncioBusqueda.estatura = entidadFiltro.cbo_estatura_ficha;
+      this.anuncioBusqueda.ojos = entidadFiltro.cbo_ojos_ficha;
+      this.anuncioBusqueda.pais = entidadFiltro.cbo_pais_ficha;
+      this.anuncioBusqueda.pelo = entidadFiltro.cbo_pelo_ficha;
+      this.anuncioBusqueda.peso = entidadFiltro.cbo_peso_ficha;
+      this.anuncioBusqueda.forma_pago = entidadFiltro.tx_forma_pago;
+      this.anuncioBusqueda.lugar_atencion = entidadFiltro.tx_lugar_atencion;
+      this.anuncioBusqueda.servicio_ofrece = entidadFiltro.tx_servicios_ofrece;
+      this.anuncioBusqueda.nombre_ficha = entidadFiltro.txt_nombre_ficha;
+      this.anuncioBusqueda.paginacion = this.paginacion;
+      
+      this.homeService.getAnuncioPaginado(this.anuncioBusqueda).subscribe(
         (res: ClientResponse) => {
           this.list = JSON.parse(res.DataJson);
-          this.masonryImages = this.list.slice(0, this.limit);          
+          this.paginacion.TotalPages = Math.ceil(this.list[0].TotalRegistros / this.paginacion.ItemsPerPage);
+          //this.masonryImages = this.list.slice(0, this.limit);
+          this.masonryImages = this.list;
           //SCHEMA MOVIE
           let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
           this.listSchemas.push(shema);
         },
         (error) => {
-          console.log(error + "getLisAnuncios");
+          console.log(error + "getAnuncioPaginado");
         }
       );
-    }
+    //}
   }
   ngOnInit() {
+    this.paginacion = new Pagination();
+    this.paginacion.ItemsPerPage = 15;
+    this.paginacion.CurrentPage = 1;
+    //this.paginacion.TotalPages = 10;
+    this.anuncioBusqueda = new TblAnuncioBusqueda();
     this.getLisAnuncios();
   }
   itemsLoaded() {
     console.log('itemsloaded');
   }
   showMoreImages() {
-    this.limit += 15;
-    this.masonryImages = this.list.slice(0, this.limit);
+    this.paginacion.CurrentPage += 1;
+    this.getLisAnuncios(this.criterioFiltros) ;
+    //this.limit += 15;
+    //this.masonryImages = this.list.slice(0, this.limit);
   }
  
   openNewTabDetalleAnuncio(element: any): void {
-    debugger;
     let titulo = element.txt_titulo.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
     titulo = titulo.replaceAll(' ', '-');
     let departamento = element.departamento.replaceAll(' ', '-');
@@ -111,7 +136,8 @@ export class IndexComponent implements OnInit {
     newTab.opener = null
   }
   RecepcionarFiltro(event): void {
-    this.getLisAnuncios(true, event.entidad);
+    this.criterioFiltros = event.entidad;
+    this.getLisAnuncios(event.entidad);
   }
   openModalDetalleAnuncio(id: number) {
     this.modalRef = this.modalService.show(DetalleAnuncioComponent, {

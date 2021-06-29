@@ -20,4 +20,5 @@ export class Pagination {
     ItemsPerPage: number;
     TotalItems: number;
     TotalPages: number;
+    StartPages: number;
 }

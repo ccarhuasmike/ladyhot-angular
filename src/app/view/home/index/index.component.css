@@ -55,7 +55,7 @@
 }
 
 
-/* .resultados {
+/* .resultados-fichas {
     overflow-y: scroll;
     height: 100%;
 } */
@@ -64,8 +64,8 @@
     height: 100%;
 }
 
-#resultados,
-#cabecera_resultados {
+#resultados-fichas,
+#cabecera-main-content {
     position: relative;
     width: 100%;
     min-width: 94%;
@@ -74,7 +74,7 @@
     float: right;
 }
 
-#cabecera_resultados h1 {
+#cabecera-main-content h1 {
     font-size: 22px;
     margin: 0 0 10px 10px;
     color: #707070;

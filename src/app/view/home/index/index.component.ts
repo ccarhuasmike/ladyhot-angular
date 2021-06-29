@@ -64,7 +64,7 @@ export class IndexComponent implements OnInit {
   }
   onScrollUp() {
   }
-  getLisAnuncios(filtrer: boolean = false, entidadFiltro: any = {}) {
+  getLisAnuncios(entidadFiltro: any = {}) {
     /*if (filtrer) {
       this.masonryImages = this.list.filter(function (e) {
         return 
@@ -94,9 +94,14 @@ export class IndexComponent implements OnInit {
       this.homeService.getAnuncioPaginado(this.anuncioBusqueda).subscribe(
         (res: ClientResponse) => {
           this.list = JSON.parse(res.DataJson);
-          this.paginacion.TotalPages = Math.ceil(this.list[0].TotalRegistros / this.paginacion.ItemsPerPage);
+          if(this.list.length > 0)
+            this.paginacion.TotalPages = Math.ceil(this.list[0].TotalRegistros / this.paginacion.ItemsPerPage);
+          //this.paginacion.StartPages += this.list.length;
           //this.masonryImages = this.list.slice(0, this.limit);
-          this.masonryImages = this.list;
+          if(this.masonryImages == null)
+            this.masonryImages = this.list;
+          else
+            this.masonryImages.push(...this.list);
           //SCHEMA MOVIE
           let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
           this.listSchemas.push(shema);
@@ -111,7 +116,7 @@ export class IndexComponent implements OnInit {
     this.paginacion = new Pagination();
     this.paginacion.ItemsPerPage = 15;
     this.paginacion.CurrentPage = 1;
-    //this.paginacion.TotalPages = 10;
+    this.paginacion.StartPages = 1;
     this.anuncioBusqueda = new TblAnuncioBusqueda();
     this.getLisAnuncios();
   }
@@ -119,7 +124,12 @@ export class IndexComponent implements OnInit {
     console.log('itemsloaded');
   }
   showMoreImages() {
+    debugger;
     this.paginacion.CurrentPage += 1;
+    //if(this.paginacion.StartPages === this.paginacion.ItemsPerPage)
+    //this.paginacion.StartPages += (1+this.paginacion.ItemsPerPage);
+    this.paginacion.StartPages += this.paginacion.ItemsPerPage;
+    //this.paginacion.StartPages += (this.paginacion.CurrentPage*this.paginacion.ItemsPerPage);
     this.getLisAnuncios(this.criterioFiltros) ;
     //this.limit += 15;
     //this.masonryImages = this.list.slice(0, this.limit);
@@ -136,7 +146,10 @@ export class IndexComponent implements OnInit {
     newTab.opener = null
   }
   RecepcionarFiltro(event): void {
+    debugger;
     this.criterioFiltros = event.entidad;
+    this.paginacion.StartPages = 1;
+    this.paginacion.CurrentPage = 1;
     this.getLisAnuncios(event.entidad);
   }
   openModalDetalleAnuncio(id: number) {

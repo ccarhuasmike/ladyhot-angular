@@ -19,8 +19,8 @@ export class IndexComponent implements OnInit {
   modalRef: BsModalRef;
   listSchemas = [];
   anuncioBusqueda: TblAnuncioBusqueda;
-  paginacion:Pagination;
-  criterioFiltros:any;
+  paginacion: Pagination;
+  criterioFiltros: any;
   public status: boolean = false;
   @ViewChild('resultadomasonry', { static: false }) resultadomasonry: ElementRef;
 
@@ -78,45 +78,47 @@ export class IndexComponent implements OnInit {
       let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
       this.listSchemas.push(shema);*/
     //} else {
-      this.anuncioBusqueda.edad_min = entidadFiltro.cbo_edad_min_ficha;
-      this.anuncioBusqueda.edad_max = entidadFiltro.cbo_edad_max_ficha;
-      this.anuncioBusqueda.estatura = entidadFiltro.cbo_estatura_ficha;
-      this.anuncioBusqueda.ojos = entidadFiltro.cbo_ojos_ficha;
-      this.anuncioBusqueda.pais = entidadFiltro.cbo_pais_ficha;
-      this.anuncioBusqueda.pelo = entidadFiltro.cbo_pelo_ficha;
-      this.anuncioBusqueda.peso = entidadFiltro.cbo_peso_ficha;
-      this.anuncioBusqueda.forma_pago = entidadFiltro.tx_forma_pago;
-      this.anuncioBusqueda.lugar_atencion = entidadFiltro.tx_lugar_atencion;
-      this.anuncioBusqueda.servicio_ofrece = entidadFiltro.tx_servicios_ofrece;
-      this.anuncioBusqueda.nombre_ficha = entidadFiltro.txt_nombre_ficha;
-      this.anuncioBusqueda.paginacion = this.paginacion;
-      
-      this.homeService.getAnuncioPaginado(this.anuncioBusqueda).subscribe(
-        (res: ClientResponse) => {
-          this.list = JSON.parse(res.DataJson);
-          if(this.list.length > 0)
-            this.paginacion.TotalPages = Math.ceil(this.list[0].TotalRegistros / this.paginacion.ItemsPerPage);
-          //this.paginacion.StartPages += this.list.length;
-          //this.masonryImages = this.list.slice(0, this.limit);
-          if(this.masonryImages == null)
-            this.masonryImages = this.list;
-          else
-            this.masonryImages.push(...this.list);
-          //SCHEMA MOVIE
-          let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
-          this.listSchemas.push(shema);
-        },
-        (error) => {
-          console.log(error + "getAnuncioPaginado");
-        }
-      );
+    this.anuncioBusqueda.edad_min = entidadFiltro.cbo_edad_min_ficha;
+    this.anuncioBusqueda.edad_max = entidadFiltro.cbo_edad_max_ficha;
+    this.anuncioBusqueda.estatura = entidadFiltro.cbo_estatura_ficha;
+    this.anuncioBusqueda.ojos = entidadFiltro.cbo_ojos_ficha;
+    this.anuncioBusqueda.pais = entidadFiltro.cbo_pais_ficha;
+    this.anuncioBusqueda.pelo = entidadFiltro.cbo_pelo_ficha;
+    this.anuncioBusqueda.peso = entidadFiltro.cbo_peso_ficha;
+    this.anuncioBusqueda.forma_pago = entidadFiltro.tx_forma_pago;
+    this.anuncioBusqueda.lugar_atencion = entidadFiltro.tx_lugar_atencion;
+    this.anuncioBusqueda.servicio_ofrece = entidadFiltro.tx_servicios_ofrece;
+    this.anuncioBusqueda.nombre_ficha = entidadFiltro.txt_nombre_ficha;
+    this.anuncioBusqueda.paginacion = this.paginacion;
+    if (entidadFiltro.txt_reiniciarBusqueda == 1)
+      this.masonryImages = null;
+    this.homeService.getAnuncioPaginado(this.anuncioBusqueda).subscribe(
+      (res: ClientResponse) => {
+        debugger;
+        this.list = JSON.parse(res.DataJson);
+        if (this.list.length > 0)
+          this.paginacion.TotalPages = Math.ceil(this.list[0].TotalRegistros / this.paginacion.ItemsPerPage);
+        //this.paginacion.StartPages += this.list.length;
+        //this.masonryImages = this.list.slice(0, this.limit);
+        if (this.masonryImages == null)
+          this.masonryImages = this.list;
+        else
+          this.masonryImages.push(...this.list);
+        //SCHEMA MOVIE
+        let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
+        this.listSchemas.push(shema);
+      },
+      (error) => {
+        console.log(error + "getAnuncioPaginado");
+      }
+    );
     //}
   }
   ngOnInit() {
     this.paginacion = new Pagination();
     this.paginacion.ItemsPerPage = 15;
-    this.paginacion.CurrentPage = 1;
-    this.paginacion.StartPages = 1;
+    //this.paginacion.CurrentPage = 1;
+    this.paginacion.StartPages = 0;
     this.anuncioBusqueda = new TblAnuncioBusqueda();
     this.getLisAnuncios();
   }
@@ -125,16 +127,17 @@ export class IndexComponent implements OnInit {
   }
   showMoreImages() {
     debugger;
-    this.paginacion.CurrentPage += 1;
+    //this.paginacion.CurrentPage += 1;
     //if(this.paginacion.StartPages === this.paginacion.ItemsPerPage)
     //this.paginacion.StartPages += (1+this.paginacion.ItemsPerPage);
-    this.paginacion.StartPages += this.paginacion.ItemsPerPage;
+    this.paginacion.StartPages += 15;    
+    //this.criterioFiltros.txt_reiniciarBusqueda = 0;
     //this.paginacion.StartPages += (this.paginacion.CurrentPage*this.paginacion.ItemsPerPage);
-    this.getLisAnuncios(this.criterioFiltros) ;
+    this.getLisAnuncios(this.criterioFiltros);
     //this.limit += 15;
     //this.masonryImages = this.list.slice(0, this.limit);
   }
- 
+
   openNewTabDetalleAnuncio(element: any): void {
     let titulo = element.txt_titulo.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
     titulo = titulo.replaceAll(' ', '-');
@@ -148,8 +151,9 @@ export class IndexComponent implements OnInit {
   RecepcionarFiltro(event): void {
     debugger;
     this.criterioFiltros = event.entidad;
-    this.paginacion.StartPages = 1;
-    this.paginacion.CurrentPage = 1;
+    this.paginacion.StartPages = 0;
+    //this.paginacion.CurrentPage = 1;
+    this.criterioFiltros.txt_reiniciarBusqueda = 1;
     this.getLisAnuncios(event.entidad);
   }
   openModalDetalleAnuncio(id: number) {

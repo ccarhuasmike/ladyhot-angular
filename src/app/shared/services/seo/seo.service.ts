@@ -10,19 +10,17 @@ export class SeoService {
   constructor(private location: Location,
     private configService: ConfigService) { }
 
-  generarJsonSchemaMovie(anuncios: any){
-    
+  generarJsonSchemaMovie(anuncios: any){    
     let esquemaProducto: any;
-    let itemsProducto: Array<any> = [];
-    //let hostname= this.location["_platformStrategy"]._platformLocation.location.origin;
+    let itemsProducto: Array<any> = [];    
     if(anuncios != null){
       let itemProducto: any;
       let index = 1;
       anuncios.map((item)=>{
         let titulo = item.txt_titulo.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
         titulo = titulo.replaceAll(' ','-');
-        let departamento = item.departamento.replaceAll(' ','-');
-        let provincia = item.provincia.replaceAll(' ','-');
+        let departamento = item.departamento == null ? "": item.departamento.replaceAll(' ','-');
+        let provincia = item.provincia == null ? "": item.provincia.replaceAll(' ','-');
           itemProducto = {
             "@type": "ListItem",
             "position": index,

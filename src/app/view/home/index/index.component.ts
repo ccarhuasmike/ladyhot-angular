@@ -89,13 +89,17 @@ export class IndexComponent implements OnInit {
     this.anuncioBusqueda.lugar_atencion = entidadFiltro.tx_lugar_atencion;
     this.anuncioBusqueda.servicio_ofrece = entidadFiltro.tx_servicios_ofrece;
     this.anuncioBusqueda.nombre_ficha = entidadFiltro.txt_nombre_ficha;
-    this.anuncioBusqueda.paginacion = this.paginacion;    
+    this.anuncioBusqueda.paginacion = this.paginacion;
     this.homeService.getAnuncioPaginado(this.anuncioBusqueda).subscribe(
       (res: ClientResponse) => {
-        debugger;
+        
         this.list = JSON.parse(res.DataJson);
         if (this.list.length > 0)
-          this.paginacion.TotalPages = Math.ceil(this.list[0].TotalRegistros / this.paginacion.ItemsPerPage);
+          this.paginacion.TotalPages = this.list[0].TotalRegistros;//Math.ceil(this.list[0].TotalRegistros / this.paginacion.ItemsPerPage);
+
+        console.log(this.paginacion.TotalPages);
+        console.log(this.paginacion.StartPages);
+        
         //this.paginacion.StartPages += this.list.length;
         //this.masonryImages = this.list.slice(0, this.limit);
         if (this.masonryImages == null)
@@ -103,7 +107,7 @@ export class IndexComponent implements OnInit {
         else
           this.masonryImages.push(...this.list);
         //SCHEMA MOVIE
-        let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.slice(0, 10));
+        let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages);
         this.listSchemas.push(shema);
       },
       (error) => {
@@ -124,11 +128,11 @@ export class IndexComponent implements OnInit {
     console.log('itemsloaded');
   }
   showMoreImages() {
-    debugger;
+    
     //this.paginacion.CurrentPage += 1;
     //if(this.paginacion.StartPages === this.paginacion.ItemsPerPage)
     //this.paginacion.StartPages += (1+this.paginacion.ItemsPerPage);
-    this.paginacion.StartPages += 15;    
+    this.paginacion.StartPages += 15;
     //this.criterioFiltros.txt_reiniciarBusqueda = 0;
     //this.paginacion.StartPages += (this.paginacion.CurrentPage*this.paginacion.ItemsPerPage);
     this.getLisAnuncios(this.criterioFiltros);
@@ -147,7 +151,7 @@ export class IndexComponent implements OnInit {
     newTab.opener = null
   }
   RecepcionarFiltro(event): void {
-    debugger;
+    
     this.criterioFiltros = event.entidad;
     this.paginacion.StartPages = 0;
     this.masonryImages = null;

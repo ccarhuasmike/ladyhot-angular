@@ -49,7 +49,10 @@
     </div>
     <div class="container-buttom">
         <!-- <button (click)="showMoreImages()">Cargar más Putitas</button> -->
-        <button *ngIf="this.paginacion.TotalPages > 1" (click)="showMoreImages()">Cargar más Putitas</button>
+        <!-- <button *ngIf="this.paginacion.TotalPages > 1" (click)="showMoreImages()">Cargar más Putitas</button> -->
+        <button *ngIf="this.paginacion.StartPages < this.paginacion.TotalPages" (click)="showMoreImages()">Cargar más Putitas</button>
+
+        
     </div>
     <!-- </section> -->
 

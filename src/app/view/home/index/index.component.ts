@@ -89,9 +89,7 @@ export class IndexComponent implements OnInit {
     this.anuncioBusqueda.lugar_atencion = entidadFiltro.tx_lugar_atencion;
     this.anuncioBusqueda.servicio_ofrece = entidadFiltro.tx_servicios_ofrece;
     this.anuncioBusqueda.nombre_ficha = entidadFiltro.txt_nombre_ficha;
-    this.anuncioBusqueda.paginacion = this.paginacion;
-    if (entidadFiltro.txt_reiniciarBusqueda == 1)
-      this.masonryImages = null;
+    this.anuncioBusqueda.paginacion = this.paginacion;    
     this.homeService.getAnuncioPaginado(this.anuncioBusqueda).subscribe(
       (res: ClientResponse) => {
         debugger;
@@ -152,6 +150,7 @@ export class IndexComponent implements OnInit {
     debugger;
     this.criterioFiltros = event.entidad;
     this.paginacion.StartPages = 0;
+    this.masonryImages = null;
     //this.paginacion.CurrentPage = 1;
     this.criterioFiltros.txt_reiniciarBusqueda = 1;
     this.getLisAnuncios(event.entidad);

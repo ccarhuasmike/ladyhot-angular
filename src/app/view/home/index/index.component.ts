@@ -127,35 +127,25 @@ export class IndexComponent implements OnInit {
   itemsLoaded() {
     console.log('itemsloaded');
   }
-  showMoreImages() {
-    
-    //this.paginacion.CurrentPage += 1;
-    //if(this.paginacion.StartPages === this.paginacion.ItemsPerPage)
-    //this.paginacion.StartPages += (1+this.paginacion.ItemsPerPage);
-    this.paginacion.StartPages += 15;
-    //this.criterioFiltros.txt_reiniciarBusqueda = 0;
-    //this.paginacion.StartPages += (this.paginacion.CurrentPage*this.paginacion.ItemsPerPage);
-    this.getLisAnuncios(this.criterioFiltros);
-    //this.limit += 15;
-    //this.masonryImages = this.list.slice(0, this.limit);
+  showMoreImages() {       
+    this.paginacion.StartPages += 15;    
+    this.getLisAnuncios(this.criterioFiltros);    
   }
 
   openNewTabDetalleAnuncio(element: any): void {
+    debugger;
     let titulo = element.txt_titulo.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
     titulo = titulo.replaceAll(' ', '-');
-    let departamento = element.departamento.replaceAll(' ', '-');
-    let provincia = element.provincia.replaceAll(' ', '-');
+    let departamento = element.departamento == null ?  "": element.departamento.replaceAll(' ', '-');
+    let provincia = element.provincia ==  null ? "": element.provincia.replaceAll(' ', '-');
     var url = this.configService.getWebDomainURL() + 'kinesiologas/' + departamento + '/' + provincia + '/' + titulo + '-' + element.id;
-    const newTab = window.open(url, '_blank')
-    // set opener to null so that no one can references it
+    const newTab = window.open(url, '_blank')    
     newTab.opener = null
   }
-  RecepcionarFiltro(event): void {
-    
+  RecepcionarFiltro(event): void {    
     this.criterioFiltros = event.entidad;
     this.paginacion.StartPages = 0;
-    this.masonryImages = null;
-    //this.paginacion.CurrentPage = 1;
+    this.masonryImages = null;    
     this.criterioFiltros.txt_reiniciarBusqueda = 1;
     this.getLisAnuncios(event.entidad);
   }

@@ -2,7 +2,7 @@
 <main class="cd-main-content">
     <!-- <app-navegacion></app-navegacion> -->
     <!-- <section class="cd-gallery" [ngClass]="status ? 'filter-is-visible' : ''"> -->
-    <div id="cabecera_resultados" class="resultados_width">
+    <div id="cabecera-main-content">
         <div>
             <h1>Kinesiólogas en Los Olivos (Lima)</h1>
             <div id="breadcrumbs">
@@ -20,7 +20,7 @@
             </div>
         </div>
     </div>
-    <div class="resultados">
+    <div class="resultados-fichas">
         <!-- <div infinite-scroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="1.5" [infiniteScrollThrottle]="500" (scrolled)="onScrollDown()" (scrolledUp)="onScrollUp()" [scrollWindow]="true">  -->
         <!-- <div class="row" infiniteScroll [infiniteScrollDistance]="0" (scrolled)="onScrollDown()"> -->
         <!-- <div class="search-results" infiniteScroll [infiniteScrollDistance]="10" [infiniteScrollThrottle]="50" (scrolled)="onScrollDown()"> -->
@@ -48,7 +48,11 @@
         <!-- </div> -->
     </div>
     <div class="container-buttom">
-        <button *ngIf="paginacion.CurrentPage < this.paginacion.TotalPages" (click)="showMoreImages()">Cargar más Kinesiólogas</button>
+        <!-- <button (click)="showMoreImages()">Cargar más Putitas</button> -->
+        <!-- <button *ngIf="this.paginacion.TotalPages > 1" (click)="showMoreImages()">Cargar más Putitas</button> -->
+        <button *ngIf="this.paginacion.StartPages < this.paginacion.TotalPages" (click)="showMoreImages()">Cargar más Putitas</button>
+
+        
     </div>
     <!-- </section> -->
 

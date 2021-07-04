@@ -235,7 +235,7 @@ export class HeaderComponent implements OnInit {
     this.entidad.cbo_ojos_ficha = this.fromGenerales.value.cboOjos_ficha;
     this.entidad.cbo_estatura_ficha = this.fromGenerales.value.cboEstatura_ficha;
     this.entidad.cbo_peso_ficha = this.fromGenerales.value.cboPeso_ficha;
-    this.entidad.txt_nombre_ficha = this.fromGenerales.value.txt_nombre_ficha;
+    this.entidad.txt_nombre_ficha = this.fromGenerales.value.txt_nombre_ficha;    
     this.EnviarFiltro.emit({ entidad: this.entidad });
 
   }

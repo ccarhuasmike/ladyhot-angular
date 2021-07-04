@@ -39,7 +39,7 @@ export class DetalleAnuncioComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        debugger;
+        
         let id;
         if (this.idAnuncio != null) {
             id = this.idAnuncio;

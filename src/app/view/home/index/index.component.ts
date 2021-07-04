@@ -56,7 +56,7 @@ export class IndexComponent implements OnInit {
     this.seoFacebookService.updateOgDescription("Bienvenidos a Gologolos, guía de señoritas en Peruanas, Venezolanas, Colombianas, Ecuatorias y en toda SudAmerica" +
       "Nuestro objetivo como siempre es garantizar un experiencia al usuario de alta calidad donde todo el contenido esté trabajado al detalle y satisfacer así a los paladares más exquisitos" +
       "Tratamos de mantener nuestro prestigio día a día para seguir siendo un portal referencia de anuncios de acompañantes de lujo.");
-    this.seoFacebookService.updateOgImage("https://www.record.com.mx/sites/default/files/galerias/2017/05/11/chica_110517.jpg")
+    this.seoFacebookService.updateOgImage("assets/favicon_pkpe.png")
   }
   onScrollDown() {
     //this.limit += 15;

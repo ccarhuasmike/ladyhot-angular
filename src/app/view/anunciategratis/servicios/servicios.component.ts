@@ -47,7 +47,8 @@ export class ServiciosComponent implements OnInit {
     onChangeProvincia(IdProv) {
         if (IdProv != '') {
             this.ubigeoService.getDistrito(parseInt(IdProv)).subscribe(
-                (res) => {                   
+                (res) => {     
+                    this.limpiarControlesDistrito();
                     this.ListDistrito = res;
                     this.ListDistrito.forEach(element => {
                         element.flag = false; 
@@ -61,30 +62,40 @@ export class ServiciosComponent implements OnInit {
                 }
             );
         } else {
-            /*Limpiar el contrl de distrito */
-            this.ListDistrito = [];
-            var controlArray = this.fromServicios.controls.ListDistrito as FormArray;
-            controlArray.controls = [];
+            this.limpiarControlesDistrito();
         }
 
+    }
+
+    limpiarControlesDistrito(){
+        /*Limpiar el contrl de distrito */
+        this.ListDistrito = [];
+        var controlArray = this.fromServicios.controls.ListDistrito as FormArray;
+        controlArray.controls = [];
     }
 
     onChangeDertamento(IdDep) {
         if (IdDep != '') {
             this.ubigeoService.getProvincia(parseInt(IdDep)).subscribe(
                 (res) => {
+                    this.limpiarControlesProvincia();
                     this.ListProvincia = res;
                 }
             );
         } else {
-            /*Limpiar el contrl de provincia */
-            this.ListProvincia = [];
-            this.ListDistrito = [];
-            var controlArray = this.fromServicios.controls.ListDistrito as FormArray;
-            controlArray.controls = [];
+            this.limpiarControlesProvincia();
         }
 
     }
+
+    limpiarControlesProvincia(){
+        /*Limpiar el contrl de provincia */
+        this.ListProvincia = [];
+        this.ListDistrito = [];
+        var controlArray = this.fromServicios.controls.ListDistrito as FormArray;
+        controlArray.controls = [];
+    }
+
     getDepartamento() {
         this.ubigeoService.getDepartamento().subscribe(
             (res) => {
@@ -145,13 +156,15 @@ export class ServiciosComponent implements OnInit {
         });
 
         if (this.DataJsonAnuncio !== null) {            
-            this.ListDistrito = JSON.parse(localStorage.getItem('DataDistrito'));          
-            this.ListDistrito.forEach(element => {
-                element.flag = false; 
-                /*Agregamos control checkbox */
-                var control = new FormControl(false, Validators.required);
-                this.controldistritos.push(control);
-            });            
+            this.ListDistrito = JSON.parse(localStorage.getItem('DataDistrito'));
+            if(this.ListDistrito != null){
+                this.ListDistrito.forEach(element => {
+                    element.flag = false; 
+                    /*Agregamos control checkbox */
+                    var control = new FormControl(false, Validators.required);
+                    this.controldistritos.push(control);
+                });    
+            }           
             var controlArray = this.fromServicios.controls.ListDistrito as FormArray;
             this.controlsDist = controlArray.controls;
             controlArray.setValidators(this.minSelectedCheckboxes(1));

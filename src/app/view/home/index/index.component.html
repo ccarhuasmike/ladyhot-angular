@@ -30,7 +30,7 @@
                 <figure class="content-item">
                     <img [src]="items.txt_imagen_prensetancion" (click)="openModalDetalleAnuncio(items.id)">
                     <p class="titulo"> {{items.txt_presentacion}}</p>
-                    <div class="content-tag">
+                    <div class="content-tag" *ngIf="items.es_demo == 0">
                         <span class="categoria_noclick">{{items.txt_nombre_ficha}}</span>
                         <span class="categoria_noclick">{{items.tx_pais_origen}}</span>
                         <span class="categoria_noclick">{{items.int_edad}} Años</span>
@@ -41,6 +41,12 @@
                         <a title="Abrir en una pestaña nueva." (click)="openNewTabDetalleAnuncio(items)" class="btn btn-sm m-0 p-0 float-right">
                             <i class="fa fa-external-link"></i>
                         </a>
+                    </div>
+                    <div class="content-tag" *ngIf="items.es_demo == 1">
+                        <!-- <a title="Abrir en una pestaña nueva." (click)="openNewTabDetalleAnuncio(items)" class="btn btn-sm m-0 p-0 float-right">
+                            <i class="fa fa-external-link"></i>
+                        </a> -->
+                        <a id="publicar" class="btnRegistreAnuncionAqui" [routerLink]="['/anunciategratis']">Registre su anuncio Aqui!</a>
                     </div>
                 </figure>
             </div>

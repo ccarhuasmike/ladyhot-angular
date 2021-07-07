@@ -1,3 +1,20 @@
+.btnRegistreAnuncionAqui{
+    border: 0;
+    border-radius: 3px;
+    display: inline-block;
+    color: #fff;
+    background-color: #F39!important;
+    cursor: pointer;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-appearance: none;    
+    font-size: 17px;
+    font-weight: 400;
+    padding: 2px 10px 0 10px;
+    height: 32px;
+    line-height: 26px;
+    width: 100%;
+}
 .main-panel {
     height: 100px;
     overflow-y: scroll;

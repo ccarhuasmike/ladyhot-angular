@@ -92,7 +92,7 @@ export class IndexComponent implements OnInit {
     this.anuncioBusqueda.paginacion = this.paginacion;
     this.homeService.getAnuncioPaginado(this.anuncioBusqueda).subscribe(
       (res: ClientResponse) => {
-        
+        debugger;
         this.list = JSON.parse(res.DataJson);
         if (this.list.length > 0)
           this.paginacion.TotalPages = this.list[0].TotalRegistros;//Math.ceil(this.list[0].TotalRegistros / this.paginacion.ItemsPerPage);

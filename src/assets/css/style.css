@@ -446,7 +446,7 @@ ul.navbar-nav {
     top: 0;
     left: 0;
     height: 1px;
-    background: #f35b3f
+    background: #F39!important
 }
 
 .f1-step {
@@ -479,8 +479,8 @@ ul.navbar-nav {
 
 .f1-step.activated .f1-step-icon {
     background: #fff;
-    border: 1px solid #f35b3f;
-    color: #f35b3f;
+    border: 1px solid #F39!important;
+    color: #F39!important;
     line-height: 38px
 }
 
@@ -488,7 +488,7 @@ ul.navbar-nav {
     width: 48px;
     height: 48px;
     margin-top: 0;
-    background: #f35b3f;
+    background: #F39!important;
     font-size: 22px;
     line-height: 48px
 }

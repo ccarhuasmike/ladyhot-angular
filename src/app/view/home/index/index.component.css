@@ -15,6 +15,13 @@
     line-height: 26px;
     width: 100%;
 }
+
+.btnRegistreAnuncionAqui:hover {
+    color: white;
+    text-decoration: none;
+    transition: all .3s;
+}
+
 .main-panel {
     height: 100px;
     overflow-y: scroll;

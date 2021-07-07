@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PanelControlRoutingModule } from './panelcontrol-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IndexComponent } from './index/indexcomponent';
-import { ContactarComponent } from './contactar/contactar.component';
+//import { ContactarComponent } from '../componentes-reusable/contactar/contactar.component';
 @NgModule({
     imports: [
         CommonModule,
@@ -13,7 +13,7 @@ import { ContactarComponent } from './contactar/contactar.component';
     ],
     declarations: [
         IndexComponent,
-        ContactarComponent
+        //ContactarComponent
     ],
     exports: [
     ]

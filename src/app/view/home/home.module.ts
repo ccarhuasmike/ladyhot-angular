@@ -10,6 +10,7 @@ import { NgxJsonLdModule } from 'ngx-json-ld';
 import { ImageService } from 'src/app/shared/services/Utilitarios/image.service';
 import { DetalleAnuncioReusableModule } from '../modulos-reusable/detalle-anuncio-reusable.module';
 import { HeaderReusableModule } from '../modulos-reusable/header-reusable.module';
+import { ContactarPublicoComponent } from './contactar-publico/contactar-publico.component';
 
 @NgModule({
     imports: [
@@ -26,12 +27,13 @@ import { HeaderReusableModule } from '../modulos-reusable/header-reusable.module
         HeaderReusableModule
     ],
     declarations: [
-        IndexComponent,        
+        IndexComponent,
+        ContactarPublicoComponent
     ],
-    exports: [IndexComponent],
+    exports: [IndexComponent, ContactarPublicoComponent],
     bootstrap: [IndexComponent],
     providers: [
         ImageService        
-    ],
+    ]
 })
 export class HomeModule { }

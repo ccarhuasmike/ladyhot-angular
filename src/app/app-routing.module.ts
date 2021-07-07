@@ -3,7 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { NotFoundComponent } from "../app/view/not-found/not-found.component";
 import { environment } from '../environments/environment';
 import { ModuleWithProviders } from '@angular/core';
-//
+
 const routes: Routes = [
   {
     path: '',
@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: 'seguridad',
     loadChildren: () => import('../app/view/seguridad/seguridad.module').then(m => m.SeguridadModule)
-  },  
+  },
   {
     path: 'kinesiologas/:provincia/:distrito/:descripcion',    
     loadChildren: () => import('../app/view/redireccionar-anuncio/redireccionar-anuncio.module').then(m => m.RedireccionarAnuncioModule)

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './index/indexcomponent';
-import { ContactarComponent } from './contactar/contactar.component';
+import { ContactarComponent } from '../componentes-reusable/contactar/contactar.component';
 const routes: Routes = [
     {
         path: '',

@@ -92,14 +92,10 @@ export class IndexComponent implements OnInit {
     this.anuncioBusqueda.paginacion = this.paginacion;
     this.homeService.getAnuncioPaginado(this.anuncioBusqueda).subscribe(
       (res: ClientResponse) => {
-        debugger;
+       
         this.list = JSON.parse(res.DataJson);
         if (this.list.length > 0)
           this.paginacion.TotalPages = this.list[0].TotalRegistros;//Math.ceil(this.list[0].TotalRegistros / this.paginacion.ItemsPerPage);
-
-        console.log(this.paginacion.TotalPages);
-        console.log(this.paginacion.StartPages);
-        
         //this.paginacion.StartPages += this.list.length;
         //this.masonryImages = this.list.slice(0, this.limit);
         if (this.masonryImages == null)
@@ -107,7 +103,8 @@ export class IndexComponent implements OnInit {
         else
           this.masonryImages.push(...this.list);
         //SCHEMA MOVIE
-        let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages);
+        
+        let shema = this.seoService.generarJsonSchemaMovie(this.masonryImages.filter(x=>{return x.es_demo == 0}));
         this.listSchemas.push(shema);
       },
       (error) => {
@@ -133,7 +130,7 @@ export class IndexComponent implements OnInit {
   }
 
   openNewTabDetalleAnuncio(element: any): void {
-    debugger;
+   
     let titulo = element.txt_titulo.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
     titulo = titulo.replaceAll(' ', '-');
     let departamento = element.departamento == null ?  "": element.departamento.replaceAll(' ', '-');

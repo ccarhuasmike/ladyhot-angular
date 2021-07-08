@@ -151,7 +151,7 @@ export class GaleriaComponent implements OnInit {
                                 objeto.tx_ruta_file = objeto.tx_ruta_file.replace(/data\:image\/(jpeg|jpg|png)\;base64\,/gi, '');
                                 objeto.tx_extension_archivo = file.name.split(".")[1];
                                 objeto.tx_filename = file.name.split(".")[0];
-                                debugger;
+                               
                                 this.anuncioService.SaveGaleria(objeto).subscribe(
                                     (res) => {
                                         if (res.Status == "OK") {                                            

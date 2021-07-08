@@ -5,9 +5,9 @@ export class ConfigService {
     _webDomain: string;
     constructor() {        
         this._webApi = "https://webapigologolos.gologolos.com/api/";
-        //this._webDomain = "https://www.gologolos.com/";
-        // this._webApi = "http://localhost:7044/api/";        
-         this._webDomain = "http://localhost:4200/";
+        this._webDomain = "https://www.gologolos.com/";
+        //this._webApi = "http://localhost:7044/api/";        
+        //this._webDomain = "http://localhost:4200/";
     }
     getWebApiURL() {
         return this._webApi;

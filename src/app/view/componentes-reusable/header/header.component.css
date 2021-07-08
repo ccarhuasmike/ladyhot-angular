@@ -694,12 +694,12 @@ html.form_login #content #ficha_edicion textarea,
         overflow: hidden;
         vertical-align: bottom;
     }
-    #cabecera #publicar,
+    /* #cabecera #publicar,
     html.veralerta #cabecera #publicar,
     html.filtrosdesp #cabecera #cabecera_sub_buscar .navegacion_about,
     html.veralerta #cabecera #cabecera_sub_buscar .navegacion_about {
         display: none;
-    }
+    } */
     #logo {
         height: 26px;
     }

@@ -28,7 +28,11 @@
         <ngx-masonry [options]="masonryOptions" class="masonryOptionsContainer" [ordered]="true" (itemsLoaded)="itemsLoaded()">
             <div ngxMasonryItem *ngFor="let items of masonryImages;index as idx" class="masonry-item">
                 <figure class="content-item">
-                    <img [src]="items.txt_imagen_prensetancion" (click)="openModalDetalleAnuncio(items.id)">
+
+                    
+                    <img *ngIf="items.es_demo == 0" [src]="items.txt_imagen_prensetancion" (click)="openModalDetalleAnuncio(items.id)">
+                    <img *ngIf="items.es_demo == 1" [src]="items.txt_imagen_prensetancion" >
+
                     <p class="titulo"> {{items.txt_presentacion}}</p>
                     <div class="content-tag" *ngIf="items.es_demo == 0">
                         <span class="categoria_noclick">{{items.txt_nombre_ficha}}</span>

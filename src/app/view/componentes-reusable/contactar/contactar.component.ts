@@ -76,6 +76,7 @@ export class ContactarComponent implements OnInit {
     entidad.asunto = this.formContactar.value.txt_asunto;
     entidad.telefonoContacto = new Array(this.formContactar.value.txt_telefono);
     entidad.body = this.formContactar.value.txt_mensaje;
+    debugger;
     this.contactarService.EnviarMail(entidad).subscribe((res) => {
       console.log(res);
       if (res.Status == "OK") {

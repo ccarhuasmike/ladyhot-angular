@@ -648,7 +648,10 @@ html.form_login #content #ficha_edicion textarea,
     border: 1px solid #D0D0D0;
     border-radius: 3px;
 }
-
+.btnPublicarAnuncion{
+    right: 133px !important;   
+    
+}
 @media screen and (max-width: 800px) {
     #navegacion_categorias .bloque_categorias .filtro_combo span {
         display: table-cell;
@@ -783,7 +786,7 @@ html.form_login #content #ficha_edicion textarea,
         padding-bottom: 4px;
     }
     #navegacion_categorias .bloque_categorias {
-        margin: 5px!important;
+        margin: 18px!important;
         margin-bottom: 0!important;
         padding: 12px!important;
         float: none!important;
@@ -965,3 +968,16 @@ html.form_login #content #ficha_edicion textarea,
         min-width: calc((100% / 2) - 67px);
     }
 }
+
+@media screen and (max-width: 415px){
+    .btnPublicarAnuncion{
+        right: 83px !important;   
+        font-size: 13px!important;    
+    }
+    .btnContactar{
+        right: 1px !important;
+        font-size: 13px!important;
+        
+    }
+    
+} 

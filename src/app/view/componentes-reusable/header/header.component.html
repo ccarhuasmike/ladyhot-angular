@@ -1,14 +1,14 @@
 <!-- <header class="cd-header">
    <h1>Kinesiologas, Dama de companias y putas en Peru </h1>
    </header> -->
-   <header id="header">
-      <nav id="cabecera">
-         <div id="cabecera_sup_buscar" class="cabecera_sup">
-            <div id="div_logo">
-               <a href="/" id="link_home" title="GoloGolo - Kinesiólogas">
-                  <img id="logo" src="../../../../assets/logo_pkpe.png" alt="GoloGolo - Kinesiólogas">
-               </a>
-               <!--<script type="application/ld+json">
+<header id="header">
+   <nav id="cabecera">
+      <div id="cabecera_sup_buscar" class="cabecera_sup">
+         <div id="div_logo">
+            <a href="/" id="link_home" title="GoloGolo - Kinesiólogas">
+               <img id="logo" src="../../../../assets/logo_pkpe.png" alt="GoloGolo - Kinesiólogas">
+            </a>
+            <!--<script type="application/ld+json">
                   {
                       "@context": "http://schema.org/",
                       "@type": "Organization",
@@ -17,35 +17,48 @@
                       "logo": ""
                   }
                </script>-->
-            </div>
-            <div id="div_contador_anuncios_fotos_falsas">Eliminadas 25.033 kinesiólogas con fotos falsas.</div>
          </div>
-         <div id="cabecera_sub_buscar" class="cabecera_sub">
-            <div id="div_busqueda_cabecera">
-               <div id="enlaces_cabecera">
-                  <div class="ver_mas m-ico-after">Ciudades principales</div>
-                  <div><a href="/kinesiologas/lima-metropolitana" title="Kinesiólogas en Lima Metropolitana">Kinesiólogas Lima Metropolitana</a><a href="/kinesiologas/arequipa" title="Kinesiólogas en Arequipa">Kinesiólogas Arequipa</a><a href="/kinesiologas/trujillo"
-                     title="Kinesiólogas en Trujillo">Kinesiólogas Trujillo</a></div>
-               </div>
-               <form id="search-form" autocomplete="off" *ngIf="fromGenerales" [formGroup]='fromGenerales' (ngSubmit)='save()'>
+         <div id="div_contador_anuncios_fotos_falsas">Eliminadas 25.033 kinesiólogas con fotos falsas.</div>
+      </div>
+      <div id="cabecera_sub_buscar" class="cabecera_sub">
+         <div id="div_busqueda_cabecera">
+            <div id="enlaces_cabecera">
+               <div class="ver_mas m-ico-after">Ciudades principales <span (click)="btnMostrarContainerCuidadesPrincipales()" class="m-ico" style="vertical-align: middle">expand_more</span></div>
+               <div [style.display]="!ContainerCiudadPrincipal ? 'block !important' : 'none'">
+                  <a href="/kinesiologas/lima-metropolitana" title="Kinesiólogas en Lima Metropolitana">Kinesiólogas
+                     Lima Metropolitana</a>
+                     <a href="/kinesiologas/arequipa"
+                     title="Kinesiólogas en Arequipa">Kinesiólogas Arequipa</a>
+                     <a href="/kinesiologas/trujillo"
+                     title="Kinesiólogas en Trujillo">Kinesiólogas Trujillo</a>
+                  </div>
+            </div>
+            <form id="search-form" autocomplete="off" *ngIf="fromGenerales" [formGroup]='fromGenerales'
+               (ngSubmit)='save()'>
                <div id="search-field-location" class="search-field geolocation_off">
                   <label for="search-location">¿Dónde estás?</label>
-                  <input type="text" name="search-location" id="search-location" autocomplete="off" value="Los Olivos, Lima Metropolitana" maxlength="50" placeholder="¿Dónde estás?">
+                  <input type="text" name="search-location" id="search-location" autocomplete="off"
+                     value="Los Olivos, Lima Metropolitana" maxlength="50" placeholder="¿Dónde estás?">
                   <div id="geolocalizado">Cerca de mí</div>
-                  <div id="locate" class="m-ico" title="Cerca de mí">my_location<input id="locate_coordinates" type="hidden" value=""></div>
+                  <div id="locate" class="m-ico" title="Cerca de mí">my_location<input id="locate_coordinates"
+                        type="hidden" value=""></div>
                   <div id="search-location-radius" class="select">
                      <span>+ 0 km
-                     <i class="m-ico" style="position: absolute;top: 9px;">
-                     expand_more 
-                     </i>
+                        <i class="m-ico" style="position: absolute;top: 9px;">
+                           expand_more
+                        </i>
                      </span>
-                     <div id="distancias" class="select-values"><span class="selected">+ 0 km</span><span>+ 1 km</span><span>+ 3 km</span><span>+ 5 km</span><span>+ 10 km</span><span>+ 25 km</span><span>+ 50 km</span></div>
+                     <div id="distancias" class="select-values"><span class="selected">+ 0 km</span><span>+ 1
+                           km</span><span>+ 3 km</span><span>+ 5 km</span><span>+ 10 km</span><span>+ 25
+                           km</span><span>+ 50 km</span></div>
                   </div>
                   <div id="suggestions-search-location" class="suggestions" style="display: none;"></div>
                </div>
                <div id="search-field" class="search-field">
                   <label for="search">¿Qué buscas?</label>
-                  <input type="text" name="search" [formControl]="txt_nombre_fichaCtrl" id="search" autocomplete="off" value="" maxlength="50" placeholder="¿Qué buscas?" data-placeholdermobile="¿Qué buscas?" class="showplaceholder">
+                  <input type="text" name="search" [formControl]="txt_nombre_fichaCtrl" id="search" autocomplete="off"
+                     value="" maxlength="50" placeholder="¿Qué buscas?" data-placeholdermobile="¿Qué buscas?"
+                     class="showplaceholder">
                   <div id="filters">
                      <div id="more_filters" (click)="btnMostrarContainerFiltro()">+ Filtros</div>
                      <div id="navegacion_categorias" [style.display]="ContainerFiltro ? 'block' : 'none'">
@@ -53,13 +66,20 @@
                         <div class="navegacion_aux_scroll">
                            <div class="bloque_categorias" id="bloque_categorias_10">
                               <div class="descripcion_bloque_categorias">Contenido</div>
-                              <span class="filtro disponible_on activo_off videos" data-id="con-videos">Con vídeos</span><span class="filtro disponible_on activo_off experiencias" data-id="ratings">Con ratings</span><span class="filtro disponible_on activo_off certificado"
-                                 data-id="fotos-certificadas">Fotos verificadas</span>
+                              <span class="filtro disponible_on activo_off videos" data-id="con-videos">Con
+                                 vídeos</span><span class="filtro disponible_on activo_off experiencias"
+                                 data-id="ratings">Con ratings</span><span
+                                 class="filtro disponible_on activo_off certificado" data-id="fotos-certificadas">Fotos
+                                 verificadas</span>
                            </div>
                            <div class="bloque_categorias" id="bloque_categorias_11">
                               <div class="descripcion_bloque_categorias">Principales</div>
                               <div class="descripcion_grupo_categorias">Formas de Pago</div>
-                              <span (click)="check($event, 'activo_off'); onChangeFormaPago(ListFormaPago[i].val_valor, $event);" class="filtro disponible_on activo_off" data-id="{{item.val_valor}}" *ngFor="let item of ListFormaPago; let i = index;" formArrayName="ListFormaPago">{{item.tx_descripcion}}</span>
+                              <span
+                                 (click)="check($event, 'activo_off'); onChangeFormaPago(ListFormaPago[i].val_valor, $event);"
+                                 class="filtro disponible_on activo_off" data-id="{{item.val_valor}}"
+                                 *ngFor="let item of ListFormaPago; let i = index;"
+                                 formArrayName="ListFormaPago">{{item.tx_descripcion}}</span>
                               <div class="descripcion_grupo_categorias">Edad</div>
                               <div class="filtro_combo">
                                  <!-- <div class="descripcion_grupo_categorias">Edad</div> -->
@@ -67,14 +87,16 @@
                                     <span>Mín</span>
                                     <select id="edad_ini" [formControl]="cboEdadMin_fichaCtrl">
                                        <option value="">Todos</option>
-                                       <option value="{{item.val_valor}}" *ngFor="let item of ListEdad">{{item.tx_descripcion}}</option>
+                                       <option value="{{item.val_valor}}" *ngFor="let item of ListEdad">
+                                          {{item.tx_descripcion}}</option>
                                     </select>
                                  </div>
                                  <div>
                                     <span>Máx</span>
                                     <select id="edad_fin" [formControl]="cboEdadMax_fichaCtrl">
                                        <option value="">Todos</option>
-                                       <option value="{{item.val_valor}}" *ngFor="let item of ListEdad">{{item.tx_descripcion}}</option>
+                                       <option value="{{item.val_valor}}" *ngFor="let item of ListEdad">
+                                          {{item.tx_descripcion}}</option>
                                     </select>
                                  </div>
                               </div>
@@ -84,58 +106,109 @@
                               <div class="descripcion_grupo_categorias">País</div>
                               <select class="filtro activo_off" [formControl]="cboPais_fichaCtrl">
                                  <option value="">Todos</option>
-                                 <option value="{{item.val_valor}}" *ngFor="let item of ListPais">{{item.tx_descripcion}}</option>
+                                 <option value="{{item.val_valor}}" *ngFor="let item of ListPais">
+                                    {{item.tx_descripcion}}</option>
                               </select>
                               <div class="descripcion_grupo_categorias">Estatura</div>
                               <select class="filtro activo_off" [formControl]="cboEstatura_fichaCtrl">
                                  <option value="">Todos</option>
-                                 <option value="{{item.val_valor}}" *ngFor="let item of ListEstatura">{{item.tx_descripcion}}</option>
+                                 <option value="{{item.val_valor}}" *ngFor="let item of ListEstatura">
+                                    {{item.tx_descripcion}}</option>
                               </select>
                               <div class="descripcion_grupo_categorias">Peso</div>
                               <select class="filtro activo_off" [formControl]="cboPeso_fichaCtrl">
                                  <option value="">Todos</option>
-                                 <option value="{{item.val_valor}}" *ngFor="let item of ListPeso">{{item.tx_descripcion}}</option>
+                                 <option value="{{item.val_valor}}" *ngFor="let item of ListPeso">
+                                    {{item.tx_descripcion}}</option>
                               </select>
                               <div class="descripcion_grupo_categorias">Ojos</div>
                               <select class="filtro activo_off" [formControl]="cboOjos_fichaCtrl">
                                  <option value="">Todos</option>
-                                 <option value="{{item.val_valor}}" *ngFor="let item of ListOjos">{{item.tx_descripcion}}</option>
+                                 <option value="{{item.val_valor}}" *ngFor="let item of ListOjos">
+                                    {{item.tx_descripcion}}</option>
                               </select>
                               <div class="descripcion_grupo_categorias">Pelo</div>
                               <select class="filtro activo_off" [formControl]="cboPelo_fichaCtrl">
                                  <option value="">Todos</option>
-                                 <option value="{{item.val_valor}}" *ngFor="let item of ListCabellos">{{item.tx_descripcion}}</option>
+                                 <option value="{{item.val_valor}}" *ngFor="let item of ListCabellos">
+                                    {{item.tx_descripcion}}</option>
                               </select>
                            </div>
                            <div class="bloque_categorias" id="bloque_categorias_13">
                               <div class="descripcion_bloque_categorias">Servicios generales</div>
-                              <span (click)="check($event, 'activo_off'); onChangeTipoServicio(ListTipoServicio[i].val_valor, $event);" class="filtro disponible_on activo_off" data-id="{{item.val_valor}}" *ngFor="let item of ListTipoServicio; let i = index;">{{item.tx_descripcion}}</span>
+                              <span
+                                 (click)="check($event, 'activo_off'); onChangeTipoServicio(ListTipoServicio[i].val_valor, $event);"
+                                 class="filtro disponible_on activo_off" data-id="{{item.val_valor}}"
+                                 *ngFor="let item of ListTipoServicio; let i = index;">{{item.tx_descripcion}}</span>
                            </div>
                            <div class="bloque_categorias" id="bloque_categorias_15">
                               <div class="descripcion_bloque_categorias">Lugar</div>
-                              <span (click)="check($event, 'activo_off'); onChangeLugarAtencion(ListLugarAtencion[i].val_valor, $event);" class="filtro disponible_on activo_off" data-id="{{item.val_valor}}" *ngFor="let item of ListLugarAtencion; let i = index;">{{item.tx_descripcion}}</span>
+                              <span
+                                 (click)="check($event, 'activo_off'); onChangeLugarAtencion(ListLugarAtencion[i].val_valor, $event);"
+                                 class="filtro disponible_on activo_off" data-id="{{item.val_valor}}"
+                                 *ngFor="let item of ListLugarAtencion; let i = index;">{{item.tx_descripcion}}</span>
                            </div>
                         </div>
                         <div class="navegacion_controles">
-                           <button type='submit' class="boton aplicar "><i class="m-ico">check_circle</i>Filtrar</button>
+                           <button type='submit' class="boton aplicar "><i
+                                 class="m-ico">check_circle</i>Filtrar</button>
                            <span class="boton eliminar"><i class="m-ico">cancel</i>Borrar</span>
-                           <span class="boton cerrar" (click)="btnOcultarContainerFiltro()"><i class="m-ico">close</i></span>
+                           <span class="boton cerrar" (click)="btnOcultarContainerFiltro()"><i
+                                 class="m-ico">close</i></span>
                         </div>
                      </div>
                   </div>
                   <div id="suggestions-search" class="suggestions" style="display: none;"></div>
                </div>
                <button id="search-submit">
-               <span class="m-ico ">search</span>
-               Buscar
+                  <span class="m-ico ">search</span>
+                  Buscar
                </button>
+               <!-- <button id="search-submit-mobile">
+                  <span class="m-ico ">search</span>                  
+               </button> -->
+
                <!-- <div >                        
                   <input type="submit" value="Buscar">
                   </div> -->
-               </form>
-            </div>
-            <a id="publicar" [style.display]="ContainerFiltro ? 'none' : 'block '" class="boton m-ico-before enlace btnPublicarAnuncion" [routerLink]="['/anunciategratis']">Publicar anuncio</a>
-            <a id="publicar" [style.display]="ContainerFiltro ? 'none' : 'block'" class="boton m-ico-before enlace btnContactar" [routerLink]="['/home/contactar-cliente']">Contactar</a>
+            </form>
          </div>
-      </nav>
-   </header>
+         <a id="publicar" [style.display]="ContainerFiltro ? 'none' : 'block '"
+            class="boton m-ico-before enlace btnPublicarAnuncion" [routerLink]="['/anunciategratis']">Publicar
+            anuncio</a>
+         <a id="publicar" [style.display]="ContainerFiltro ? 'none' : 'block'"
+            class="boton m-ico-before enlace btnContactar" [routerLink]="['/home/contactar-cliente']">Contactar</a>
+
+         <div class="navegacion navegacion_about">
+            <div class="navegacion_titulo m-ico" *ngIf="!ContainerFiltro" [style.display]="ContainerMenu ? 'none' : 'block '" (click)="btnMostrarContainerMenu()">menu</div>
+            <div class="navegacion_titulo m-ico" *ngIf="!ContainerFiltro" style="width:66px !important" [style.display]="ContainerMenu ? 'block' : 'none '" (click)="btnMostrarContainerMenu()">close</div>
+            <div class="navegacion_menu" [style.display]="ContainerMenu ? 'block !important' : 'none'">
+               <div class="bloque bloque_dashboard">
+                  <span class="titulo">Menú</span>
+                  <div class="contenedor">
+                     <div class="grupo">
+                        <span class="anuncio_precios item enlace" id="about-precios"><img
+                              src="https://cdn.photokinesiologas.com/sl/gfx/2457/precios.png"
+                              alt="Precios" /><span>Precios</span></span>
+                        <span class="anuncio_publicar item enlace" id="about-publicar"><img
+                              src="https://cdn.photokinesiologas.com/sl/gfx/2457/formulario.png"
+                              alt="Publicar anuncio" /><span>Publicar anuncio</span></span>
+                        <span class="panel_de_control item enlace" id="about-control"><img
+                              src="https://cdn.photokinesiologas.com/sl/gfx/2457/panel_de_control.png"
+                              alt="Panel de control" /><span>Panel de control</span></span>
+                     </div>
+                     <div class="grupo">
+                        <span class="contactar item enlace" id="about-contactar"><img
+                              src="https://cdn.photokinesiologas.com/sl/gfx/2457/contactar.png"
+                              alt="Contactar" /><span>Contactar</span></span>
+                        <span class="textos_legales item enlace" id="about-textos-legales"><img
+                              src="https://cdn.photokinesiologas.com/sl/gfx/2457/textos_legales.png"
+                              alt="Textos Legales" /><span>Textos Legales</span></span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </nav>
+</header>

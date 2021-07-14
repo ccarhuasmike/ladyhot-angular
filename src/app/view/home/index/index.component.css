@@ -229,20 +229,20 @@
         width: 38%;
     }
 }
-
-
 /* 
     ##Device = Low Resolution Tablets, Mobiles (Landscape)
     ##Screen = B/w 481px to 767px
   */
-
 @media (min-width: 481px) and (max-width: 767px) {
     .masonry-item {
         width: 44%;
     }
+    #cabecera-main-content {
+        width: 100%;
+        max-width: none;
+        padding: 0;
+    }
 }
-
-
 /* 
 @media screen and (max-width: 520px) {
     .masonry-item {

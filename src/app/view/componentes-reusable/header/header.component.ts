@@ -12,6 +12,8 @@ import { merge } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
   public ContainerFiltro = false;
+  public ContainerMenu = false;
+  public ContainerCiudadPrincipal = false;
   @Output() EnviarFiltro = new EventEmitter();
   public status: boolean = false;
   public nombreFicha : string="";
@@ -246,6 +248,25 @@ export class HeaderComponent implements OnInit {
     }
     selecionado = selecionado.substring(0, selecionado.length - 1);
     return selecionado;
+  }
+
+  btnMostrarContainerCuidadesPrincipales(): void {
+    
+    this.ContainerCiudadPrincipal = !this.ContainerCiudadPrincipal;
+    // if (this.ContainerCiudadPrincipal){
+    //   document.body.style.overflow = "hidden";
+    // }else{      
+    //   document.body.style.overflow = "auto";
+    // }
+  }
+  btnMostrarContainerMenu(): void {
+    
+    this.ContainerMenu = !this.ContainerMenu;
+    if (this.ContainerMenu){
+      document.body.style.overflow = "hidden";
+    }else{      
+      document.body.style.overflow = "auto";
+    }
   }
   btnMostrarContainerFiltro(): void {
     this.ContainerFiltro = !this.ContainerFiltro;

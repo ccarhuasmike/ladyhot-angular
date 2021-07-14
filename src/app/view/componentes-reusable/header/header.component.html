@@ -187,23 +187,23 @@
                   <span class="titulo">Menú</span>
                   <div class="contenedor">
                      <div class="grupo">
-                        <span class="anuncio_precios item enlace" id="about-precios"><img
+                        <!-- <span class="anuncio_precios item enlace" id="about-precios"><img
                               src="https://cdn.photokinesiologas.com/sl/gfx/2457/precios.png"
-                              alt="Precios" /><span>Precios</span></span>
-                        <span class="anuncio_publicar item enlace" id="about-publicar"><img
+                              alt="Precios" /><span>Precios</span></span> -->
+                        <span (click)="btnPublicarAnuncio()" class="anuncio_publicar item enlace" id="about-publicar" [routerLink]="['/anunciategratis']"><img
                               src="https://cdn.photokinesiologas.com/sl/gfx/2457/formulario.png"
                               alt="Publicar anuncio" /><span>Publicar anuncio</span></span>
-                        <span class="panel_de_control item enlace" id="about-control"><img
+                        <!-- <span class="panel_de_control item enlace" id="about-control"><img
                               src="https://cdn.photokinesiologas.com/sl/gfx/2457/panel_de_control.png"
-                              alt="Panel de control" /><span>Panel de control</span></span>
+                              alt="Panel de control" /><span>Panel de control</span></span> -->
                      </div>
                      <div class="grupo">
-                        <span class="contactar item enlace" id="about-contactar"><img
+                        <span (click)="btnPublicarContactar()" class="contactar item enlace" id="about-contactar"><img
                               src="https://cdn.photokinesiologas.com/sl/gfx/2457/contactar.png"
                               alt="Contactar" /><span>Contactar</span></span>
-                        <span class="textos_legales item enlace" id="about-textos-legales"><img
+                        <!-- <span class="textos_legales item enlace" id="about-textos-legales"><img
                               src="https://cdn.photokinesiologas.com/sl/gfx/2457/textos_legales.png"
-                              alt="Textos Legales" /><span>Textos Legales</span></span>
+                              alt="Textos Legales" /><span>Textos Legales</span></span> -->
                      </div>
                   </div>
                </div>

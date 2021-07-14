@@ -801,6 +801,7 @@ html.form_login #content #ficha_edicion textarea,
 }
 
 @media screen and (max-width: 800px) {    
+    
     .btnContactar, .btnPublicarAnuncion{
         display: none !important;
     }
@@ -824,7 +825,7 @@ html.form_login #content #ficha_edicion textarea,
         vertical-align: middle;
     } */
     #cabecera .navegacion_about {
-        top: 7px;
+        top: 7px !important;
         height: 0;
     }
     #cabecera .navegacion_about {
@@ -1121,6 +1122,10 @@ html.form_login #content #ficha_edicion textarea,
 }
 
 @media screen and (max-width: 1499px) {
+    
+#cabecera .navegacion_about {
+    top: 50px;
+}
     #navegacion_categorias {
         left: 10%;
         right: 10%;

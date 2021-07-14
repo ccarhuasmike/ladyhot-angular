@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, PLATFORM_ID
 import { FormGroup, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
 import { ParameterService } from "../../../shared/services/anuncio/parameter.service";
 import { ClientResponse } from '../../../Models/ClientResponseModels';
+import {Router} from "@angular/router"
 //import { isPlatformBrowser } from '@angular/common';
 import { KeyBindService } from 'src/app/shared/services/Utilitarios/key-bind.service';
 import { merge } from 'rxjs';
@@ -53,6 +54,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private parameter: ParameterService,
+    private router: Router,
     //@Inject(PLATFORM_ID) private platformId: any,
     private keybind: KeyBindService
   ) { }
@@ -288,4 +290,13 @@ export class HeaderComponent implements OnInit {
     document.body.style.overflow = "scroll";
     this.ContainerFiltro = !this.ContainerFiltro;
   }
+  btnPublicarAnuncio(): void {
+    this.btnMostrarContainerMenu();
+    this.router.navigate(['/anunciategratis']);
+  }
+  btnPublicarContactar(): void {
+    this.btnMostrarContainerMenu();
+    this.router.navigate(['/home/contactar-cliente']);
+  }
+  
 }

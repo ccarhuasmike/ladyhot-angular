@@ -316,9 +316,12 @@ export class HeaderComponent implements OnInit {
     this.entidad.cbo_peso_ficha = this.fromGenerales.value.cboPeso_ficha;
     this.entidad.txt_nombre_ficha = this.fromGenerales.value.txt_nombre_ficha;
     this.EnviarFiltro.emit({ entidad: this.entidad });
-    this.btnOcultarContainerFiltro();
-    this.metaUpKey$.unsubscribe();
-    this.contValidShowFiltro = 0;
+    if (this.metaUpKey$ !== undefined) {
+      this.metaUpKey$.unsubscribe();
+      this.metaUpKey$ = undefined;
+      this.btnOcultarContainerFiltro();
+    }
+    if (this.contValidShowFiltro > 0) this.contValidShowFiltro = 0;
   }
   getCheboxerSeleccionado(ListSeleccionado: any): string {
     let selecionado: string = "";
@@ -353,6 +356,7 @@ export class HeaderComponent implements OnInit {
       this.metaUpKey$ = this.keybind.match("ESCAPE", []).subscribe(() => {
         this.btnOcultarContainerFiltro();
         this.metaUpKey$.unsubscribe();
+        this.metaUpKey$ = undefined;
         this.contValidShowFiltro = 0;
       });
     } else document.body.style.overflow = "auto";
@@ -512,6 +516,7 @@ export class HeaderComponent implements OnInit {
       ) {
         this.btnOcultarContainerFiltro();
         this.metaUpKey$.unsubscribe();
+        this.metaUpKey$ = undefined;
         this.contValidShowFiltro = 0;
       }
     }

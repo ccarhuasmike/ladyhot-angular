@@ -1,15 +1,19 @@
-import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, PLATFORM_ID, Inject } from '@angular/core';
-import { FormGroup, Validators, FormControl, FormArray, ValidatorFn } from '@angular/forms';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  HostListener,
+} from "@angular/core";
+import { FormGroup, FormControl, FormArray, ValidatorFn } from "@angular/forms";
 import { ParameterService } from "../../../shared/services/anuncio/parameter.service";
-import { ClientResponse } from '../../../Models/ClientResponseModels';
-import {Router} from "@angular/router"
-//import { isPlatformBrowser } from '@angular/common';
-import { KeyBindService } from 'src/app/shared/services/Utilitarios/key-bind.service';
-import { merge } from 'rxjs';
+import { ClientResponse } from "../../../Models/ClientResponseModels";
+import { Router } from "@angular/router";
+import { KeyBindService } from "src/app/shared/services/Utilitarios/key-bind.service";
 @Component({
-  selector: 'app-header',
+  selector: "app-header",
   templateUrl: "./header.component.html",
-  styleUrls: ['./header.component.css']
+  styleUrls: ["./header.component.css"],
 })
 export class HeaderComponent implements OnInit {
   public ContainerFiltro = false;
@@ -17,8 +21,8 @@ export class HeaderComponent implements OnInit {
   public ContainerCiudadPrincipal = false;
   @Output() EnviarFiltro = new EventEmitter();
   public status: boolean = false;
-  public nombreFicha : string="";
-  classNameChecked:string = 'activo_on';
+  public nombreFicha: string = "";
+  classNameChecked: string = "activo_on";
   metaUpKey$;
   /*Variables de Filtros */
   fromGenerales: FormGroup;
@@ -50,14 +54,15 @@ export class HeaderComponent implements OnInit {
   ListEstatura: any = [];
   ListPeso: any = [];
   ListFormaPago: any = [];
-
+  numFilters: number = 0;
+  filtroSeleccionado = [];
 
   constructor(
     private parameter: ParameterService,
     private router: Router,
     //@Inject(PLATFORM_ID) private platformId: any,
     private keybind: KeyBindService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.cargarControlFiltros();
@@ -77,7 +82,7 @@ export class HeaderComponent implements OnInit {
     //     function handleTabletChange(e) {
     //       // Check if the media query is true
     //       if (e.matches) {
-    //         // Then log the following message to the console            
+    //         // Then log the following message to the console
     //         estiloComponentFiltro();
     //       }else{
     //         body.style.overflow = '';
@@ -97,61 +102,64 @@ export class HeaderComponent implements OnInit {
     // }
   }
   cargarControlFiltros() {
-    this.parameter.getParameterFilterHome().subscribe(
-      (res: ClientResponse) => {
-        this.listParameter = JSON.parse(res.DataJson); // aqui se obtiene los paramter de la base de datos  
-        this.ListDistrito = this.listParameter.distritro;
-        this.ListLugarAtencion = this.listParameter.lugaratencion;
-        this.ListTipoServicio = this.listParameter.servicio_ofrece;
-        this.ListEdad = this.listParameter.edad;
-        this.ListPais = this.listParameter.pais;
-        this.ListCabellos = this.listParameter.color_cabello;
-        this.ListOjos = this.listParameter.color_ojos;
-        this.ListEstatura = this.listParameter.estatura;
-        this.ListPeso = this.listParameter.peso;
-        this.ListFormaPago = this.listParameter.formapago;
-        this.controlsDist = this.ListDistrito.map(c => new FormControl(false));
-        this.controlsLugar = this.ListLugarAtencion.map(c => new FormControl(false));
-        this.controlsTipServ = this.ListTipoServicio.map(c => new FormControl(false));
-        this.controlsFormPago = this.ListFormaPago.map(c => new FormControl(false));
-        this.txt_nombre_fichaCtrl = new FormControl('');
-        this.cboPais_fichaCtrl = new FormControl('');
-        this.cboEdadMin_fichaCtrl = new FormControl('');
-        this.cboEdadMax_fichaCtrl = new FormControl('');
-        this.cboPelo_fichaCtrl = new FormControl('');
-        this.cboOjos_fichaCtrl = new FormControl('');
-        this.cboEstatura_fichaCtrl = new FormControl('');
-        this.cboPeso_fichaCtrl = new FormControl('');
-        this.fromGenerales = new FormGroup({
-          ListDistrito: new FormArray(this.controlsDist),
-          ListLugarAtencion: new FormArray(this.controlsLugar),
-          ListTipoServicio: new FormArray(this.controlsTipServ),
-          ListFormaPago: new FormArray(this.controlsFormPago),
-          txt_nombre_ficha: this.txt_nombre_fichaCtrl,
-          cboPais_ficha: this.cboPais_fichaCtrl,
-          cboEdadMin_ficha: this.cboEdadMin_fichaCtrl,
-          cboEdadMax_ficha: this.cboEdadMax_fichaCtrl,
-          cboPelo_ficha: this.cboPelo_fichaCtrl,
-          cboOjos_ficha: this.cboOjos_fichaCtrl,
-          cboEstatura_ficha: this.cboEstatura_fichaCtrl,
-          cboPeso_ficha: this.cboPeso_fichaCtrl
-        });
-      }
-    );
+    this.parameter.getParameterFilterHome().subscribe((res: ClientResponse) => {
+      this.listParameter = JSON.parse(res.DataJson); // aqui se obtiene los paramter de la base de datos
+      this.ListDistrito = this.listParameter.distritro;
+      this.ListLugarAtencion = this.listParameter.lugaratencion;
+      this.ListTipoServicio = this.listParameter.servicio_ofrece;
+      this.ListEdad = this.listParameter.edad;
+      this.ListPais = this.listParameter.pais;
+      this.ListCabellos = this.listParameter.color_cabello;
+      this.ListOjos = this.listParameter.color_ojos;
+      this.ListEstatura = this.listParameter.estatura;
+      this.ListPeso = this.listParameter.peso;
+      this.ListFormaPago = this.listParameter.formapago;
+      this.controlsDist = this.ListDistrito.map((c) => new FormControl(false));
+      this.controlsLugar = this.ListLugarAtencion.map(
+        (c) => new FormControl(false)
+      );
+      this.controlsTipServ = this.ListTipoServicio.map(
+        (c) => new FormControl(false)
+      );
+      this.controlsFormPago = this.ListFormaPago.map(
+        (c) => new FormControl(false)
+      );
+      this.txt_nombre_fichaCtrl = new FormControl("");
+      this.cboPais_fichaCtrl = new FormControl("");
+      this.cboEdadMin_fichaCtrl = new FormControl("");
+      this.cboEdadMax_fichaCtrl = new FormControl("");
+      this.cboPelo_fichaCtrl = new FormControl("");
+      this.cboOjos_fichaCtrl = new FormControl("");
+      this.cboEstatura_fichaCtrl = new FormControl("");
+      this.cboPeso_fichaCtrl = new FormControl("");
+      this.fromGenerales = new FormGroup({
+        ListDistrito: new FormArray(this.controlsDist),
+        ListLugarAtencion: new FormArray(this.controlsLugar),
+        ListTipoServicio: new FormArray(this.controlsTipServ),
+        ListFormaPago: new FormArray(this.controlsFormPago),
+        txt_nombre_ficha: this.txt_nombre_fichaCtrl,
+        cboPais_ficha: this.cboPais_fichaCtrl,
+        cboEdadMin_ficha: this.cboEdadMin_fichaCtrl,
+        cboEdadMax_ficha: this.cboEdadMax_fichaCtrl,
+        cboPelo_ficha: this.cboPelo_fichaCtrl,
+        cboOjos_ficha: this.cboOjos_fichaCtrl,
+        cboEstatura_ficha: this.cboEstatura_fichaCtrl,
+        cboPeso_ficha: this.cboPeso_fichaCtrl,
+      });
+    });
   }
   minSelectedCheckboxes(min = 1) {
     const validator: ValidatorFn = (formArray: FormArray) => {
       const totalSelected = formArray.controls
-        .map(control => control.value)
-        .reduce((prev, next) => next ? prev + next : prev, 0);
+        .map((control) => control.value)
+        .reduce((prev, next) => (next ? prev + next : prev), 0);
 
       return totalSelected >= min ? null : { required: true };
     };
     return validator;
   }
   onChangeDistrito(val_valor: number, isChecked: boolean) {
-
-    let index = this.ListDistrito.findIndex(x => x.val_valor === val_valor);
+    let index = this.ListDistrito.findIndex((x) => x.val_valor === val_valor);
     if (isChecked) {
       this.ListDistrito[index].flag = isChecked;
     } else {
@@ -159,76 +167,142 @@ export class HeaderComponent implements OnInit {
     }
   }
   onChangeLugarAtencion(val_valor: number, event: any) {
-    let index = this.ListLugarAtencion.findIndex(x => x.val_valor === val_valor);
+    let index = this.ListLugarAtencion.findIndex(
+      (x) => x.val_valor === val_valor
+    );
     const hasClass = event.target.classList.contains(this.classNameChecked);
     this.ListLugarAtencion[index].flag = hasClass;
-    //if (isChecked) {
-    //  this.ListLugarAtencion[index].flag = isChecked;
-    //} else {
-    //  this.ListLugarAtencion[index].flag = isChecked;
-    //}
+    let contador = 0;
+    for (let i = 0; i < this.ListLugarAtencion.length; i++) {
+      if (this.ListLugarAtencion[i].flag) contador++;
+    }
+    if (
+      contador === 1 &&
+      !this.filtroSeleccionado.some((element) => element == "lugar_atencion")
+    ) {
+      this.numFilters += 1;
+      this.filtroSeleccionado.push("lugar_atencion");
+    } else if (contador === 0) {
+      this.numFilters -= 1;
+      this.filtroSeleccionado = this.filtroSeleccionado.filter(
+        (item) => item !== "lugar_atencion"
+      );
+    }
   }
   onChangeTipoServicio(val_valor: number, event: any) {
-    let index = this.ListTipoServicio.findIndex(x => x.val_valor === val_valor);
+    let index = this.ListTipoServicio.findIndex(
+      (x) => x.val_valor === val_valor
+    );
     const hasClass = event.target.classList.contains(this.classNameChecked);
     this.ListTipoServicio[index].flag = hasClass;
-    //if (isChecked) {
-    //  this.ListTipoServicio[index].flag = isChecked;
-    //} else {
-    //  this.ListTipoServicio[index].flag = isChecked;
-    //}
+    let contador = 0;
+    for (let i = 0; i < this.ListTipoServicio.length; i++) {
+      if (this.ListTipoServicio[i].flag) contador++;
+    }
+    if (
+      contador === 1 &&
+      !this.filtroSeleccionado.some((element) => element == "tipo_servicio")
+    ) {
+      this.numFilters += 1;
+      this.filtroSeleccionado.push("tipo_servicio");
+    } else if (contador === 0) {
+      this.numFilters -= 1;
+      this.filtroSeleccionado = this.filtroSeleccionado.filter(
+        (item) => item !== "tipo_servicio"
+      );
+    }
   }
   onChangeFormaPago(val_valor: number, event: any) {
-    let index = this.ListFormaPago.findIndex(x => x.val_valor === val_valor);
+    let index = this.ListFormaPago.findIndex((x) => x.val_valor === val_valor);
     const hasClass = event.target.classList.contains(this.classNameChecked);
     this.ListFormaPago[index].flag = hasClass;
-    //if (isChecked) {
-    //  this.ListFormaPago[index].flag = isChecked;
-    //} else {
-    //  this.ListFormaPago[index].flag = isChecked;
-    //}
+    let contador = 0;
+    for (let i = 0; i < this.ListFormaPago.length; i++) {
+      if (this.ListFormaPago[i].flag) contador++;
+    }
+    if (
+      contador === 1 &&
+      !this.filtroSeleccionado.some((element) => element == "forma_pago")
+    ) {
+      this.numFilters += 1;
+      this.filtroSeleccionado.push("forma_pago");
+    } else if (contador === 0) {
+      this.numFilters -= 1;
+      this.filtroSeleccionado = this.filtroSeleccionado.filter(
+        (item) => item !== "forma_pago"
+      );
+    }
   }
-  Limpiar() {
+  LimpiarControlesFiltros() {
     //Implementar logica limpiar controles
     this.fromGenerales.reset({
-      txt_nombre_ficha: '',
-      cboPais_ficha: '',
-      cboEdadMin_ficha: '',
-      cboEdadMax_ficha: '',
-      cboPelo_ficha: '',
-      cboOjos_ficha: '',
-      cboEstatura_ficha: '',
-      cboPeso_ficha: ''
+      txt_nombre_ficha: "",
+      cboPais_ficha: "",
+      cboEdadMin_ficha: "",
+      cboEdadMax_ficha: "",
+      cboPelo_ficha: "",
+      cboOjos_ficha: "",
+      cboEstatura_ficha: "",
+      cboPeso_ficha: "",
     });
-    this.ListDistrito.forEach(element => {
+    this.ListDistrito.forEach((element) => {
       element.flag = false;
     });
-    this.ListLugarAtencion.forEach(element => {
+    this.ListLugarAtencion.forEach((element) => {
       element.flag = false;
     });
-    this.ListTipoServicio.forEach(element => {
+    this.ListTipoServicio.forEach((element) => {
       element.flag = false;
     });
-    this.ListFormaPago.forEach(element => {
+    this.ListFormaPago.forEach((element) => {
       element.flag = false;
     });
+    let filtros = document.getElementsByClassName("bloque_categorias");
+    for (let i = 0; i < filtros.length; i++) {
+      let control = filtros[i].getElementsByClassName("disponible_on");
+      for (let e = 0; e < control.length; e++) {
+        let filtroChecked = control[e];
+        filtroChecked.classList.remove("activo_on");
+        filtroChecked.classList.add("activo_off");
+      }
+    }
+    this.numFilters = 0;
+    this.filtroSeleccionado = [];
   }
-  check(event: any, className: string){
+  check(event: any, className: string) {
     const hasClass = event.target.classList.contains(className);
-    if(hasClass) {
+    if (hasClass) {
       event.target.classList.remove(className);
-      event.target.classList.add('activo_on');
+      event.target.classList.add("activo_on");
       //event.removeClass(event.target, className);
     } else {
       event.target.classList.add(className);
-      event.target.classList.remove('activo_on');
+      event.target.classList.remove("activo_on");
       //event.addClass(event.target, className);
     }
   }
   save() {
-    const selectedFormaPago = this.ListFormaPago.filter(x=>{return x.flag ==true}).map(x=>{return x.val_valor}).join(",")
-    const selectedLugarAtencion = this.ListLugarAtencion.filter(x=>{return x.flag ==true}).map(x=>{return x.val_valor}).join(",")
-    const selectedTipoServicio = this.ListTipoServicio.filter(x=>{return x.flag ==true}).map(x=>{return x.val_valor}).join(",")
+    const selectedFormaPago = this.ListFormaPago.filter((x) => {
+      return x.flag == true;
+    })
+      .map((x) => {
+        return x.val_valor;
+      })
+      .join(",");
+    const selectedLugarAtencion = this.ListLugarAtencion.filter((x) => {
+      return x.flag == true;
+    })
+      .map((x) => {
+        return x.val_valor;
+      })
+      .join(",");
+    const selectedTipoServicio = this.ListTipoServicio.filter((x) => {
+      return x.flag == true;
+    })
+      .map((x) => {
+        return x.val_valor;
+      })
+      .join(",");
     this.entidad.tx_forma_pago = selectedFormaPago;
     this.entidad.tx_lugar_atencion = selectedLugarAtencion;
     this.entidad.tx_servicios_ofrece = selectedTipoServicio;
@@ -237,11 +311,11 @@ export class HeaderComponent implements OnInit {
     this.entidad.cbo_edad_max_ficha = this.fromGenerales.value.cboEdadMax_ficha;
     this.entidad.cbo_pelo_ficha = this.fromGenerales.value.cboPelo_ficha;
     this.entidad.cbo_ojos_ficha = this.fromGenerales.value.cboOjos_ficha;
-    this.entidad.cbo_estatura_ficha = this.fromGenerales.value.cboEstatura_ficha;
+    this.entidad.cbo_estatura_ficha =
+      this.fromGenerales.value.cboEstatura_ficha;
     this.entidad.cbo_peso_ficha = this.fromGenerales.value.cboPeso_ficha;
-    this.entidad.txt_nombre_ficha = this.fromGenerales.value.txt_nombre_ficha;    
+    this.entidad.txt_nombre_ficha = this.fromGenerales.value.txt_nombre_ficha;
     this.EnviarFiltro.emit({ entidad: this.entidad });
-
   }
   getCheboxerSeleccionado(ListSeleccionado: any): string {
     let selecionado: string = "";
@@ -253,38 +327,31 @@ export class HeaderComponent implements OnInit {
   }
 
   btnMostrarContainerCuidadesPrincipales(): void {
-    
     this.ContainerCiudadPrincipal = !this.ContainerCiudadPrincipal;
     // if (this.ContainerCiudadPrincipal){
     //   document.body.style.overflow = "hidden";
-    // }else{      
+    // }else{
     //   document.body.style.overflow = "auto";
     // }
   }
   btnMostrarContainerMenu(): void {
-    
     this.ContainerMenu = !this.ContainerMenu;
-    if (this.ContainerMenu){
+    if (this.ContainerMenu) {
       document.body.style.overflow = "hidden";
-    }else{      
+    } else {
       document.body.style.overflow = "auto";
     }
   }
   btnMostrarContainerFiltro(): void {
     this.ContainerFiltro = !this.ContainerFiltro;
-    if (this.ContainerFiltro){
+    if (this.ContainerFiltro) {
       document.body.style.overflow = "hidden";
       // Typical use case
-      this.metaUpKey$ = this.keybind
-      .match('ESCAPE', [])
-      .subscribe(() =>{
+      this.metaUpKey$ = this.keybind.match("ESCAPE", []).subscribe(() => {
         this.btnOcultarContainerFiltro();
         this.metaUpKey$.unsubscribe();
-      } 
-      );
-    }
-    else
-      document.body.style.overflow = "auto";
+      });
+    } else document.body.style.overflow = "auto";
   }
   btnOcultarContainerFiltro(): void {
     document.body.style.overflow = "scroll";
@@ -292,11 +359,149 @@ export class HeaderComponent implements OnInit {
   }
   btnPublicarAnuncio(): void {
     this.btnMostrarContainerMenu();
-    this.router.navigate(['/anunciategratis']);
+    this.router.navigate(["/anunciategratis"]);
   }
   btnPublicarContactar(): void {
     this.btnMostrarContainerMenu();
-    this.router.navigate(['/home/contactar-cliente']);
+    this.router.navigate(["/home/contactar-cliente"]);
   }
-  
+  btnEliminarFiltro() {
+    this.LimpiarControlesFiltros();
+  }
+  onChangeEdadMin() {
+    let edadMin: number = Number(this.fromGenerales.value.cboEdadMin_ficha);
+    let edadMax: number = Number(this.fromGenerales.value.cboEdadMax_ficha);
+    if (this.fromGenerales.value.cboEdadMin_ficha === "")
+      this.fromGenerales.controls.cboEdadMax_ficha.setValue("");
+    else {
+      if (this.fromGenerales.value.cboEdadMax_ficha === "")
+        this.fromGenerales.controls.cboEdadMax_ficha.setValue(
+          this.ListEdad[this.ListEdad.length - 1].val_valor
+        );
+      else if (edadMin > edadMax)
+        this.fromGenerales.controls.cboEdadMax_ficha.setValue(edadMin);
+    }
+
+    if (!this.filtroSeleccionado.some((element) => element == "edad")) {
+      this.numFilters += 1;
+      this.filtroSeleccionado.push("edad");
+    } else if (
+      this.fromGenerales.value.cboEdadMin_ficha === "" &&
+      this.fromGenerales.value.cboEdadMax_ficha === "" &&
+      this.filtroSeleccionado.some((element) => element == "edad")
+    ) {
+      this.numFilters -= 1;
+      this.filtroSeleccionado = this.filtroSeleccionado.filter(
+        (item) => item !== "edad"
+      );
+    }
+  }
+  onChangeEdadMax() {
+    let edadMin: number = Number(this.fromGenerales.value.cboEdadMin_ficha);
+    let edadMax: number = Number(this.fromGenerales.value.cboEdadMax_ficha);
+    if (this.fromGenerales.value.cboEdadMax_ficha === "")
+      this.fromGenerales.controls.cboEdadMin_ficha.setValue("");
+    else {
+      if (this.fromGenerales.value.cboEdadMin_ficha === "")
+        this.fromGenerales.controls.cboEdadMin_ficha.setValue(
+          this.ListEdad[0].val_valor
+        );
+      else if (edadMin > edadMax)
+        this.fromGenerales.controls.cboEdadMin_ficha.setValue(edadMax);
+    }
+
+    if (!this.filtroSeleccionado.some((element) => element == "edad")) {
+      this.numFilters += 1;
+      this.filtroSeleccionado.push("edad");
+    } else if (
+      this.fromGenerales.value.cboEdadMin_ficha === "" &&
+      this.fromGenerales.value.cboEdadMax_ficha === "" &&
+      this.filtroSeleccionado.some((element) => element == "edad")
+    ) {
+      this.numFilters -= 1;
+      this.filtroSeleccionado = this.filtroSeleccionado.filter(
+        (item) => item !== "edad"
+      );
+    }
+  }
+  onChangePais() {
+    if (!this.filtroSeleccionado.some((element) => element == "pais")) {
+      this.numFilters += 1;
+      this.filtroSeleccionado.push("pais");
+    } else if (
+      this.fromGenerales.value.cboPais_ficha === "" &&
+      this.filtroSeleccionado.some((element) => element == "pais")
+    ) {
+      this.numFilters -= 1;
+      this.filtroSeleccionado = this.filtroSeleccionado.filter(
+        (item) => item !== "pais"
+      );
+    }
+  }
+  onChangeEstatura() {
+    if (!this.filtroSeleccionado.some((element) => element == "estatura")) {
+      this.numFilters += 1;
+      this.filtroSeleccionado.push("estatura");
+    } else if (
+      this.fromGenerales.value.cboEstatura_ficha === "" &&
+      this.filtroSeleccionado.some((element) => element == "estatura")
+    ) {
+      this.numFilters -= 1;
+      this.filtroSeleccionado = this.filtroSeleccionado.filter(
+        (item) => item !== "estatura"
+      );
+    }
+  }
+  onChangePeso() {
+    if (!this.filtroSeleccionado.some((element) => element == "peso")) {
+      this.numFilters += 1;
+      this.filtroSeleccionado.push("peso");
+    } else if (
+      this.fromGenerales.value.cboPeso_ficha === "" &&
+      this.filtroSeleccionado.some((element) => element == "peso")
+    ) {
+      this.numFilters -= 1;
+      this.filtroSeleccionado = this.filtroSeleccionado.filter(
+        (item) => item !== "peso"
+      );
+    }
+  }
+  onChangeOjos() {
+    if (!this.filtroSeleccionado.some((element) => element == "ojos")) {
+      this.numFilters += 1;
+      this.filtroSeleccionado.push("ojos");
+    } else if (
+      this.fromGenerales.value.cboOjos_ficha === "" &&
+      this.filtroSeleccionado.some((element) => element == "ojos")
+    ) {
+      this.numFilters -= 1;
+      this.filtroSeleccionado = this.filtroSeleccionado.filter(
+        (item) => item !== "ojos"
+      );
+    }
+  }
+  onChangePelo() {
+    if (!this.filtroSeleccionado.some((element) => element == "pelo")) {
+      this.numFilters += 1;
+      this.filtroSeleccionado.push("pelo");
+    } else if (
+      this.fromGenerales.value.cboPelo_ficha === "" &&
+      this.filtroSeleccionado.some((element) => element == "pelo")
+    ) {
+      this.numFilters -= 1;
+      this.filtroSeleccionado = this.filtroSeleccionado.filter(
+        (item) => item !== "pelo"
+      );
+    }
+  }
+  @HostListener("document:click", ["$event"])
+  onDocumentClick(event) {
+    let navegacionCategoria = document.getElementById("navegacion_categorias")
+      .style.display;
+    if (navegacionCategoria === "block")
+      if (event.target.id === "") {
+        this.btnOcultarContainerFiltro();
+        this.metaUpKey$.unsubscribe();
+      }
+  }
 }

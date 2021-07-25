@@ -61,6 +61,7 @@
                      class="showplaceholder">
                   <div id="filters">
                      <div id="more_filters" (click)="btnMostrarContainerFiltro()">+ Filtros</div>
+                     <span id="span_filters" *ngIf="numFilters>0">{{numFilters}}</span>
                      <div id="navegacion_categorias" [style.display]="ContainerFiltro ? 'block' : 'none'">
                         <div class="lightbox"></div>
                         <div class="navegacion_aux_scroll">
@@ -85,7 +86,7 @@
                                  <!-- <div class="descripcion_grupo_categorias">Edad</div> -->
                                  <div>
                                     <span>Mín</span>
-                                    <select id="edad_ini" [formControl]="cboEdadMin_fichaCtrl">
+                                    <select id="edad_ini" [formControl]="cboEdadMin_fichaCtrl" (change)="onChangeEdadMin()">
                                        <option value="">Todos</option>
                                        <option value="{{item.val_valor}}" *ngFor="let item of ListEdad">
                                           {{item.tx_descripcion}}</option>
@@ -93,7 +94,7 @@
                                  </div>
                                  <div>
                                     <span>Máx</span>
-                                    <select id="edad_fin" [formControl]="cboEdadMax_fichaCtrl">
+                                    <select id="edad_fin" [formControl]="cboEdadMax_fichaCtrl" (change)="onChangeEdadMax()">
                                        <option value="">Todos</option>
                                        <option value="{{item.val_valor}}" *ngFor="let item of ListEdad">
                                           {{item.tx_descripcion}}</option>
@@ -104,31 +105,31 @@
                            <div class="bloque_categorias" id="bloque_categorias_12">
                               <div class="descripcion_bloque_categorias">Apariencia</div>
                               <div class="descripcion_grupo_categorias">País</div>
-                              <select class="filtro activo_off" [formControl]="cboPais_fichaCtrl">
+                              <select class="filtro activo_off" [formControl]="cboPais_fichaCtrl" (change)="onChangePais()">
                                  <option value="">Todos</option>
                                  <option value="{{item.val_valor}}" *ngFor="let item of ListPais">
                                     {{item.tx_descripcion}}</option>
                               </select>
                               <div class="descripcion_grupo_categorias">Estatura</div>
-                              <select class="filtro activo_off" [formControl]="cboEstatura_fichaCtrl">
+                              <select class="filtro activo_off" [formControl]="cboEstatura_fichaCtrl" (change)="onChangeEstatura()">
                                  <option value="">Todos</option>
                                  <option value="{{item.val_valor}}" *ngFor="let item of ListEstatura">
                                     {{item.tx_descripcion}}</option>
                               </select>
                               <div class="descripcion_grupo_categorias">Peso</div>
-                              <select class="filtro activo_off" [formControl]="cboPeso_fichaCtrl">
+                              <select class="filtro activo_off" [formControl]="cboPeso_fichaCtrl" (change)="onChangePeso()">
                                  <option value="">Todos</option>
                                  <option value="{{item.val_valor}}" *ngFor="let item of ListPeso">
                                     {{item.tx_descripcion}}</option>
                               </select>
                               <div class="descripcion_grupo_categorias">Ojos</div>
-                              <select class="filtro activo_off" [formControl]="cboOjos_fichaCtrl">
+                              <select class="filtro activo_off" [formControl]="cboOjos_fichaCtrl" (change)="onChangeOjos()">
                                  <option value="">Todos</option>
                                  <option value="{{item.val_valor}}" *ngFor="let item of ListOjos">
                                     {{item.tx_descripcion}}</option>
                               </select>
                               <div class="descripcion_grupo_categorias">Pelo</div>
-                              <select class="filtro activo_off" [formControl]="cboPelo_fichaCtrl">
+                              <select class="filtro activo_off" [formControl]="cboPelo_fichaCtrl" (change)="onChangePelo()">
                                  <option value="">Todos</option>
                                  <option value="{{item.val_valor}}" *ngFor="let item of ListCabellos">
                                     {{item.tx_descripcion}}</option>
@@ -152,7 +153,7 @@
                         <div class="navegacion_controles">
                            <button type='submit' class="boton aplicar "><i
                                  class="m-ico">check_circle</i>Filtrar</button>
-                           <span class="boton eliminar"><i class="m-ico">cancel</i>Borrar</span>
+                           <span class="boton eliminar" (click)="btnEliminarFiltro()"><i class="m-ico">cancel</i>Borrar</span>
                            <span class="boton cerrar" (click)="btnOcultarContainerFiltro()"><i
                                  class="m-ico">close</i></span>
                         </div>

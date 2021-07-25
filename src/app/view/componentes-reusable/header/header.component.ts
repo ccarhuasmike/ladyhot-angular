@@ -316,6 +316,9 @@ export class HeaderComponent implements OnInit {
     this.entidad.cbo_peso_ficha = this.fromGenerales.value.cboPeso_ficha;
     this.entidad.txt_nombre_ficha = this.fromGenerales.value.txt_nombre_ficha;
     this.EnviarFiltro.emit({ entidad: this.entidad });
+    this.btnOcultarContainerFiltro();
+    this.metaUpKey$.unsubscribe();
+    this.contValidShowFiltro = 0;
   }
   getCheboxerSeleccionado(ListSeleccionado: any): string {
     let selecionado: string = "";

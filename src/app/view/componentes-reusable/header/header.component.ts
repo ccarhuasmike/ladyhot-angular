@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
   ListFormaPago: any = [];
   numFilters: number = 0;
   filtroSeleccionado = [];
-
+  contValidShowFiltro: number = 0;
   constructor(
     private parameter: ParameterService,
     private router: Router,
@@ -281,7 +281,7 @@ export class HeaderComponent implements OnInit {
       //event.addClass(event.target, className);
     }
   }
-  save() {
+  consultar() {
     const selectedFormaPago = this.ListFormaPago.filter((x) => {
       return x.flag == true;
     })
@@ -350,6 +350,7 @@ export class HeaderComponent implements OnInit {
       this.metaUpKey$ = this.keybind.match("ESCAPE", []).subscribe(() => {
         this.btnOcultarContainerFiltro();
         this.metaUpKey$.unsubscribe();
+        this.contValidShowFiltro = 0;
       });
     } else document.body.style.overflow = "auto";
   }
@@ -498,10 +499,18 @@ export class HeaderComponent implements OnInit {
   onDocumentClick(event) {
     let navegacionCategoria = document.getElementById("navegacion_categorias")
       .style.display;
-    if (navegacionCategoria === "block")
-      if (event.target.id === "") {
+    let isOutside = event.target.closest(".div_navegacion");
+    if (navegacionCategoria === "block") {
+      this.contValidShowFiltro++;
+      if (
+        event.target.parentElement["id"] == "navegacion_categorias" &&
+        isOutside === null &&
+        this.contValidShowFiltro > 1
+      ) {
         this.btnOcultarContainerFiltro();
         this.metaUpKey$.unsubscribe();
+        this.contValidShowFiltro = 0;
       }
+    }
   }
 }

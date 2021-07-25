@@ -34,7 +34,7 @@
                   </div>
             </div>
             <form id="search-form" autocomplete="off" *ngIf="fromGenerales" [formGroup]='fromGenerales'
-               (ngSubmit)='save()'>
+               (ngSubmit)='consultar()'>
                <div id="search-field-location" class="search-field geolocation_off">
                   <label for="search-location">¿Dónde estás?</label>
                   <input type="text" name="search-location" id="search-location" autocomplete="off"
@@ -64,7 +64,7 @@
                      <span id="span_filters" *ngIf="numFilters>0">{{numFilters}}</span>
                      <div id="navegacion_categorias" [style.display]="ContainerFiltro ? 'block' : 'none'">
                         <div class="lightbox"></div>
-                        <div class="navegacion_aux_scroll">
+                        <div class="navegacion_aux_scroll div_navegacion">
                            <div class="bloque_categorias" id="bloque_categorias_10">
                               <div class="descripcion_bloque_categorias">Contenido</div>
                               <span class="filtro disponible_on activo_off videos" data-id="con-videos">Con
@@ -150,7 +150,7 @@
                                  *ngFor="let item of ListLugarAtencion; let i = index;">{{item.tx_descripcion}}</span>
                            </div>
                         </div>
-                        <div class="navegacion_controles">
+                        <div class="navegacion_controles div_navegacion">
                            <button type='submit' class="boton aplicar "><i
                                  class="m-ico">check_circle</i>Filtrar</button>
                            <span class="boton eliminar" (click)="btnEliminarFiltro()"><i class="m-ico">cancel</i>Borrar</span>

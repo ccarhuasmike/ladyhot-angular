@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 export class ConfigService {
     _webApi: string;
     _webDomain: string;
-    constructor() {        
+    constructor() {
         this._webApi = "https://webapigologolos.gologolos.com/api/";
         this._webDomain = "https://www.gologolos.com/";
         // this._webApi = "http://localhost:7044/api/";        

@@ -20,7 +20,7 @@ export class DatosGeneralesComponent implements OnInit {
     //Datos Generales
     edadCtrl: FormControl;
     tituloCtrl: FormControl;
-     paisCtrl: FormControl;
+    paisCtrl: FormControl;
     // estudiosCtrl: FormControl;
     txt_descripcion_generalesCtrl: FormControl;
 
@@ -36,8 +36,8 @@ export class DatosGeneralesComponent implements OnInit {
         private spinner: NgxSpinnerService
     ) { }
 
-    ngOnInit() {        
-       
+    ngOnInit() {
+
         this.DataJsonAnuncio = JSON.parse(localStorage.getItem('DataAnuncio'));
         let listaParamter = JSON.parse(localStorage.getItem('listParamter'));
         this.anuncioService.segundopaso(true);
@@ -50,8 +50,8 @@ export class DatosGeneralesComponent implements OnInit {
         this.ListEstudios = listaParamter.estudios; //this.anuncioService.getListEstudios();
         //Controles Datos Generales
         this.edadCtrl = new FormControl('', [Validators.required]);
-        this.tituloCtrl = new FormControl('', [Validators.required, Validators.minLength(15), Validators.maxLength(200)]);        
-         this.paisCtrl = new FormControl('', [Validators.required]);
+        this.tituloCtrl = new FormControl('', [Validators.required, Validators.minLength(15), Validators.maxLength(200)]);
+        this.paisCtrl = new FormControl('', [Validators.required]);
         // this.estudiosCtrl = new FormControl('', [Validators.required]);
         this.txt_descripcion_generalesCtrl = new FormControl('', [Validators.required, Validators.minLength(50), Validators.maxLength(100000)]);
 
@@ -63,7 +63,7 @@ export class DatosGeneralesComponent implements OnInit {
             // int_estudios: this.estudiosCtrl,
             txt_presentacion: this.txt_descripcion_generalesCtrl
         });
-       
+
         if (this.DataJsonAnuncio !== null) {
             this.fromDatosGenerales.patchValue({
                 int_edad: this.DataJsonAnuncio.int_edad == 0 ? "" : this.DataJsonAnuncio.int_edad,
@@ -81,27 +81,27 @@ export class DatosGeneralesComponent implements OnInit {
         this.router.navigate(['anunciategratis/datos-contacto']);
     }
     saveDatosGenerales() {
-        
+
         this.isSubmittedDatosGenerales = true;
         if (!this.fromDatosGenerales.valid)
-            return;this.spinner.show();
+            return; this.spinner.show();
         this.DataJsonAnuncio.int_edad = parseInt(this.fromDatosGenerales.value.int_edad);
         this.DataJsonAnuncio.int_pais_origen = parseInt(this.fromDatosGenerales.value.int_pais_origen);
-        this.DataJsonAnuncio.txt_titulo = this.fromDatosGenerales.value.txt_titulo;        
+        this.DataJsonAnuncio.txt_titulo = this.fromDatosGenerales.value.txt_titulo;
         //this.DataJsonAnuncio.int_estudios = parseInt(this.fromDatosGenerales.value.int_estudios);
         this.DataJsonAnuncio.txt_presentacion = this.fromDatosGenerales.value.txt_presentacion;
         this.anuncioService.SaveSegundoPaso(this.DataJsonAnuncio).subscribe(
             (res) => {
                 if (res.Status == "OK") {
-                   
+
                     let DataJsonAnuncio: any = res.Data;
                     localStorage.setItem('DataAnuncio', DataJsonAnuncio);
-                
+
                     this.router.navigate(['anunciategratis/apariencia']);
                 }
                 setTimeout(() => {
                     this.spinner.hide();
-                  }, 2000);
+                }, 2000);
             }
         );
     }

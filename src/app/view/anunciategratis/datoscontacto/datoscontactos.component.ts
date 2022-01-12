@@ -25,7 +25,7 @@ export class DatosContactoComponent implements OnInit {
     //txt_telefono_2Ctrl: FormControl;
     //Registro de Expresiones
     RegEx_mailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-    RegEx_txt_web =  /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;//"^(http[s]?:\\/\\/){0,1}(www\\.){0,1}[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,5}[\\.]{0,1}$";
+    RegEx_txt_web = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;//"^(http[s]?:\\/\\/){0,1}(www\\.){0,1}[a-zA-Z0-9\\.\\-]+\\.[a-zA-Z]{2,5}[\\.]{0,1}$";
     RegEx_Telefono = "^[679]{1}[0-9]{8}$";
     _messageService: any;
     listParameter: any;
@@ -82,7 +82,7 @@ export class DatosContactoComponent implements OnInit {
             return;
 
         this.spinner.show();
-        
+
         if (this.DataJsonAnuncio == null) {
             //Registrar Datos
             let entidad: any = {};
@@ -103,7 +103,7 @@ export class DatosContactoComponent implements OnInit {
                     }
                     setTimeout(() => {
                         this.spinner.hide();
-                      }, 2000);
+                    }, 2000);
                 }
             );
         } else {
@@ -115,6 +115,7 @@ export class DatosContactoComponent implements OnInit {
             this.DataJsonAnuncio.txt_web = this.fromContacto.value.txt_web;
             this.anuncioService.UpdateSavePrimerPaso(this.DataJsonAnuncio).subscribe(
                 (res) => {
+
                     if (res.Status == "OK") {
                         let DataJsonAnuncio: any = res.Data;
                         localStorage.setItem('DataAnuncio', DataJsonAnuncio);
@@ -122,7 +123,7 @@ export class DatosContactoComponent implements OnInit {
                     }
                     setTimeout(() => {
                         this.spinner.hide();
-                      }, 2000);
+                    }, 2000);
                 }
             );
         }

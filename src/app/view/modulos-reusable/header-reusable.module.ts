@@ -7,9 +7,18 @@ import { RouterModule } from "@angular/router";
 import { HeaderComponent } from "../componentes-reusable/header/header.component";
 import { ContactarComponent } from "../componentes-reusable/contactar/contactar.component";
 @NgModule({
-    imports: [CommonModule, ReactiveFormsModule, RouterModule],
-    declarations: [NavegacionComponent, FiltroComponent, HeaderComponent, ContactarComponent],
-    exports: [NavegacionComponent, FiltroComponent, HeaderComponent, ContactarComponent],
-  })
-  export class HeaderReusableModule {
-  }
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  declarations: [
+    NavegacionComponent,
+    FiltroComponent,
+    HeaderComponent,
+    ContactarComponent,
+  ],
+  exports: [
+    NavegacionComponent,
+    FiltroComponent,
+    HeaderComponent,
+    ContactarComponent,
+  ],
+})
+export class HeaderReusableModule {}

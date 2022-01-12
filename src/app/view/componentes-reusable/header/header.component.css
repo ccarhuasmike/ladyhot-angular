@@ -1216,3 +1216,12 @@ html.form_login #content #ficha_edicion textarea,
     }
     
 } 
+#span_filters{
+    color: #fff;
+    background-color: #0072C6;
+    font-size: 13px;
+    padding: 4px 8px;
+    border-radius: 3px;
+    vertical-align: top;
+    line-height: 40px;
+}
